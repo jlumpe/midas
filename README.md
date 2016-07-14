@@ -1,0 +1,2 @@
+# midas
+Core MIDAS library
