@@ -5,18 +5,29 @@ import json
 import collections
 import weakref
 
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.event import listen
 from sqlalchemy.types import TypeDecorator
 from sqlalchemy.ext.mutable import Mutable
-import sqlalchemy.orm.session
+from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy.orm.session import Session
 
 
-class ReadOnlySession(sqlalchemy.orm.session.Session):
+class ReadOnlySession(Session):
 	"""Session class that doesn't allow flushing/committing"""
 
 	def _flush(self, *args, **kwargs):
 		raise RuntimeError('This sessison is read-only')
+
+
+class VersionedMixin(object):
+	"""Mixin for models that implement a version counter"""
+
+	_version_id = Column('version_id', Integer(), nullable=False)
+
+	@declared_attr
+	def __mapper_args__(cls):
+		return dict(version_id_col=cls._version_id)
 
 
 class TrackChangesMixin(object):
