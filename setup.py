@@ -12,7 +12,7 @@ setup(
 	author_email='mjlumpe@gmail.com',
 	packages=find_packages(),
 	install_requires=[
-		'python >= 3.5',
 		'numpy >= 1.11',
+		'sqlalchemy >= 1.0',
 	],
 )
