@@ -100,6 +100,11 @@ class Genome(TrackChangesMixin):
 	def sequence(cls):
 		return relationship('Sequence', uselist=False, backref='genome')
 
+	@declared_attr
+	def annotations(cls):
+		return relationship('GenomeAnnotations', lazy=True,
+		                    cascade='all, delete-orphan')
+
 	def __repr__(self):
 		return '<{}.{} id={} desc="{}">'.format(
 			self.__module__,
@@ -136,7 +141,8 @@ class GenomeSet:
 
 	@declared_attr
 	def genome_annotations(cls):
-		return relationship('GenomeAnnotations', lazy=True)
+		return relationship('GenomeAnnotations', lazy='dynamic',
+		                    cascade='all, delete-orphan')
 
 	def __repr__(self):
 		return '<{}.{} id={} name="{}">'.format(
@@ -160,7 +166,7 @@ class GenomeAnnotations(TrackChangesMixin):
 
 	@declared_attr
 	def genome(cls):
-		return relationship('Genome', backref='annotations')
+		return relationship('Genome')
 
 	@declared_attr
 	def genome_set(cls):
@@ -173,11 +179,10 @@ class GenomeAnnotations(TrackChangesMixin):
 	tax_strain = Column(String())
 
 	def __repr__(self):
-		return '<{}.{} genome_id={} desc="{}" set={}>'.format(
+		return '<{}.{} genome_id={} set={}>'.format(
 			self.__module__,
 			type(self).__name__,
 			self.genome_id,
-			self.description,
 			self.genome_set,
 		)
 
