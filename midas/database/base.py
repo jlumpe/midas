@@ -98,7 +98,8 @@ class Genome(TrackChangesMixin):
 	# One-to-one relationship to Sequence
 	@declared_attr
 	def sequence(cls):
-		return relationship('Sequence', uselist=False, backref='genome')
+		return relationship('Sequence', uselist=False, backref='genome',
+		                    cascade='all, delete-orphan')
 
 	@declared_attr
 	def annotations(cls):
