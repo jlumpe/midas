@@ -1,6 +1,7 @@
 
 import pytest
 
+import os
 from io import StringIO
 import gzip
 import numpy as np
@@ -74,11 +75,7 @@ class TestSeqStorage:
 
 	def test_text_buffer(self, storage_tester):
 		"""Add from StringIO buffer"""
-	
-		seq_buf = StringIO()
-		seq_buf.write(storage_tester.seq_str)
-		seq_buf.seek(0)
-
+		seq_buf = StringIO(storage_tester.seq_str)
 		storage_tester.store(seq_buf)
 
 	def test_uncomp_fname(self, uncomp_seq_file, storage_tester):
@@ -128,6 +125,24 @@ class TestSeqStorage:
 		"""Add gzip file object"""
 		with open(gzip_seq_file.strpath, 'rb') as fh:
 			storage_tester.store(fh, src_compression='gzip')
+
+	def test_deletion(self, storage_tester):
+		"""Test removeal of data file after sequence instance deleted"""
+		seq_buf = StringIO(storage_tester.seq_str)
+		storage_tester.store(seq_buf)
+
+		db = storage_tester.db
+		session = storage_tester.session
+
+		seq_file_name = storage_tester.genome.sequence._filename
+		seq_file_path = os.path.join(db.path, db._seq_dir, seq_file_name)
+
+		assert os.path.exists(seq_file_path)
+
+		storage_tester.genome.sequence = None
+		session.commit()
+
+		assert not os.path.exists(seq_file_path)
 
 
 class TestCoordsStorage:

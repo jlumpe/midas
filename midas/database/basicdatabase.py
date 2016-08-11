@@ -11,8 +11,18 @@ from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker, deferred
+from sqlalchemy.orm.session import Session, object_session
 
 from . import base
+
+
+
+class BasicDatabaseSession(Session):
+	"""SQLAlchemy session that tracks the database it belongs to"""
+
+	def __init__(self, *, midasdb, **kwargs):
+		super(BasicDatabaseSession, self).__init__(**kwargs)
+		self._midasdb = midasdb
 
 
 # SqlAlchemy declarative base
@@ -35,6 +45,22 @@ class GenomeAnnotations(Base, base.GenomeAnnotations):
 class Sequence(Base, base.Sequence):
 	_filename = Column(String(), nullable=False, unique=True)
 
+	@classmethod
+	def _after_delete(cls, mapper, connection, instance):
+		"""Listener for deletion event
+
+		Informs associated BasicDatabase that the sequence instance has been
+		deleted so that its data file can be deleted as well.
+		"""
+		session = object_session(instance)
+		if isinstance(session, BasicDatabaseSession):
+			session._midasdb._after_sequence_delete(mapper, connection, instance)
+
+	@classmethod
+	def __declare_last__(cls):
+		"""Register event listener"""
+		event.listen(cls, 'after_delete', cls._after_delete)
+
 
 class KmerSetCollection(Base, base.KmerSetCollection):
 	pass
@@ -52,7 +78,9 @@ class BasicDatabase(base.AbstractDatabase):
 	def __init__(self, path):
 		self.path = os.path.abspath(path)
 		self._engine = self._make_engine(self.path)
-		self._Session = sessionmaker(bind=self._engine)
+		self._Session = sessionmaker(bind=self._engine,
+		                             class_=BasicDatabaseSession,
+		                             midasdb=self)
 
 	@classmethod
 	def create(cls, path):
@@ -102,6 +130,10 @@ class BasicDatabase(base.AbstractDatabase):
 
 			# Merge genome instance into current session
 			merged_genome = session.merge(genome)
+
+			# Check sequence does not already exist
+			if merged_genome.sequence is not None:
+				raise RuntimeError('Genome already has a sequence')
 
 			# Create Sequence instance
 			sequence = Sequence(genome=merged_genome, format=seq_format,
@@ -184,6 +216,10 @@ class BasicDatabase(base.AbstractDatabase):
 	def load_kset_coords(self, kset):
 		return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
 
+	def _after_sequence_delete(self, mapper, connection, target):
+		"""Called by after_delete listener on Sequence"""
+		os.remove(os.path.join(self.path, self._seq_dir, target._filename))
+
 	@classmethod
 	def _make_seq_fname(cls, genome):
 		"""Create a unique and descriptive file name for a Sequence's data"""
@@ -191,12 +227,6 @@ class BasicDatabase(base.AbstractDatabase):
 			genome.id,
 			re.sub('[^A-Z0-9]+', '_', genome.description.upper())
 		)
-
-	@event.listens_for(Sequence, 'after_delete')
-	@classmethod
-	def _after_sequence_delete(cls, mapper, connection, target):
-		"""Listens for Sequence deletions and removes their data"""
-		os.remove(os.path.join(self.path, self._seq_dir, target._filename))
 
 	Base = Base
 	Genome = Genome
