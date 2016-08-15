@@ -1,6 +1,18 @@
 """setuptools installation script for midas package"""
 
 from setuptools import setup, find_packages
+from distutils.extension import Extension
+from Cython.Build import cythonize
+import numpy
+
+
+np_include = numpy.get_include()
+
+
+extensions = [
+	Extension('midas.cython.*', ['midas/cython/*.pyx'],
+	          include_dirs=[np_include]),
+]
 
 
 setup(
@@ -15,4 +27,5 @@ setup(
 		'numpy >= 1.11',
 		'sqlalchemy >= 1.0',
 	],
+	ext_modules=cythonize(extensions),
 )
