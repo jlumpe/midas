@@ -10,6 +10,7 @@ import numpy as np
 from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, event
+from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred
 from sqlalchemy.orm.session import Session, object_session
 
@@ -50,7 +51,8 @@ class Sequence(Base, base.Sequence):
 		"""Listener for deletion event
 
 		Informs associated BasicDatabase that the sequence instance has been
-		deleted so that its data file can be deleted as well.
+		deleted so that its data file can be deleted as well. Note: this only
+		works for single instances (not bulk deletes).
 		"""
 		session = object_session(instance)
 		if isinstance(session, BasicDatabaseSession):
@@ -84,6 +86,7 @@ class BasicDatabase(base.AbstractDatabase):
 
 	@classmethod
 	def create(cls, path):
+		"""Creates and initializes a new BasicDatabase at the given path"""
 		path = os.path.abspath(path)
 
 		# Create directory if it does not exist
@@ -100,6 +103,7 @@ class BasicDatabase(base.AbstractDatabase):
 
 	@classmethod
 	def _make_engine(cls, path):
+		"""Create the engine for a BasicDatabase located at the given path"""
 		return create_engine('sqlite:///{}/db.sqlite3'.format(path))
 
 	def get_session(self):
@@ -122,11 +126,23 @@ class BasicDatabase(base.AbstractDatabase):
 			                 .format(src_compression))
 		
 		# Get destination path
-		seq_fname = self._make_seq_fname(genome) + '.gz'
+		seq_fname = self._make_seq_fname(genome, ext='.gz')
 		dest_path = os.path.join(self.path, self._seq_dir, seq_fname)
 
 		# Create session context
 		with self.session_context() as session:
+
+			# Check that there is no existing sequence with the same filename
+			# (this shouldn't ever happen as they should be unique per
+			# Genome)
+			assert (session.query(self.Sequence)
+			        .filter_by(_filename=seq_fname)
+			        .count() == 0)
+
+			# Remove any existing file at the destination path as it must
+			# have been left behind when its Sequence instance was deleted
+			if os.path.isfile(dest_path):
+				os.remove(dest_path)
 
 			# Merge genome instance into current session
 			merged_genome = session.merge(genome)
@@ -200,8 +216,11 @@ class BasicDatabase(base.AbstractDatabase):
 					os.remove(src)
 
 	def open_sequence(self, sequence):
-		seq_path = os.path.join(self.path, self._seq_dir,sequence._filename)
-		return gzip.open(seq_path, 'rt')
+		# Merge in sequence to fresh session
+		session = self.get_session()
+		merged = session.merge(sequence)
+
+		return gzip.open(self._get_seq_file_path(merged), 'rt')
 
 	def store_kset_coords(self, genome, collection, coords):
 		coords = coords.astype(collection.coords_dtype, copy=False)
@@ -218,15 +237,46 @@ class BasicDatabase(base.AbstractDatabase):
 
 	def _after_sequence_delete(self, mapper, connection, target):
 		"""Called by after_delete listener on Sequence"""
-		os.remove(os.path.join(self.path, self._seq_dir, target._filename))
+		os.remove(self._get_seq_file_path(target))
 
-	@classmethod
-	def _make_seq_fname(cls, genome):
+	def _get_seq_file_path(self, sequence):
+		"""Gets path to sequence file"""
+		seq_fname = (sequence if isinstance(sequence, str)
+		             else sequence._filename)
+		return os.path.join(self.path, self._seq_dir, seq_fname)
+
+	def _make_seq_fname(self, genome, ext=None):
 		"""Create a unique and descriptive file name for a Sequence's data"""
-		return '{}_{}'.format(
+		return '{}_{}{}'.format(
 			genome.id,
-			re.sub('[^A-Z0-9]+', '_', genome.description.upper())
+			re.sub('[^A-Z0-9]+', '_', genome.description.upper()[:32]),
+			ext if ext is not None else '',
 		)
+
+	def clean_seq_files(self, dry_run=False):
+		"""Removes orphaned sequence files from directory
+
+		Orphaned files are created when a Sequence is deleted from the
+		SQLAlchemy database in a way that does not trigger the after_delete
+		ORM event (such as from a bulk delete query). These files shouldn't
+		be harmful but could waste disk space.
+		"""
+
+		# Get file names of existing sequences
+		session = self.get_session()
+		results = session.execute(select([Sequence.__table__.c._filename]))
+		existing_fnames = set(fname for fname, in results.fetchall())
+
+		# Remove others
+		cleaned = []
+		for fname in os.listdir(os.path.join(self.path, self._seq_dir)):
+			if fname not in existing_fnames:
+				if not dry_run:
+					os.unlink(self._get_seq_file_path(fname))
+				cleaned.append(fname)
+
+		# Return list of cleaned files
+		return cleaned
 
 	Base = Base
 	Genome = Genome

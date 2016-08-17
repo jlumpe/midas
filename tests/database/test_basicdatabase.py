@@ -89,7 +89,7 @@ class TestSeqStorage:
 		"""Add from name of uncompressed text file, don't keep source"""
 		storage_tester.store(uncomp_seq_file.strpath, keep_src=False)
 
-		# Check file still exists
+		# Check file no longer exists at location
 		assert not uncomp_seq_file.exists()
 
 	def test_gzip_fname(self, gzip_seq_file, storage_tester):
@@ -104,7 +104,7 @@ class TestSeqStorage:
 		storage_tester.store(gzip_seq_file.strpath, src_compression='gzip',
 		                     keep_src=False)
 
-		# Check file still exists
+		# Check file no longer exists at location
 		assert not gzip_seq_file.exists()
 
 	def test_uncomp_fileobj_text(self, uncomp_seq_file, storage_tester):
@@ -143,6 +143,46 @@ class TestSeqStorage:
 		session.commit()
 
 		assert not os.path.exists(seq_file_path)
+
+	def test_clean(self, db, seq_str):
+		"""Test cleaning of orphaned sequence files"""
+
+		session = db.get_session()
+
+		# Add some genomes
+		genomes = []
+		for i in range(10):
+			genome = db.Genome(description='test{}'.format(i+1),
+			                   is_assembled=False)
+			genomes.append(genome)
+			session.add(genome)
+		session.commit()
+
+		# Store real sequences
+		seq_buf = StringIO(seq_str)
+		for genome in genomes:
+			seq_buf.seek(0)
+			db.store_sequence(genome, seq_buf)
+
+		# Add some orphaned files
+		orphaned_files = []
+		for i in range(10):
+			fname = 'orphan{}.seq'.format(i+1)
+			orphaned_files.append(fname)
+			with open(db._get_seq_file_path(fname), 'w') as fh:
+				fh.write(seq_str)
+
+		# Clean
+		cleaned_files = set(db.clean_seq_files())
+
+		# Check orphaned files are gone and in returned list
+		for fname in orphaned_files:
+			assert fname in cleaned_files
+			assert not os.path.exists(db._get_seq_file_path(fname))
+
+		# Check all real files are still readable
+		for genome in genomes:
+			assert db.open_sequence(genome.sequence).read() == seq_str
 
 
 class TestCoordsStorage:
