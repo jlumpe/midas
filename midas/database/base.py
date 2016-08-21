@@ -200,6 +200,9 @@ class GenomeSet:
 	key = Column(String())
 	key_version = Column(String())
 
+	# Arbitrary metadata as mutable JSON dict
+	meta = Column(MutableJsonDict.as_mutable(JsonType))
+
 	@declared_attr
 	def annotations(cls):
 		return relationship('GenomeAnnotations', lazy='dynamic',
