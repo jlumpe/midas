@@ -4,11 +4,12 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
 import contextlib
 
-from sqlalchemy import Table, ForeignKey
+from sqlalchemy import Table, ForeignKey, UniqueConstraint
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Enum
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.associationproxy import association_proxy
 
 from .sqla import TrackChangesMixin, JsonType, MutableJsonDict
 
@@ -61,24 +62,49 @@ class Genome(TrackChangesMixin):
 
 	Corresponds to a single assembly (one or more contigs, but at least
 	partially assembled) from what should be a single sequencing run. The
-	same organism may have several genome entries for it. Typically this
-	will correspond directly to a record in Genbank (accession database).
+	same organism or strain may have several genome entries for it. Typically
+	this will correspond directly to a record in Genbank (assembly database).
 
-	This model simply stores the metadata of the genome itself. Information
-	on the actual sequence itself is stored in the sequence relationship.
-	A genome has at most one sequence associated with it.
+	This model simply stores the metadata of the genome, nformation	on the
+	actual sequence data itself is stored in the sequence relationship.
+	A Genome entry has at most one sequence associated with it.
+
+	The data on this model should primarily pertain to the sample and
+	sequencing run itself. It would be updated if for example a better
+	assembly was produced from the original raw data, however more advanced
+	interpretation such as taxonomy assignments belong on an attached
+	GenomeAnnotations object.
 	"""
 
 	__tablename__ = 'genomes'
+	__table_args__ = (
+		UniqueConstraint('key', 'key_version'),
+	)
 
-	# Numeric PK
+	# Integer PK
 	id = Column(Integer(), primary_key=True)
 
-	# Short, unique description
+	# Short description. Recommended to be unique but this is not enforced.
 	description = Column(String(), nullable=False)
 
+	# This is intended to be a universally unique key that can be used to
+	# identify genomes across databases on different systems. This is
+	# primarily intended to be used for distributing database updates.
+	# It can be any arbitrary string but the recommended format is a filepath-
+	# like structure separated by forward slashes. This results in a
+	# heirarchical format that supports using namespaces to avoid key
+	# conflicts. Example: "genbank/assembly/GCF_00000000.0" which
+	# corresponds to a specific genome stored in the Genbank assembly database.
+	key = Column(String())
+
+	# Version of this Genome's metadata, according to whatever source
+	# defined the key. Used to determine when the genome metadata needs to
+	# be updated. Should be in the format defined by PEP 440
+	# (https://www.python.org/dev/peps/pep-0440/)
+	key_version = Column(String())
+
 	# Whether the genome is completely assembled or has multiple contigs
-	is_assembled = Column(Boolean(), nullable=False)
+	is_assembled = Column(Boolean())
 
 	# Optional metadata for genomes from genbank
 	gb_db = Column(String()) # Database, e.g. "assembly"
@@ -106,16 +132,26 @@ class Genome(TrackChangesMixin):
 		return relationship('GenomeAnnotations', lazy=True,
 		                    cascade='all, delete-orphan')
 
-	def __repr__(self):
-		return '<{}.{} id={} desc="{}">'.format(
-			self.__module__,
+	def repr(self, module=True):
+		"""Configurable string representation"""
+		return '<{}{}:{} "{}">'.format(
+			self.__module__ + '.' if module else '',
 			type(self).__name__,
 			self.id,
 			self.description,
 		)
 
+	def __repr__(self):
+		return self.repr(module=True)
+
 
 class Sequence:
+	"""Stores metadata for genome's sequence data, if it is in the database
+
+	Genomes may be present in the database with associated metadata as a
+	Genome object, but may not have a sequence stored. This contains
+	metadata for the sequence itself.
+	"""
 	__tablename__ = 'sequences'
 
 	@declared_attr
@@ -125,36 +161,75 @@ class Sequence:
 	# Format of sequence - e.g. fasta
 	format = Column(String(), nullable=False)
 
-	def __repr__(self):
-		return '<{}.{} genome={}>'.format(
-			self.__module__,
+	def repr(self, module=True):
+		"""Configurable string representation"""
+		return '<{}{} {}>'.format(
+			self.__module__ + '.' if module else '',
 			type(self).__name__,
-			self.genome,
+			self.genome.repr(module=False),
 		)
+
+	def __repr__(self):
+		return self.repr(module=True)
 
 
 class GenomeSet:
-	__tablename__ = 'genome_sets'
+	"""A collection of genomes along with additional annotations on each
 
+	This will be used (among other things) to identify a set of genomes
+	a query will be run against. Like Genomes they can be distributed via
+	updates, in which case they should have a unique key and version number
+	to identify them.
+	"""
+	__tablename__ = 'genome_sets'
+	__table_args__ = (
+		UniqueConstraint('key', 'key_version'),
+	)
+
+	# Integer PK
 	id = Column(Integer(), primary_key=True)
+
+	# Unique name
 	name = Column(String(), unique=True, nullable=False)
+
+	# Optional text description
 	description = Column(String())
 
+	# Unique key and version, same purpose and meaning as in the Genome
+	# model.
+	key = Column(String())
+	key_version = Column(String())
+
 	@declared_attr
-	def genome_annotations(cls):
+	def annotations(cls):
 		return relationship('GenomeAnnotations', lazy='dynamic',
 		                    cascade='all, delete-orphan')
 
-	def __repr__(self):
-		return '<{}.{} id={} name="{}">'.format(
-			self.__module__,
+	@declared_attr
+	def genomes(cls):
+		return association_proxy('annotations', 'genome')
+
+	def repr(self, module=True):
+		"""Configurable string representation"""
+		return '<{}{}:{} "{}"">'.format(
+			self.__module__ + '.' if module else '',
 			type(self).__name__,
 			self.id,
-			self.name,
+			self.name
 		)
+
+	def __repr__(self):
+		return self.repr(module=True)
 
 
 class GenomeAnnotations(TrackChangesMixin):
+	"""Association object connecting Genomes with GenomeSets
+
+	Can simply indicate that a Genome is contained in a GenomeSet, but can
+	also carry additional annotations for the genome that are different
+	between sets. Mostly holds taxonomy information as that is frequently
+	a result of additional analysis on the sequence.
+	"""
 	__tablename__ = 'genome_annotations'
 
 	@declared_attr
@@ -173,6 +248,13 @@ class GenomeAnnotations(TrackChangesMixin):
 	def genome_set(cls):
 		return relationship('GenomeSet')
 
+	# Single string describing the organism. May be "Genus, species[, strain]"
+	# but could contain more specific information. Intended to be human-
+	# readable and shouldn't have any semantic meaning for the application
+	# (in contrast to the following taxonomy attributes, which are used to
+	# determine a match when querying against the set).
+	organism = Column(String())
+
 	# Taxonomy - species, subspecies, and strain. May not match original
 	# Genbank annotations after curation
 	tax_species = Column(String())
@@ -180,11 +262,11 @@ class GenomeAnnotations(TrackChangesMixin):
 	tax_strain = Column(String())
 
 	def __repr__(self):
-		return '<{}.{} genome_id={} set={}>'.format(
+		return '<{}.{} {}:{}>'.format(
 			self.__module__,
 			type(self).__name__,
-			self.genome_id,
-			self.genome_set,
+			self.genome_set.repr(module=False),
+			self.genome.repr(module=False),
 		)
 
 
@@ -208,7 +290,7 @@ class KmerSetCollection(TrackChangesMixin):
 	k = Column(Integer(), nullable=False)
 
 	# Additional parameters used to construct the set (if any).
-	# Current reserved for future use.
+	# Currently reserved for future use.
 	parameters = Column(MutableJsonDict.as_mutable(JsonType), nullable=False,
 	                    default=dict())
 
@@ -216,13 +298,13 @@ class KmerSetCollection(TrackChangesMixin):
 	meta = Column(MutableJsonDict.as_mutable(JsonType))
 
 	def __repr__(self):
-		return '<{}.{} id={} name="{}" k={} prefix="{}">'.format(
+		return '<{}.{}:{} "{}" {}/{}>'.format(
 			self.__module__,
 			type(self).__name__,
 			self.id,
 			self.name,
-			self.k,
 			self.prefix,
+			self.k,
 		)
 
 	@property
@@ -273,9 +355,9 @@ class KmerSet:
 		)
 
 	def __repr__(self):
-		return '<{}.{} {}, {}>'.format(
+		return '<{}.{} "{}":"{}">'.format(
 			self.__module__,
 			type(self).__name__,
-			repr(self.collection),
-			repr(self.genome),
+			self.collection.name,
+			self.genome.description,
 		)
