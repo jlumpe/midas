@@ -24,7 +24,7 @@ def kmer_to_index(bytes kmer):
 	return c_kmer_to_index(<char*>kmer, len(kmer))
 
 
-cdef coords_t c_kmer_to_index(char *kmer, int l):
+cdef coords_t c_kmer_to_index(char *kmer, int l) except? 0:
 	"""Convert k-mer byte string into index"""
 
 	cdef:
@@ -44,6 +44,6 @@ cdef coords_t c_kmer_to_index(char *kmer, int l):
 		elif c == <char>'T':
 			idx += 3
 		else:
-			pass # No good way to indicate error?
+			raise ValueError(kmer[i])
 
 	return idx

@@ -25,4 +25,4 @@ cdef class CKmerSpec:
 		np.intp_t idx_len
 
 
-cdef coords_t c_kmer_to_index(char*, int)
+cdef coords_t c_kmer_to_index(char*, int) except? 0
