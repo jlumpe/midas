@@ -11,7 +11,7 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.associationproxy import association_proxy
 
-from .sqla import TrackChangesMixin, JsonType, MutableJsonDict
+from .sqla import TrackChangesMixin, JsonType, MutableJsonDict, JsonableMixin
 
 
 class AbstractDatabase(metaclass=ABCMeta):
@@ -57,7 +57,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 	KmerSet = abstractproperty()
 
 
-class Genome(TrackChangesMixin):
+class Genome(TrackChangesMixin, JsonableMixin):
 	"""Base model for a reference genome queries can be run against
 
 	Corresponds to a single assembly (one or more contigs, but at least
@@ -80,6 +80,20 @@ class Genome(TrackChangesMixin):
 	__table_args__ = (
 		UniqueConstraint('key', 'key_version'),
 	)
+
+	__json_attrs__ = [
+		'key',
+		'key_version',
+		'description',
+		'is_assembled',
+		'gb_db',
+		'gb_id',
+		'gb_acc',
+		'gb_taxid',
+		'gb_summary',
+		'gb_tax_summary',
+		'meta',
+	]
 
 	# Integer PK
 	id = Column(Integer(), primary_key=True)
@@ -173,7 +187,7 @@ class Sequence:
 		return self.repr(module=True)
 
 
-class GenomeSet:
+class GenomeSet(JsonableMixin):
 	"""A collection of genomes along with additional annotations on each
 
 	This will be used (among other things) to identify a set of genomes
@@ -185,6 +199,14 @@ class GenomeSet:
 	__table_args__ = (
 		UniqueConstraint('key', 'key_version'),
 	)
+
+	__json_attrs__ = [
+		'key',
+		'key_version',
+		'name',
+		'description',
+		'meta',
+	]
 
 	# Integer PK
 	id = Column(Integer(), primary_key=True)
@@ -225,7 +247,7 @@ class GenomeSet:
 		return self.repr(module=True)
 
 
-class GenomeAnnotations(TrackChangesMixin):
+class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 	"""Association object connecting Genomes with GenomeSets
 
 	Can simply indicate that a Genome is contained in a GenomeSet, but can
@@ -234,6 +256,13 @@ class GenomeAnnotations(TrackChangesMixin):
 	a result of additional analysis on the sequence.
 	"""
 	__tablename__ = 'genome_annotations'
+
+	__json_attrs__ = [
+		'organism',
+		'tax_species',
+		'tax_genus',
+		'tax_strain',
+	]
 
 	@declared_attr
 	def genome_id(cls):

@@ -20,7 +20,7 @@ class ReadOnlySession(Session):
 		raise RuntimeError('This sessison is read-only')
 
 
-class VersionedMixin(object):
+class VersionedMixin:
 	"""Mixin for models that implement a version counter"""
 
 	_version_id = Column('version_id', Integer(), nullable=False)
@@ -30,7 +30,7 @@ class VersionedMixin(object):
 		return dict(version_id_col=cls._version_id)
 
 
-class TrackChangesMixin(object):
+class TrackChangesMixin:
 	"""Mixin for SQLAlchemy models that tracks when updates are made"""
 
 	created_at = Column(DateTime())
@@ -123,7 +123,6 @@ class MutableJsonCollection(Mutable):
 
 		else:
 			return elem
-
 
 
 class MutableJsonList(MutableJsonCollection, collections.MutableSequence):
@@ -262,3 +261,36 @@ class JsonType(TypeDecorator):
 
 		else:
 			return None
+
+
+class JsonableMixin:
+	"""Mixin that allows model instances to be converted to/from JSON"""
+
+	def to_json(self):
+		"""Converts to JSONable dict"""
+
+		json_data = dict()
+
+		for name in self.__json_attrs__:
+			value = getattr(self, name)
+			if isinstance(value, MutableJsonCollection):
+				value = value.as_builtin()
+
+			json_data[name] = value
+
+		return json_data
+
+	@classmethod
+	def from_json(cls, json_data):
+		"""Creates from parsed JSON dict"""
+		return cls(**{ name: value for name, value in json_data.items()
+		               if name in cls.__json_attrs__ })
+
+	def update_from_json(self, json_data):
+		"""Updates attributes from parsed JSON dict"""
+		for name, value in json_data.items():
+			if isinstance(value, MutableJsonCollection):
+				value = value.as_builtin()
+
+			if name in __json_attrs__:
+				setattr(self, name, value)
