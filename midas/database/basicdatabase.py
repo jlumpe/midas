@@ -1,3 +1,4 @@
+"""Defines a basic database implementation that fits in a single directory"""
 
 import os
 import shutil
@@ -6,7 +7,6 @@ import re
 from contextlib import suppress
 
 import numpy as np
-
 from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, event
@@ -14,6 +14,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred
 from sqlalchemy.orm.session import Session, object_session
 
+from midas.util import subpath
 from . import base
 
 
@@ -75,7 +76,9 @@ class KmerSet(Base, base.KmerSet):
 class BasicDatabase(base.AbstractDatabase):
 	"""Basic database that resides in a single directory"""
 
-	_seq_dir = 'sequences'
+	__root_dir_attr__ = 'path'
+
+	_seq_dir = subpath('sequences')
 
 	def __init__(self, path):
 		self.path = os.path.abspath(path)
@@ -93,7 +96,7 @@ class BasicDatabase(base.AbstractDatabase):
 		os.makedirs(path, exist_ok=True)
 
 		# Create subdirectories
-		os.mkdir(os.path.join(path, cls._seq_dir))
+		os.mkdir(cls._seq_dir(path))
 
 		# Create database and tables
 		engine = cls._make_engine(path)
@@ -127,7 +130,7 @@ class BasicDatabase(base.AbstractDatabase):
 		
 		# Get destination path
 		seq_fname = self._make_seq_fname(genome, ext='.gz')
-		dest_path = os.path.join(self.path, self._seq_dir, seq_fname)
+		dest_path = os.path.join(self._seq_dir, seq_fname)
 
 		# Create session context
 		with self.session_context() as session:
@@ -243,7 +246,7 @@ class BasicDatabase(base.AbstractDatabase):
 		"""Gets path to sequence file"""
 		seq_fname = (sequence if isinstance(sequence, str)
 		             else sequence._filename)
-		return os.path.join(self.path, self._seq_dir, seq_fname)
+		return os.path.join(self._seq_dir, seq_fname)
 
 	def _make_seq_fname(self, genome, ext=None):
 		"""Create a unique and descriptive file name for a Sequence's data"""
@@ -269,7 +272,7 @@ class BasicDatabase(base.AbstractDatabase):
 
 		# Remove others
 		cleaned = []
-		for fname in os.listdir(os.path.join(self.path, self._seq_dir)):
+		for fname in os.listdir(self._seq_dir):
 			if fname not in existing_fnames:
 				if not dry_run:
 					os.unlink(self._get_seq_file_path(fname))
