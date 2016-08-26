@@ -109,7 +109,7 @@ class Genome(TrackChangesMixin, JsonableMixin):
 	# heirarchical format that supports using namespaces to avoid key
 	# conflicts. Example: "genbank/assembly/GCF_00000000.0" which
 	# corresponds to a specific genome stored in the Genbank assembly database.
-	key = Column(String())
+	key = Column(String(), index=True)
 
 	# Version of this Genome's metadata, according to whatever source
 	# defined the key. Used to determine when the genome metadata needs to
@@ -122,9 +122,9 @@ class Genome(TrackChangesMixin, JsonableMixin):
 
 	# Optional metadata for genomes from genbank
 	gb_db = Column(String()) # Database, e.g. "assembly"
-	gb_id = Column(Integer()) # UID of genbank record
-	gb_acc = Column(Integer()) # Accession number of genbank record
-	gb_taxid = Column(Integer()) # Taxonomy ID
+	gb_id = Column(Integer(), index=True) # UID of genbank record
+	gb_acc = Column(Integer(), index=True) # Accession number of genbank record
+	gb_taxid = Column(Integer(), index=True) # Taxonomy ID
 
 	# Optional summary (from EUtils ESummary) for record and associated
 	# taxonomy entry, as mutable JSON types
@@ -219,7 +219,7 @@ class GenomeSet(JsonableMixin):
 
 	# Unique key and version, same purpose and meaning as in the Genome
 	# model.
-	key = Column(String())
+	key = Column(String(), index=True)
 	key_version = Column(String())
 
 	# Arbitrary metadata as mutable JSON dict
@@ -289,9 +289,9 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 
 	# Taxonomy - species, subspecies, and strain. May not match original
 	# Genbank annotations after curation
-	tax_species = Column(String())
-	tax_genus = Column(String())
-	tax_strain = Column(String())
+	tax_species = Column(String(), index=True)
+	tax_genus = Column(String(), index=True)
+	tax_strain = Column(String(), index=True)
 
 	def __repr__(self):
 		return '<{}.{} {}:{}>'.format(
@@ -316,10 +316,10 @@ class KmerSetCollection(TrackChangesMixin):
 	name = Column(String(), nullable=False, unique=True)
 
 	# Prefix - string of upper-case nucleotide codes
-	prefix = Column(String(), nullable=False)
+	prefix = Column(String(), nullable=False, index=True)
 
 	# Number of nucleotides AFTER prefix
-	k = Column(Integer(), nullable=False)
+	k = Column(Integer(), nullable=False, index=True)
 
 	# Additional parameters used to construct the set (if any).
 	# Currently reserved for future use.
