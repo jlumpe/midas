@@ -36,7 +36,7 @@ def urlopen_retry(url, attempts=3, **kwargs):
 		attempts_made += 1
 
 	msg = 'Aborted after {} attempts'.format(attempts_made)
-	raise URLRetryError(msg, errors) from exc
+	raise URLRetryError(msg, errors) from errors[-1]
 
 
 def download_sequence(db, genome, url, db_lock=None, store_opts=dict(),
@@ -52,6 +52,7 @@ def download_sequence(db, genome, url, db_lock=None, store_opts=dict(),
 	# Place in buffer
 	buf = io.BytesIO()
 	shutil.copyfileobj(seq_data, buf)
+	buf.seek(0)
 
 	# Store
 	with contextlib.ExitStack() as exitstack:
