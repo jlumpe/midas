@@ -127,32 +127,34 @@ class BasicDatabase(base.AbstractDatabase):
 		if src_compression not in (None, 'gzip'):
 			raise ValueError("Don't know how to open src with compression {}"
 			                 .format(src_compression))
-		
-		# Get destination path
-		seq_fname = self._make_seq_fname(genome, ext='.gz')
-		dest_path = os.path.join(self._seq_dir, seq_fname)
 
 		# Create session context
 		with self.session_context() as session:
 
+			# Merge genome instance into current session
+			merged_genome = session.merge(genome)
+
+			# Get destination path
+			seq_fname = self._make_seq_fname(merged_genome, ext='.gz')
+			dest_path = os.path.join(self._seq_dir, seq_fname)
+
+			# Check sequence does not already exist
+			if merged_genome.sequence is not None:
+				raise RuntimeError('Genome already has a sequence')
+
 			# Check that there is no existing sequence with the same filename
 			# (this shouldn't ever happen as they should be unique per
 			# Genome)
-			assert (session.query(self.Sequence)
-			        .filter_by(_filename=seq_fname)
-			        .count() == 0)
+			existing = session.query(self.Sequence).\
+			        filter_by(_filename=seq_fname).\
+			        scalar()
+			if existing is not None:
+				raise RuntimeError('Sequence with file name already exists')
 
 			# Remove any existing file at the destination path as it must
 			# have been left behind when its Sequence instance was deleted
 			if os.path.isfile(dest_path):
 				os.remove(dest_path)
-
-			# Merge genome instance into current session
-			merged_genome = session.merge(genome)
-
-			# Check sequence does not already exist
-			if merged_genome.sequence is not None:
-				raise RuntimeError('Genome already has a sequence')
 
 			# Create Sequence instance
 			sequence = Sequence(genome=merged_genome, format=seq_format,
