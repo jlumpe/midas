@@ -57,7 +57,37 @@ class AbstractDatabase(metaclass=ABCMeta):
 	KmerSet = abstractproperty()
 
 
-class Genome(TrackChangesMixin, JsonableMixin):
+class KeyMixin:
+	"""Mixin that defines key/key version columns
+
+	The "key" column is intended to be a universally unique key that can be
+	used to identify objects across databases on different systems. This is
+	primarily intended to be used for distributing database updates.
+	It can be any arbitrary string but the recommended format is a filepath-
+	like structure separated by forward slashes. This results in a
+	heirarchical format that supports using namespaces to avoid key
+	conflicts. Example: "genbank/assembly/GCF_00000000.0", which
+	corresponds to a specific genome stored in the Genbank assembly database.
+
+	The "key_version" column is the version the keyed object's metadata,
+	according to whatever source defined the key. Used to determine when the
+	metadata needs to be updated. Should be in the format defined by PEP 440
+	(https://www.python.org/dev/peps/pep-0440/)
+	"""
+	key = Column(String(), index=True)
+	key_version = Column(String())
+
+	@classmethod
+	def by_key(cls, session, key, version=None):
+		query = session.query(cls).filter_by(key=key)
+
+		if version is None:
+			return query.order_by(cls.key_version.desc()).first()
+		else:
+			return query.filter_by(key_version=version).scalar()
+
+
+class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 	"""Base model for a reference genome queries can be run against
 
 	Corresponds to a single assembly (one or more contigs, but at least
@@ -100,22 +130,6 @@ class Genome(TrackChangesMixin, JsonableMixin):
 
 	# Short description. Recommended to be unique but this is not enforced.
 	description = Column(String(), nullable=False)
-
-	# This is intended to be a universally unique key that can be used to
-	# identify genomes across databases on different systems. This is
-	# primarily intended to be used for distributing database updates.
-	# It can be any arbitrary string but the recommended format is a filepath-
-	# like structure separated by forward slashes. This results in a
-	# heirarchical format that supports using namespaces to avoid key
-	# conflicts. Example: "genbank/assembly/GCF_00000000.0" which
-	# corresponds to a specific genome stored in the Genbank assembly database.
-	key = Column(String(), index=True)
-
-	# Version of this Genome's metadata, according to whatever source
-	# defined the key. Used to determine when the genome metadata needs to
-	# be updated. Should be in the format defined by PEP 440
-	# (https://www.python.org/dev/peps/pep-0440/)
-	key_version = Column(String())
 
 	# Whether the genome is completely assembled or has multiple contigs
 	is_assembled = Column(Boolean())
@@ -187,7 +201,7 @@ class Sequence:
 		return self.repr(module=True)
 
 
-class GenomeSet(JsonableMixin):
+class GenomeSet(KeyMixin, JsonableMixin):
 	"""A collection of genomes along with additional annotations on each
 
 	This will be used (among other things) to identify a set of genomes
@@ -216,11 +230,6 @@ class GenomeSet(JsonableMixin):
 
 	# Optional text description
 	description = Column(String())
-
-	# Unique key and version, same purpose and meaning as in the Genome
-	# model.
-	key = Column(String(), index=True)
-	key_version = Column(String())
 
 	# Arbitrary metadata as mutable JSON dict
 	meta = Column(MutableJsonDict.as_mutable(JsonType))
