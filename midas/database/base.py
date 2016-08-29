@@ -6,7 +6,7 @@ import contextlib
 
 from sqlalchemy import Table, ForeignKey, UniqueConstraint
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Enum
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.associationproxy import association_proxy
@@ -143,11 +143,18 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 	# Optional summary (from EUtils ESummary) for record and associated
 	# taxonomy entry, as mutable JSON types
 	# TODO - really should be immutable
-	gb_summary = Column(MutableJsonDict.as_mutable(JsonType))
-	gb_tax_summary = Column(MutableJsonDict.as_mutable(JsonType))
+	@declared_attr
+	def gb_summary(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
+
+	@declared_attr
+	def gb_tax_summary(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	# Arbitrary metadata as mutable JSON dict
-	meta = Column(MutableJsonDict.as_mutable(JsonType))
+	@declared_attr
+	def	meta(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	# One-to-one relationship to Sequence
 	@declared_attr
@@ -194,7 +201,7 @@ class Sequence:
 		return '<{}{} {}>'.format(
 			self.__module__ + '.' if module else '',
 			type(self).__name__,
-			self.genome.repr(module=False),
+			self.genome_id,
 		)
 
 	def __repr__(self):
@@ -232,7 +239,9 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	description = Column(String())
 
 	# Arbitrary metadata as mutable JSON dict
-	meta = Column(MutableJsonDict.as_mutable(JsonType))
+	@declared_attr
+	def meta(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	@declared_attr
 	def annotations(cls):
@@ -306,8 +315,8 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 		return '<{}.{} {}:{}>'.format(
 			self.__module__,
 			type(self).__name__,
-			self.genome_set.repr(module=False),
-			self.genome.repr(module=False),
+			self.genome_set_id,
+			self.genome_id,
 		)
 
 
@@ -332,11 +341,15 @@ class KmerSetCollection(TrackChangesMixin):
 
 	# Additional parameters used to construct the set (if any).
 	# Currently reserved for future use.
-	parameters = Column(MutableJsonDict.as_mutable(JsonType), nullable=False,
-	                    default=dict())
+	@declared_attr
+	def	parameters(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType),
+		                       nullable=False, default=dict()))
 
 	# Arbitrary metadata as mutable JSON dict
-	meta = Column(MutableJsonDict.as_mutable(JsonType))
+	@declared_attr
+	def	meta(cls):
+		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	def __repr__(self):
 		return '<{}.{}:{} "{}" {}/{}>'.format(
@@ -396,9 +409,9 @@ class KmerSet:
 		)
 
 	def __repr__(self):
-		return '<{}.{} "{}":"{}">'.format(
+		return '<{}.{} {}:{}>'.format(
 			self.__module__,
 			type(self).__name__,
-			self.collection.name,
-			self.genome.description,
+			self.collection_id,
+			self.genome_id,
 		)
