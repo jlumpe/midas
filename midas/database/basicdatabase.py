@@ -80,9 +80,9 @@ class BasicDatabase(base.AbstractDatabase):
 
 	_seq_dir = subpath('sequences')
 
-	def __init__(self, path):
+	def __init__(self, path, engine_args=dict()):
 		self.path = os.path.abspath(path)
-		self._engine = self._make_engine(self.path)
+		self._engine = self._make_engine(self.path, **engine_args)
 		self._Session = sessionmaker(bind=self._engine,
 		                             class_=BasicDatabaseSession,
 		                             midasdb=self)
@@ -105,9 +105,9 @@ class BasicDatabase(base.AbstractDatabase):
 		return cls(path)
 
 	@classmethod
-	def _make_engine(cls, path):
+	def _make_engine(cls, path, **kwargs):
 		"""Create the engine for a BasicDatabase located at the given path"""
-		return create_engine('sqlite:///{}/db.sqlite3'.format(path))
+		return create_engine('sqlite:///{}/db.sqlite3'.format(path), **kwargs)
 
 	def get_session(self):
 		return self._Session()
