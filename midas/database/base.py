@@ -12,6 +12,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from .sqla import TrackChangesMixin, JsonType, MutableJsonDict, JsonableMixin
+from midas.kmers import KmerSpec
 
 
 class AbstractDatabase(metaclass=ABCMeta):
@@ -374,6 +375,10 @@ class KmerSetCollection(TrackChangesMixin):
 			return 'u8'
 		else:
 			return None
+
+	def kmerspec(self):
+		return KmerSpec(k=self.k, prefix=self.prefix.encode('ascii'))
+
 
 class KmerSet:
 
