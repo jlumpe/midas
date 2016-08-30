@@ -33,17 +33,17 @@ class AbstractDatabase(metaclass=ABCMeta):
 		pass
 
 	@abstractmethod
-	def open_sequence(self, sequence):
+	def open_sequence(self, genome_id):
 		"""Gets an open file handle/stream to the sequence for a stored genome"""
 		pass
 
 	@abstractmethod
-	def store_kset_coords(self, genome, collection, coords):
+	def store_kset_coords(self, collection_id, genome_id, coords):
 		"""Store a k-mer set in coordinate format"""
 		pass
 
 	@abstractmethod
-	def load_kset_coords(self, kset):
+	def load_kset_coords(self, collection_id, genome_id):
 		"""Load stored coordinates for a k-mer set"""
 		pass
 

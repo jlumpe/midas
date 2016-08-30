@@ -62,7 +62,7 @@ def download_sequence(db, genome, url, db_lock=None, store_opts=dict(),
 			exitstack.enter_context(db_lock)
 
 		if aborted is None or not aborted():
-			db.store_sequence(genome, buf, src_mode='b', **store_opts)
+			db.store_sequence(genome.id, buf, src_mode='b', **store_opts)
 			return True
 		else:
 			return False

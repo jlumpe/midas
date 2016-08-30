@@ -11,7 +11,7 @@ from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, event
 from sqlalchemy import select
-from sqlalchemy.orm import sessionmaker, deferred
+from sqlalchemy.orm import sessionmaker, deferred, undefer
 from sqlalchemy.orm.session import Session, object_session
 
 from midas.util import subpath
@@ -84,7 +84,7 @@ class BasicDatabase(base.AbstractDatabase):
 	def get_session(self):
 		return self._Session()
 
-	def store_sequence(self, genome, src, **kwargs):
+	def store_sequence(self, genome_id, src, **kwargs):
 
 		# Get keyword arguments
 		seq_format = kwargs.pop('format', 'fasta')
@@ -103,23 +103,23 @@ class BasicDatabase(base.AbstractDatabase):
 		# Create session context
 		with self.session_context() as session:
 
-			# Merge genome instance into current session
-			merged_genome = session.merge(genome)
+			# Get genome
+			genome = session.query(self.Genome).get(genome_id)
 
 			# Get destination path
-			seq_fname = self._make_seq_fname(merged_genome, ext='.gz')
+			seq_fname = self._make_seq_fname(genome, ext='.gz')
 			dest_path = os.path.join(self._seq_dir, seq_fname)
 
 			# Check sequence does not already exist
-			if merged_genome.sequence is not None:
+			if genome.sequence is not None:
 				raise RuntimeError('Genome already has a sequence')
 
 			# Check that there is no existing sequence with the same filename
 			# (this shouldn't ever happen as they should be unique per
 			# Genome)
 			existing = session.query(self.Sequence).\
-			        filter_by(_filename=seq_fname).\
-			        scalar()
+				filter_by(_filename=seq_fname).\
+				scalar()
 			if existing is not None:
 				raise RuntimeError('Sequence with file name already exists')
 
@@ -129,8 +129,8 @@ class BasicDatabase(base.AbstractDatabase):
 				os.remove(dest_path)
 
 			# Create Sequence instance
-			sequence = Sequence(genome=merged_genome, format=seq_format,
-			                    _filename=seq_fname)
+			sequence = Sequence(genome=genome, format=seq_format,
+			                   _filename=seq_fname)
 			session.add(sequence)
 
 			# Copy/move src and commit database changes together - all-or-
@@ -192,25 +192,37 @@ class BasicDatabase(base.AbstractDatabase):
 				if needs_delete:
 					os.remove(src)
 
-	def open_sequence(self, sequence):
-		# Merge in sequence to fresh session
-		session = self.get_session()
-		merged = session.merge(sequence)
+	def open_sequence(self, genome_id):
+		with self.session_context() as session:
+			sequence = session.query(self.Sequence).get(genome_id)
+			if sequence is None:
+				raise RuntimeError(
+					'Genome with ID {} has no sequence'
+					.format(genome_id)
+				)
+			path = self._get_seq_file_path(sequence)
 
-		return gzip.open(self._get_seq_file_path(merged), 'rt')
+		return gzip.open(path, 'rt')
 
-	def store_kset_coords(self, genome, collection, coords):
-		coords = coords.astype(collection.coords_dtype, copy=False)
+	def store_kset_coords(self, collection_id, genome_id, coords):
+		with self.session_context() as session:
+			collection = session.query(self.KmerSetCollection).\
+				get(collection_id)
+			coords = coords.astype(collection.coords_dtype, copy=False)
 
-		kset = KmerSet(genome_id=genome.id, collection_id=collection.id,
-		               count=len(coords), _data=coords.tobytes())
+			kset = KmerSet(genome_id=genome_id, collection_id=collection_id,
+			               count=len(coords), _data=coords.tobytes())
+			session.add(kset)
 
-		session = self.get_session()
-		session.add(kset)
-		session.commit()
+			session.commit()
 
-	def load_kset_coords(self, kset):
-		return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
+	def load_kset_coords(self, collection_id, genome_id):
+		with self.session_context() as session:
+			kset = session.query(self.KmerSet).\
+				options(undefer('_data')).\
+				get((collection_id, genome_id))
+
+			return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
 
 	def _get_seq_file_path(self, sequence):
 		"""Gets path to sequence file"""

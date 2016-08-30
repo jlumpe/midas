@@ -34,13 +34,13 @@ class SeqStorageTester:
 	def store(self, src, **kwargs):
 		"""Store sequence data and verify it is readable"""
 
-		self.db.store_sequence(self.genome, src, **kwargs)
+		self.db.store_sequence(self.genome.id, src, **kwargs)
 
 		# Refresh genome as the sequence was created in a different session
 		self.session.refresh(self.genome)
 		assert self.genome.sequence is not None
 
-		seq_str = self.db.open_sequence(self.genome.sequence).read()
+		seq_str = self.db.open_sequence(self.genome.id).read()
 		assert seq_str == self.seq_str
 
 
@@ -144,7 +144,7 @@ class TestSeqStorage:
 		seq_buf = StringIO(seq_str)
 		for genome in genomes:
 			seq_buf.seek(0)
-			db.store_sequence(genome, seq_buf)
+			db.store_sequence(genome.id, seq_buf)
 
 		# Add some orphaned files
 		orphaned_files = []
@@ -164,7 +164,7 @@ class TestSeqStorage:
 
 		# Check all real files are still readable
 		for genome in genomes:
-			assert db.open_sequence(genome.sequence).read() == seq_str
+			assert db.open_sequence(genome.id).read() == seq_str
 
 
 class TestCoordsStorage:
@@ -222,16 +222,10 @@ def test_coords_storage(db, coords):
 	session.commit()
 
 	# Store coords
-	db.store_kset_coords(genome, kcol, coords)
-
-	# Get kset instance
-	kset = session\
-		.query(db.KmerSet)\
-		.filter_by(genome=genome, collection=kcol)\
-		.one()
+	db.store_kset_coords(kcol.id, genome.id, coords)
 
 	# Load back again
-	loaded = db.load_kset_coords(kset)
+	loaded = db.load_kset_coords(kcol.id, genome.id)
 
 	# Check equal
 	assert np.array_equal(coords, loaded)
