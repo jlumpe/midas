@@ -19,17 +19,8 @@ from . import base
 
 
 
-class BasicDatabaseSession(Session):
-	"""SQLAlchemy session that tracks the database it belongs to"""
-
-	def __init__(self, *, midasdb, **kwargs):
-		super(BasicDatabaseSession, self).__init__(**kwargs)
-		self._midasdb = midasdb
-
-
 # SqlAlchemy declarative base
 Base = declarative_base()
-
 
 
 class GenomeSet(Base, base.GenomeSet):
@@ -46,23 +37,6 @@ class GenomeAnnotations(Base, base.GenomeAnnotations):
 
 class Sequence(Base, base.Sequence):
 	_filename = Column(String(), nullable=False, unique=True)
-
-	@classmethod
-	def _after_delete(cls, mapper, connection, instance):
-		"""Listener for deletion event
-
-		Informs associated BasicDatabase that the sequence instance has been
-		deleted so that its data file can be deleted as well. Note: this only
-		works for single instances (not bulk deletes).
-		"""
-		session = object_session(instance)
-		if isinstance(session, BasicDatabaseSession):
-			session._midasdb._after_sequence_delete(mapper, connection, instance)
-
-	@classmethod
-	def __declare_last__(cls):
-		"""Register event listener"""
-		event.listen(cls, 'after_delete', cls._after_delete)
 
 
 class KmerSetCollection(Base, base.KmerSetCollection):
@@ -83,9 +57,7 @@ class BasicDatabase(base.AbstractDatabase):
 	def __init__(self, path, engine_args=dict()):
 		self.path = os.path.abspath(path)
 		self._engine = self._make_engine(self.path, **engine_args)
-		self._Session = sessionmaker(bind=self._engine,
-		                             class_=BasicDatabaseSession,
-		                             midasdb=self)
+		self._Session = sessionmaker(bind=self._engine)
 
 	@classmethod
 	def create(cls, path):
@@ -239,10 +211,6 @@ class BasicDatabase(base.AbstractDatabase):
 
 	def load_kset_coords(self, kset):
 		return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
-
-	def _after_sequence_delete(self, mapper, connection, target):
-		"""Called by after_delete listener on Sequence"""
-		os.remove(self._get_seq_file_path(target))
 
 	def _get_seq_file_path(self, sequence):
 		"""Gets path to sequence file"""

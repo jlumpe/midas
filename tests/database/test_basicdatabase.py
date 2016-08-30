@@ -126,24 +126,6 @@ class TestSeqStorage:
 		with open(gzip_seq_file.strpath, 'rb') as fh:
 			storage_tester.store(fh, src_compression='gzip')
 
-	def test_deletion(self, storage_tester):
-		"""Test removeal of data file after sequence instance deleted"""
-		seq_buf = StringIO(storage_tester.seq_str)
-		storage_tester.store(seq_buf)
-
-		db = storage_tester.db
-		session = storage_tester.session
-
-		seq_file_name = storage_tester.genome.sequence._filename
-		seq_file_path = os.path.join(db.path, db._seq_dir, seq_file_name)
-
-		assert os.path.exists(seq_file_path)
-
-		storage_tester.genome.sequence = None
-		session.commit()
-
-		assert not os.path.exists(seq_file_path)
-
 	def test_clean(self, db, seq_str):
 		"""Test cleaning of orphaned sequence files"""
 
