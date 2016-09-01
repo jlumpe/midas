@@ -220,7 +220,8 @@ class BasicDatabase(base.AbstractDatabase):
 		with self.session_context() as session:
 			kset = session.query(self.KmerSet).\
 				options(undefer('_data')).\
-				get((collection_id, genome_id))
+				filter_by(collection_id=collection_id, genome_id=genome_id).\
+				one()
 
 			return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
 
