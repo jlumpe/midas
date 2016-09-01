@@ -3,6 +3,11 @@
 import numpy as np
 
 
+# Numpy dtype equivalents to coords_t and score_t
+coords_dtype = np.uint32
+score_dtype = np.float32
+
+
 
 cdef class CKmerSpec:
 	"""Describes a k-mer pattern to match"""

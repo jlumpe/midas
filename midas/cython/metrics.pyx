@@ -6,7 +6,7 @@ cimport numpy as np
 from cython.parallel import prange, parallel
 
 from .kmers cimport coords_t, score_t
-from .kmers cimport score_dtype
+from .kmers import score_dtype
 
 
 
