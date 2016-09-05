@@ -1,4 +1,16 @@
 """Defines abstract base classes for databases and SQLAlchemy models
+
+A MIDAS database encompasses a standard SQLAlchemy database connection with
+implementations of the abstract classes in this module, as well as some method
+of storing and retrieving sequence and k-mer data. To make it easier for
+code using database to be implementation-agnostic, all SQLAlchemy model
+classes are stored as properties on the database implementation class.
+Therefore usage is something like this::
+
+	session = db.get_session()
+	genome = session.query(db.Genome).get(1)
+
+Many models include a unique key attribute, see :class:`.KeyMixin`.
 """
 
 from abc import ABCMeta, abstractmethod, abstractproperty
@@ -16,7 +28,47 @@ from midas.kmers import KmerSpec
 
 
 class AbstractDatabase(metaclass=ABCMeta):
-	"""Abstract base class defining interface for all database types"""
+	"""Abstract base class for MIDAS database
+
+	This class defines the interface for all database subtypes so they can
+	be used consistently without regard to the underlying implementation.
+
+
+	.. attribute:: Base
+
+		:class:`abc.abstractproperty` SQLAlchemy declarative base for
+		concrete database subclass
+
+	.. attribute:: Genome
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.Genome`
+
+	.. attribute:: Sequence
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.Sequence`
+
+	.. attribute:: GenomeSet
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.GenomeSet`
+
+	.. attribute:: GenomeAnnotations
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.GenomeAnnotations`
+
+	.. attribute:: KmerSetCollection
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.KmerSetCollection`
+
+	.. attribute:: KmerSet
+
+		:class:`abc.abstractproperty` Subclass' implementation of
+		:class:`.KmerSet`
+	"""
 
 	@abstractmethod
 	def get_session(self):
@@ -24,12 +76,12 @@ class AbstractDatabase(metaclass=ABCMeta):
 		pass
 
 	def session_context(self):
-		"""Creates context manager that closes session on exit"""
+		"""Create context manager that closes session on exit"""
 		return contextlib.closing(self.get_session())
 
 	@abstractmethod
 	def store_sequence(self, genome, src, **kwargs):
-		"""Stores a new genome in the database"""
+		"""Store a new genome in the database"""
 		pass
 
 	@abstractmethod
@@ -61,19 +113,24 @@ class AbstractDatabase(metaclass=ABCMeta):
 class KeyMixin:
 	"""Mixin that defines key/key version columns
 
-	The "key" column is intended to be a universally unique key that can be
-	used to identify objects across databases on different systems. This is
-	primarily intended to be used for distributing database updates.
-	It can be any arbitrary string but the recommended format is a filepath-
-	like structure separated by forward slashes. This results in a
-	heirarchical format that supports using namespaces to avoid key
-	conflicts. Example: "genbank/assembly/GCF_00000000.0", which
-	corresponds to a specific genome stored in the Genbank assembly database.
 
-	The "key_version" column is the version the keyed object's metadata,
-	according to whatever source defined the key. Used to determine when the
-	metadata needs to be updated. Should be in the format defined by PEP 440
-	(https://www.python.org/dev/peps/pep-0440/)
+	.. attribute:: key
+
+		Intended to be a universally unique key that can be used to identify
+		objects across databases on different systems. This is primarily
+		intended to be used for distributing database updates. It can be any
+		arbitrary string but the recommended format is a filepath-like
+		structure separated by forward slashes. This results in a hierarchical
+		format that supports using namespaces to avoid key conflicts. Example:
+		``'genbank/assembly/GCF_00000000.0'``, which corresponds to a specific
+		genome stored in the Genbank assembly database.
+
+	.. attribute:: key_version
+
+		Version the keyed object's metadata according to whatever source
+		defined the key. Used to determine when the	metadata needs to be
+		updated. Should be in the format defined by
+		`PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_.
 	"""
 	key = Column(String(), index=True)
 	key_version = Column(String())
@@ -105,6 +162,60 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 	assembly was produced from the original raw data, however more advanced
 	interpretation such as taxonomy assignments belong on an attached
 	GenomeAnnotations object.
+
+
+	.. attribute:: id
+
+		Integer primary key
+
+	.. attribute:: key
+
+		See :class:`.KeyMixin`
+
+	.. attribute:: key_version
+
+		See :class:`.KeyMixin`
+
+	.. attribute:: description
+
+		Short description. Recommended to be unique but this is not enforced.
+
+	.. attribute:: is_assembled
+
+		Whether the genome is completely assembled or has multiple contigs
+
+	.. attribute:: gb_db
+
+		GEnbank database, e.g. "assembly"
+
+	.. attribute:: gb_id
+
+		UID of Genbank record
+
+	.. attribute:: gb_acc
+
+		Accession number of genbank record
+
+	.. attribute:: gb_taxid
+
+		Genbank taxonomy ID
+
+	.. attribute:: gb_summary
+
+		Optional summary (from EUtils ESummary) for record and associated
+		taxonomy entry, as mutable JSON types
+
+	.. attribute:: meta
+
+		Arbitrary metadata as mutable JSON dict
+
+	.. attribute:: sequence
+
+		One-to-one relationship to :class:`.Sequence`
+
+	.. attribute:: annotations
+
+		One-to-many relationship to :class:`.GenomeAnnotations`
 	"""
 
 	__tablename__ = 'genomes'
@@ -126,23 +237,14 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 		'meta',
 	]
 
-	# Integer PK
 	id = Column(Integer(), primary_key=True)
-
-	# Short description. Recommended to be unique but this is not enforced.
 	description = Column(String(), nullable=False)
-
-	# Whether the genome is completely assembled or has multiple contigs
 	is_assembled = Column(Boolean())
+	gb_db = Column(String())
+	gb_id = Column(Integer(), index=True)
+	gb_acc = Column(Integer(), index=True)
+	gb_taxid = Column(Integer(), index=True)
 
-	# Optional metadata for genomes from genbank
-	gb_db = Column(String()) # Database, e.g. "assembly"
-	gb_id = Column(Integer(), index=True) # UID of genbank record
-	gb_acc = Column(Integer(), index=True) # Accession number of genbank record
-	gb_taxid = Column(Integer(), index=True) # Taxonomy ID
-
-	# Optional summary (from EUtils ESummary) for record and associated
-	# taxonomy entry, as mutable JSON types
 	# TODO - really should be immutable
 	@declared_attr
 	def gb_summary(cls):
@@ -152,12 +254,10 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 	def gb_tax_summary(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
-	# Arbitrary metadata as mutable JSON dict
 	@declared_attr
 	def	meta(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
-	# One-to-one relationship to Sequence
 	@declared_attr
 	def sequence(cls):
 		return relationship('Sequence', uselist=False, backref='genome',
@@ -183,6 +283,18 @@ class Sequence:
 	Genomes may be present in the database with associated metadata as a
 	Genome object, but may not have a sequence stored. This contains
 	metadata for the sequence itself.
+
+	The actual sequence data can be obtained with
+	:func:`.AbstractDatabase.open_sequence`\ .
+
+
+	.. attribute:: id
+
+		Integer primary key
+
+	.. attribute:: format
+
+		Format of sequence - e.g. fasta
 	"""
 	__tablename__ = 'sequences'
 
@@ -190,7 +302,6 @@ class Sequence:
 	def genome_id(cls):
 		return Column(ForeignKey('genomes.id'), primary_key=True)
 
-	# Format of sequence - e.g. fasta
 	format = Column(String(), nullable=False)
 
 	def __repr__(self):
@@ -208,6 +319,42 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	a query will be run against. Like Genomes they can be distributed via
 	updates, in which case they should have a unique key and version number
 	to identify them.
+
+
+	.. attribute:: id
+
+		Integer primary key
+
+	.. attribute:: key
+
+		See :class:`.KeyMixin`
+
+	.. attribute:: key_version
+
+		See :class:`.KeyMixin`
+
+	.. attribute:: name
+
+		Unique name
+
+	.. attribute:: description
+
+		Optional text description
+
+	.. attribute:: meta
+
+		Arbitrary metadata as mutable JSON dict
+
+	.. attribute:: annotations
+
+		Many-to-many relationship with :class:`.GenomeAnnotations`,
+		annotations for genomes in this set.
+
+	.. attribute:: genomes
+
+		Association proxy to the ``genome`` relationship of members of
+		:attr:`annotations`.
+
 	"""
 	__tablename__ = 'genome_sets'
 	__table_args__ = (
@@ -222,16 +369,10 @@ class GenomeSet(KeyMixin, JsonableMixin):
 		'meta',
 	]
 
-	# Integer PK
 	id = Column(Integer(), primary_key=True)
-
-	# Unique name
 	name = Column(String(), unique=True, nullable=False)
-
-	# Optional text description
 	description = Column(String())
 
-	# Arbitrary metadata as mutable JSON dict
 	@declared_attr
 	def meta(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
@@ -262,6 +403,36 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 	also carry additional annotations for the genome that are different
 	between sets. Mostly holds taxonomy information as that is frequently
 	a result of additional analysis on the sequence.
+
+
+	.. attribute:: genome_id
+
+		Id of :class:`.Genome` the annotations are for.
+
+	.. attribute:: genome_set_id
+
+		Id of :class:`.GenomeSet` the annotations are under.
+
+	.. attribute:: organism
+
+		Single string describing the organism. May be "Genus, species[,
+		strain]" but could contain more specific information. Intended to be
+		human- readable and shouldn't have any semantic meaning for the
+		application (in contrast to the following taxonomy attributes, which
+		are used to determine a match when querying against the set).
+
+	.. attribute:: tax_species, tax_genus, tax_strain
+
+		Taxonomy - species, subspecies, and strain. May not match original
+		Genbank annotations after curation.
+
+	.. attribute:: genome
+
+		Many-to-one relationship to :class:`.Genome`
+
+	.. attribute:: genome_set
+
+		Many-to-one relationship to :class:`.GenomeSet`
 	"""
 	__tablename__ = 'genome_annotations'
 
@@ -288,15 +459,7 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 	def genome_set(cls):
 		return relationship('GenomeSet')
 
-	# Single string describing the organism. May be "Genus, species[, strain]"
-	# but could contain more specific information. Intended to be human-
-	# readable and shouldn't have any semantic meaning for the application
-	# (in contrast to the following taxonomy attributes, which are used to
-	# determine a match when querying against the set).
 	organism = Column(String())
-
-	# Taxonomy - species, subspecies, and strain. May not match original
-	# Genbank annotations after curation
 	tax_species = Column(String(), index=True)
 	tax_genus = Column(String(), index=True)
 	tax_strain = Column(String(), index=True)
@@ -313,30 +476,47 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 class KmerSetCollection(TrackChangesMixin):
 	"""A collection of k-mer counts/statistics for a set of genomes calculated
 	with the same parameters.
+
+
+	.. attribute:: id
+
+		Integer primary key
+
+	.. attribute:: name
+
+		Unique name
+
+	.. attribute:: prefix
+
+		K-mer prefix to search for, string of upper-case nucleotide codes
+
+	.. attribute:: k
+
+		Number of nucleotides AFTER prefix
+
+	.. attribute:: parameters
+
+		Additional parameters used to construct the set (if any). Currently
+		reserved for future use.
+
+	.. attribute:: meta
+
+		Arbitrary metadata as mutable JSON dict
+
 	"""
 
 	__tablename__ = 'kmer_collections'
 
-	# Integer primary key
 	id = Column(Integer(), primary_key=True)
-
-	# Unique name
 	name = Column(String(), nullable=False, unique=True)
-
-	# Prefix - string of upper-case nucleotide codes
 	prefix = Column(String(), nullable=False, index=True)
-
-	# Number of nucleotides AFTER prefix
 	k = Column(Integer(), nullable=False, index=True)
 
-	# Additional parameters used to construct the set (if any).
-	# Currently reserved for future use.
 	@declared_attr
 	def	parameters(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType),
 		                       nullable=False, default=dict()))
 
-	# Arbitrary metadata as mutable JSON dict
 	@declared_attr
 	def	meta(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
@@ -352,10 +532,40 @@ class KmerSetCollection(TrackChangesMixin):
 		)
 
 	def kmerspec(self):
+		"""Get the ``KmerSpec`` for these parameters
+
+		:rtype: :class:`midas.kmers.KmerSpec`
+		"""
 		return KmerSpec(k=self.k, prefix=self.prefix.encode('ascii'))
 
 
 class KmerSet:
+	"""Reference to a stored k-mer set for a genome
+
+	The actual data can be retrieved in coordinate format with
+	:func:`.AbstractDatabase.load_kset_coords`\ .
+
+
+	.. attribute:: collection_id
+
+		Id of :class:`.KmerSetCollection` this k-mer set belongs to
+
+	.. attribute:: genome_id
+
+		Id of :class:`.Genome` this k-mer set is for
+
+	.. attribute:: count
+
+		Number of k-mers in set
+
+	.. attribute:: collection
+
+		Many-to-one relationship to :class:`.KmerSetCollection`
+
+	.. attribute:: genome_id
+
+		Many-to-one relationship to :class:`.Genome`
+	"""
 
 	__tablename__ = 'kmer_sets'
 
@@ -369,7 +579,6 @@ class KmerSet:
 		return Column(Integer(), ForeignKey('genomes.id'),
 		              primary_key=True)
 
-	# Number of k-mers in set
 	count = Column(Integer(), nullable=False)
 
 	@declared_attr
