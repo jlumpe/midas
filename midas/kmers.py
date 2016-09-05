@@ -52,6 +52,20 @@ class KmerSpec(object):
 	def coords_to_vec(self, coords):
 		return coords_to_vec(coords, self.idx_len)
 
+	@property
+	def coords_dtype(self):
+		"""Smallest unsigned unteger numpy dtype that can store coordinates"""
+		if self.k <= 4:
+			return 'u1'
+		elif self.k <= 8:
+			return 'u2'
+		elif self.k <= 12:
+			return 'u4'
+		elif self.k <= 16:
+			return 'u8'
+		else:
+			return None
+
 
 def find_kmers(kspec, seq, out=None):
 	"""Find k-mers in a str- or bytes-like sequence, output a coordinate array"""

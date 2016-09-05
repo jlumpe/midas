@@ -351,20 +351,6 @@ class KmerSetCollection(TrackChangesMixin):
 			self.k,
 		)
 
-	@property
-	def coords_dtype(self):
-		"""Smallest unsigned unteger numpy dtype that can store coordinates"""
-		if self.k <= 4:
-			return 'u1'
-		elif self.k <= 8:
-			return 'u2'
-		elif self.k <= 12:
-			return 'u4'
-		elif self.k <= 16:
-			return 'u8'
-		else:
-			return None
-
 	def kmerspec(self):
 		return KmerSpec(k=self.k, prefix=self.prefix.encode('ascii'))
 

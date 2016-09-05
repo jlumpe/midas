@@ -208,7 +208,8 @@ class BasicDatabase(base.AbstractDatabase):
 		with self.session_context() as session:
 			collection = session.query(self.KmerSetCollection).\
 				get(collection_id)
-			coords = coords.astype(collection.coords_dtype, copy=False)
+			coords = coords.astype(collection.kmerspec().coords_dtype,
+			                       copy=False)
 
 			kset = KmerSet(genome_id=genome_id, collection_id=collection_id,
 			               count=len(coords), _data=coords.tobytes())
@@ -223,7 +224,8 @@ class BasicDatabase(base.AbstractDatabase):
 				filter_by(collection_id=collection_id, genome_id=genome_id).\
 				one()
 
-			return np.frombuffer(kset._data, dtype=kset.collection.coords_dtype)
+			coords_dtype = kset.collection.kmerspec().coords_dtype
+			return np.frombuffer(kset._data, dtype=coords_dtype)
 
 	def _get_seq_file_path(self, sequence):
 		"""Gets path to sequence file"""
