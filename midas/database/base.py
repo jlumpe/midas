@@ -168,17 +168,13 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 		return relationship('GenomeAnnotations', lazy=True,
 		                    cascade='all, delete-orphan')
 
-	def repr(self, module=True):
-		"""Configurable string representation"""
-		return '<{}{}:{} "{}">'.format(
-			self.__module__ + '.' if module else '',
+	def __repr__(self):
+		return '<{}.{}:{} "{}">'.format(
+			self.__module__,
 			type(self).__name__,
 			self.id,
 			self.description,
 		)
-
-	def __repr__(self):
-		return self.repr(module=True)
 
 
 class Sequence:
@@ -197,16 +193,12 @@ class Sequence:
 	# Format of sequence - e.g. fasta
 	format = Column(String(), nullable=False)
 
-	def repr(self, module=True):
-		"""Configurable string representation"""
-		return '<{}{} {}>'.format(
-			self.__module__ + '.' if module else '',
+	def __repr__(self):
+		return '<{}.{} {}>'.format(
+			self.__module__,
 			type(self).__name__,
 			self.genome_id,
 		)
-
-	def __repr__(self):
-		return self.repr(module=True)
 
 
 class GenomeSet(KeyMixin, JsonableMixin):
@@ -253,17 +245,14 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	def genomes(cls):
 		return association_proxy('annotations', 'genome')
 
-	def repr(self, module=True):
-		"""Configurable string representation"""
-		return '<{}{}:{} "{}"">'.format(
-			self.__module__ + '.' if module else '',
-			type(self).__name__,
-			self.id,
-			self.name
-		)
 
 	def __repr__(self):
-		return self.repr(module=True)
+		return '<{}.{}:{} "{}"">'.format(
+			self.__module__,
+			type(self).__name__,
+			self.id,
+			self.name,
+		)
 
 
 class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
