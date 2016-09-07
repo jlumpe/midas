@@ -17,7 +17,7 @@ extensions = [
 
 setup(
 	name='midas',
-	version='0.0.1',
+	version='1.0.0',
 	description=('Microbial IDentification And Surveillance through whole '
 	             'genome sequencing data'),
 	author='Jared Lumpe',
