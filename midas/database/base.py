@@ -386,6 +386,21 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	def genomes(cls):
 		return association_proxy('annotations', 'genome')
 
+	def genomes_query(self, session):
+		"""Create a query for the :class:`.Genome`\ s in this set
+
+		:param sqlalchemy.orm.session.Session session: Session to create\
+			query from
+		:return: Query on :class:`.Genome` filtered by membership in this set.
+		:rtype: :class:`sqlalchemy.orm.query.Query`
+		"""
+		# Get exact Genome and GenomeAnnotations classes
+		GenomeAnnotations = type(self).annotations.prop.mapper.class_
+		Genome = self.genomes.parent.remote_attr.prop.mapper.class_
+
+		filter_clause = Genome.annotations.any(GenomeAnnotations.genome_set==self)
+
+		return session.query(Genome).filter(filter_clause)
 
 	def __repr__(self):
 		return '<{}.{}:{} "{}"">'.format(
