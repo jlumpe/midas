@@ -235,11 +235,11 @@ class BasicDatabase(base.AbstractDatabase):
 
 	def _make_seq_fname(self, genome, ext=None):
 		"""Create a unique and descriptive file name for a Sequence's data"""
-		return '{}_{}{}'.format(
-			genome.id,
-			re.sub('[^A-Z0-9]+', '_', genome.description.upper()[:32]),
-			ext if ext is not None else '',
-		)
+		base = '{}_{}'.format(genome.id, genome.description.upper())
+		fname = re.sub('[^A-Z0-9]+', '_', base[:32])
+		if ext is not None:
+			fname += ext
+		return fname
 
 	def clean_seq_files(self, dry_run=False):
 		"""Removes orphaned sequence files from directory
