@@ -56,6 +56,18 @@ def download_sequence(db, genome, url, db_lock=None, store_opts=dict(),
 	shutil.copyfileobj(seq_data, buf)
 	buf.seek(0)
 
+	# If in gzip format, check it is readable
+	if store_opts.get('src_compression', None) == 'gzip':
+		try:
+			while buf.read(2 ** 16):
+				pass
+		except (EOFError, IOError) as exc:
+			exc2 = RuntimeError('Gzipped data appears corrupt: {}'.format(exc))
+			raise exc2 from exc
+
+		# Be kind, rewind
+		buf.seek(0)
+
 	# Store
 	with contextlib.ExitStack() as exitstack:
 		if db_lock:
