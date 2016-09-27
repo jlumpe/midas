@@ -9,10 +9,10 @@ from contextlib import suppress
 import numpy as np
 from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, event
+from sqlalchemy import create_engine
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred, undefer
-from sqlalchemy.orm.session import Session, object_session
+from sqlalchemy.orm.session import Session
 
 from midas.util import subpath
 from . import base
