@@ -23,7 +23,6 @@ setup(
 	author='Jared Lumpe',
 	author_email='mjlumpe@gmail.com',
 	packages=find_packages(),
-	namespace_packages=['midas'],
 	install_requires=[
 		'numpy~=1.11',
 		'sqlalchemy~=1.0',
