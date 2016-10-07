@@ -160,7 +160,7 @@ class DatabaseArchive:
 			else:
 				# Update existing
 				current_version = LooseVersion(existing.key_version)
-				new_version = LooseVersion(genome_data['key_version'])
+				new_version = LooseVersion(gset_data['key_version'])
 
 				if current_version >= new_version:
 					continue # TODO - warn?
