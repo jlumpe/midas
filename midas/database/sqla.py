@@ -72,14 +72,6 @@ class MutableJsonCollection(Mutable):
 		else:
 			self._parent = None
 
-	def __getstate__(self):
-		"""For pickling"""
-		return self.as_builtin()
-
-	def __setstate__(state):
-		"""For unpickling"""
-		self.__init__(state)
-
 	def changed(self):
 		super(MutableJsonCollection, self).changed()
 
@@ -137,6 +129,10 @@ class MutableJsonList(MutableJsonCollection, collections.MutableSequence):
 
 		MutableJsonCollection.__init__(self, parent)
 
+	def __getnewargs__(self):
+		"""Picklable tuple of args to __new__ for unpickling."""
+		return (self.as_builtin(),)
+
 	def __getitem__(self, index):
 		return self._list[index]
 
@@ -189,6 +185,10 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 		}
 
 		MutableJsonCollection.__init__(self, parent)
+
+	def __getnewargs__(self):
+		"""Picklable tuple of args to __new__ for unpickling."""
+		return (self.as_builtin(),)
 
 	def __getitem__(self, key):
 		return self._dict[key]
