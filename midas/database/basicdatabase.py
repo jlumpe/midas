@@ -12,11 +12,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred, undefer
-from sqlalchemy.orm.session import Session
 
 from midas.util import subpath
 from . import base
-
 
 
 # SqlAlchemy declarative base
@@ -53,6 +51,14 @@ class BasicDatabase(base.AbstractDatabase):
 	__root_dir_attr__ = 'path'
 
 	_seq_dir = subpath('sequences')
+
+	Base = Base
+	Genome = Genome
+	GenomeSet = GenomeSet
+	GenomeAnnotations = GenomeAnnotations
+	Sequence = Sequence
+	KmerSetCollection = KmerSetCollection
+	KmerSet = KmerSet
 
 	def __init__(self, path, engine_args=dict()):
 		self.path = os.path.abspath(path)
@@ -130,7 +136,7 @@ class BasicDatabase(base.AbstractDatabase):
 
 			# Create Sequence instance
 			sequence = Sequence(genome=genome, format=seq_format,
-			                   _filename=seq_fname)
+			                    _filename=seq_fname)
 			session.add(sequence)
 
 			# Copy/move src and commit database changes together - all-or-
@@ -265,11 +271,3 @@ class BasicDatabase(base.AbstractDatabase):
 
 		# Return list of cleaned files
 		return cleaned
-
-	Base = Base
-	Genome = Genome
-	GenomeSet = GenomeSet
-	GenomeAnnotations = GenomeAnnotations
-	Sequence = Sequence
-	KmerSetCollection = KmerSetCollection
-	KmerSet = KmerSet

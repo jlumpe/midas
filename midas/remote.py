@@ -127,9 +127,16 @@ def download_sequences_parallel(db, items, **kwargs):
 				else:
 					raise ValueError('Download items shoud be 2- or 3-tuples')
 
-				future = executor.submit(download_sequence, db, genome, url,
-				                         db_lock=db_lock, store_opts=store_opts,
-				                         aborted=check_aborted, **kwargs)
+				future = executor.submit(
+					download_sequence,
+					db,
+					genome,
+					url,
+					db_lock=db_lock,
+					store_opts=store_opts,
+					aborted=check_aborted,
+					**kwargs
+				)
 				genomes_by_future[future] = genome
 
 		# If any errors in submitting jobs

@@ -4,7 +4,6 @@ import os
 from functools import wraps
 
 
-
 def _get_root_dir(obj, type):
 	"""Helper function for SubPath and DecoratedSubPath"""
 	root_dir_attr = getattr(type, '__root_dir_attr__', 'root_dir')

@@ -16,11 +16,10 @@ Many models include a unique key attribute, see :class:`.KeyMixin`.
 from abc import ABCMeta, abstractmethod, abstractproperty
 import contextlib
 
-from sqlalchemy import Table, ForeignKey, UniqueConstraint
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Enum
+from sqlalchemy import ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.declarative import declared_attr
-from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from .sqla import TrackChangesMixin, JsonType, MutableJsonDict, JsonableMixin
@@ -255,7 +254,7 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	@declared_attr
-	def	meta(cls):
+	def meta(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	@declared_attr
@@ -398,7 +397,9 @@ class GenomeSet(KeyMixin, JsonableMixin):
 		GenomeAnnotations = type(self).annotations.prop.mapper.class_
 		Genome = self.genomes.parent.remote_attr.prop.mapper.class_
 
-		filter_clause = Genome.annotations.any(GenomeAnnotations.genome_set==self)
+		filter_clause = Genome.annotations.any(
+			GenomeAnnotations.genome_set == self
+		)
 
 		return session.query(Genome).filter(filter_clause)
 
@@ -528,12 +529,12 @@ class KmerSetCollection(TrackChangesMixin):
 	k = Column(Integer(), nullable=False, index=True)
 
 	@declared_attr
-	def	parameters(cls):
+	def parameters(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType),
 		                       nullable=False, default=dict()))
 
 	@declared_attr
-	def	meta(cls):
+	def meta(cls):
 		return deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	def __repr__(self):

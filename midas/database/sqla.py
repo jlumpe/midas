@@ -55,7 +55,7 @@ class TrackChangesMixin:
 
 
 # Python types corresponding to non-collection types storable in JSON
-jsonable_scalars = (int, float, str, bool, type(None))
+JSONABLE_SCALARS = (int, float, str, bool, type(None))
 
 
 class MutableJsonCollection(Mutable):
@@ -103,7 +103,7 @@ class MutableJsonCollection(Mutable):
 		if isinstance(elem, MutableJsonCollection):
 			return elem
 
-		elif isinstance(elem, jsonable_scalars):
+		elif isinstance(elem, JSONABLE_SCALARS):
 			return elem
 
 		elif isinstance(elem, collections.Mapping):
@@ -183,8 +183,10 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 
 	def __init__(self, mapping, parent=None):
 		# Recursively convert any nested collections to MutableJsonCollection
-		self._dict = {k: self._transform_element(v) for k, v
-		              in dict(mapping).items()}
+		self._dict = {
+			k: self._transform_element(v) for k, v
+			in dict(mapping).items()
+		}
 
 		MutableJsonCollection.__init__(self, parent)
 
@@ -282,15 +284,29 @@ class JsonableMixin:
 
 	@classmethod
 	def from_json(cls, json_data):
-		"""Creates from parsed JSON dict"""
-		return cls(**{ name: value for name, value in json_data.items()
-		               if name in cls.__json_attrs__ })
+		"""Create instance from parsed JSON dict.
+
+		Calls the class constructor with all key/value pairs in ``json_data``
+		as keyword arguments, where the key is in :attr:`__json_attrs__`.
+
+		:param dict json_data: JSON-like dict as returned from
+			:func:`json.load`.
+		:returns: Instance of class.
+		"""
+		return cls(**{
+			name: value for name, value in json_data.items()
+			if name in cls.__json_attrs__
+		})
 
 	def update_from_json(self, json_data):
-		"""Updates attributes from parsed JSON dict"""
+		"""Update attributes from parsed JSON dict.
+
+		:param dict json_data: JSON-like dict as returned from
+			:func:`json.load`.
+		"""
 		for name, value in json_data.items():
 			if isinstance(value, MutableJsonCollection):
 				value = value.as_builtin()
 
-			if name in __json_attrs__:
+			if name in self.__json_attrs__:
 				setattr(self, name, value)

@@ -22,8 +22,10 @@ class DatabaseArchive:
 		return self._zipfile.mode != 'r'
 
 	def list_genomes(self):
-		return [ f.split('/', 1)[1] for f in self._zipfile.namelist()
-		         if f.startswith('genomes/') ]
+		return [
+			f.split('/', 1)[1] for f in self._zipfile.namelist()
+			if f.startswith('genomes/')
+		]
 
 	def has_genome(self, key):
 		try:
@@ -61,8 +63,10 @@ class DatabaseArchive:
 			yield self.get_genome(key, class_=class_)
 
 	def list_genome_sets(self):
-		return [ f.split('/', 1)[1] for f in self._zipfile.namelist()
-		         if f.startswith('genome_sets/') ]
+		return [
+			f.split('/', 1)[1] for f in self._zipfile.namelist()
+			if f.startswith('genome_sets/')
+		]
 
 	def has_genome_set(self, key):
 		try:
@@ -106,8 +110,10 @@ class DatabaseArchive:
 		else:
 			gset_class, annotations_class = classes
 			gset = gset_class.from_json(data)
-			annotations = { k: annotations_class.from_json(v)
-			                for k, v in annotations_dict.items() }
+			annotations = {
+				k: annotations_class.from_json(v)
+				for k, v in annotations_dict.items()
+			}
 			return gset, annotations
 
 	def all_genome_sets(self, classes=None):
@@ -126,9 +132,9 @@ class DatabaseArchive:
 
 		# Extract genomes
 		for genome_data in self.all_genomes():
-			existing = session.query(db.Genome).\
-			           filter_by(key=genome_data['key']).\
-			           scalar()
+			existing = session.query(db.Genome)\
+				.filter_by(key=genome_data['key'])\
+				.scalar()
 
 			if existing is None:
 				# Create new
@@ -141,16 +147,16 @@ class DatabaseArchive:
 				new_version = LooseVersion(genome_data['key_version'])
 
 				if current_version < new_version:
-					existing.update_from_json(json_data)
+					existing.update_from_json(genome_data)
 				else:
-					pass # TODO - warn?
+					pass  # TODO - warn?
 
 		# Extract genome sets
 		for gset_data, annotations_data_dicts in self.all_genome_sets():
 
-			existing = session.query(db.GenomeSet).\
-			           filter_by(key=gset_data['key']).\
-			           scalar()
+			existing = session.query(db.GenomeSet)\
+				.filter_by(key=gset_data['key'])\
+				.scalar()
 
 			if existing is None:
 				# Create new
@@ -163,7 +169,7 @@ class DatabaseArchive:
 				new_version = LooseVersion(gset_data['key_version'])
 
 				if current_version >= new_version:
-					continue # TODO - warn?
+					continue  # TODO - warn?
 
 				existing.update_from_json(gset_data)
 				gset = existing
@@ -172,13 +178,15 @@ class DatabaseArchive:
 			gset.annotations = []
 			for genome_key, annotations_data in annotations_data_dicts.items():
 
-				genome = session.query(db.Genome).\
-				         filter_by(key=genome_key).\
-				         scalar()
+				genome = session.query(db.Genome)\
+					.filter_by(key=genome_key)\
+					.scalar()
 
 				if genome is None:
-					raise RuntimeError('Genome key {} not found in database'
-					                   .format(genome_key))
+					raise RuntimeError(
+						'Genome key {} not found in database'
+						.format(genome_key)
+					)
 
 				annotations = db.GenomeAnnotations.from_json(annotations_data)
 				annotations.genome = genome

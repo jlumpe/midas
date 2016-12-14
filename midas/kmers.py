@@ -18,13 +18,13 @@ def reverse_complement(seq):
 	"""Reverse complement of a (short) upper-case byte sequence"""
 	complement = []
 	for nuc in seq:
-		if nuc == 65: # A
+		if nuc == 65:  # A
 			complement.append(84)
-		elif nuc == 84: # T
+		elif nuc == 84:  # T
 			complement.append(65)
-		elif nuc == 67: # C
+		elif nuc == 67:  # C
 			complement.append(71)
-		elif nuc == 71: # G
+		elif nuc == 71:  # G
 			complement.append(67)
 	return bytes(reversed(complement))
 
@@ -166,10 +166,10 @@ class KmerCoordsCollection(collections.Sequence):
 		return len(self.bounds) - 1
 
 	def __getitem__(self, index):
-		return self.coords_array[self.bounds[index]:self.bounds[index+1]]
+		return self.coords_array[self.bounds[index]:self.bounds[index + 1]]
 
 	def __setitem__(self, index, value):
-		self.coords_array[self.bounds[index]:self.bounds[index+1]] = value
+		self.coords_array[self.bounds[index]:self.bounds[index + 1]] = value
 
 	def size_of(self, index):
 		return self.bounds[index + 1] - self.bounds[index]
