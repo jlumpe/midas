@@ -271,3 +271,27 @@ class BasicDatabase(base.AbstractDatabase):
 
 		# Return list of cleaned files
 		return cleaned
+
+	def get_alembic_config(self, **kwargs):
+		"""Get an alembic config object to perform migrations.
+
+		:param \\**kwargs: Keyword arguments to pass to
+			:meth:`alembic.config.Config.__init__`.
+		:returns: Alembic config object for the ``BasicDatabase`` class with
+			this instance's database connection info.
+		:rtype: alembic.config.Config
+		"""
+
+		from alembic.config import Config
+		from pkg_resources import resource_filename
+
+		migrations_dir = resource_filename('midas.database', 'migrate')
+		ini_path = os.path.join(migrations_dir, 'alembic.ini')
+		script_path = os.path.join(migrations_dir, 'basicdatabase')
+
+		config = Config(ini_path, **kwargs)
+
+		config.set_main_option('script_location', script_path)
+		config.attributes['engine'] = self._engine
+
+		return config

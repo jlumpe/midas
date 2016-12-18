@@ -1,0 +1,3 @@
+# Alembic
+include midas/database/migrate/alembic.ini
+recursive-include midas/database/migrate *.py

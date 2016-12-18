@@ -19,6 +19,7 @@ install_requires = [
 	'numpy~=1.11',
 	'sqlalchemy~=1.0',
 	'cython~=0.24',
+	'alembic~=0.8',
 ]
 
 
@@ -42,4 +43,5 @@ setup(
 	packages=find_packages(),
 	install_requires=install_requires,
 	ext_modules=cythonize(extensions),
+	include_package_data=True,
 )
