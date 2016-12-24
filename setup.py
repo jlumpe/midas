@@ -19,6 +19,7 @@ install_requires = [
 	'numpy~=1.11',
 	'sqlalchemy~=1.0',
 	'cython~=0.24',
+	'biopython~=1.68',
 	'alembic~=0.8',
 ]
 
