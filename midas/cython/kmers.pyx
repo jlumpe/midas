@@ -20,8 +20,11 @@ cdef class CKmerSpec:
 		self.idx_len = 1 << (2 * self.k)
 
 	def __repr__(self):
-		return '<{} k={} prefix="{}"">'.format(self.__class__.__name__, self.k,
-		                                       self.prefix)
+		return '<{} k={} prefix="{}"">'.format(
+			self.__class__.__name__,
+			self.k,
+			self.prefix
+		)
 
 
 def kmer_to_index(bytes kmer):

@@ -1,4 +1,4 @@
-"""Defines abstract base classes for databases and SQLAlchemy models
+"""Abstract base classes for databases and SQLAlchemy models.
 
 A MIDAS database encompasses a standard SQLAlchemy database connection with
 implementations of the abstract classes in this module, as well as some method
@@ -27,75 +27,124 @@ from midas.kmers import KmerSpec
 
 
 class AbstractDatabase(metaclass=ABCMeta):
-	"""Abstract base class for MIDAS database
+	"""Abstract base class for MIDAS database.
 
 	This class defines the interface for all database subtypes so they can
 	be used consistently without regard to the underlying implementation.
 
-
 	.. attribute:: Base
 
 		:class:`abc.abstractproperty` SQLAlchemy declarative base for
-		concrete database subclass
+		concrete database subclass.
 
 	.. attribute:: Genome
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.Genome`
+		:class:`.Genome`.
 
 	.. attribute:: Sequence
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.Sequence`
+		:class:`.Sequence`.
 
 	.. attribute:: GenomeSet
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.GenomeSet`
+		:class:`.GenomeSet`.
 
 	.. attribute:: GenomeAnnotations
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.GenomeAnnotations`
+		:class:`.GenomeAnnotations`.
 
 	.. attribute:: KmerSetCollection
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.KmerSetCollection`
+		:class:`.KmerSetCollection`.
 
 	.. attribute:: KmerSet
 
 		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.KmerSet`
+		:class:`.KmerSet`.
 	"""
 
 	@abstractmethod
 	def get_session(self):
-		"""Create a new SQLAlchemy session"""
+		"""Create a new SQLAlchemy session.
+
+		:rtype: sqlalchemy.orm.session.Session
+		"""
 		pass
 
 	def session_context(self):
-		"""Create context manager that closes session on exit"""
+		"""Create context manager that closes session on exit.
+
+		Usage:
+
+			with db.session_context() as session:
+
+				session.query()...
+		"""
 		return contextlib.closing(self.get_session())
 
 	@abstractmethod
-	def store_sequence(self, genome, src, **kwargs):
-		"""Store a new genome in the database"""
+	def store_sequence(self, genome_id, src, **kwargs):
+		"""Store a genome sequence in the database.
+
+		:param genome: Genome to store sequence for.
+		:type int genome_id: ID of genome to store sequence for.
+		:param src: Data source. Path to file on disk or file-like object.
+		:param \\**kwargs: Additional keyword arguments.
+
+		:keyword arguments:
+
+		* *seq_format* (``str``) --
+		  Value for ``format`` attribute of :class:`.Sequence`. Defaults to
+		  ``'fasta'``.
+		* *src_compression* (``str``) --
+		  Compression format of source data, or ``None`` if not compressed.
+		  Currently allowed values are ``'gzip'``. Defaults to ``None``.
+		* *keep_src* (``bool``) --
+		  Whether to keep the source file, if ``src`` is a path. If ``True``
+		  it will be copied, if ``False`` it will be moved. Defaults to
+		  ``True``.
+		* *src_mode* (``str``) --
+		  If the source data is in text (``'t'``, default) or binary (``'b'``)
+		  mode. Only used if ``src`` is a file-like object.
+		"""
 		pass
 
 	@abstractmethod
 	def open_sequence(self, genome_id):
-		"""Gets an open file handle/stream to the sequence for a stored genome"""
+		"""Get an open file handle/stream to the sequence for a stored genome.
+
+		:param int genome_id: ID of genome to get sequence for.
+		:returns: File-like.
+		"""
 		pass
 
 	@abstractmethod
 	def store_kset_coords(self, collection_id, genome_id, coords):
-		"""Store a k-mer set in coordinate format"""
+		"""Store a k-mer set in coordinate format.
+
+		:param int collection_id: ID of :class:`KmerSetCollection` to store
+			k-mer set for.
+		:param int genome_id: ID of :class:`Genome` to store k-mer set for.
+		:param coords: K-mer set in coordinate array format.
+		:type coords: numpy.ndarray
+		"""
 		pass
 
 	@abstractmethod
 	def load_kset_coords(self, collection_id, genome_id):
-		"""Load stored coordinates for a k-mer set"""
+		"""Load stored coordinates for a k-mer set.
+
+		:param int collection_id: ID of :class:`KmerSetCollection` to load
+			coordinates for.
+		:param int genome_id: ID of :class:`Genome` to load coordinates for.
+		:returns: K-mer set in coordinate array format.
+		:rtype: numpy.ndarray
+		"""
 		pass
 
 	# Concrete model subclasses must be attributes on concrete database
@@ -110,8 +159,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 
 
 class KeyMixin:
-	"""Mixin that defines key/key version columns
-
+	"""Mixin that defines key/key version columns.
 
 	.. attribute:: key
 
@@ -145,35 +193,35 @@ class KeyMixin:
 
 
 class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
-	"""Base model for a reference genome queries can be run against
+	"""Base model for a reference genome queries can be run against.
 
 	Corresponds to a single assembly (one or more contigs, but at least
 	partially assembled) from what should be a single sequencing run. The
 	same organism or strain may have several genome entries for it. Typically
 	this will correspond directly to a record in Genbank (assembly database).
 
-	This model simply stores the metadata of the genome, nformation	on the
-	actual sequence data itself is stored in the sequence relationship.
+	This model simply stores the metadata of the genome, information on the
+	actual sequence data itself is stored in the :attr:`sequence` relationship.
 	A Genome entry has at most one sequence associated with it.
 
 	The data on this model should primarily pertain to the sample and
 	sequencing run itself. It would be updated if for example a better
 	assembly was produced from the original raw data, however more advanced
 	interpretation such as taxonomy assignments belong on an attached
-	GenomeAnnotations object.
+	:class:`GenomeAnnotations` object.
 
 
 	.. attribute:: id
 
-		Integer primary key
+		Integer primary key.
 
 	.. attribute:: key
 
-		See :class:`.KeyMixin`
+		See :class:`.KeyMixin`.
 
 	.. attribute:: key_version
 
-		See :class:`.KeyMixin`
+		See :class:`.KeyMixin`.
 
 	.. attribute:: description
 
@@ -181,40 +229,40 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 
 	.. attribute:: is_assembled
 
-		Whether the genome is completely assembled or has multiple contigs
+		Whether the genome is completely assembled or has multiple contigs.
 
 	.. attribute:: gb_db
 
-		GEnbank database, e.g. "assembly"
+		Genbank database, e.g. "assembly".
 
 	.. attribute:: gb_id
 
-		UID of Genbank record
+		UID of Genbank record.
 
 	.. attribute:: gb_acc
 
-		Accession number of genbank record
+		Accession number of Genbank record.
 
 	.. attribute:: gb_taxid
 
-		Genbank taxonomy ID
+		Genbank taxonomy ID.
 
 	.. attribute:: gb_summary
 
 		Optional summary (from EUtils ESummary) for record and associated
-		taxonomy entry, as mutable JSON types
+		taxonomy entry, as mutable JSON types.
 
 	.. attribute:: meta
 
-		Arbitrary metadata as mutable JSON dict
+		Arbitrary metadata as mutable JSON dict.
 
 	.. attribute:: sequence
 
-		One-to-one relationship to :class:`.Sequence`
+		One-to-one relationship to :class:`.Sequence`.
 
 	.. attribute:: annotations
 
-		One-to-many relationship to :class:`.GenomeAnnotations`
+		One-to-many relationship to :class:`.GenomeAnnotations`.
 	"""
 
 	__tablename__ = 'genomes'
@@ -277,23 +325,23 @@ class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
 
 
 class Sequence:
-	"""Stores metadata for genome's sequence data, if it is in the database
+	"""Stores metadata for genome's sequence data, if it is in the database.
 
 	Genomes may be present in the database with associated metadata as a
 	Genome object, but may not have a sequence stored. This contains
 	metadata for the sequence itself.
 
 	The actual sequence data can be obtained with
-	:func:`.AbstractDatabase.open_sequence`\ .
+	:func:`.AbstractDatabase.open_sequence`.
 
 
 	.. attribute:: id
 
-		Integer primary key
+		Integer primary key.
 
 	.. attribute:: format
 
-		Format of sequence - e.g. fasta
+		Format of sequence - e.g. ``'fasta'``.
 	"""
 	__tablename__ = 'sequences'
 
@@ -319,30 +367,29 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	updates, in which case they should have a unique key and version number
 	to identify them.
 
-
 	.. attribute:: id
 
-		Integer primary key
+		Integer primary key.
 
 	.. attribute:: key
 
-		See :class:`.KeyMixin`
+		See :class:`.KeyMixin`.
 
 	.. attribute:: key_version
 
-		See :class:`.KeyMixin`
+		See :class:`.KeyMixin`.
 
 	.. attribute:: name
 
-		Unique name
+		Unique name.
 
 	.. attribute:: description
 
-		Optional text description
+		Optional text description.
 
 	.. attribute:: meta
 
-		Arbitrary metadata as mutable JSON dict
+		Arbitrary metadata as mutable JSON dict.
 
 	.. attribute:: annotations
 
@@ -386,12 +433,12 @@ class GenomeSet(KeyMixin, JsonableMixin):
 		return association_proxy('annotations', 'genome')
 
 	def genomes_query(self, session):
-		"""Create a query for the :class:`.Genome`\ s in this set
+		"""Create a query for the :class:`.Genome`\\ s in this set.
 
-		:param sqlalchemy.orm.session.Session session: Session to create\
-			query from
+		:param session: Session to create query from.
+		:type session: sqlalchemy.orm.session.Session
 		:return: Query on :class:`.Genome` filtered by membership in this set.
-		:rtype: :class:`sqlalchemy.orm.query.Query`
+		:rtype: sqlalchemy.orm.query.Query
 		"""
 		# Get exact Genome and GenomeAnnotations classes
 		GenomeAnnotations = type(self).annotations.prop.mapper.class_
@@ -413,13 +460,12 @@ class GenomeSet(KeyMixin, JsonableMixin):
 
 
 class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
-	"""Association object connecting Genomes with GenomeSets
+	"""Association object connecting Genomes with GenomeSets.
 
 	Can simply indicate that a Genome is contained in a GenomeSet, but can
 	also carry additional annotations for the genome that are different
 	between sets. Mostly holds taxonomy information as that is frequently
 	a result of additional analysis on the sequence.
-
 
 	.. attribute:: genome_id
 
@@ -444,11 +490,11 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 
 	.. attribute:: genome
 
-		Many-to-one relationship to :class:`.Genome`
+		Many-to-one relationship to :class:`.Genome`.
 
 	.. attribute:: genome_set
 
-		Many-to-one relationship to :class:`.GenomeSet`
+		Many-to-one relationship to :class:`.GenomeSet`.
 	"""
 	__tablename__ = 'genome_annotations'
 
@@ -493,22 +539,21 @@ class KmerSetCollection(TrackChangesMixin):
 	"""A collection of k-mer counts/statistics for a set of genomes calculated
 	with the same parameters.
 
-
 	.. attribute:: id
 
-		Integer primary key
+		Integer primary key.
 
 	.. attribute:: name
 
-		Unique name
+		Unique name.
 
 	.. attribute:: prefix
 
-		K-mer prefix to search for, string of upper-case nucleotide codes
+		K-mer prefix to search for, string of upper-case nucleotide codes.
 
 	.. attribute:: k
 
-		Number of nucleotides AFTER prefix
+		Number of nucleotides *after* prefix.
 
 	.. attribute:: parameters
 
@@ -517,8 +562,7 @@ class KmerSetCollection(TrackChangesMixin):
 
 	.. attribute:: meta
 
-		Arbitrary metadata as mutable JSON dict
-
+		Arbitrary metadata as mutable JSON dict.
 	"""
 
 	__tablename__ = 'kmer_collections'
@@ -548,7 +592,7 @@ class KmerSetCollection(TrackChangesMixin):
 		)
 
 	def kmerspec(self):
-		"""Get the ``KmerSpec`` for these parameters
+		"""Get the ``KmerSpec`` for these parameters.
 
 		:rtype: :class:`midas.kmers.KmerSpec`
 		"""
@@ -556,31 +600,30 @@ class KmerSetCollection(TrackChangesMixin):
 
 
 class KmerSet:
-	"""Reference to a stored k-mer set for a genome
+	"""Reference to a stored k-mer set for a genome.
 
 	The actual data can be retrieved in coordinate format with
-	:func:`.AbstractDatabase.load_kset_coords`\ .
-
+	:func:`.AbstractDatabase.load_kset_coords`.
 
 	.. attribute:: collection_id
 
-		Id of :class:`.KmerSetCollection` this k-mer set belongs to
+		Id of :class:`.KmerSetCollection` this k-mer set belongs to.
 
 	.. attribute:: genome_id
 
-		Id of :class:`.Genome` this k-mer set is for
+		Id of :class:`.Genome` this k-mer set is for.
 
 	.. attribute:: count
 
-		Number of k-mers in set
+		Number of k-mers in set.
 
 	.. attribute:: collection
 
-		Many-to-one relationship to :class:`.KmerSetCollection`
+		Many-to-one relationship to :class:`.KmerSetCollection`.
 
 	.. attribute:: genome_id
 
-		Many-to-one relationship to :class:`.Genome`
+		Many-to-one relationship to :class:`.Genome`.
 	"""
 
 	__tablename__ = 'kmer_sets'

@@ -1,7 +1,26 @@
-"""Miscellaneous utility code"""
+"""Miscellaneous utility code."""
 
 import os
-from functools import wraps
+
+
+def kwargs_done(kwargs):
+	"""Raises an error when an unknown keyword argument is encountered.
+
+	Meant to be used with the pattern where extra keyword arguments to a
+	function are caught with ``**kwargs`` and popped off as they are
+	interpreted. At the end this function can be used to assert that the
+	dictionary is empty.
+
+	:param dict kwargs: Dictionary of keyword arguments, of which all should
+		have been removed.
+	:raises KeyError: If the dictionary is not empty, in a similar format
+		to the built-in error for an unknown keyword argument.
+	"""
+	if kwargs:
+		raise KeyError(
+			'Unknown keyword argument {:r}'
+			.format(next(iter(kwargs)))
+		)
 
 
 def _get_root_dir(obj, type):
@@ -11,13 +30,15 @@ def _get_root_dir(obj, type):
 
 
 class SubPath:
-	"""Data descriptor for getting absolute path from relative subpath
+	"""Data descriptor for getting absolute path from relative subpath.
 
 	Intended for classes that manage a single root directory (e.g.,
-	BasicDatabase) that have subpaths they need to get the absolute path for.
-	To avoid many os.path.join()'s all over the place, the descriptor returns
-	the absolute path on instances and a function giving the absolute path
-	given the root path on classes.
+	``BasicDatabase``) that have subpaths they need to get the absolute path
+	for. To avoid many os.path.join()'s all over the place, the descriptor
+	returns the absolute path on instances and a function giving the absolute
+	path given the root path on classes.
+
+	:param str path: Path relative to parent object's root directory.
 	"""
 
 	def __init__(self, path):
@@ -35,34 +56,3 @@ class SubPath:
 
 	def __set__(self, obj):
 		raise AttributeError("Can't set attribute")
-
-
-class SubPathMethod:
-
-	def __init__(self, func):
-		self.func = func
-
-	def get_subpath(self, root_dir, *args, **kwargs):
-		return os.path.join(root_dir, self.func(*args, **kwargs))
-
-	def __get__(self, obj, type):
-		if obj is None:
-			return self.get_subpath
-
-		else:
-			@wraps(self.func)
-			def get_subpath(*args, **kwargs):
-				return os.path.join(_get_root_dir(obj, type),
-				                    self.func(*args, **kwargs))
-
-			return get_subpath
-
-
-def subpath(arg):
-	"""Creates a SubPath/SubPathMethod (as decorator) from string/callable"""
-	if isinstance(arg, str):
-		return SubPath(arg)
-	elif callable(arg):
-		return SubPathMethod(arg)
-	else:
-		raise TypeError(type(arg))

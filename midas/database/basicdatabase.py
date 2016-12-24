@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred, undefer
 
-from midas.util import subpath
+from midas.util import kwargs_done, SubPath
 from . import base
 
 
@@ -46,11 +46,20 @@ class KmerSet(Base, base.KmerSet):
 
 
 class BasicDatabase(base.AbstractDatabase):
-	"""Basic database that resides in a single directory"""
+	"""Basic database that resides in a single directory.
+
+	:param str path: Path of database directory to open.
+	:param dict engine_args: Additional keyword arguments to
+		:func:`sqlalchemy.create_engine`.
+
+	.. attribute:: path
+
+		Path to database directory.
+	"""
 
 	__root_dir_attr__ = 'path'
 
-	_seq_dir = subpath('sequences')
+	_seq_dir = SubPath('sequences')
 
 	Base = Base
 	Genome = Genome
@@ -67,7 +76,11 @@ class BasicDatabase(base.AbstractDatabase):
 
 	@classmethod
 	def create(cls, path):
-		"""Creates and initializes a new BasicDatabase at the given path"""
+		"""Creates and initializes a new BasicDatabase.
+
+		:param str path: Path to create database at.
+		:rtype: .BasicDatabase
+		"""
 		path = os.path.abspath(path)
 
 		# Create directory if it does not exist
@@ -97,9 +110,8 @@ class BasicDatabase(base.AbstractDatabase):
 		src_compression = kwargs.pop('src_compression', None)
 		keep_src = kwargs.pop('keep_src', True)
 		src_mode = kwargs.pop('src_mode', 't')
-		if kwargs:
-			raise TypeError('Invalid keyword argument "{}"'
-			                .format(next(iter(kwargs))))
+
+		kwargs_done(kwargs)
 
 		# Check compression argument
 		if src_compression not in (None, 'gzip'):
@@ -171,8 +183,10 @@ class BasicDatabase(base.AbstractDatabase):
 					if src_compression == 'gzip':
 						dest_fh = open(dest_path, 'wb')
 					else:
-						dest_fh = gzip.open(dest_path,
-						                    'wb' if 'b' in src_mode else 'wt')
+						dest_fh = gzip.open(
+							dest_path,
+							'wb' if 'b' in src_mode else 'wt'
+						)
 
 					with dest_fh:
 						shutil.copyfileobj(src, dest_fh)
@@ -254,6 +268,11 @@ class BasicDatabase(base.AbstractDatabase):
 		SQLAlchemy database in a way that does not trigger the after_delete
 		ORM event (such as from a bulk delete query). These files shouldn't
 		be harmful but could waste disk space.
+
+		:param bool dry_run: If ``True`` don't actually remove any sequences,
+			just return which would have been removed.
+		:returns: List of cleaned file names.
+		:rtype: list
 		"""
 
 		# Get file names of existing sequences
