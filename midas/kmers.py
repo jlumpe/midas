@@ -1,4 +1,15 @@
-"""Module for core k-mers code"""
+"""Core functions for searching for and working with k-mers.
+
+Note that all code in this module operates on DNA sequences as sequences of
+bytes containing ascii-encoded nucleotide codes.
+
+.. data:: NUCLEOTIDES
+
+	``bytes`` corresponding to the four DNA nucleotides. Ascii-encoded upper
+	case letters ``ACGT``. Note that the order, while arbitrary, is important
+	in this variable as it defines how unique indices are assigned to k-mer
+	sequences.
+"""
 
 import collections
 
@@ -6,12 +17,12 @@ import numpy as np
 from Bio import SeqIO
 
 from .cython import kmers as ckmers
+from .cython.kmers import kmer_to_index
 
 
-kmer_to_index = ckmers.kmer_to_index
-
-
-nucleotides = b'ACGT'
+# Byte representations of the four nucleotide codes in the order used for
+# indexing k-mer sequences
+NUCLEOTIDES = b'ACGT'
 
 
 def reverse_complement(seq):
@@ -30,7 +41,40 @@ def reverse_complement(seq):
 
 
 class KmerSpec(object):
-	"""Specifications for a k-mer search operation"""
+	"""Specifications for a k-mer search operation.
+
+	:param int k: Value of :attr:`k` attribute.
+	:param prefix: Value of :attr:`prefix` attribute. If ``str`` and not
+		``bytes`` will be encoded as ascii.
+
+	.. attribute:: prefix
+
+		Constant prefix of k-mers to search for, upper-case nucleotide codes
+		as ascii-encoded ``bytes``.
+
+	.. attribute:: k
+
+		Number of nucleotides in k-mer *after* prefix.
+
+	.. attribute:: prefix_len
+
+		Number of nucleotides in prefix.
+
+	.. attribute:: total_len
+
+		Sum of ``prefix_len`` and ``k``.
+
+	.. attribute:: idx_len
+
+		Maximum value (plus one) of integer needed to index one of the
+		found k-mers. Also the number of possible k-mers fitting the spec.
+		Equal to ``4 ** k``.
+
+	.. attribute:: coords_dtype
+
+		Smallest unsigned integer ``numpy.dtype`` that can store k-mer
+		indices.
+	"""
 
 	def __init__(self, k, prefix):
 		"""
@@ -45,6 +89,10 @@ class KmerSpec(object):
 		else:
 			self.prefix = bytes(prefix)
 
+		for nuc in self.prefix:
+			if nuc not in NUCLEOTIDES:
+				raise ValueError('Invalid byte in prefix: {}'.format(nuc))
+
 		self.prefix_len = len(self.prefix)
 		self.total_len = self.k + self.prefix_len
 		self.idx_len = 4 ** self.k
@@ -54,21 +102,46 @@ class KmerSpec(object):
 
 	@property
 	def coords_dtype(self):
-		"""Smallest unsigned unteger numpy dtype that can store coordinates"""
 		if self.k <= 4:
-			return 'u1'
+			strtype = 'u1'
 		elif self.k <= 8:
-			return 'u2'
+			strtype = 'u2'
 		elif self.k <= 12:
-			return 'u4'
+			strtype = 'u4'
 		elif self.k <= 16:
-			return 'u8'
+			strtype = 'u8'
 		else:
 			return None
 
+		return np.dtype(strtype)
+
+	def __repr__(self):
+		return '<{} k={} prefix="{}">'.format(
+			self.__class__.__name__,
+			self.k,
+			self.prefix.decode('ascii')
+		)
+
 
 def find_kmers(kspec, seq, out=None):
-	"""Find k-mers in a str- or bytes-like sequence, output a coordinate array"""
+	"""Find k-mers in a sequence and output a coordinate array.
+
+	Searches sequence both backwards and forwards (reverse complement). The
+	sequence may contain invalid characters (not one of the four nucleotide
+	codes) which will simply not be matched.
+
+	:param kspec: K-mer spec to use for search.
+	:type kspec: .KmerSpec
+	:param seq: Sequence to search within as ``bytes`` or ``str``. If ``str``
+		will be encoded as ASCII.
+	:param out: Existing numpy array to write output to. Should be of length
+		``kspec.idx_len``. If given the same array will be returned.
+	:type out: numpy.ndarray
+	:returns: Array of length ``kspec.idx_len`` containing ones in the
+		index of each k-mer found and zeros elsewhere. If ``out`` is not
+		given the array will be of type ``bool``.
+	:rtype: numpy.ndarray
+	"""
 	if out is None:
 		out = np.zeros(kspec.idx_len, dtype=bool)
 
@@ -137,7 +210,7 @@ def find_kmers_parse(kspec, data, format, out=None):
 def kmer_at_index(index, k):
 	nucs_reversed = []
 	for i in range(k):
-		nucs_reversed.append(nucleotides[index % 4])
+		nucs_reversed.append(NUCLEOTIDES[index % 4])
 		index >>= 2
 	return bytes(reversed(nucs_reversed))
 
