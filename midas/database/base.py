@@ -22,7 +22,7 @@ from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 
-from .sqla import TrackChangesMixin, JsonType, MutableJsonDict, JsonableMixin
+from .sqla import JsonType, MutableJsonDict, JsonableMixin
 from midas.kmers import KmerSpec
 
 
@@ -192,7 +192,7 @@ class KeyMixin:
 			return query.filter_by(key_version=version).scalar()
 
 
-class Genome(KeyMixin, TrackChangesMixin, JsonableMixin):
+class Genome(KeyMixin, JsonableMixin):
 	"""Base model for a reference genome queries can be run against.
 
 	Corresponds to a single assembly (one or more contigs, but at least
@@ -459,7 +459,7 @@ class GenomeSet(KeyMixin, JsonableMixin):
 		)
 
 
-class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
+class GenomeAnnotations(JsonableMixin):
 	"""Association object connecting Genomes with GenomeSets.
 
 	Can simply indicate that a Genome is contained in a GenomeSet, but can
@@ -535,7 +535,7 @@ class GenomeAnnotations(TrackChangesMixin, JsonableMixin):
 		)
 
 
-class KmerSetCollection(TrackChangesMixin):
+class KmerSetCollection:
 	"""A collection of k-mer counts/statistics for a set of genomes calculated
 	with the same parameters.
 

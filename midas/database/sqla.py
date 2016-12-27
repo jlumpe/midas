@@ -30,30 +30,6 @@ class VersionedMixin:
 		return dict(version_id_col=cls._version_id)
 
 
-class TrackChangesMixin:
-	"""Mixin for SQLAlchemy models that tracks when updates are made"""
-
-	created_at = Column(DateTime())
-	updated_at = Column(DateTime())
-
-	@classmethod
-	def _insert_time_callback(cls, mapper, connection, instance):
-		now = datetime.datetime.utcnow()
-		instance.created_at = now
-		instance.updated_at = now
-
-	@classmethod
-	def _update_time_callback(cls, mapper, connection, instance):
-		now = datetime.datetime.utcnow()
-		instance.updated_at = now
-
-	@classmethod
-	def __declare_last__(cls):
-		"""Called after mapper configured, register listeners"""
-		listen(cls, 'before_insert', cls._insert_time_callback)
-		listen(cls, 'before_update', cls._update_time_callback)
-
-
 # Python types corresponding to non-collection types storable in JSON
 JSONABLE_SCALARS = (int, float, str, bool, type(None))
 
