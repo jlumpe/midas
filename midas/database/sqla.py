@@ -1,15 +1,12 @@
-"""Custom types and other utilities for SQLAlchemy"""
+"""Custom types and other utilities for SQLAlchemy."""
 
-import datetime
 import json
 import collections
 import weakref
 
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.event import listen
+from sqlalchemy import String
 from sqlalchemy.types import TypeDecorator
 from sqlalchemy.ext.mutable import Mutable
-from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm.session import Session
 
 
@@ -18,16 +15,6 @@ class ReadOnlySession(Session):
 
 	def _flush(self, *args, **kwargs):
 		raise RuntimeError('This sessison is read-only')
-
-
-class VersionedMixin:
-	"""Mixin for models that implement a version counter"""
-
-	_version_id = Column('version_id', Integer(), nullable=False)
-
-	@declared_attr
-	def __mapper_args__(cls):
-		return dict(version_id_col=cls._version_id)
 
 
 # Python types corresponding to non-collection types storable in JSON
@@ -239,50 +226,3 @@ class JsonType(TypeDecorator):
 
 		else:
 			return None
-
-
-class JsonableMixin:
-	"""Mixin that allows model instances to be converted to/from JSON"""
-
-	def to_json(self):
-		"""Converts to JSONable dict"""
-
-		json_data = dict()
-
-		for name in self.__json_attrs__:
-			value = getattr(self, name)
-			if isinstance(value, MutableJsonCollection):
-				value = value.as_builtin()
-
-			json_data[name] = value
-
-		return json_data
-
-	@classmethod
-	def from_json(cls, json_data):
-		"""Create instance from parsed JSON dict.
-
-		Calls the class constructor with all key/value pairs in ``json_data``
-		as keyword arguments, where the key is in :attr:`__json_attrs__`.
-
-		:param dict json_data: JSON-like dict as returned from
-			:func:`json.load`.
-		:returns: Instance of class.
-		"""
-		return cls(**{
-			name: value for name, value in json_data.items()
-			if name in cls.__json_attrs__
-		})
-
-	def update_from_json(self, json_data):
-		"""Update attributes from parsed JSON dict.
-
-		:param dict json_data: JSON-like dict as returned from
-			:func:`json.load`.
-		"""
-		for name, value in json_data.items():
-			if isinstance(value, MutableJsonCollection):
-				value = value.as_builtin()
-
-			if name in self.__json_attrs__:
-				setattr(self, name, value)
