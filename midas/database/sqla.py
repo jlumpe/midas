@@ -35,6 +35,14 @@ class MutableJsonCollection(Mutable):
 		else:
 			self._parent = None
 
+	def __getstate__(self):
+		"""For pickling"""
+		return self.as_builtin()
+
+	def __setstate__(self, state):
+		"""For unpickling"""
+		self.__init__(state)
+
 	def changed(self):
 		super(MutableJsonCollection, self).changed()
 
@@ -42,7 +50,7 @@ class MutableJsonCollection(Mutable):
 		if self._parent is not None:
 			try:
 				self._parent.changed()
-			except weakref.ReferenceError:
+			except ReferenceError:
 				self._parent = None
 
 	def as_builtin(self):
@@ -143,8 +151,8 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 	def __init__(self, mapping, parent=None):
 		# Recursively convert any nested collections to MutableJsonCollection
 		self._dict = {
-			k: self._transform_element(v) for k, v
-			in dict(mapping).items()
+			k: self._transform_element(v)
+			for k, v in dict(mapping).items()
 		}
 
 		MutableJsonCollection.__init__(self, parent)
@@ -177,8 +185,10 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 		return repr(self._dict)
 
 	def as_builtin(self):
-		return {k: self._element_as_builtin(v) for k, v
-		        in self._dict.items()}
+		return {
+			k: self._element_as_builtin(v)
+			for k, v in self._dict.items()
+		}
 
 	@classmethod
 	def coerce(cls, key, value):
