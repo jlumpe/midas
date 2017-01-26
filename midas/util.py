@@ -23,9 +23,9 @@ def kwargs_done(kwargs):
 		)
 
 
-def _get_root_dir(obj, type):
-	"""Helper function for SubPath and DecoratedSubPath"""
-	root_dir_attr = getattr(type, '__root_dir_attr__', 'root_dir')
+def _get_root_dir(obj, type_):
+	"""Helper function for SubPath"""
+	root_dir_attr = getattr(type_, '__root_dir_attr__', 'root_dir')
 	return getattr(obj, root_dir_attr)
 
 
@@ -47,12 +47,12 @@ class SubPath:
 	def get_abs_path(self, root_dir):
 		return os.path.join(root_dir, self.path)
 
-	def __get__(self, obj, type):
+	def __get__(self, obj, type_):
 		if obj is None:
 			return self.get_abs_path
 
 		else:
-			return self.get_abs_path(_get_root_dir(obj, type))
+			return self.get_abs_path(_get_root_dir(obj, type_))
 
-	def __set__(self, obj):
+	def __set__(self, obj, value):
 		raise AttributeError("Can't set attribute")
