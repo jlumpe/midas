@@ -2,11 +2,13 @@
 
 import datetime
 
-from sqlalchemy import Column, Integer, DateTime
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import UniqueConstraint
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy import event
 
 from .sqla import MutableJsonCollection
+from midas.ncbi import SeqRecordBase
 
 
 
@@ -77,3 +79,19 @@ class JsonableMixin:
 
 			if name in self.__json_attrs__:
 				setattr(self, name, value)
+
+
+class SeqRecordMixin(SeqRecordBase):
+	"""
+	Mixin for models which describe a specific sequence record in an NCBI
+	database.
+	"""
+
+	__table_args__ = (
+		UniqueConstraint('entrez_db', 'entrez_id'),
+	)
+
+	entrez_db = Column(String())
+	entrez_id = Column(Integer())
+	genbank_acc = Column(String(), unique=True)
+	refseq_acc = Column(String(), unique=True)
