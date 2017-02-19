@@ -22,7 +22,8 @@ from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 
-from .sqla import JsonType, MutableJsonDict, JsonableMixin
+from .sqla import JsonType, MutableJsonDict
+from .mixins import JsonableMixin
 from midas.kmers import KmerSpec
 
 
