@@ -1,6 +1,16 @@
-"""Cython functions for calculating k-mer similarity metrics"""
+"""Cython functions for calculating k-mer similarity metrics."""
 
-from .kmers cimport coords_t
+import numpy as np
+cimport numpy as np
+
+from .seqs cimport coords_t
+
+
+# Type for similarity scores
+ctypedef np.float32_t score_t
+
+# Numpy dtype equivalent to above
+score_dtype = np.float32
 
 
 cdef float c_jaccard_coords(coords_t[:] coords1,

@@ -16,30 +16,13 @@ import collections
 import numpy as np
 from Bio import SeqIO
 
-from .cython import kmers as ckmers
-from .cython.kmers import kmer_to_index
+from .cython import seqs as cseqs
+from .cython.seqs import kmer_to_index, index_to_kmer
 
 
 # Byte representations of the four nucleotide codes in the order used for
 # indexing k-mer sequences
 NUCLEOTIDES = b'ACGT'
-
-
-def reverse_complement(seq):
-	"""Reverse complement of a (short) upper-case byte sequence"""
-	complement = []
-	for nuc in seq:
-		if nuc == 65:  # A
-			complement.append(84)
-		elif nuc == 84:  # T
-			complement.append(65)
-		elif nuc == 67:  # C
-			complement.append(71)
-		elif nuc == 71:  # G
-			complement.append(67)
-		else:
-			complement.append(nuc)
-	return bytes(reversed(complement))
 
 
 class KmerSpec(object):
@@ -79,11 +62,6 @@ class KmerSpec(object):
 	"""
 
 	def __init__(self, k, prefix):
-		"""
-		Args:
-			k: Length of k-mers to find (excluding prefix).
-			prefix: str. Find k-mers beginning with this subsequence.
-		"""
 		self.k = k
 
 		if isinstance(prefix, str):
@@ -98,6 +76,11 @@ class KmerSpec(object):
 		self.prefix_len = len(self.prefix)
 		self.total_len = self.k + self.prefix_len
 		self.idx_len = 4 ** self.k
+
+	def __eq__(self, other):
+		return isinstance(other, KmerSpec) and\
+			self.k == other.k and\
+			self.prefix == other.prefix
 
 	def coords_to_vec(self, coords):
 		return coords_to_vec(coords, self.idx_len)
@@ -135,7 +118,8 @@ def find_kmers(kspec, seq, out=None):
 	:param kspec: K-mer spec to use for search.
 	:type kspec: .KmerSpec
 	:param seq: Sequence to search within as ``bytes`` or ``str``. If ``str``
-		will be encoded as ASCII.
+		will be encoded as ASCII. Lower-case characters are OK ans will be
+		matched as upper-case.
 	:param out: Existing numpy array to write output to. Should be of length
 		``kspec.idx_len``. If given the same array will be returned.
 	:type out: numpy.ndarray
@@ -147,20 +131,27 @@ def find_kmers(kspec, seq, out=None):
 	if out is None:
 		out = np.zeros(kspec.idx_len, dtype=bool)
 
-	rcprefix = reverse_complement(kspec.prefix)
+	# Reverse complement of prefix
+	rcprefix = cseqs.reverse_complement(kspec.prefix)
 
-	# Seq as bytes
-	if isinstance(seq, bytes):
-		prefix = kspec.prefix
-		rcprefix = rcprefix
-	else:
-		prefix = kspec.prefix.decode('ascii')
-		rcprefix = rcprefix.decode('ascii')
+	# Convert sequence to bytes
+	if not isinstance(seq, bytes):
+		if not isinstance(seq, str):
+			seq = str(seq)
+
+		seq = seq.encode('ascii')
+
+	# Convert to upper-case only if needed
+	nucs_lower = set(NUCLEOTIDES.lower())
+	for char in seq:
+		if char in nucs_lower:
+			seq = seq.upper()
+			break
 
 	# Search forward
 	start = 0
 	while True:
-		loc = seq.find(prefix, start, -kspec.k)
+		loc = seq.find(kspec.prefix, start, -kspec.k)
 		if loc < 0:
 			break
 
@@ -185,7 +176,7 @@ def find_kmers(kspec, seq, out=None):
 		rckmer = seq[loc - kspec.k:loc]
 		if not isinstance(rckmer, bytes):
 			rckmer = str(rckmer).encode('ascii')
-		kmer = reverse_complement(rckmer)
+		kmer = cseqs.reverse_complement(rckmer)
 
 		try:
 			out[kmer_to_index(kmer)] = 1
@@ -209,29 +200,35 @@ def find_kmers_parse(kspec, data, format, out=None):
 	return out
 
 
-def kmer_at_index(index, k):
-	nucs_reversed = []
-	for i in range(k):
-		nucs_reversed.append(NUCLEOTIDES[index % 4])
-		index >>= 2
-	return bytes(reversed(nucs_reversed))
-
-
 def vec_to_coords(vec):
-	"""Convert to compressed coordinate representation"""
-	coords, = np.nonzero(vec)
-	return coords
+	"""Convert k-mer vector to compressed coordinate representation.
+
+	:param vec: Boolean vector indicating which k-mers are present.
+	:type vec: numpy.ndarray
+	:returns: Sorted array of coordinates of k-mers present in vector.
+	:rtype: numpy.ndarray
+	"""
+	return np.flatnonzero(vec)
 
 
 def coords_to_vec(coords, idx_len):
-	"""Convert from coordinate representation back to vector"""
+	"""Convert from coordinate representation back to k-mer vector.
+
+	:param coords: Coordinate array.
+	:type coords: numpy.ndarray
+	:param int idx_len: Value of ``idx_len`` property of corresponding
+		:class:`.KmerSpec`.
+	:returns: Boolean k-mer vector.
+	:rtype: numpy.ndarray
+	"""
 	vec = np.zeros(idx_len, dtype=np.bool)
 	vec[coords] = 1
 	return vec
 
 
 class KmerCoordsCollection(collections.Sequence):
-	"""Stores a collection of k-mer sets in coordinate format in a single array"""
+	"""Stores a collection of k-mer sets in coordinate format in a single array.
+	"""
 
 	def __init__(self, coords_array, bounds):
 		self.coords_array = coords_array
@@ -251,6 +248,15 @@ class KmerCoordsCollection(collections.Sequence):
 
 	@classmethod
 	def from_coords_seq(cls, coord_seq, dtype=np.uint32):
+		"""Create from sequence of individual coordinate arrays.
+
+		:param coord_seq: Sequence of coordinate arrays.
+		:param dtype: Numpy dtype of shared coordinates array.
+		:type dtype: numpy.dtype
+
+		:rtype: KmerCoordsCollection
+		"""
+
 		coords_col = cls.empty(list(map(len, coord_seq)), dtype=dtype)
 
 		for i, coords in enumerate(coord_seq):
@@ -260,6 +266,17 @@ class KmerCoordsCollection(collections.Sequence):
 
 	@classmethod
 	def empty(cls, lengths, coords_array=None, dtype=np.uint32):
+		"""Create with an empty array.
+
+		:param lengths: Sequence of lengths for each sub-array.
+		:param coords_array: Initial shared coordinates array.
+		:type coords_array: numpy.ndarray
+		:param dtype: Numpy dtype of shared coordinates array.
+		:type dtype: numpy.dtype
+
+		:rtype: KmerCoordsCollection
+		"""
+
 		bounds = np.zeros(len(lengths) + 1, dtype=dtype)
 		bounds[1:] = np.cumsum(lengths)
 

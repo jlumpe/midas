@@ -5,9 +5,6 @@ cimport numpy as np
 
 from cython.parallel import prange, parallel
 
-from .kmers cimport coords_t, score_t
-from .kmers import score_dtype
-
 
 
 def jaccard_coords(np.ndarray[coords_t, ndim=1] coords1,
