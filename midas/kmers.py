@@ -37,6 +37,8 @@ def reverse_complement(seq):
 			complement.append(71)
 		elif nuc == 71:  # G
 			complement.append(67)
+		else:
+			complement.append(nuc)
 	return bytes(reversed(complement))
 
 
