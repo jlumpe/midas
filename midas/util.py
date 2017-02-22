@@ -1,6 +1,8 @@
 """Miscellaneous utility code."""
 
 import os
+import re
+import collections
 
 
 def kwargs_done(kwargs):
@@ -23,10 +25,15 @@ def kwargs_done(kwargs):
 		)
 
 
-def _get_root_dir(obj, type_):
-	"""Helper function for SubPath"""
-	root_dir_attr = getattr(type_, '__root_dir_attr__', 'root_dir')
-	return getattr(obj, root_dir_attr)
+def sanitize_filename(name, replace='_'):
+	"""Replace invalid characters in a file name.
+
+	:param str name: File name to sanitize.
+	:param str replace: String to replace invalid charcters with.
+	:returns: Name with non-alphanumeric characters other than ``_.-`` replaced.
+	:rtype: str
+	"""
+	return re.sub(r'[^A-Za-z0-9_.-]+', replace, name)
 
 
 class SubPath:
@@ -47,12 +54,18 @@ class SubPath:
 	def get_abs_path(self, root_dir):
 		return os.path.join(root_dir, self.path)
 
+	@classmethod
+	def _get_root_dir(cls, obj, type_):
+		"""Get the root directory of an object."""
+		root_dir_attr = getattr(type_, '__root_dir_attr__', 'root_dir')
+		return getattr(obj, root_dir_attr)
+
 	def __get__(self, obj, type_):
 		if obj is None:
 			return self.get_abs_path
 
 		else:
-			return self.get_abs_path(_get_root_dir(obj, type_))
+			return self.get_abs_path(self._get_root_dir(obj, type_))
 
 	def __set__(self, obj, value):
 		raise AttributeError("Can't set attribute")
