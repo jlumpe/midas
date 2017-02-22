@@ -367,3 +367,13 @@ epub_exclude_files = ['search.html']
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
+
+
+# -- Additional custom stuff --------------------------------------------------
+
+# SQLAlchemy doesn't like you accessing attributes of declarative model classes
+# before they are mapped (which the autodoc extension will do) and prints
+# warnings that clutter up the build output. Silence them here.
+from warnings import filterwarnings
+from sqlalchemy.exc import SAWarning
+filterwarnings('ignore', category=SAWarning)
