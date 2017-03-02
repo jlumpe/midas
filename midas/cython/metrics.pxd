@@ -9,9 +9,6 @@ from .seqs cimport coords_t
 # Type for similarity scores
 ctypedef np.float32_t score_t
 
-# Numpy dtype equivalent to above
-score_dtype = np.float32
-
 
 cdef float c_jaccard_coords(coords_t[:] coords1,
                             coords_t[:] coords2) nogil

@@ -3,12 +3,15 @@
 cimport cython
 cimport numpy as np
 
+import numpy as np
 from cython.parallel import prange, parallel
 
 
+# Numpy dtype equivalent to score_t
+score_dtype = np.dtype(np.float32)
 
-def jaccard_coords(np.ndarray[coords_t, ndim=1] coords1,
-                   np.ndarray[coords_t, ndim=1] coords2):
+
+def jaccard_coords(coords_t[:] coords1, coords_t[:] coords2):
 	"""Python wrapper for c_jaccard_coords"""
 	return c_jaccard_coords(coords1, coords2)
 
@@ -50,9 +53,9 @@ cdef score_t c_jaccard_coords(coords_t[:] coords1,
 	return <score_t>(N + M - u) / u
 
 
-def jaccard_coords_col(np.ndarray[coords_t, ndim=1] query,
-                       np.ndarray[coords_t, ndim=1] ref_coords,
-                       np.ndarray[coords_t, ndim=1] ref_bounds):
+def jaccard_coords_col(coords_t[:] query,
+                       coords_t[:] ref_coords,
+                       coords_t[:] ref_bounds):
 	"""Python wrapper for c_jaccard_coords_col"""
 
 	cdef np.ndarray[score_t, ndim=1] out
@@ -65,8 +68,10 @@ def jaccard_coords_col(np.ndarray[coords_t, ndim=1] query,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void c_jaccard_coords_col(coords_t[:] query, coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds, score_t[:] out):
+cdef void c_jaccard_coords_col(coords_t[:] query,
+                               coords_t[:] ref_coords,
+                               coords_t[:] ref_bounds,
+                               score_t[:] out):
 	"""Calculate jaccard scores between one k-mer set and a collection
 
 	Runs in parallel without GIL
