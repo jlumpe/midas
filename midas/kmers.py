@@ -228,6 +228,9 @@ def coords_to_vec(coords, idx_len):
 
 class KmerCoordsCollection(collections.Sequence):
 	"""Stores a collection of k-mer sets in coordinate format in a single array.
+
+	Shouldn't create from constructor directly, use :meth:`from_coords_seq` or
+	:meth:`empty` instead.
 	"""
 
 	def __init__(self, coords_array, bounds):
@@ -237,13 +240,30 @@ class KmerCoordsCollection(collections.Sequence):
 	def __len__(self):
 		return len(self.bounds) - 1
 
+	def _check_index(self, index):
+		"""Check an index passed as an argument is valid."""
+		if not isinstance(index, int):
+			raise TypeError('Index must be single integer')
+		elif not 0 <= index < len(self):
+			raise IndexError('Index out of bounds: {}'.format(index))
+
 	def __getitem__(self, index):
+		self._check_index(index)
 		return self.coords_array[self.bounds[index]:self.bounds[index + 1]]
 
 	def __setitem__(self, index, value):
+		self._check_index(index)
 		self.coords_array[self.bounds[index]:self.bounds[index + 1]] = value
 
 	def size_of(self, index):
+		"""Get the size of the coordinate set at the given index.
+
+		Should be the case that
+
+		    kcol.size_of(i) == len(kcol[i])
+
+		:param int index: Index of k-mer set in collection.
+		"""
 		return self.bounds[index + 1] - self.bounds[index]
 
 	@classmethod
