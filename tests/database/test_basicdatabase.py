@@ -6,7 +6,7 @@ from io import StringIO
 import gzip
 import numpy as np
 
-from midas.database.basicdatabase import BasicDatabase
+from midas.database.old import BasicDatabase
 
 
 

@@ -2,7 +2,7 @@
 
 import pytest
 
-import midas.database.basicdatabase as basicdb
+import midas.database.old.basicdatabase as basicdb
 from midas.archive import DatabaseArchive
 
 
