@@ -1,49 +1,51 @@
 """Mixin classes for SQLA models."""
 
-import datetime
-
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String
 from sqlalchemy import UniqueConstraint
 from sqlalchemy.ext.declarative import declared_attr
-from sqlalchemy import event
 
 from .sqla import MutableJsonCollection
 from midas.ncbi import SeqRecordBase
 
 
+class KeyMixin:
+	"""Mixin that defines key/key version columns.
 
-class VersionedMixin:
-	"""Mixin for models that implement a version counter"""
+	.. attribute:: key
 
-	_version_id = Column('version_id', Integer(), nullable=False)
+		Intended to be a universally unique key that can be used to identify
+		objects across databases on different systems. This is primarily
+		intended to be used for distributing database updates. It can be any
+		arbitrary string but the recommended format is a filepath-like
+		structure separated by forward slashes. This results in a hierarchical
+		format that supports using namespaces to avoid key conflicts. Example:
+		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific
+		genome stored in the Genbank assembly database.
+
+	.. attribute:: key_version
+
+		Version the keyed object's metadata according to whatever source
+		defined the key. Used to determine when the	metadata needs to be
+		updated. Should be in the format defined by
+		`PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_.
+	"""
+	key = Column(String(), index=True)
+	key_version = Column(String())
 
 	@declared_attr
-	def __mapper_args__(cls):
-		return dict(version_id_col=cls._version_id)
-
-
-class TrackChangesMixin:
-	"""Mixin for SQLAlchemy models that tracks when updates are made"""
-
-	created_at = Column(DateTime())
-	updated_at = Column(DateTime())
+	def __table_args__(cls):
+		return (
+			UniqueConstraint('key', 'key_version'),
+		)
 
 	@classmethod
-	def _insert_time_callback(cls, mapper, connection, instance):
-		now = datetime.datetime.utcnow()
-		instance.created_at = now
-		instance.updated_at = now
+	def by_key(cls, session, key, version=None):
+		query = session.query(cls).filter_by(key=key)
 
-	@classmethod
-	def pass_update_time_callback(cls, mapper, connection, instance):
-		now = datetime.datetime.utcnow()
-		instance.updated_at = now
-
-	@classmethod
-	def __declare_last__(cls):
-		"""Called after mapper configured, register listeners"""
-		event.listen(cls, 'before_insert', cls._insert_time_callback)
-		event.listen(cls, 'before_update', cls._update_time_callback)
+		if version is None:
+			return query.order_by(cls.key_version.desc()).first()
+		else:
+			return query.filter_by(key_version=version).scalar()
 
 
 class JsonableMixin:
