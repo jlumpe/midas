@@ -377,3 +377,30 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 from warnings import filterwarnings
 from sqlalchemy.exc import SAWarning
 filterwarnings('ignore', category=SAWarning)
+
+
+
+# Autodoc config
+autodoc_default_flags = [
+    'no-undoc-members',
+]
+
+
+def autodoc_skip_member(app, what, name, obj, skip, options):
+    """Callback to decide which autodoc members to skip."""
+
+    if what == 'class':
+
+        # Skip non-method descriptors on classes
+        if type(obj).__name__ != 'function' and hasattr(obj, '__get__'):
+            return True
+
+        # Don't skip the __call__ method, its signature is usually important
+        if name == '__call__':
+            return False
+
+    return skip
+
+
+def setup(app):
+    app.connect('autodoc-skip-member', autodoc_skip_member)
