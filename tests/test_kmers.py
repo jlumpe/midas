@@ -56,8 +56,8 @@ def test_index_conversion():
 def test_kmerspec():
 	"""Test basic KmerSpec attributes."""
 
-	# Try k from 0 to 16 (all have dtypes)
-	for k in range(17):
+	# Try k from 0 to 32 (all have dtypes)
+	for k in range(33):
 
 		spec = make_kmerspec(k)
 
@@ -69,8 +69,8 @@ def test_kmerspec():
 def test_kmerspec_dtype():
 	"""Test KmerSpec.coords_dtype."""
 
-	# Try k from 0 to 16 (all have dtypes)
-	for k in range(17):
+	# Try k from 0 to 32 (all have dtypes)
+	for k in range(33):
 
 		spec = make_kmerspec(k)
 
@@ -78,8 +78,8 @@ def test_kmerspec_dtype():
 		top_idx = spec.idx_len - 1
 		assert spec.coords_dtype.type(top_idx) == top_idx
 
-	# k > 16 should have no dtype
-	assert make_kmerspec(17).coords_dtype is None
+	# k > 32 should have no dtype
+	assert make_kmerspec(33).coords_dtype is None
 
 
 def test_vec_coords_conversion():

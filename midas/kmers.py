@@ -91,9 +91,9 @@ class KmerSpec(object):
 			strtype = 'u1'
 		elif self.k <= 8:
 			strtype = 'u2'
-		elif self.k <= 12:
-			strtype = 'u4'
 		elif self.k <= 16:
+			strtype = 'u4'
+		elif self.k <= 32:
 			strtype = 'u8'
 		else:
 			return None
