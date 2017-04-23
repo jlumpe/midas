@@ -53,33 +53,49 @@ def test_index_conversion():
 			assert kmers.kmer_to_index(kmer.lower()) == index
 
 
-def test_kmerspec():
-	"""Test basic KmerSpec attributes."""
+class TestKmerSpec:
+	"""Test midas.kmers.KmerSpec."""
 
-	# Try k from 0 to 32 (all have dtypes)
-	for k in range(33):
+	def test_attributes(self):
+		"""Test basic attributes."""
 
-		spec = make_kmerspec(k)
+		# Try k from 0 to 32 (all have dtypes)
+		for k in range(33):
 
-		# Check length attributes
-		assert spec.prefix_len == len(spec.prefix)
-		assert spec.prefix_len + spec.k == spec.total_len
+			spec = make_kmerspec(k)
 
+			# Check length attributes
+			assert spec.prefix_len == len(spec.prefix)
+			assert spec.prefix_len + spec.k == spec.total_len
 
-def test_kmerspec_dtype():
-	"""Test KmerSpec.coords_dtype."""
+		# Check prefix is bytes
+		assert isinstance(kmers.KmerSpec(11, 'ATGAC').prefix, bytes)
 
-	# Try k from 0 to 32 (all have dtypes)
-	for k in range(33):
+	def test_dtype(self):
+		"""Test coords_dtype attribute"""
 
-		spec = make_kmerspec(k)
+		# Try k from 0 to 32 (all have dtypes)
+		for k in range(33):
 
-		# Check dtype can store the largest index
-		top_idx = spec.idx_len - 1
-		assert spec.coords_dtype.type(top_idx) == top_idx
+			spec = make_kmerspec(k)
 
-	# k > 32 should have no dtype
-	assert make_kmerspec(33).coords_dtype is None
+			# Check dtype can store the largest index
+			top_idx = spec.idx_len - 1
+			assert spec.coords_dtype.type(top_idx) == top_idx
+
+		# k > 32 should have no dtype
+		assert make_kmerspec(33).coords_dtype is None
+
+	def test_eq(self):
+		"""Test equality testing."""
+
+		kspec = kmers.KmerSpec(11, 'ATGAC')
+
+		assert kspec == kmers.KmerSpec(11, 'ATGAC')
+		assert kspec == kmers.KmerSpec(11, b'ATGAC')
+
+		assert kspec != kmers.KmerSpec(11, 'ATGAA')
+		assert kspec != kmers.KmerSpec(12, 'ATGAC')
 
 
 def test_vec_coords_conversion():
