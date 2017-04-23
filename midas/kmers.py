@@ -229,10 +229,17 @@ def coords_to_vec(coords, idx_len):
 	return vec
 
 
-class KmerCoordsCollection(collections.Sequence):
-	"""Stores a collection of k-mer sets in coordinate format in a single array.
+class SignatureArray(collections.Sequence):
+	"""
+	Stores a collection of k-mer signatures (k-mer sets in coordinate format) in
+	a single Numpy array.
 
-	Shouldn't create from constructor directly, use :meth:`from_coords_seq` or
+	Acts as a non-mutable sequence of :class:`numpy.ndarray` objects (however
+	the ndarray's themselves may be writable), with the exception that you may
+	assign a value to an index which has the same effect as ``array[:] = value``.
+	Only integer indices are supported, not slices.
+
+	Shouldn't create from constructor directly, use :meth:`from_signatures` or
 	:meth:`empty` instead.
 	"""
 
@@ -258,7 +265,7 @@ class KmerCoordsCollection(collections.Sequence):
 		self._check_index(index)
 		self.coords_array[self.bounds[index]:self.bounds[index + 1]] = value
 
-	def size_of(self, index):
+	def sizeof(self, index):
 		"""Get the size of the coordinate set at the given index.
 
 		Should be the case that
@@ -270,37 +277,37 @@ class KmerCoordsCollection(collections.Sequence):
 		return self.bounds[index + 1] - self.bounds[index]
 
 	@classmethod
-	def from_coords_seq(cls, coord_seq, dtype=np.uint32):
-		"""Create from sequence of individual coordinate arrays.
+	def from_signatures(cls, signatures, dtype=np.uint32):
+		"""Create from sequence of individual signature (k-mer coordinate) arrays.
 
-		:param coord_seq: Sequence of coordinate arrays.
+		:param signatures: Sequence of coordinate arrays.
 		:param dtype: Numpy dtype of shared coordinates array.
 		:type dtype: numpy.dtype
 
-		:rtype: KmerCoordsCollection
+		:rtype: .SignatureArray
 		"""
 
-		coords_col = cls.empty(list(map(len, coord_seq)), dtype=dtype)
+		array = cls.empty(list(map(len, signatures)), dtype=dtype)
 
-		for i, coords in enumerate(coord_seq):
-			coords_col[i] = coords
+		for i, sig in enumerate(signatures):
+			array[i] = sig
 
-		return coords_col
+		return array
 
 	@classmethod
 	def empty(cls, lengths, coords_array=None, dtype=np.uint32):
 		"""Create with an empty array.
 
-		:param lengths: Sequence of lengths for each sub-array.
+		:param lengths: Sequence of lengths for each sub-array/signature.
 		:param coords_array: Initial shared coordinates array.
 		:type coords_array: numpy.ndarray
 		:param dtype: Numpy dtype of shared coordinates array.
 		:type dtype: numpy.dtype
 
-		:rtype: KmerCoordsCollection
+		:rtype: .SignatureArray
 		"""
 
-		bounds = np.zeros(len(lengths) + 1, dtype=dtype)
+		bounds = np.zeros(len(lengths) + 1, dtype='i8')
 		bounds[1:] = np.cumsum(lengths)
 
 		if coords_array is None:

@@ -6,7 +6,7 @@ import pytest
 import numpy as np
 
 from midas.cython.metrics import jaccard_coords, jaccard_coords_col
-from midas.kmers import KmerCoordsCollection, vec_to_coords, coords_to_vec
+from midas.kmers import SignatureArray, vec_to_coords, coords_to_vec
 
 
 def slow_jaccard_coords(coords1, coords2, idx_len):
@@ -21,21 +21,21 @@ def slow_jaccard_coords(coords1, coords2, idx_len):
 	return intersection / union
 
 
-def make_coords_col(k, nsets):
-	"""Make artificial k-mer coord sets.
+def make_signatures(k, nsets):
+	"""Make artificial k-mer signatures.
 
-	:rtype: KmerCoordsCollection
+	:rtype: SignatureArray
 	"""
 
 	random = np.random.RandomState(seed=0)
 
 	idx_len = 4 ** k
 
-	coords_list = []
+	signatures_list = []
 
 	# Add empty and full sets as edge cases
-	coords_list.append(np.arange(0))
-	coords_list.append(np.arange(idx_len))
+	signatures_list.append(np.arange(0))
+	signatures_list.append(np.arange(idx_len))
 
 	# Use a core set of k-mers so that we get some overlap
 	core_prob = max(0.01, 20 / idx_len)
@@ -48,9 +48,9 @@ def make_coords_col(k, nsets):
 		new_vec = random.rand(idx_len) < random.uniform(core_prob * .1, core_prob)
 
 		vec = (keep_core & core_vec) | new_vec
-		coords_list.append(vec_to_coords(vec))
+		signatures_list.append(vec_to_coords(vec))
 
-	return KmerCoordsCollection.from_coords_seq(coords_list)
+	return SignatureArray.from_signatures(signatures_list)
 
 
 @pytest.fixture(scope='module')
@@ -60,16 +60,16 @@ def load_test_coords_col(fixture_file):
 	def load_test_coords_col_func():
 
 		with fixture_file('kmer_coords/coords.pickle').open('rb') as fobj:
-			coords_list = pickle.load(fobj)
+			signatures_list = pickle.load(fobj)
 
-		return KmerCoordsCollection.from_coords_seq(coords_list)
+		return SignatureArray.from_signatures(signatures_list)
 
 	return load_test_coords_col_func
 
 
 @pytest.fixture(params=[4, 8, 9, None])
 def coords_params(request, load_test_coords_col):
-	"""Tuple of (k, kmercoordscollection) to test on."""
+	"""Tuple of (k, SignatureArray) to test on."""
 
 	if request.param is None:
 		# Load coords from file
@@ -79,7 +79,7 @@ def coords_params(request, load_test_coords_col):
 	else:
 		# Create coords
 		k = request.param
-		kcol = make_coords_col(k, 25)
+		kcol = make_signatures(k, 25)
 
 	return k, kcol
 

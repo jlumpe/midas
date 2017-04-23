@@ -424,21 +424,21 @@ class TestFindKmers:
 		assert np.array_equal(vec, parsed_vec)
 
 
-class TestKmerCoordsCollection:
-	"""Test KmerCoordsCollection."""
+class TestSignatureArray:
+	"""Test midas.kmers.SignatureArray."""
 
 	@pytest.fixture()
-	def coords_list(self):
-		"""List of k-mer coordinate arrays."""
+	def sigs_list(self):
+		"""List of k-mer signatures as coordinate arrays."""
 
 		random = np.random.RandomState(seed=0)
 
-		ncoords = 100
+		nsigs = 100
 		nkmers_range = (5000, 15000)
 
 		cl = [
-			np.arange(random.randint(*nkmers_range)) * ncoords + i
-			for i in range(ncoords)
+			np.arange(random.randint(*nkmers_range)) * nsigs + i
+			for i in range(nsigs)
 		]
 
 		# Add a zero-length set in there just to throw everything off
@@ -447,21 +447,21 @@ class TestKmerCoordsCollection:
 		return cl
 
 	@pytest.fixture()
-	def kcol(self, coords_list):
-		"""Create from coords_list using from_coords_seq()."""
-		return kmers.KmerCoordsCollection.from_coords_seq(coords_list)
+	def kcol(self, sigs_list):
+		"""Create from sigs_list using from_signatures()."""
+		return kmers.SignatureArray.from_signatures(sigs_list)
 
-	def test_basic(self, kcol, coords_list):
+	def test_basic(self, kcol, sigs_list):
 		"""Test item access and calling methods without side effects."""
 
 		# Check correct length
-		assert len(kcol) == len(coords_list)
+		assert len(kcol) == len(sigs_list)
 
 		# Check each coordinate set matches
-		for i, coords in enumerate(coords_list):
+		for i, sig in enumerate(sigs_list):
 
-			assert np.array_equal(kcol[i], coords)
-			assert kcol.size_of(i) == len(coords)
+			assert np.array_equal(kcol[i], sig)
+			assert kcol.sizeof(i) == len(sig)
 
 	def test_invalid_index(self, kcol):
 		"""Test passing invalid indices."""
@@ -484,17 +484,17 @@ class TestKmerCoordsCollection:
 		with pytest.raises(TypeError):
 			kcol[:] = 0
 
-	def test_from_empty(self, coords_list):
+	def test_from_empty(self, sigs_list):
 		"""Test creating from empty array."""
 
-		lengths = list(map(len, coords_list))
+		lengths = list(map(len, sigs_list))
 
-		kcol = kmers.KmerCoordsCollection.empty(lengths)
+		kcol = kmers.SignatureArray.empty(lengths)
 
-		assert len(kcol) == len(coords_list)
+		assert len(kcol) == len(sigs_list)
 
 		for i in range(len(kcol)):
-			assert kcol.size_of(i) == len(coords_list[i])
+			assert kcol.sizeof(i) == len(sigs_list[i])
 
 	def test_assignment(self, kcol):
 		"""Test item assignment."""
@@ -507,14 +507,14 @@ class TestKmerCoordsCollection:
 			assert np.all(kcol[i] == n)
 
 			# Assign to array
-			a = (np.arange(kcol.size_of(i)) * 11 + i) % 23
+			a = (np.arange(kcol.sizeof(i)) * 11 + i) % 23
 			kcol[i] = a
 			assert np.array_equal(kcol[i], a)
 
 	def test_empty(self):
 		"""Really an edge case, but test it anyways."""
 
-		kcol = kmers.KmerCoordsCollection.from_coords_seq([])
+		kcol = kmers.SignatureArray.from_signatures([])
 
 		assert len(kcol) == 0
 
