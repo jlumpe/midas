@@ -2,7 +2,6 @@
 
 import os
 import re
-import collections
 
 
 def kwargs_done(kwargs):
