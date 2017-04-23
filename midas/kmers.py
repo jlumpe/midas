@@ -77,6 +77,9 @@ class KmerSpec(object):
 		self.total_len = self.k + self.prefix_len
 		self.idx_len = 4 ** self.k
 
+	def __get_newargs__(self):
+		return self.k, self.prefix
+
 	def __eq__(self, other):
 		return isinstance(other, KmerSpec) and\
 			self.k == other.k and\

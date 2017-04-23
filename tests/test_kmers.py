@@ -97,6 +97,14 @@ class TestKmerSpec:
 		assert kspec != kmers.KmerSpec(11, 'ATGAA')
 		assert kspec != kmers.KmerSpec(12, 'ATGAC')
 
+	def test_pickle(self):
+
+		import pickle
+
+		kspec = kmers.KmerSpec(11, 'ATGAC')
+
+		assert kspec == pickle.loads(pickle.dumps(kspec))
+
 
 def test_vec_coords_conversion():
 	"""Test conversion between k-mer vector and coordinates."""
