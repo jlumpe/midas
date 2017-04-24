@@ -3,9 +3,14 @@
 cimport numpy as np
 
 
-# Type for storing k-mer coordinates - will work up to k=16 but
-# should find a more generic way to do this
-ctypedef np.uint32_t coords_t
+# Fused type for storing k-mer coordinates
+ctypedef fused COORDS_T:
+	np.int16_t
+	np.uint16_t
+	np.int32_t
+	np.uint32_t
+	np.int64_t
+	np.uint64_t
 
 
 cdef class CKmerSpec:
@@ -20,7 +25,8 @@ cdef class CKmerSpec:
 		np.intp_t idx_len
 
 
-cdef coords_t c_kmer_to_index(const char*, int) except? 0
-cdef void c_index_to_kmer(coords_t, int, char*) nogil
+cdef np.uint32_t c_kmer_to_index32(const char*, int) except? 0
+cdef np.uint64_t c_kmer_to_index64(const char*, int) except? 0
+cdef void c_index_to_kmer(COORDS_T, int, char*) nogil
 cdef inline char nuc_complement(char) nogil
 cdef void c_reverse_complement(const char*, int, char*) nogil

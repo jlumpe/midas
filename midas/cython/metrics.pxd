@@ -3,15 +3,18 @@
 import numpy as np
 cimport numpy as np
 
-from .seqs cimport coords_t
+from .seqs cimport COORDS_T
 
 
 # Type for similarity scores
-ctypedef np.float32_t score_t
+ctypedef np.float32_t SCORE_T
+
+# Type for bounds on c_jaccard_coords_col
+ctypedef np.intp_t BOUNDS_T
 
 
-cdef float c_jaccard_coords(coords_t[:] coords1,
-                            coords_t[:] coords2) nogil
+cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
+                              COORDS_T[:] coords2) nogil
 
-cdef void c_jaccard_coords_col(coords_t[:] query, coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds, float[:] out)
+cdef void c_jaccard_coords_col(COORDS_T[:] query, COORDS_T[:] ref_coords,
+                               BOUNDS_T[:] ref_bounds, SCORE_T[:] out) nogil

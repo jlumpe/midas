@@ -5,6 +5,17 @@ import numpy as np
 from libc.stdlib cimport malloc, free
 
 
+# Allowable Numpy dtypes for coordinate arrays
+COORDS_DTYPES = frozenset(map(np.dtype, [
+	'i2',
+	'u2',
+	'i4',
+	'u4',
+	'i8',
+	'u8',
+]))
+
+
 cdef class CKmerSpec:
 	"""Describes a k-mer pattern to match"""
 
@@ -31,11 +42,11 @@ def kmer_to_index(bytes kmer):
 	:param bytes kmer: K-mer as bytes string.
 	:returns: K-mer index as appropriate numpy integer type.
 	"""
-	return c_kmer_to_index(<char*>kmer, len(kmer))
+	return c_kmer_to_index64(<char*>kmer, len(kmer))
 
 
-def index_to_kmer(coords_t index, int k):
-	"""index_to_kmer(coords_t index, int k)
+def index_to_kmer(np.uint64_t index, int k):
+	"""index_to_kmer(COORDS_T index, int k)
 
 	Convert k-mer index to sequence.
 
@@ -83,19 +94,22 @@ def reverse_complement(bytes seq):
 		free(buf)
 
 
-cdef coords_t c_kmer_to_index(const char *kmer, int k) except? 0:
-	"""Convert k-mer byte string into index.
+cdef np.uint32_t c_kmer_to_index32(const char *kmer, int k) except? 0:
+	"""Convert k-mer byte string into 32-bit unsigned integer index.
 
 	:param kmer: Pointer to k-mer string.
-	:param k: Length of k-mer string.
+	:param k: Length of k-mer string. Must be <= 16.
 	:returns: Index of k-mer
 
 	:raises ValueError: If an invalid nucleotide code is encountered.
 	"""
 
 	cdef:
-		coords_t idx = 0
+		np.uint32_t idx = 0
 		char c
+
+	if k > 16:
+		raise ValueError('k must be <= 16')
 
 	for i in range(k):
 		idx <<= 2
@@ -115,7 +129,42 @@ cdef coords_t c_kmer_to_index(const char *kmer, int k) except? 0:
 	return idx
 
 
-cdef void c_index_to_kmer(coords_t index, int k, char* out) nogil:
+cdef np.uint64_t c_kmer_to_index64(const char *kmer, int k) except? 0:
+	"""Convert k-mer byte string into 64-bit unsigned integer index.
+
+	:param kmer: Pointer to k-mer string.
+	:param k: Length of k-mer string. Must be <= 32.
+	:returns: Index of k-mer
+
+	:raises ValueError: If an invalid nucleotide code is encountered.
+	"""
+
+	cdef:
+		np.uint64_t idx = 0
+		char c
+
+	if k > 32:
+		raise ValueError('k must be <= 32')
+
+	for i in range(k):
+		idx <<= 2
+
+		c = kmer[i] & 0b11011111  # To upper case
+		if c == <char>'A':
+			idx += 0
+		elif c == <char>'C':
+			idx += 1
+		elif c == <char>'G':
+			idx += 2
+		elif c == <char>'T':
+			idx += 3
+		else:
+			raise ValueError(kmer[i])
+
+	return idx
+
+
+cdef void c_index_to_kmer(COORDS_T index, int k, char* out) nogil:
 	"""Convert k-mer index to sequence.
 
 	Output will be in uppper-case characters.

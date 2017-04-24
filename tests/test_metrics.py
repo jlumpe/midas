@@ -21,7 +21,7 @@ def slow_jaccard_coords(coords1, coords2, idx_len):
 	return intersection / union
 
 
-def make_signatures(k, nsets):
+def make_signatures(k, nsets, dtype):
 	"""Make artificial k-mer signatures.
 
 	:rtype: SignatureArray
@@ -50,7 +50,7 @@ def make_signatures(k, nsets):
 		vec = (keep_core & core_vec) | new_vec
 		signatures_list.append(vec_to_coords(vec))
 
-	return SignatureArray.from_signatures(signatures_list)
+	return SignatureArray.from_signatures(signatures_list, dtype=dtype)
 
 
 @pytest.fixture(scope='module')
@@ -67,35 +67,47 @@ def load_test_coords_col(fixture_file):
 	return load_test_coords_col_func
 
 
-@pytest.fixture(params=[4, 8, 9, None])
+@pytest.fixture(params=[
+	(4, 'u2'),
+	(4, 'i2'),
+	(7, 'u2'),
+	(7, 'i2'),
+	(9, 'u4'),
+	(9, 'i4'),
+	(9, 'u8'),
+	(9, 'i8'),
+	None,
+])
 def coords_params(request, load_test_coords_col):
 	"""Tuple of (k, SignatureArray) to test on."""
 
 	if request.param is None:
 		# Load coords from file
 		k = 11
-		kcol = load_test_coords_col()
+		sigs = load_test_coords_col()
 
 	else:
 		# Create coords
-		k = request.param
-		kcol = make_signatures(k, 25)
+		k, dtype = request.param
+		dtype = np.dtype(dtype)
 
-	return k, kcol
+		sigs = make_signatures(k, 25, dtype)
+
+	return k, sigs
 
 
 def test_jaccard_single(coords_params):
 	"""Test calculating single scores at a time."""
 
-	k, kcol = coords_params
+	k, sigs = coords_params
 	idx_len = 4 ** k
 
 	# Iterate over all pairs
-	for i, coords1 in enumerate(kcol):
+	for i, coords1 in enumerate(sigs):
 
-		for j in range(i, len(kcol)):
+		for j in range(i, len(sigs)):
 
-			coords2 = kcol[j]
+			coords2 = sigs[j]
 
 			# Skip empty set vs itself because that is undefined
 			if len(coords1) == 0 and len(coords2) == 0:
@@ -121,16 +133,15 @@ def test_jaccard_single(coords_params):
 def test_jaccard_col(coords_params):
 	"""Test calculating one set against a collection of sets."""
 
-	k, kcol = coords_params
-	idx_len = 4 ** k
+	k, sigs = coords_params
 
-	for i, coords1 in enumerate(kcol):
+	for i, coords1 in enumerate(sigs):
 
 		# Get scores against all others
-		scores = jaccard_coords_col(coords1, kcol.coords_array, kcol.bounds)
+		scores = jaccard_coords_col(coords1, sigs.coords_array, sigs.bounds)
 
 		# Check against single coords
-		for j, coords2 in enumerate(kcol):
+		for j, coords2 in enumerate(sigs):
 
 			if len(coords1) == 0 and len(coords2) == 0:
 				continue

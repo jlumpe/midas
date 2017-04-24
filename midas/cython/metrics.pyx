@@ -7,23 +7,38 @@ import numpy as np
 from cython.parallel import prange, parallel
 
 
-# Numpy dtype equivalent to score_t
-score_dtype = np.dtype(np.float32)
+# Numpy dtype equivalent to SCORE_T
+SCORE_DTYPE = np.dtype(np.float32)
 
 
-def jaccard_coords(coords_t[:] coords1, coords_t[:] coords2):
-	"""Python wrapper for c_jaccard_coords"""
+def jaccard_coords(COORDS_T[:] coords1, COORDS_T[:] coords2):
+	"""
+	Compute the jaccard index between two k-mer sets in ordered coordinate
+	format.
+
+	Data types of array arguments may be 16, 32, or 64-bit signed or unsigned
+	integers, but must match.
+
+	:param coords1: k-mer set in ordered coordinate format.
+	:type coords1: numpy.ndarray
+	:param coords2: k-mer set in ordered coordinate format.
+	:type coords2: numpy.ndarray
+
+	:returns: Jaccard index for the two sets.
+	:rtype: numpy.float32
+	"""
 	return c_jaccard_coords(coords1, coords2)
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef score_t c_jaccard_coords(coords_t[:] coords1,
-                              coords_t[:] coords2) nogil:
-	"""Compute the jaccard index between two k-mer sets in ordered coordinate
-	format
+cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
+                              COORDS_T[:] coords2) nogil:
+	"""
+	Compute the Jaccard index between two k-mer sets in ordered coordinate
+	format.
 
-	Declared with nogil so it can be run in parallel
+	Declared with nogil so it can be run in parallel.
 	"""
 
 	cdef:
@@ -31,7 +46,7 @@ cdef score_t c_jaccard_coords(coords_t[:] coords1,
 		np.intp_t M = coords2.shape[0]
 
 		np.intp_t i = 0, j = 0
-		coords_t a, b
+		COORDS_T a, b
 
 		np.intp_t u = 0
 
@@ -50,38 +65,65 @@ cdef score_t c_jaccard_coords(coords_t[:] coords1,
 	u += N - i
 	u += M - j
 
-	return <score_t>(N + M - u) / u
+	return <SCORE_T>(N + M - u) / u
 
 
-def jaccard_coords_col(coords_t[:] query,
-                       coords_t[:] ref_coords,
-                       coords_t[:] ref_bounds):
-	"""Python wrapper for c_jaccard_coords_col"""
+def jaccard_coords_col(COORDS_T[:] query,
+                       COORDS_T[:] ref_coords,
+                       BOUNDS_T[:] ref_bounds):
+	"""
+	Calculate Jaccard scores between a query k-mer set and a reference
+	collection.
 
-	cdef np.ndarray[score_t, ndim=1] out
-	out = np.ndarray(len(ref_bounds) - 1, dtype=score_dtype)
+	Data types of k-mer coordinate arrays may be 16, 32, or 64-bit signed or
+	unsigned integers, but must match.
+
+	Internally, releases the GIL in the main loop and calculates scores
+	concurrently.
+
+	:param query: Query k-mer set in ordered coordinate format.
+	:type query: numpy.ndarray
+	:param ref_coords: Reference k-mer sets in ordered coordinate format,
+		concatenated into a single array.
+	:type ref_coords: numpy.ndarray
+	:param ref_bounds: Bounds of individual k-mer sets within the ``ref_coords``
+		array. The ``n``\ th k-mer set is the slice of ``ref_coords`` between
+		``ref_bounds[n]`` and ``ref_bounds[n + 1]``. Length must be one greater
+		than that of ``ref_coords``.
+	:type ref_bounds: numpy.ndarray
+
+	:returns: Numpy array of floats, the Jaccard score between the query and
+		each reference k-mer set.
+	:rtype: numpy.ndarray
+	"""
+
+	cdef np.ndarray[SCORE_T, ndim=1] out_array
+	cdef SCORE_T[:] out
+	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
 
 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
 
-	return out
+	return out_array
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef void c_jaccard_coords_col(coords_t[:] query,
-                               coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds,
-                               score_t[:] out):
-	"""Calculate jaccard scores between one k-mer set and a collection
+cdef void c_jaccard_coords_col(COORDS_T[:] query,
+                               COORDS_T[:] ref_coords,
+                               BOUNDS_T[:] ref_bounds,
+                               SCORE_T[:] out) nogil:
+	"""
+	Calculate Jaccard scores between a query k-mer set and a reference
+	collection.
 
-	Runs in parallel without GIL
+	Loop runs in parallel without GIL.
 	"""
 
 	cdef np.intp_t N = ref_bounds.shape[0] - 1
-	cdef coords_t begin, end
+	cdef BOUNDS_T begin, end
 	cdef int i
 
-	with nogil, parallel():
+	with parallel():
 		for i in prange(N, schedule='dynamic'):
 			begin = ref_bounds[i]
 			end = ref_bounds[i+1]
