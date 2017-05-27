@@ -9,7 +9,7 @@ from midas.ncbi import SeqRecordBase
 
 
 class KeyMixin:
-	"""Mixin that defines key/key version columns.
+	"""Mixin that defines key/version columns.
 
 	.. attribute:: key
 
@@ -22,20 +22,20 @@ class KeyMixin:
 		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific
 		genome stored in the Genbank assembly database.
 
-	.. attribute:: key_version
+	.. attribute:: version
 
-		Version the keyed object's metadata according to whatever source
-		defined the key. Used to determine when the	metadata needs to be
-		updated. Should be in the format defined by
+		Version of the keyed object according to whatever source defined the key.
+		Used to determine when the	metadata needs to be updated. Should be in
+		the format defined by
 		`PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_.
 	"""
 	key = Column(String(), index=True)
-	key_version = Column(String())
+	version = Column(String())
 
 	@declared_attr
 	def __table_args__(cls):
 		return (
-			UniqueConstraint('key', 'key_version'),
+			UniqueConstraint('key', 'version'),
 		)
 
 	@classmethod
@@ -43,9 +43,9 @@ class KeyMixin:
 		query = session.query(cls).filter_by(key=key)
 
 		if version is None:
-			return query.order_by(cls.key_version.desc()).first()
+			return query.order_by(cls.version.desc()).first()
 		else:
-			return query.filter_by(key_version=version).scalar()
+			return query.filter_by(version=version).scalar()
 
 
 class JsonableMixin:

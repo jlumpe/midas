@@ -17,7 +17,7 @@ from .sqla import JsonType, MutableJsonDict
 
 __all__ = [
 	'Genome',
-	'GenomeSet',
+	'ReferenceGenomeSet',
 	'AnnotatedGenome',
 	'Taxon',
 	'SignatureSet',
@@ -62,7 +62,7 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 
 		String column. See :class:`midas.database.mixins.KeyMixin`.
 
-	.. attribute:: key_version
+	.. attribute:: version
 
 		String column. See :class:`midas.database.mixins.KeyMixin`.
 
@@ -134,13 +134,17 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 		)
 
 
-class GenomeSet(Base, KeyMixin):
-	"""A collection of genomes along with additional annotations on each.
+class ReferenceGenomeSet(Base, KeyMixin):
+	"""
+	A collection of genomes along with additional annotations that enable
+	queries to be run against them.
 
-	This will be used (among other things) to identify a set of genomes
-	a query will be run against. Like Genomes they can be distributed via
-	updates, in which case they should have a unique key and version number
-	to identify them.
+	Additional annotations include taxonomy (individual :class:`.Taxon`
+	entries as well as assignments to genomes) and thresholds for determining
+	membership of queries within those taxa.
+
+	Like Genomes they can be distributed via updates, in which case they should
+	have a unique key and version number to identify them.
 
 	.. attribute:: id
 
@@ -150,7 +154,7 @@ class GenomeSet(Base, KeyMixin):
 
 		String column. See :class:`midas.database.mixins.KeyMixin`.
 
-	.. attribute:: key_version
+	.. attribute:: version
 
 		String column, required. See :class:`midas.database.mixins.KeyMixin`.
 
@@ -176,8 +180,12 @@ class GenomeSet(Base, KeyMixin):
 		Unannotated :class:`Genome`\\ s in this set. Association proxy to the
 		``genome`` relationship of members of :attr:`genome`.
 
+	.. attribute:: taxa
+
+		One-to-many relationship to :class:`.Taxon`. The taxa that form the
+		classification system for this reference set.
 	"""
-	__tablename__ = 'genome_sets'
+	__tablename__ = 'reference_genome_sets'
 
 	id = Column(Integer(), primary_key=True)
 	name = Column(String(), unique=True, nullable=False)
@@ -190,7 +198,7 @@ class GenomeSet(Base, KeyMixin):
 	base_genomes = association_proxy('annotations', 'genome')
 
 	def __repr__(self):
-		return '<{}.{}:{} "{}"">'.format(
+		return '<{}.{}:{} {!r}>'.format(
 			self.__module__,
 			type(self).__name__,
 			self.id,
@@ -198,20 +206,20 @@ class GenomeSet(Base, KeyMixin):
 		)
 
 
-# Association table between AnnoatedGenome and Taxon
-annotations_tax_assoc = sa.Table(
-	'annotations_tax_assoc',
+# Association table between AnnotatedGenome and Taxon
+annotations_additional_tax_assoc = sa.Table(
+	'annotations_additional_tax_assoc',
 	Base.metadata,
 	Column('genome_id', primary_key=True),
-	Column('genome_set_id', primary_key=True),
+	Column('reference_set_id', primary_key=True),
 	Column(
 		'taxon_id',
 		ForeignKey('taxa.id', ondelete='CASCADE'),
 		primary_key=True,
 	),
 	sa.ForeignKeyConstraint(
-		['genome_id', 'genome_set_id'],
-		['genome_annotations.genome_id', 'genome_annotations.genome_set_id'],
+		['genome_id', 'reference_set_id'],
+		['genome_annotations.genome_id', 'genome_annotations.reference_set_id'],
 		ondelete='CASCADE',
 	)
 )
@@ -220,24 +228,25 @@ annotations_tax_assoc = sa.Table(
 class AnnotatedGenome(Base, SeqRecordBase):
 	"""A genome with additional annotations as part of a genome set.
 
-	Technically is an association object connecting Genomes with GenomeSetss,
-	but contains hybrid properties connecting to the Genome's attributes which
-	effectively make it function and an extended Genome object.
+	Technically is an association object connecting Genomes with
+	ReferenceGenomeSets, but contains hybrid properties connecting to the
+	Genome's attributes which effectively make it function and an extended
+	Genome object.
 
 	Additional annotations are optional, and the presence of this record in the
 	database can simply be used to indicate that a Genome is contained in a
-	GenomeSet. Mostly holds taxonomy information as that is frequently a result
-	of additional analysis on the sequence.
+	ReferenceGenomeSet. Mostly holds taxonomy information as that is frequently
+	a result of additional analysis on the sequence.
 
 	.. attribute:: genome_id
 
 		Integer column, part of composite primary key. ID of :class:`.Genome`
 		the annotations are or.
 
-	.. attribute:: genome_set_id
+	.. attribute:: reference_set_id
 
-		Integer column, part of composite primary key. ID of :class:`.GenomeSet`
-		the annotations are under.
+		Integer column, part of composite primary key. ID of
+		:class:`.ReferenceGenomeSet` the annotations are under.
 
 	.. attribute:: organism
 
@@ -246,22 +255,35 @@ class AnnotatedGenome(Base, SeqRecordBase):
 		to be human- readable and shouldn't have any semantic meaning for the
 		application (in contrast to the :attr:`taxa` relationship).
 
+	.. attribute:: primary_taxon_id
+
+		Integer column. ID of primary :class:`Taxon` this genome is classified
+		as.
+
 	.. attribute:: genome
 
 		Many-to-one relationship to :class:`.Genome`.
 
-	.. attribute:: genome_set
+	.. attribute:: reference_set
 
-		Many-to-one relationship to :class:`.GenomeSet`.
+		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
 
-	.. attribute:: taxa
+	.. attribute:: primary_taxon
 
-		Many-to-many relationship to :class:`.Taxon`. The taxa this Genome has
-		been assigned to under the associated GenomeSet. Should only link to the
-		most specific taxa, as membership to all additional taxa in each taxon's
-		linage is implied. Will typically contain only zero or one taxa.
-		Additional non-proper (i.e. custom, not defined on GenBank, or
-		paraphyletic) taxa may be present.
+		Many-to-one relationship to :class:`.Taxon`. The primary taxon this
+		genome is classified as under the associated ReferenceGenomeSet. Should
+		be the most specific and "regular" (ideally defined on NCBI) taxon this
+		genome belongs to. There may be alternates, which go in the
+		:attr:`alternate_taxa` attribute.
+
+	.. attribute:: alternate_taxa
+
+		Many-to-many relationship to :class:`.Taxon`. The additional taxa this
+		Genome has been assigned to under the associated ReferenceGenomeSet.
+		Should only link to the most specific taxa, as membership to all
+		additional taxa in each taxon's linage is implied. Will typically be
+		empty, but may contain non-proper (i.e. custom, not defined on GenBank,
+		or paraphyletic) taxa.
 
 	.. attribute:: description
 
@@ -293,17 +315,31 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	"""
 	__tablename__ = 'genome_annotations'
 
-	genome_id = Column(ForeignKey('genomes.id'), primary_key=True)
-	genome_set_id = Column(ForeignKey('genome_sets.id'), primary_key=True)
+	genome_id = Column(
+		ForeignKey('genomes.id', ondelete='CASCADE'),
+		primary_key=True
+	)
+	reference_set_id = Column(
+		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
+		primary_key=True
+	)
 
+	primary_taxon_id = Column(
+		ForeignKey('taxa.id', ondelete='SET NULL'),
+		index=True
+	)
 	organism = Column(String())
 
 	genome = relationship('Genome')
-	genome_set = relationship('GenomeSet')
-	taxa = relationship(
+	reference_set = relationship('ReferenceGenomeSet')
+	primary_taxon = relationship(
 		'Taxon',
-		secondary=annotations_tax_assoc,
-		backref='genomes',
+		backref=backref('genomes_primary', lazy='dynamic')
+	)
+	additional_taxa = relationship(
+		'Taxon',
+		secondary=annotations_additional_tax_assoc,
+		backref=backref('genomes_additional', lazy='dynamic'),
 	)
 
 	description = hybrid_property(lambda self: self.genome.description)
@@ -315,19 +351,20 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	refseq_acc = hybrid_property(lambda self: self.genome.refseq_acc)
 
 	def __repr__(self):
-		return '<{}.{} {}:{}>'.format(
+		return '<{}.{}:{}:{} {!r}>'.format(
 			self.__module__,
 			type(self).__name__,
-			self.genome_set_id,
+			self.reference_set_id,
 			self.genome_id,
+			self.description,
 		)
 
 
 class Taxon(Base):
 	"""A taxon used for classifying AnnotatedGenomes.
 
-	The taxa form a hierarchy, with each having a parent and zero or more
-	children.
+	Taxa are specific to a :class:`.ReferenceGenomeSet` and form a hierarchy,
+	with each having a parent and zero or more children.
 
 	.. attribute:: id
 
@@ -347,6 +384,15 @@ class Taxon(Base):
 		String column. Optional description of taxon. Probably blank unless it
 		is a custom taxon not present in GenBank.
 
+	.. attribute:: distance_threshold
+
+		Maximum distance from a query genome to a reference genome in this taxon
+		for the query to be classified within the taxon.
+
+	.. attribute:: reference_set_id
+
+		Integer column. ID of :class:`.ReferenceGenomeSet` the taxon belongs to.
+
 	.. attribute:: parent_id
 
 		Integer column. ID of Taxon that is the direct parent of this one.
@@ -355,10 +401,34 @@ class Taxon(Base):
 
 		Integer column. Genbank taxonomy ID, if any.
 
-	.. attribute:: entrez_summary
+	.. attribute:: entrez_data
 
-		JSON column. Entrez ESummary result of the corresponding entry in the
-		NCBI taxonomy database.
+		JSON column. Entrez EFetch result of the corresponding entry in the
+		NCBI taxonomy database, converted to JSON.
+
+	.. atribute:: parent
+
+		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon
+		(if any).
+
+	.. attribute:: children
+
+		One-to-many relationship with :class:`.Taxon`, the children of this
+		taxon.
+
+	.. attribute:: reference_set
+
+		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
+
+	.. attribute:: genomes_primary
+
+		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which
+		havet his taxon as their primary taxon.
+
+	.. attribute:: genomes_additional
+
+		Many-to-many relationship with :class:`.AnnotatedGenome`, genomes which
+		havet his taxon in their "additional" taxa.
 	"""
 
 	__tablename__ = 'taxa'
@@ -368,18 +438,29 @@ class Taxon(Base):
 	name = Column(String(), nullable=False, index=True)
 	rank = Column(String(), index=True)
 	description = Column(String())
+	distance_threshold = Column(sa.Float())
 
-	parent_id = Column(ForeignKey('taxa.id'))
+	reference_set_id = Column(
+		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
+		nullable=False,
+		index=True,
+	)
+	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 
 	ncbi_id = Column(Integer(), index=True)
-	entrez_summary = Column(MutableJsonDict.as_mutable(JsonType))
+	entrez_data = Column(MutableJsonDict.as_mutable(JsonType))
 
+	reference_set = relationship(
+		'ReferenceGenomeSet',
+		backref=backref('taxa', lazy='dynamic')
+	)
 	parent = relationship('Taxon', remote_side=[id])
 	children = relationship('Taxon')
 
 	def lineage(self):
-		"""Get sorted list of the Taxon's ancestors, starting with itself.
+		"""Get sorted list of the Taxon's ancestors, including itself.
 
+		:returns: List of taxa ordered from parent to child.
 		:rtype: list
 		"""
 		l = list()
@@ -391,18 +472,12 @@ class Taxon(Base):
 
 		return l
 
-	@classmethod
-	def from_esummary(cls, summary):
-		"""Create from Entrez ESummary result in JSON format.
-
-		:param dict summary: JSON summary parsed to dict.
-		:rtype: .Taxon
-		"""
-		return Taxon(
-			name=summary['scientificname'],
-			rank=summary['rank'],
-			ncbi_id=summary['taxid'],
-			entrez_summary=summary,
+	def __repr__(self):
+		return '<{}.{}:{} {!r}>'.format(
+			self.__module__,
+			type(self).__name__,
+			self.id,
+			self.name,
 		)
 
 
@@ -484,7 +559,7 @@ class SignatureSet(Base):
 		"""
 
 		if connection is None:
-			connection = sa.inspect(self).session
+			connection = sa.inspect(self).session.connection()
 
 		stmt = sa.select([Signature.count, Signature.dtype_str, Signature.data])\
 			.where(Signature.set_id == self.id)\
@@ -507,7 +582,7 @@ class SignatureSet(Base):
 		"""
 
 		if connection is None:
-			connection = sa.inspect(self).session
+			connection = sa.inspect(self).session.connection()
 
 		stmt = Signature.__table__.insert().values(
 			set_id=self.id,
@@ -524,7 +599,9 @@ class SignatureSet(Base):
 		import numpy as np
 
 		if connection is None:
-			connection = sa.inspect(self).session
+			connection = sa.inspect(self).session.connection()
+
+		# TODO
 
 
 class Signature(Base):
@@ -571,8 +648,16 @@ class Signature(Base):
 
 	__tablename__ = 'signatures'
 
-	set_id = Column(Integer(), ForeignKey('signature_sets.id'), primary_key=True)
-	genome_id = Column(Integer(), ForeignKey('genomes.id'), primary_key=True)
+	set_id = Column(
+		Integer(),
+		ForeignKey('signature_sets.id', ondelete='CASCADE'),
+		primary_key=True
+	)
+	genome_id = Column(
+		Integer(),
+		ForeignKey('genomes.id', ondelete='CASCADE'),
+		primary_key=True
+	)
 
 	count = Column(Integer(), nullable=False)
 	dtype_str = Column(String(2), nullable=False)
