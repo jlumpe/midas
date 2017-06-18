@@ -140,7 +140,7 @@ def test_gzip_fileobj(gzip_seq_file, store_test_func):
 def test_get_version(filestore):
 	"""Test getting version of existing file store."""
 
-	version = FileSequenceStore.get_version(filestore.root_dir)
+	version = FileSequenceStore.get_version(filestore.path)
 	assert version == FileSequenceStore.VERSION
 
 
@@ -223,15 +223,14 @@ def test_remove(filestore, uncomp_seq_file, use_id):
 	assert filestore.has(**ids)
 
 	# Get the path of the stored sequence file (should be only file in directory)
-	file_path, = os.listdir(filestore.seq_dir)
-	file_path = os.path.join(filestore.seq_dir, file_path)
-	assert os.path.exists(file_path)
+	file_path, = filestore.seq_dir.iterdir()
+	assert file_path.exists()
 
 	# Remove it and check it no longer exists in the database or directory
 	filestore.remove(record.store_id if use_id else record)
 
 	assert not filestore.has(**ids)
-	assert not os.path.exists(file_path)
+	assert not file_path.exists()
 
 	# Removing again should raise an exception as it does not exist anymore
 	with pytest.raises(SequenceNotFound):

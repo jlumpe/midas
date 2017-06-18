@@ -3,6 +3,7 @@
 import os
 import shutil
 import gzip
+from pathlib import Path
 
 import sqlalchemy as sa
 
@@ -55,7 +56,7 @@ class FileSequenceStore(DbIndexedSequenceStore):
 
 	:param str path: Path to existing ``FileSequenceStore`` directory.
 
-	.. attribute:: root_dir
+	.. attribute:: path
 
 		Path to root directory of sequence store.
 	"""
@@ -74,12 +75,12 @@ class FileSequenceStore(DbIndexedSequenceStore):
 			use_meta=True,
 		)
 
-		self.root_dir = os.path.abspath(path)
+		self.path = Path(path).absolute()
 
 	@classmethod
 	def _make_engine(cls, root_path):
 		"""Create the SQLA engine for a file sequence store from its path."""
-		return sa.create_engine('sqlite:///' + cls.db_path(root_path))
+		return sa.create_engine('sqlite:///' + str(cls.db_path(root_path)))
 
 	@classmethod
 	def create(cls, path):
@@ -92,7 +93,7 @@ class FileSequenceStore(DbIndexedSequenceStore):
 
 		# Create directories
 		os.makedirs(path)
-		os.mkdir(cls.seq_dir(path))
+		cls.seq_dir(path).mkdir()
 
 		# Create engine and initialize tables
 		engine = cls._make_engine(path)
@@ -120,13 +121,16 @@ class FileSequenceStore(DbIndexedSequenceStore):
 		fname = make_filename(record, ext='.fasta.gz')
 
 		# Get destination path
-		dest_path = os.path.join(self.seq_dir, fname)
+		dest_path = self.seq_dir / fname
 
 		# Remove any existing file at the destination path. This shouldn't
 		# happen but it's possible the store was corrupted when an error or
 		# version upgrade occurred.
-		if os.path.isfile(dest_path):
-			os.remove(dest_path)
+		if dest_path.is_file():
+			dest_path.unlink()
+
+		if isinstance(src, Path):
+			src = str(src)
 
 		if isinstance(src, str):
 			# If passed a string, assume file path
@@ -134,14 +138,14 @@ class FileSequenceStore(DbIndexedSequenceStore):
 			if src_compression == 'gzip':
 				# Gzip compression can copy/move at file level
 				if keep_src:
-					shutil.copyfile(src, dest_path)
+					shutil.copyfile(src, str(dest_path))
 				else:
-					shutil.move(src, dest_path)
+					shutil.move(src, str(dest_path))
 
 			else:
 				# Will need to convert to gzip
 				with open(src, 'rb') as src_fh:
-					with gzip.open(dest_path, 'wb') as dest_fh:
+					with gzip.open(str(dest_path), 'wb') as dest_fh:
 						shutil.copyfileobj(src_fh, dest_fh)
 
 				# Remove original
@@ -153,10 +157,10 @@ class FileSequenceStore(DbIndexedSequenceStore):
 
 			# Gzip compression can write directly, otherwise compress
 			if src_compression == 'gzip':
-				dest_fh = open(dest_path, 'wb')
+				dest_fh = dest_path.open('wb')
 			else:
 				dest_fh = gzip.open(
-					dest_path,
+					str(dest_path),
 					'wb' if 'b' in src_mode else 'wt'
 				)
 
@@ -167,8 +171,8 @@ class FileSequenceStore(DbIndexedSequenceStore):
 		return dict(filename=fname)
 
 	def _open_seq_data(self, row):
-		fpath = os.path.join(self.seq_dir, row['filename'])
-		return gzip.open(fpath, 'rt')
+		fpath = self.seq_dir / row['filename']
+		return gzip.open(str(fpath), 'rt')
 
 	def _remove_seq_data(self, row):
-		os.remove(os.path.join(self.seq_dir, row['filename']))
+		self.seq_dir.joinpath(row['filename']).unlink()

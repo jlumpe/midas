@@ -14,10 +14,10 @@ class SignatureFile:
 
 	def __init__(self, file, mode=None, **kwargs):
 
-		if isinstance(mode, h5py.File):
+		if isinstance(file, h5py.File):
 			if mode is not None or kwargs:
 				raise TypeError(
-					'Cannot specify mode or additional keyword arguemnts when '
+					'Cannot specify mode or additional keyword arguments when '
 					'using existing file object'
 				)
 

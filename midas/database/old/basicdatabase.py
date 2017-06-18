@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker, deferred, undefer
 
-from midas.util import kwargs_done, SubPath
+from midas.util import kwargs_done
 from . import base
 
 
@@ -43,6 +43,41 @@ class KmerSetCollection(Base, base.KmerSetCollection):
 
 class KmerSet(Base, base.KmerSet):
 	_data = deferred(Column(Binary()))
+
+
+class SubPath:
+	"""Data descriptor for getting absolute path from relative subpath.
+
+	Intended for classes that manage a single root directory (e.g.,
+	``BasicDatabase``) that have subpaths they need to get the absolute path
+	for. To avoid many os.path.join()'s all over the place, the descriptor
+	returns the absolute path on instances and a function giving the absolute
+	path given the root path on classes.
+
+	:param str path: Path relative to parent object's root directory.
+	"""
+
+	def __init__(self, path):
+		self.path = path
+
+	def get_abs_path(self, root_dir):
+		return os.path.join(root_dir, self.path)
+
+	@classmethod
+	def _get_root_dir(cls, obj, type_):
+		"""Get the root directory of an object."""
+		root_dir_attr = getattr(type_, '__root_dir_attr__', 'root_dir')
+		return getattr(obj, root_dir_attr)
+
+	def __get__(self, obj, type_):
+		if obj is None:
+			return self.get_abs_path
+
+		else:
+			return self.get_abs_path(self._get_root_dir(obj, type_))
+
+	def __set__(self, obj, value):
+		raise AttributeError("Can't set attribute")
 
 
 class BasicDatabase(base.AbstractDatabase):

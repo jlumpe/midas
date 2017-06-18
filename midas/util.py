@@ -1,6 +1,6 @@
 """Miscellaneous utility code."""
 
-import os
+from pathlib import Path
 import re
 
 
@@ -40,23 +40,25 @@ class SubPath:
 
 	Intended for classes that manage a single root directory (e.g.,
 	``BasicDatabase``) that have subpaths they need to get the absolute path
-	for. To avoid many os.path.join()'s all over the place, the descriptor
+	for. To avoid many ``os.path.join()``\ 's all over the place, the descriptor
 	returns the absolute path on instances and a function giving the absolute
 	path given the root path on classes.
 
-	:param str path: Path relative to parent object's root directory.
+	:param path: Path relative to parent object's root directory.
 	"""
 
 	def __init__(self, path):
-		self.path = path
+		self.path = Path(path)
+		if self.path.is_absolute():
+			raise ValueError('Path must be relative')
 
 	def get_abs_path(self, root_dir):
-		return os.path.join(root_dir, self.path)
+		return root_dir / self.path
 
 	@classmethod
 	def _get_root_dir(cls, obj, type_):
 		"""Get the root directory of an object."""
-		root_dir_attr = getattr(type_, '__root_dir_attr__', 'root_dir')
+		root_dir_attr = getattr(type_, '__path_attr__', 'path')
 		return getattr(obj, root_dir_attr)
 
 	def __get__(self, obj, type_):
