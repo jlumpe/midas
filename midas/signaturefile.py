@@ -12,7 +12,7 @@ class SignatureFile:
 
 	FORMAT_VERSION = '1.0'
 
-	def __init__(self, file, mode=None, **kwargs):
+	def __init__(self, file, mode='a', **kwargs):
 
 		if isinstance(file, h5py.File):
 			if mode is not None or kwargs:
@@ -24,16 +24,21 @@ class SignatureFile:
 			self.h5file = file
 
 		else:
-			if mode is None:
-				mode = 'a'
-
-			if mode in ['r', 'r+']:
+			if mode == 'r':
 				file_exists = True
+				self.writable = False
+
+			elif mode == 'r+':
+				file_exists = True
+				self.writable = True
 
 			elif mode in ['w', 'w-', 'x']:
 				file_exists = False
+				self.writable = True
 
 			elif mode == 'a':
+				self.writable = True
+
 				if os.path.isfile(file):
 					file_exists = True
 					mode = 'r+'
@@ -78,6 +83,100 @@ class SignatureFile:
 
 		return file
 
+	def _sets_group(self):
+		return self.h5file['SETS']
+
+	def list_sets(self):
+		for group in self._sets_group():
+			yield group.attrs['k'], group.attrs['prefix']
+
+	@staticmethod
+	def _get_set_group_name(k, prefix):
+
+		if isinstance(prefix, bytes):
+			prefix = prefix.decode('ascii')
+
+		return '{}-{}'.format(int(k), prefix)
+
+	@staticmethod
+	def _format_signature_params(k, prefix):
+
+		k = int(k)
+		if k <= 0:
+			raise ValueError('k must be a positive integer')
+
+		if isinstance(prefix, bytes):
+			prefix = prefix.decode('ascii')
+		prefix = prefix.upper()
+		if not all(c in 'ATGC' for c in prefix):
+			raise ValueError('Prefix must contain characters ACGT only')
+
+		return k, prefix
+
+	def get_set(self, k, prefix):
+
+		k, prefix = self._format_signature_params(k, prefix)
+
+		sets_group = self._sets_group()
+		group = sets_group[self._get_set_group_name(k, prefix)]
+
+		if group is not None:
+			return SignatureSet(self, group, k, prefix)
+		else:
+			raise KeyError((k, prefix))
+
+	def create_set(self, k, prefix, exist_ok=False):
+
+		k, prefix = self._format_signature_params(k, prefix)
+
+		sets_group = self._sets_group()
+
+		group_name = self._get_set_group_name(k, prefix)
+
+		group = sets_group[group_name]
+
+		if group is not None:
+			if not exist_ok:
+				raise ValueError('Group exists')
+
+		else:
+			group = sets_group.create_group(group_name)
+			group.attrs['k'] = k
+			group.attrs['prefix'] = prefix
+
+		return SignatureSet(self, group, k, prefix)
+
+	def remove_set(self, k, prefix):
+		raise NotImplementedError()
+
+	def __repr__(self):
+		return '{}({!r}, {!r})'.format(
+			type(self).__name__,
+			self.h5file.filename,
+			self.h5file.mode
+		)
+
+
+class StoredSignatureSet:
+
+	def __init__(self, file, group, k, prefix):
+		self._file = file
+		self._group = group
+		self._k = k
+		self._prefix = prefix
+		self._kspec = KmerSpec(k, prefix)
+
+	@property
+	def k(self):
+		return self._k
+
+	@property
+	def prefix(self):
+		return self._prefix
+
+	def kspec(self):
+		return self._kspec
+
 	@staticmethod
 	def _check_key(key):
 		key = key.strip('/')
@@ -98,107 +197,22 @@ class SignatureFile:
 		if not all(c in '0123456789.' for c in version):
 			raise ValueError('Version string must contain digits and dots only')
 
-	def list_sets(self):
-		pass
-
-	def set_exists(self, key, version):
-		pass
-
-	def get_set(self, key, version=None):
-
-		key = self._check_key(key)
-		self._check_version(version)
-
-		sets_group = self.h5file['SETS']
-
-		if version is not None:
-			group = sets_group.get(key + '/#' + version)
-
-			if group is not None:
-				return SignatureSet(group, key, version)
-			else:
-				return None
-
-		else:
-			raise NotImplementedError()
-
-	def create_set(self, key, version, k, prefix):
-
-		key = self._check_key(key)
-		self._check_version(version)
-
-		k = int(k)
-		if k <= 0:
-			raise ValueError('k must be a positive integer')
-
-		if isinstance(prefix, bytes):
-			prefix = prefix.decode('ascii')
-		prefix = prefix.upper()
-		if not all(c in 'ATGC' for c in prefix):
-			raise ValueError('Prefix must contain characters ACGT only')
-
-		sets_group = self.h5file['SETS']
-
-		key_group = sets_group.create_group(key)
-		group = key_group.create_group('#' + version)
-
-		group.attrs['k'] = k
-		group.attrs['prefix'] = prefix
-
-		return SignatureSet(group, key, version)
-
-	def remove_set(self, key, version):
-		pass
-
-	def __repr__(self):
-		return '{}({!r}, {!r})'.format(
-			type(self).__name__,
-			self.h5file.filename,
-			self.h5file.mode
-		)
-
-
-class SignatureSet:
-
-	def __init__(self, group, key, version):
-		self._key = key
-		self._version = version
-		self._group = group
-
-	@property
-	def key(self):
-		return self._key
-
-	@property
-	def version(self):
-		return self._version
-
-	@property
-	def k(self):
-		return self.group.attrs['k']
-
-	@property
-	def prefix(self):
-		return self.group.attrs['prefix'].encode('ascii')
-
-	def kspec(self):
-		return KmerSpec(self.k, self.prefix)
-
 	def list_signatures(self):
 		pass
 
-	def get_signature(self, key):
+	def get_signature(self, key, version=None):
 		pass
 
-	def store_signature(self, key, signature):
+	def store_signature(self, signature, key, version=None):
 		pass
 
-	def remove_signature(self, key):
+	def remove_signature(self, key, version=None):
 		pass
 
 	def __repr__(self):
-		return '<{} {!r} (version={!r})>'.format(
+		return '<{} {}/{} {!r})>'.format(
 			type(self).__name__,
-			self.key,
-			self.version
+			self.k,
+			self.prefix.decode('ascii'),
+			self._file,
 		)
