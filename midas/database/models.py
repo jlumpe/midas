@@ -389,6 +389,10 @@ class Taxon(Base):
 		Maximum distance from a query genome to a reference genome in this taxon
 		for the query to be classified within the taxon.
 
+	.. attribute:: extra
+
+		JSON column. Additional arbitrary data.
+
 	.. attribute:: reference_set_id
 
 		Integer column. ID of :class:`.ReferenceGenomeSet` the taxon belongs to.
@@ -449,6 +453,7 @@ class Taxon(Base):
 
 	ncbi_id = Column(Integer(), index=True)
 	entrez_data = Column(MutableJsonDict.as_mutable(JsonType))
+	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
 	reference_set = relationship(
 		'ReferenceGenomeSet',
