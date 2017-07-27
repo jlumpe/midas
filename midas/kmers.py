@@ -243,8 +243,8 @@ class SignatureArray(collections.Sequence):
 	:meth:`empty` instead.
 	"""
 
-	def __init__(self, coords_array, bounds):
-		self.coords_array = coords_array
+	def __init__(self, values, bounds):
+		self.values = values
 		self.bounds = bounds
 
 	def __len__(self):
@@ -259,11 +259,11 @@ class SignatureArray(collections.Sequence):
 
 	def __getitem__(self, index):
 		self._check_index(index)
-		return self.coords_array[self.bounds[index]:self.bounds[index + 1]]
+		return self.values[self.bounds[index]:self.bounds[index + 1]]
 
 	def __setitem__(self, index, value):
 		self._check_index(index)
-		self.coords_array[self.bounds[index]:self.bounds[index + 1]] = value
+		self.values[self.bounds[index]:self.bounds[index + 1]] = value
 
 	def sizeof(self, index):
 		"""Get the size of the coordinate set at the given index.
@@ -295,12 +295,12 @@ class SignatureArray(collections.Sequence):
 		return array
 
 	@classmethod
-	def empty(cls, lengths, coords_array=None, dtype=np.uint32):
+	def empty(cls, lengths, values=None, dtype=np.uint32):
 		"""Create with an empty array.
 
 		:param lengths: Sequence of lengths for each sub-array/signature.
-		:param coords_array: Initial shared coordinates array.
-		:type coords_array: numpy.ndarray
+		:param values: Initial shared coordinates array.
+		:type values: numpy.ndarray
 		:param dtype: Numpy dtype of shared coordinates array.
 		:type dtype: numpy.dtype
 
@@ -310,7 +310,7 @@ class SignatureArray(collections.Sequence):
 		bounds = np.zeros(len(lengths) + 1, dtype='i8')
 		bounds[1:] = np.cumsum(lengths)
 
-		if coords_array is None:
-			coords_array = np.empty(bounds[-1], dtype=dtype)
+		if values is None:
+			values = np.empty(bounds[-1], dtype=dtype)
 
-		return cls(coords_array, bounds)
+		return cls(values, bounds)
