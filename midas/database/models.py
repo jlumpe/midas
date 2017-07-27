@@ -126,8 +126,7 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	                           cascade='all, delete-orphan')
 
 	def __repr__(self):
-		return '<{}.{}:{} "{}">'.format(
-			self.__module__,
+		return '<{}:{} "{}">'.format(
 			type(self).__name__,
 			self.id,
 			self.description,
@@ -198,8 +197,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	base_genomes = association_proxy('genomes', 'genome')
 
 	def __repr__(self):
-		return '<{}.{}:{} {!r}>'.format(
-			self.__module__,
+		return '<{}:{} {!r}>'.format(
 			type(self).__name__,
 			self.id,
 			self.name,
@@ -351,12 +349,12 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	refseq_acc = hybrid_property(lambda self: self.genome.refseq_acc)
 
 	def __repr__(self):
-		return '<{}.{}:{}:{} {!r}>'.format(
-			self.__module__,
+		return '<{}:{}:{} {!r}/{!r}>'.format(
 			type(self).__name__,
 			self.reference_set_id,
 			self.genome_id,
-			self.description,
+			self.reference_set.key,
+			self.organism,
 		)
 
 
@@ -478,8 +476,7 @@ class Taxon(Base):
 		return l
 
 	def __repr__(self):
-		return '<{}.{}:{} {!r}>'.format(
-			self.__module__,
+		return '<{}:{} {!r}>'.format(
 			type(self).__name__,
 			self.id,
 			self.name,
@@ -532,8 +529,7 @@ class SignatureSet(Base):
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
 	def __repr__(self):
-		return '<{}.{}:{} "{}" {}/{}>'.format(
-			self.__module__,
+		return '<{}:{} "{}" {}/{}>'.format(
 			type(self).__name__,
 			self.id,
 			self.name,
@@ -687,8 +683,7 @@ class Signature(Base):
 	)
 
 	def __repr__(self):
-		return '<{}.{} {}:{}>'.format(
-			self.__module__,
+		return '<{} {}:{}>'.format(
 			type(self).__name__,
 			self.set_id,
 			self.genome_id,
