@@ -195,7 +195,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 	genomes = relationship('AnnotatedGenome', lazy='dynamic',
 	                       cascade='all, delete-orphan')
-	base_genomes = association_proxy('annotations', 'genome')
+	base_genomes = association_proxy('genomes', 'genome')
 
 	def __repr__(self):
 		return '<{}.{}:{} {!r}>'.format(
