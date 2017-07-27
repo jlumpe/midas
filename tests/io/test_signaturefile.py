@@ -1,4 +1,4 @@
-"""Test midas.signaturefile"""
+"""Test midas.io.signaturefile"""
 
 import io
 
@@ -9,11 +9,11 @@ from midas.io.signaturefile import SignatureFile
 from midas.kmers import SignatureArray
 
 
-@pytest.fixture
+@pytest.fixture(scope='module')
 def signatures():
 	"""List of random signatures."""
 
-	random = np.random.RandomState()
+	random = np.random.RandomState(0)
 
 	lengths = random.randint(2000, 10000, size=10)
 	choices = np.arange(4 ** 11)

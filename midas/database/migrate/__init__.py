@@ -2,7 +2,6 @@
 
 This package also contains all Alembic data files.
 """
-import os
 
 from alembic.config import Config
 from pkg_resources import resource_filename

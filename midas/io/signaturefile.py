@@ -11,13 +11,15 @@ from .util import read_npy, write_npy, NamedStruct
 
 class SignatureFile:
 	"""Binary file for storing k-mer signatures.
-
 	"""
 
+	# Four-byte magic number to put at beginning of file
 	_MAGIC_NUMBER = b'MSF\xFF'
 
+	# Four bytes specifying current file format version
 	_VERSION = b'1.00'
 
+	# Numpy structured layout defining binary layout of offsets
 	_OFFSETS_DTYPE = np.dtype([
 		('lengths', '2u8'),
 		('metadata', '2u8'),
@@ -25,6 +27,7 @@ class SignatureFile:
 		('data', '2u8'),
 	])
 
+	# Numpy structured layout defining binary layout of header
 	_HEADER_DTYPE = np.dtype([
 		('magic_number', ('S', len(_MAGIC_NUMBER))),
 		('version', 'S4'),
@@ -33,39 +36,55 @@ class SignatureFile:
 		('offsets', _OFFSETS_DTYPE),
 	])
 
-	_LENGTHS_DTYPE = 'u4'
+	# Data type of lengths segment
+	_LENGTHS_DTYPE = np.dtype('u4')
 
+	# Default file extension
 	DEFAULT_EXT = '.midas-signatures'
 
 	def __init__(self, fobj):
 
+		# Read and validate header
 		self.fobj = fobj
 		self._header = NamedStruct._fromfile(self._HEADER_DTYPE, fobj)
 
-		if self._header.magic_number != self._MAGIC_NUMBER:
-			raise ValueError('File does not appear to be in the correct format')
-
-		if self._header.version != self._VERSION:
-			raise ValueError('Unexpected version identifier')
+		self._validate_header(self._header)
 
 		self.version = self._header.version.decode('ascii')
 		self.count = self._header.count
 		self.dtype = np.dtype(self._header.dtype)
 
+		# Read IDs
 		if self._header.offsets.ids[0] > 0:
 			self.ids = self._read_ids()
 		else:
 			self.ids = None
 
+		# Check if metadata present
 		self.has_metadata = self._header.offsets.metadata[0] > 0
 
+		# Read lengths
 		fobj.seek(self._header.offsets.lengths[0])
 		self.lengths = read_npy(fobj, self._LENGTHS_DTYPE, shape=self.count)
 		self.lengths.flags.writeable = False
 
 		self.nelems = self.lengths.sum()
 
+	@classmethod
+	def _validate_header(cls, header):
+		"""Validate header data."""
+
+		if header.magic_number != cls._MAGIC_NUMBER:
+			raise ValueError('File does not appear to be in the correct format')
+
+		if header.version != cls._VERSION:
+			raise ValueError('Unexpected version identifier')
+
 	def get_array(self):
+		"""Read signatures from file as a SignatureArray.
+
+		:type: midas.kmers.SignatureArray
+		"""
 
 		self.fobj.seek(self._header.offsets['data'][0])
 		values = read_npy(self.fobj, self.dtype, shape=self.nelems)
@@ -76,6 +95,10 @@ class SignatureFile:
 		return SignatureArray(values, bounds)
 
 	def iter_signatures(self):
+		"""Iterate over signatures in the file.
+
+		:returns: Generator yielding :class:`numpy.ndarray`.
+		"""
 
 		self.fobj.seek(self._header.offsets['data'][0])
 
@@ -139,7 +162,6 @@ class SignatureFile:
 	def _write_metadata(cls, fobj, metadata):
 
 		# Support JSON format only for now
-
 		fobj.write(b'j')
 
 		wrapper = io.TextIOWrapper(fobj)
@@ -147,6 +169,7 @@ class SignatureFile:
 		wrapper.detach()
 
 	def get_metadata(self):
+
 		if not self.has_metadata:
 			return None
 
@@ -194,7 +217,6 @@ class SignatureFile:
 			fobj.write(b'i')
 			fobj.write(ids.dtype.str[1:].encode('ascii'))
 			write_npy(fobj, ids)
-
 
 	def _read_ids(self):
 
