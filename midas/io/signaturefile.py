@@ -11,6 +11,11 @@ from .util import read_npy, write_npy, NamedStruct
 
 class SignatureFile:
 	"""Binary file for storing k-mer signatures.
+
+	Constructor creates an object to read data from a stream. Use the
+	:meth:`write` method to write data to a file.
+
+	:param fobj: Readable file-like object in binary mode.
 	"""
 
 	# Four-byte magic number to put at beginning of file
@@ -106,14 +111,35 @@ class SignatureFile:
 			yield read_npy(self.fobj, self.dtype, shape=length)
 
 	@classmethod
-	def write_sigarray(cls, fobj, sigarray, *, dtype=None, ids=None, metadata=None):
+	def write(cls, fobj, signatures, *, dtype=None, ids=None, metadata=None):
+		"""Write signatures to file.
 
-		count = len(sigarray)
+		:param fobj: Writeable file-like object in binary mode.
+		:param signatures: Sequence of signatures, as numpy arrays.
+		:param dtype: Numpy data type of signatures to write (should be unsigned
+			integer). If None will be determined automatically by signatures.
+		:type: numpy.dtype
+		:param ids: Sequence of IDs for the signatures, for example accession
+			numbers of the genomes the signatures are from. Must be the same
+			length as ``signatures`` and items must be all strings or integers.
+		:param metadata: Arbitrary metadata that will be included with file.
+			Must be JSONable.
+		"""
 
-		if dtype is None:
-			dtype = sigarray.values.dtype
-		else:
+		count = len(signatures)
+
+		if ids is not None and len(ids) != count:
+			raise ValueError('Number of IDs does not match number of signatures')
+
+		# Get data type for signature arrays
+		if dtype is not None:
 			dtype = np.dtype(dtype)
+
+		elif isinstance(signatures, SignatureArray):
+			dtype = signatures.values.dtype
+
+		else:
+			dtype = np.find_common_type(list(set(a.dtype for a in signatures)), [])
 
 		# Create header data
 		header = NamedStruct(cls._HEADER_DTYPE)
@@ -127,7 +153,11 @@ class SignatureFile:
 		fobj.write(header._tobytes())
 
 		# Write lengths
-		lengths = np.diff(sigarray.bounds).astype(cls._LENGTHS_DTYPE)
+		lengths = np.fromiter(
+			map(len, signatures),
+			dtype=cls._LENGTHS_DTYPE,
+			count=count,
+		)
 
 		header.offsets.lengths[0] = fobj.tell()
 		write_npy(fobj, lengths)
@@ -135,22 +165,16 @@ class SignatureFile:
 
 		# Write metadata
 		if metadata is not None:
-			header.offsets.metadata[0] = fobj.tell()
-			cls._write_metadata(fobj, metadata)
-			header.offsets.metadata[1] = fobj.tell() - 1
+			header.offsets.metadata = cls._write_metadata(fobj, metadata)
 
 		# Write IDs
 		if ids is not None:
-			if len(ids) != count:
-				raise ValueError('Number of IDs does not match number of signatures')
-
-			header.offsets.ids[0] = fobj.tell()
-			cls._write_ids(fobj, ids)
-			header.offsets.ids[1] = fobj.tell() - 1
+			header.offsets.ids = cls._write_ids(fobj, ids)
 
 		# Write data
 		header.offsets.data[0] = fobj.tell()
-		write_npy(fobj, sigarray.values)
+		for signature in signatures:
+			write_npy(fobj, signature.astype(dtype))
 		header.offsets.data[1] = fobj.tell() - 1
 
 		# Go back and write offsets
@@ -160,6 +184,13 @@ class SignatureFile:
 
 	@classmethod
 	def _write_metadata(cls, fobj, metadata):
+		"""Write metadata to file.
+
+		Currently only supports JSON format.
+
+		:returns: Tuple of begin and end file offsets for the metadata section.
+		"""
+		begin = fobj.tell()
 
 		# Support JSON format only for now
 		fobj.write(b'j')
@@ -168,32 +199,16 @@ class SignatureFile:
 		json.dump(metadata, wrapper)
 		wrapper.detach()
 
-	def get_metadata(self):
-
-		if not self.has_metadata:
-			return None
-
-		begin, end = map(int, self._header.offsets.metadata)
-
-		self.fobj.seek(begin)
-
-		# Read format character
-		fmt = self.fobj.read(1)
-
-		if fmt == b'j':
-			# JSON format
-
-			data = self.fobj.read(end - begin)
-			return json.loads(data)
-
-		else:
-			raise ValueError(
-				'Unknown metadata format character {!r}'
-				.format(fmt.decode())
-			)
+		end = fobj.tell() - 1
+		return begin, end
 
 	@classmethod
 	def _write_ids(cls, fobj, ids):
+		"""Write IDs to file.
+
+		:returns: Tuple of begin and end file offsets for the IDs section.
+		"""
+		begin = fobj.tell()
 
 		is_strings = all(isinstance(item, str) for item in ids)
 
@@ -218,7 +233,43 @@ class SignatureFile:
 			fobj.write(ids.dtype.str[1:].encode('ascii'))
 			write_npy(fobj, ids)
 
+		end = fobj.tell() - 1
+		return begin, end
+
+	def get_metadata(self):
+		"""Read metadata from the file, if it has any.
+
+		:returns: File's metadata object (typeically dict), or None if the file
+			has no metadata.
+		"""
+
+		if not self.has_metadata:
+			return None
+
+		begin, end = map(int, self._header.offsets.metadata)
+
+		self.fobj.seek(begin)
+
+		# Read format character
+		fmt = self.fobj.read(1)
+
+		if fmt == b'j':
+			# JSON format
+
+			data = self.fobj.read(end - begin)
+			return json.loads(data)
+
+		else:
+			raise ValueError(
+				'Unknown metadata format character {!r}'
+				.format(fmt.decode())
+			)
+
 	def _read_ids(self):
+		"""Read the IDs from the file if it has any.
+
+		:returns: IDs stored in file.
+		"""
 
 		begin, end = map(int, self._header.offsets.ids)
 

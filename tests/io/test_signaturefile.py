@@ -48,7 +48,7 @@ def test_readwrite(signatures, ids, metadata):
 	buf = io.BytesIO()
 
 	# Write
-	SignatureFile.write_sigarray(buf, sigarray, ids=ids, metadata=metadata)
+	SignatureFile.write(buf, sigarray, ids=ids, metadata=metadata)
 	buf.seek(0)
 
 	# Read
