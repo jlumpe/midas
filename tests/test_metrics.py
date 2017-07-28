@@ -138,7 +138,7 @@ def test_jaccard_col(coords_params):
 	for i, coords1 in enumerate(sigs):
 
 		# Get scores against all others
-		scores = jaccard_coords_col(coords1, sigs.coords_array, sigs.bounds)
+		scores = jaccard_coords_col(coords1, sigs.values, sigs.bounds)
 
 		# Check against single coords
 		for j, coords2 in enumerate(sigs):
