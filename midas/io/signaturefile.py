@@ -239,7 +239,7 @@ class SignatureFile:
 	def get_metadata(self):
 		"""Read metadata from the file, if it has any.
 
-		:returns: File's metadata object (typeically dict), or None if the file
+		:returns: File's metadata object (typically dict), or None if the file
 			has no metadata.
 		"""
 
@@ -257,7 +257,7 @@ class SignatureFile:
 			# JSON format
 
 			data = self.fobj.read(end - begin)
-			return json.loads(data)
+			return json.loads(data.decode())
 
 		else:
 			raise ValueError(
