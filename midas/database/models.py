@@ -194,7 +194,8 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 	genomes = relationship('AnnotatedGenome', lazy='dynamic',
 	                       cascade='all, delete-orphan')
-	base_genomes = association_proxy('genomes', 'genome')
+	base_genomes = relationship('Genome', secondary='genome_annotations',
+	                            lazy='dynamic')
 
 	def __repr__(self):
 		return '<{}:{} {!r}>'.format(
@@ -455,7 +456,7 @@ class Taxon(Base):
 
 	reference_set = relationship(
 		'ReferenceGenomeSet',
-		backref=backref('taxa', lazy='dynamic')
+		backref=backref('taxa', lazy='dynamic', cascade='all, delete-orphan')
 	)
 	parent = relationship('Taxon', remote_side=[id])
 	children = relationship('Taxon')
