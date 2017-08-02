@@ -7,6 +7,12 @@
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include/numpy/arrayobject.h",
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include/numpy/ufuncobject.h"
         ],
+        "extra_compile_args": [
+            "-fopenmp"
+        ],
+        "extra_link_args": [
+            "-fopenmp"
+        ],
         "include_dirs": [
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include"
         ]

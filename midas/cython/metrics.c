@@ -7,6 +7,12 @@
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include/numpy/arrayobject.h",
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include/numpy/ufuncobject.h"
         ],
+        "extra_compile_args": [
+            "-fopenmp"
+        ],
+        "extra_link_args": [
+            "-fopenmp"
+        ],
         "include_dirs": [
             "/home/jared/anaconda3/envs/midas2/lib/python3.6/site-packages/numpy/core/include"
         ]
@@ -2706,12 +2712,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
-  int __pyx_v____pyx_int64_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint32_t_is_signed;
   int __pyx_v____pyx_int16_t_is_signed;
+  int __pyx_v____pyx_uint32_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_int64_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -2820,12 +2826,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
-  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
   __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
+  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(0, 15, __pyx_L1_error)
@@ -16232,12 +16238,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
-  int __pyx_v____pyx_int64_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint32_t_is_signed;
   int __pyx_v____pyx_int16_t_is_signed;
+  int __pyx_v____pyx_uint32_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_int64_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -16346,12 +16352,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
-  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
   __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
+  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(0, 85, __pyx_L1_error)

@@ -32,6 +32,8 @@ extensions = [Extension(
 	compiler_directives={
 		'language_level': 3,
 	},
+	extra_compile_args=['-fopenmp'],
+	extra_link_args=['-fopenmp'],
 )]
 
 
