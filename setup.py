@@ -25,10 +25,14 @@ install_requires = [
 
 # Cython extensions
 np_include = numpy.get_include()
-extensions = [
-	Extension('midas.cython.*', ['midas/cython/*.pyx'],
-	          include_dirs=[np_include]),
-]
+extensions = [Extension(
+	'midas.cython.*',
+	['midas/cython/*.pyx'],
+	include_dirs=[np_include],
+	compiler_directives={
+		'language_level': 3,
+	},
+)]
 
 
 setup(
