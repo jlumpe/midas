@@ -15,6 +15,35 @@ class SignatureFile:
 	Constructor creates an object to read data from a stream. Use the
 	:meth:`write` method to write data to a file.
 
+	.. attribute:: fobj
+
+		Stream file is being read from.
+
+	.. attribute:: count
+
+		Number of signatures in the file.
+
+	.. attribute:: dtype
+
+		:class:`numpy.dtype` of signatures in the file.
+
+	.. attribute:: lengths
+
+		:class:`numpy.ndarray` of lengths of each signature in the file.
+
+	.. attribute:: nelems
+
+		Total number of elements of all signatures in the file.
+
+	.. attribute:: ids
+
+		IDs for signatures as :class:`numpy.ndarray` of integers or string
+		objects, or None if the file doesn't have IDs.
+
+	.. attribute:: has_metadata
+
+		True if file has metadata stored, False otherwise.
+
 	:param fobj: Readable file-like object in binary mode.
 	"""
 
