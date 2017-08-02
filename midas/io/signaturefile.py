@@ -26,23 +26,23 @@ class SignatureFile:
 
 	# Numpy structured layout defining binary layout of offsets
 	_OFFSETS_DTYPE = np.dtype([
-		('lengths', '2u8'),
-		('metadata', '2u8'),
-		('ids', '2u8'),
-		('data', '2u8'),
+		('lengths', '2i8'),
+		('metadata', '2i8'),
+		('ids', '2i8'),
+		('data', '2i8'),
 	])
 
 	# Numpy structured layout defining binary layout of header
 	_HEADER_DTYPE = np.dtype([
 		('magic_number', ('S', len(_MAGIC_NUMBER))),
 		('version', 'S4'),
-		('count', 'u8'),
+		('count', 'i8'),
 		('dtype', 'S2'),
 		('offsets', _OFFSETS_DTYPE),
 	])
 
 	# Data type of lengths segment
-	_LENGTHS_DTYPE = np.dtype('u4')
+	_LENGTHS_DTYPE = np.dtype('i4')
 
 	# Default file extension
 	DEFAULT_EXT = '.midas-signatures'
