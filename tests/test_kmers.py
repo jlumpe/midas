@@ -253,7 +253,6 @@ def make_kmer_seq(seqlen, k, prefix_len, kmer_interval, n_interval=None, seed=0)
 		for j in range(kspec.k):
 			kmer_array[j] = b'AT'[(kmer_num >> j) & 1]
 
-
 		# Every so often add an N just to throw things off
 		invalid_kmer = n_interval is not None and i % n_interval == 0
 		if invalid_kmer:
@@ -278,7 +277,6 @@ def make_kmer_seq(seqlen, k, prefix_len, kmer_interval, n_interval=None, seed=0)
 class TestFindKmers:
 	"""Test k-mer finding."""
 
-
 	def test_basic(self):
 		"""Test general k-mer finding."""
 
@@ -300,7 +298,6 @@ class TestFindKmers:
 
 		# Test string argument
 		assert np.array_equal(kmers.find_kmers(kspec, seq.decode('ascii')), vec)
-
 
 	def test_bounds(self):
 		"""
@@ -327,7 +324,6 @@ class TestFindKmers:
 		found_coords = kmers.vec_to_coords(kmers.find_kmers(kspec, seq))
 
 		assert np.array_equal(found_coords, [0, 1])
-
 
 	def test_overlapping(self):
 		"""Test k-mer finding when k-mers overlap with each other.
@@ -364,7 +360,6 @@ class TestFindKmers:
 
 			assert len(found) == len(expected)
 			assert all(kmer in expected for kmer in found)
-
 
 	def test_parse(self):
 		"""Test k-mer finding in FASTA files."""
@@ -460,8 +455,11 @@ class TestSignatureArray:
 		# Check each coordinate set matches
 		for i, sig in enumerate(sigs_list):
 
-			assert np.array_equal(kcol[i], sig)
-			assert kcol.sizeof(i) == len(sig)
+			# Test using Python and numpy integer types as index
+			for index in [i, np.int64(i)]:
+
+				assert np.array_equal(kcol[index], sig)
+				assert kcol.sizeof(index) == len(sig)
 
 	def test_invalid_index(self, kcol):
 		"""Test passing invalid indices."""
