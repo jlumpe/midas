@@ -12,6 +12,15 @@ ctypedef fused COORDS_T:
 	np.int64_t
 	np.uint64_t
 
+# Copy of COORDS_T, used when two arguments are of this type but not the same
+ctypedef fused COORDS_T_2:
+	np.int16_t
+	np.uint16_t
+	np.int32_t
+	np.uint32_t
+	np.int64_t
+	np.uint64_t
+
 
 cdef class CKmerSpec:
 

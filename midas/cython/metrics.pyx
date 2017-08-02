@@ -7,11 +7,12 @@ import numpy as np
 from cython.parallel import prange, parallel
 
 
-# Numpy dtype equivalent to SCORE_T
+# Numpy dtypes equivalent to SCORE_T and BOUNDS_T
 SCORE_DTYPE = np.dtype(np.float32)
+BOUNDS_DTYPE = np.dtype(np.intp)
 
 
-def jaccard_coords(COORDS_T[:] coords1, COORDS_T[:] coords2):
+def jaccard_coords(COORDS_T[:] coords1, COORDS_T_2[:] coords2):
 	"""
 	Compute the jaccard index between two k-mer sets in ordered coordinate
 	format.
@@ -33,7 +34,7 @@ def jaccard_coords(COORDS_T[:] coords1, COORDS_T[:] coords2):
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
-                              COORDS_T[:] coords2) nogil:
+                              COORDS_T_2[:] coords2) nogil:
 	"""
 	Compute the Jaccard index between two k-mer sets in ordered coordinate
 	format.
@@ -46,7 +47,8 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 		np.intp_t M = coords2.shape[0]
 
 		np.intp_t i = 0, j = 0
-		COORDS_T a, b
+		COORDS_T a
+		COORDS_T_2 b
 
 		np.intp_t u = 0
 
@@ -69,7 +71,7 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 
 
 def jaccard_coords_col(COORDS_T[:] query,
-                       COORDS_T[:] ref_coords,
+                       COORDS_T_2[:] ref_coords,
                        BOUNDS_T[:] ref_bounds):
 	"""
 	Calculate Jaccard scores between a query k-mer set and a reference
@@ -109,7 +111,7 @@ def jaccard_coords_col(COORDS_T[:] query,
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef void c_jaccard_coords_col(COORDS_T[:] query,
-                               COORDS_T[:] ref_coords,
+                               COORDS_T_2[:] ref_coords,
                                BOUNDS_T[:] ref_bounds,
                                SCORE_T[:] out) nogil:
 	"""

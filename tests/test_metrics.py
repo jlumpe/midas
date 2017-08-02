@@ -130,6 +130,62 @@ def test_jaccard_single(coords_params):
 				assert score == 1
 
 
+def test_different_dtypes():
+
+	dtypes = ['i2', 'u2', 'i4', 'u4', 'i8', 'u8']
+	sigs_by_k = {}
+
+	# Test all pairs of dtypes
+	for i, dt1 in enumerate(dtypes):
+		for j in range(i + 1, len(dtypes)):
+			dt2 = dtypes[j]
+
+			# Bit length of largest positive integer both dtypes can store
+			nbits = min(np.iinfo(dt).max.bit_length() for dt in [dt1, dt2])
+
+			# Try for k == 8, but not larger than will fit in dtype
+			k = min(nbits // 4, 8)
+
+			# Get signatures for this value of k, or create them
+			try:
+				sigs = sigs_by_k[k]
+			except KeyError:
+				# Create using largest dtype
+				sigs = sigs_by_k[k] = make_signatures(k, 5, 'u8')
+
+			# Convert to each dtype, making sure there is no overflow
+			try:
+				# Tell numpy to raise error on overflow
+				old_err = np.seterr(over='raise')
+
+				sigs1 = SignatureArray.from_signatures(sigs, dtype=dt1)
+				sigs2 = SignatureArray.from_signatures(sigs, dtype=dt2)
+
+			finally:
+				np.seterr(**old_err)
+
+			# Iterate over all pairs of signatures to test individually
+			for k in range(len(sigs)):
+				for l in range(k + 1, len(sigs)):
+
+					expected = jaccard_coords(sigs[k], sigs[l])
+
+					assert jaccard_coords(sigs1[k], sigs2[l]) == expected
+					assert jaccard_coords(sigs2[k], sigs1[l]) == expected
+
+			# Test first of each against all of the other
+			expected_all = jaccard_coords_col(sigs[0], sigs.values, sigs.bounds)
+
+			assert np.array_equal(
+				jaccard_coords_col(sigs1[0], sigs2.values, sigs2.bounds),
+				expected_all
+			)
+			assert np.array_equal(
+				jaccard_coords_col(sigs2[0], sigs1.values, sigs1.bounds),
+				expected_all
+			)
+
+
 def test_jaccard_col(coords_params):
 	"""Test calculating one set against a collection of sets."""
 
