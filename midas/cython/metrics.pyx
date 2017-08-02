@@ -137,8 +137,7 @@ cdef void c_jaccard_coords_col(COORDS_T[:] query,
 	cdef BOUNDS_T begin, end
 	cdef int i
 
-	with parallel():
-		for i in prange(N, schedule='dynamic'):
-			begin = ref_bounds[i]
-			end = ref_bounds[i+1]
-			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+	for i in prange(N, nogil=True, schedule='dynamic'):
+		begin = ref_bounds[i]
+		end = ref_bounds[i+1]
+		out[i] = c_jaccard_coords(query, ref_coords[begin:end])

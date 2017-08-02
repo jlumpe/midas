@@ -2712,12 +2712,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
-  int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int16_t_is_signed;
-  int __pyx_v____pyx_uint32_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   int __pyx_v____pyx_int64_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
+  int __pyx_v____pyx_uint32_t_is_signed;
+  int __pyx_v____pyx_int16_t_is_signed;
+  int __pyx_v____pyx_uint16_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -2826,12 +2826,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
-  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
-  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
+  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
+  __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
+  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(0, 15, __pyx_L1_error)
@@ -16238,12 +16238,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
-  int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int16_t_is_signed;
-  int __pyx_v____pyx_uint32_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   int __pyx_v____pyx_int64_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
+  int __pyx_v____pyx_uint32_t_is_signed;
+  int __pyx_v____pyx_int16_t_is_signed;
+  int __pyx_v____pyx_uint16_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -16352,12 +16352,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
-  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
-  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
+  __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
+  __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
+  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(0, 85, __pyx_L1_error)
@@ -24800,92 +24800,85 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -24899,141 +24892,123 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates0)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates0)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -25077,92 +25052,85 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -25176,141 +25144,123 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates1)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates1)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -25354,92 +25304,85 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -25453,141 +25396,123 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates2)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates2)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -25631,92 +25556,85 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -25730,141 +25648,123 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates3)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates3)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -25908,92 +25808,85 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -26007,141 +25900,123 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates4)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates4)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -26185,92 +26060,85 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -26284,141 +26152,123 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates5)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates5)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -26462,92 +26312,85 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -26561,141 +26404,123 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates6)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates6)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -26739,92 +26564,85 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -26838,141 +26656,123 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates7)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates7)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -27016,92 +26816,85 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -27115,141 +26908,123 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates8)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates8)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -27293,92 +27068,85 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -27392,141 +27160,123 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates9)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates9)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -27570,92 +27320,85 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -27669,141 +27412,123 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates10)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates10)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -27847,92 +27572,85 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -27946,141 +27664,123 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates11)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates11)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -28124,92 +27824,85 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -28223,141 +27916,123 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates12)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates12)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -28401,92 +28076,85 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -28500,141 +28168,123 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates13)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates13)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -28678,92 +28328,85 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -28777,141 +28420,123 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates14)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates14)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -28955,92 +28580,85 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -29054,141 +28672,123 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates15)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates15)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -29232,92 +28832,85 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -29331,141 +28924,123 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates16)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates16)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -29509,92 +29084,85 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -29608,141 +29176,123 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates17)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates17)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -29786,92 +29336,85 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -29885,141 +29428,123 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates18)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates18)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -30063,92 +29588,85 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -30162,141 +29680,123 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates19)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates19)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -30340,92 +29840,85 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -30439,141 +29932,123 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates20)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates20)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -30617,92 +30092,85 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -30716,141 +30184,123 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates21)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates21)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -30894,92 +30344,85 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -30993,141 +30436,123 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates22)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates22)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -31171,92 +30596,85 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -31270,141 +30688,123 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates23)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates23)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -31448,92 +30848,85 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -31547,141 +30940,123 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates24)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates24)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -31725,92 +31100,85 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -31824,141 +31192,123 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates25)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates25)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -32002,92 +31352,85 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -32101,141 +31444,123 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates26)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates26)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -32279,92 +31604,85 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -32378,141 +31696,123 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates27)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates27)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -32556,92 +31856,85 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -32655,141 +31948,123 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates28)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates28)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -32833,92 +32108,85 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -32932,141 +32200,123 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates29)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates29)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -33110,92 +32360,85 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -33209,141 +32452,123 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates30)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates30)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -33387,92 +32612,85 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -33486,141 +32704,123 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates31)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates31)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -33664,92 +32864,85 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -33763,141 +32956,123 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates32)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates32)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -33941,92 +33116,85 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -34040,141 +33208,123 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates33)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates33)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -34218,92 +33368,85 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -34317,141 +33460,123 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates34)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates34)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
@@ -34495,92 +33620,85 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
- * 	with parallel():             # <<<<<<<<<<<<<<
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
  */
   {
-      const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-      PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-      int __pyx_parallel_why;
-      __pyx_parallel_why = 0;
-      #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-          #undef likely
-          #undef unlikely
-          #define likely(x)   (x)
-          #define unlikely(x) (x)
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
       #endif
-      #ifdef _OPENMP
-      #pragma omp parallel  private(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
-      #endif /* _OPENMP */
-      {
-          #ifdef _OPENMP
-          #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          Py_BEGIN_ALLOW_THREADS
-          #endif /* _OPENMP */
+      /*try:*/ {
+        __pyx_t_1 = __pyx_v_N;
+        if (1 == 0) abort();
+        {
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
+            __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
+            int __pyx_parallel_temp2 = 0xbad0bad0;
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 > 0)
+            {
+                #ifdef _OPENMP
+                #pragma omp parallel private(__pyx_t_4, __pyx_t_5, __pyx_t_7, __pyx_t_8) firstprivate(__pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+                #endif /* _OPENMP */
+                {
+                    #ifdef _OPENMP
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    Py_BEGIN_ALLOW_THREADS
+                    #endif /* _OPENMP */
+                    #ifdef _OPENMP
+                    #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
+                    #endif /* _OPENMP */
+                    for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
+                        if (__pyx_parallel_why < 2)
+                        {
+                            __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
+                            /* Initialize private variables to invalid values */
+                            __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-          /* "midas/cython/metrics.pyx":141
+                            /* "midas/cython/metrics.pyx":141
  * 
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]             # <<<<<<<<<<<<<<
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-          __pyx_t_1 = __pyx_v_N;
-          if (1 == 0) abort();
-          {
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp0 = 0xbad0bad0;
-              __pyx_t_5midas_6cython_7metrics_BOUNDS_T __pyx_parallel_temp1 = 0xbad0bad0;
-              int __pyx_parallel_temp2 = 0xbad0bad0;
-              const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-              PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-              int __pyx_parallel_why;
-              __pyx_parallel_why = 0;
-              __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
-              if (__pyx_t_3 > 0)
-              {
-                  #ifdef _OPENMP
-                  #pragma omp for lastprivate(__pyx_v_begin) lastprivate(__pyx_v_end) firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(dynamic)
-                  #endif /* _OPENMP */
-                  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_3; __pyx_t_2++){
-                      if (__pyx_parallel_why < 2)
-                      {
-                          __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
-                          /* Initialize private variables to invalid values */
-                          __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
-                          __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
+                            __pyx_t_4 = __pyx_v_i;
+                            __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":142
- * 	with parallel():
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":142
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
  */
-                          __pyx_t_4 = __pyx_v_i;
-                          __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
+                            __pyx_t_5 = (__pyx_v_i + 1);
+                            __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":143
- * 		for i in prange(N, schedule='dynamic'):
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+                            /* "midas/cython/metrics.pyx":143
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ * 		out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
  */
-                          __pyx_t_5 = (__pyx_v_i + 1);
-                          __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
-
-                          /* "midas/cython/metrics.pyx":144
- * 			begin = ref_bounds[i]
- * 			end = ref_bounds[i+1]
- * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
- */
-                          __pyx_t_6.data = __pyx_v_ref_coords.data;
-                          __pyx_t_6.memview = __pyx_v_ref_coords.memview;
-                          __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_7 = -1;
-                          if (unlikely(__pyx_memoryview_slice_memviewslice(
+                            __pyx_t_6.data = __pyx_v_ref_coords.data;
+                            __pyx_t_6.memview = __pyx_v_ref_coords.memview;
+                            __PYX_INC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_7 = -1;
+                            if (unlikely(__pyx_memoryview_slice_memviewslice(
     &__pyx_t_6,
     __pyx_v_ref_coords.shape[0], __pyx_v_ref_coords.strides[0], __pyx_v_ref_coords.suboffsets[0],
     0,
@@ -34594,141 +33712,123 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 144, __pyx_L9_error)
+    __PYX_ERR(0, 143, __pyx_L8_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
-                          *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
-                          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-                          __pyx_t_6.memview = NULL;
-                          __pyx_t_6.data = NULL;
-                          goto __pyx_L12;
-                          __pyx_L9_error:;
-                          {
-                              #ifdef WITH_THREAD
-                              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                              #endif
-                              #ifdef _OPENMP
-                              #pragma omp flush(__pyx_parallel_exc_type)
-                              #endif /* _OPENMP */
-                              if (!__pyx_parallel_exc_type) {
-                                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                __Pyx_GOTREF(__pyx_parallel_exc_type);
-                              }
-                              #ifdef WITH_THREAD
-                              PyGILState_Release(__pyx_gilstate_save);
-                              #endif
-                          }
-                          __pyx_parallel_why = 4;
-                          goto __pyx_L11;
-                          __pyx_L11:;
-                          #ifdef _OPENMP
-                          #pragma omp critical(__pyx_parallel_lastprivates35)
-                          #endif /* _OPENMP */
-                          {
-                              __pyx_parallel_temp0 = __pyx_v_begin;
-                              __pyx_parallel_temp1 = __pyx_v_end;
-                              __pyx_parallel_temp2 = __pyx_v_i;
-                          }
-                          __pyx_L12:;
-                          #ifdef _OPENMP
-                          #pragma omp flush(__pyx_parallel_why)
-                          #endif /* _OPENMP */
-                      }
-                  }
-              }
-              if (__pyx_parallel_exc_type) {
-                /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                __pyx_parallel_why = 4;
-              }
-              if (__pyx_parallel_why) {
-                __pyx_v_begin = __pyx_parallel_temp0;
-                __pyx_v_end = __pyx_parallel_temp1;
-                __pyx_v_i = __pyx_parallel_temp2;
-                switch (__pyx_parallel_why) {
-                      case 4:
-                  {
-                      #ifdef WITH_THREAD
-                      PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                      #endif
-                      __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                      __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                      __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                      #ifdef WITH_THREAD
-                      PyGILState_Release(__pyx_gilstate_save);
-                      #endif
-                  }
-                  goto __pyx_L5_error;
-                }
-              }
-          }
-          goto __pyx_L14;
-          __pyx_L5_error:;
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              #ifdef _OPENMP
-              #pragma omp flush(__pyx_parallel_exc_type)
-              #endif /* _OPENMP */
-              if (!__pyx_parallel_exc_type) {
-                __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                __Pyx_GOTREF(__pyx_parallel_exc_type);
-              }
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
-          __pyx_parallel_why = 4;
-          goto __pyx_L14;
-          __pyx_L14:;
-          #ifdef _OPENMP
-          Py_END_ALLOW_THREADS
-          #else
+                            *((__pyx_t_5midas_6cython_7metrics_SCORE_T *) ( /* dim=0 */ (__pyx_v_out.data + __pyx_t_8 * __pyx_v_out.strides[0]) )) = __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords(__pyx_v_query, __pyx_t_6);
+                            __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                            __pyx_t_6.memview = NULL;
+                            __pyx_t_6.data = NULL;
+                            goto __pyx_L11;
+                            __pyx_L8_error:;
+                            {
+                                #ifdef WITH_THREAD
+                                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                #endif
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_exc_type)
+                                #endif /* _OPENMP */
+                                if (!__pyx_parallel_exc_type) {
+                                  __Pyx_ErrFetchWithState(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                  __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                }
+                                #ifdef WITH_THREAD
+                                PyGILState_Release(__pyx_gilstate_save);
+                                #endif
+                            }
+                            __pyx_parallel_why = 4;
+                            goto __pyx_L10;
+                            __pyx_L10:;
+                            #ifdef _OPENMP
+                            #pragma omp critical(__pyx_parallel_lastprivates35)
+                            #endif /* _OPENMP */
+                            {
+                                __pyx_parallel_temp0 = __pyx_v_begin;
+                                __pyx_parallel_temp1 = __pyx_v_end;
+                                __pyx_parallel_temp2 = __pyx_v_i;
+                            }
+                            __pyx_L11:;
+                            #ifdef _OPENMP
+                            #pragma omp flush(__pyx_parallel_why)
+                            #endif /* _OPENMP */
+                        }
+                    }
+                    #ifdef _OPENMP
+                    Py_END_ALLOW_THREADS
+                    #else
 {
 #ifdef WITH_THREAD
-          PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-          #endif
-          #endif /* _OPENMP */
-          /* Clean up any temporaries */
-          __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
-          #ifdef WITH_THREAD
-          PyGILState_Release(__pyx_gilstate_save);
-          #endif
-          #ifndef _OPENMP
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #endif /* _OPENMP */
+                    /* Clean up any temporaries */
+                    __PYX_XDEC_MEMVIEW(&__pyx_t_6, 0);
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                    #ifndef _OPENMP
 }
 #endif /* _OPENMP */
+                }
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              __pyx_v_begin = __pyx_parallel_temp0;
+              __pyx_v_end = __pyx_parallel_temp1;
+              __pyx_v_i = __pyx_parallel_temp2;
+              switch (__pyx_parallel_why) {
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
       }
-      if (__pyx_parallel_exc_type) {
-        /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-        __pyx_parallel_why = 4;
-      }
-      if (__pyx_parallel_why) {
-        switch (__pyx_parallel_why) {
-              case 4:
-          {
-              #ifdef WITH_THREAD
-              PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-              #endif
-              __Pyx_GIVEREF(__pyx_parallel_exc_type);
-              __Pyx_ErrRestoreWithState(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-              __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-              #ifdef WITH_THREAD
-              PyGILState_Release(__pyx_gilstate_save);
-              #endif
-          }
+
+      /* "midas/cython/metrics.pyx":140
+ * 	cdef int i
+ * 
+ * 	for i in prange(N, nogil=True, schedule='dynamic'):             # <<<<<<<<<<<<<<
+ * 		begin = ref_bounds[i]
+ * 		end = ref_bounds[i+1]
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
           goto __pyx_L1_error;
         }
+        __pyx_L5:;
       }
   }
-  #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-      #undef likely
-      #undef unlikely
-      #define likely(x)   __builtin_expect(!!(x), 1)
-      #define unlikely(x) __builtin_expect(!!(x), 0)
-  #endif
 
   /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
