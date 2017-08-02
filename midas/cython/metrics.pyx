@@ -74,6 +74,10 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 	u += N - i
 	u += M - j
 
+	# Avoid divide by zero, define score between empty sets to be zero
+	if u == 0:
+		return 0
+
 	# |A intersection B| = |A| + |B| - |A union B|
 	return <SCORE_T>(N + M - u) / u
 

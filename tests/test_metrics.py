@@ -19,6 +19,10 @@ def slow_jaccard_coords(coords1, coords2, idx_len):
 	intersection = (vec1 & vec2).sum()
 	union = (vec1 | vec2).sum()
 
+	# Defined score between empty sets to be zero
+	if union == 0:
+		return 0
+
 	return intersection / union
 
 
@@ -78,10 +82,6 @@ def test_jaccard_single(coords_params):
 
 			coords2 = sigs[j]
 
-			# Skip empty set vs itself because that is undefined
-			if len(coords1) == 0 and len(coords2) == 0:
-				continue
-
 			# Calc score
 			score = jaccard_coords(coords1, coords2)
 
@@ -94,8 +94,8 @@ def test_jaccard_single(coords_params):
 			# Check with arguments swapped
 			assert score == jaccard_coords(coords2, coords1)
 
-			# Check score vs. self is one
-			if i == j:
+			# Check score vs. self is one (unless empty)
+			if i == j and len(coords1) > 0:
 				assert score == 1
 
 

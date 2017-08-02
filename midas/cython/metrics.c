@@ -2706,12 +2706,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
+  int __pyx_v____pyx_int64_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_uint16_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
   int __pyx_v____pyx_uint32_t_is_signed;
   int __pyx_v____pyx_int16_t_is_signed;
-  int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int64_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -2820,12 +2820,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_jaccard_coords(CYTHON_UNUSED P
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
+  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
   __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
   __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
-  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(0, 15, __pyx_L1_error)
@@ -7633,11 +7633,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -7653,7 +7682,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -7845,11 +7874,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -7865,7 +7923,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -8057,11 +8115,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -8077,7 +8164,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -8269,11 +8356,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -8289,7 +8405,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -8481,11 +8597,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -8501,7 +8646,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -8693,11 +8838,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -8713,7 +8887,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_0_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -8905,11 +9079,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -8925,7 +9128,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -9117,11 +9320,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -9137,7 +9369,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -9329,11 +9561,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -9349,7 +9610,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -9541,11 +9802,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -9561,7 +9851,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -9753,11 +10043,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -9773,7 +10092,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -9965,11 +10284,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -9985,7 +10333,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_1_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -10177,11 +10525,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -10197,7 +10574,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -10389,11 +10766,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -10409,7 +10815,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -10601,11 +11007,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -10621,7 +11056,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -10813,11 +11248,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -10833,7 +11297,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -11025,11 +11489,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -11045,7 +11538,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -11237,11 +11730,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -11257,7 +11779,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_2_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -11449,11 +11971,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -11469,7 +12020,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -11661,11 +12212,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -11681,7 +12261,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -11873,11 +12453,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -11893,7 +12502,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -12085,11 +12694,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -12105,7 +12743,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -12297,11 +12935,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -12317,7 +12984,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -12509,11 +13176,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -12529,7 +13225,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_3_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -12721,11 +13417,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -12741,7 +13466,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -12933,11 +13658,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -12953,7 +13707,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -13145,11 +13899,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -13165,7 +13948,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -13357,11 +14140,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -13377,7 +14189,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -13569,11 +14381,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -13589,7 +14430,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -13781,11 +14622,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -13801,7 +14671,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_4_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -13993,11 +14863,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_0__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -14013,7 +14912,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_0__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -14205,11 +15104,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_1__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -14225,7 +15153,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_1__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -14417,11 +15345,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_2__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -14437,7 +15394,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_2__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -14629,11 +15586,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_3__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -14649,7 +15635,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_3__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -14841,11 +15827,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_4__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -14861,7 +15876,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_4__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -15053,11 +16068,40 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_5__pyx_f_5midas_6cyt
  * 	u += N - i
  * 	u += M - j             # <<<<<<<<<<<<<<
  * 
- * 	# |A intersection B| = |A| + |B| - |A union B|
+ * 	# Avoid divide by zero, define score between empty sets to be zero
  */
   __pyx_v_u = (__pyx_v_u + (__pyx_v_M - __pyx_v_j));
 
   /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_u == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "midas/cython/metrics.pyx":79
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:
+ * 		return 0             # <<<<<<<<<<<<<<
+ * 
+ * 	# |A intersection B| = |A| + |B| - |A union B|
+ */
+    __pyx_r = 0.0;
+    goto __pyx_L0;
+
+    /* "midas/cython/metrics.pyx":78
+ * 
+ * 	# Avoid divide by zero, define score between empty sets to be zero
+ * 	if u == 0:             # <<<<<<<<<<<<<<
+ * 		return 0
+ * 
+ */
+  }
+
+  /* "midas/cython/metrics.pyx":82
  * 
  * 	# |A intersection B| = |A| + |B| - |A union B|
  * 	return <SCORE_T>(N + M - u) / u             # <<<<<<<<<<<<<<
@@ -15073,7 +16117,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_5__pyx_f_5midas_6cyt
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    __PYX_ERR(0, 78, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
   __pyx_r = (__pyx_t_5 / __pyx_v_u);
   goto __pyx_L0;
@@ -15094,7 +16138,7 @@ static __pyx_t_5midas_6cython_7metrics_SCORE_T __pyx_fuse_5_5__pyx_f_5midas_6cyt
   return __pyx_r;
 }
 
-/* "midas/cython/metrics.pyx":81
+/* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -15136,21 +16180,21 @@ static PyObject *__pyx_pw_5midas_6cython_7metrics_3jaccard_coords_col(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_args)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kwargs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_defaults)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 3); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, 3); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_fused_cpdef") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_fused_cpdef") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -15167,7 +16211,7 @@ static PyObject *__pyx_pw_5midas_6cython_7metrics_3jaccard_coords_col(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.__pyx_fused_cpdef", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -15188,12 +16232,12 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   Py_ssize_t __pyx_v_itemsize;
   int __pyx_v_dtype_signed;
   char __pyx_v_kind;
+  int __pyx_v____pyx_int64_t_is_signed;
+  int __pyx_v____pyx_uint64_t_is_signed;
+  int __pyx_v____pyx_uint16_t_is_signed;
+  int __pyx_v____pyx_int32_t_is_signed;
   int __pyx_v____pyx_uint32_t_is_signed;
   int __pyx_v____pyx_int16_t_is_signed;
-  int __pyx_v____pyx_uint16_t_is_signed;
-  int __pyx_v____pyx_int64_t_is_signed;
-  int __pyx_v____pyx_int32_t_is_signed;
-  int __pyx_v____pyx_uint64_t_is_signed;
   PyObject *__pyx_v_arg = NULL;
   PyObject *__pyx_v_dtype = NULL;
   PyObject *__pyx_v_arg_base = NULL;
@@ -15227,7 +16271,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   int __pyx_t_21;
   __Pyx_RefNannySetupContext("jaccard_coords_col", 0);
   __Pyx_INCREF(__pyx_v_kwargs);
-  __pyx_t_1 = PyList_New(1 * 2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1 * 2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   { Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < 2; __pyx_temp++) {
@@ -15241,7 +16285,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   __pyx_t_2 = (__pyx_v_kwargs == Py_None);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_kwargs, __pyx_t_1);
     __pyx_t_1 = 0;
@@ -15254,13 +16298,13 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __Pyx_XGOTREF(__pyx_t_5);
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
-      __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L4_error)
+      __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_v_numpy = __pyx_t_1;
       __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_numpy, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L4_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_numpy, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!(likely(PyType_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "type", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 81, __pyx_L4_error)
+      if (!(likely(PyType_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "type", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 85, __pyx_L4_error)
       __pyx_v_ndarray = ((PyTypeObject*)__pyx_t_1);
       __pyx_t_1 = 0;
     }
@@ -15274,7 +16318,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ImportError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError);
     if (__pyx_t_7) {
       __Pyx_AddTraceback("midas.cython.metrics.__pyx_fused_cpdef", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_8, &__pyx_t_9) < 0) __PYX_ERR(0, 81, __pyx_L6_except_error)
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_8, &__pyx_t_9) < 0) __PYX_ERR(0, 85, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_9);
@@ -15302,24 +16346,24 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __pyx_L11_try_end:;
   }
   __pyx_v_itemsize = -1L;
+  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
+  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
+  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
+  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
   __pyx_v____pyx_uint32_t_is_signed = (((__pyx_t_5numpy_uint32_t)-1L) < 0);
   __pyx_v____pyx_int16_t_is_signed = (((__pyx_t_5numpy_int16_t)-1L) < 0);
-  __pyx_v____pyx_uint16_t_is_signed = (((__pyx_t_5numpy_uint16_t)-1L) < 0);
-  __pyx_v____pyx_int64_t_is_signed = (((__pyx_t_5numpy_int64_t)-1L) < 0);
-  __pyx_v____pyx_int32_t_is_signed = (((__pyx_t_5numpy_int32_t)-1L) < 0);
-  __pyx_v____pyx_uint64_t_is_signed = (((__pyx_t_5numpy_uint64_t)-1L) < 0);
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_t_3 = ((0 < __pyx_t_10) != 0);
   if (__pyx_t_3) {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_9 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __pyx_v_arg = __pyx_t_9;
     __pyx_t_9 = 0;
@@ -15327,16 +16371,16 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   }
   if (unlikely(__pyx_v_kwargs == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_query, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_query, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
     if (unlikely(__pyx_v_kwargs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_9 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_query); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_query); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __pyx_v_arg = __pyx_t_9;
     __pyx_t_9 = 0;
@@ -15345,25 +16389,25 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   /*else*/ {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
-    __pyx_t_9 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_9 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_arguments, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_arguments, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_GIVEREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8);
     __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_Raise(__pyx_t_8, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
   __pyx_L14:;
   while (1) {
@@ -15373,7 +16417,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = __Pyx_TypeCheck(__pyx_v_arg, __pyx_v_ndarray); 
       __pyx_t_2 = (__pyx_t_3 != 0);
       if (__pyx_t_2) {
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __pyx_v_dtype = __pyx_t_8;
         __pyx_t_8 = 0;
@@ -15382,14 +16426,14 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_2 = __pyx_memoryview_check(__pyx_v_arg); 
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_base); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_base); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __pyx_v_arg_base = __pyx_t_8;
         __pyx_t_8 = 0;
         __pyx_t_3 = __Pyx_TypeCheck(__pyx_v_arg_base, __pyx_v_ndarray); 
         __pyx_t_2 = (__pyx_t_3 != 0);
         if (__pyx_t_2) {
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg_base, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg_base, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __pyx_v_dtype = __pyx_t_8;
           __pyx_t_8 = 0;
@@ -15411,14 +16455,14 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_2 = (__pyx_v_dtype != Py_None);
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_v_itemsize = __pyx_t_10;
-        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_kind); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_kind); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_8); if (unlikely(__pyx_t_11 == (long)(Py_UCS4)-1)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_8); if (unlikely(__pyx_t_11 == (long)(Py_UCS4)-1)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_v_kind = __pyx_t_11;
         __pyx_v_dtype_signed = (__pyx_v_kind == 'i');
@@ -15431,9 +16475,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L22_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15445,7 +16489,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L22_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint16_t)) == __pyx_v_itemsize) != 0);
@@ -15454,9 +16498,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L26_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15468,7 +16512,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L26_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_int32_t)) == __pyx_v_itemsize) != 0);
@@ -15477,9 +16521,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L30_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15491,7 +16535,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L30_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint32_t)) == __pyx_v_itemsize) != 0);
@@ -15500,9 +16544,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L34_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15514,7 +16558,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L34_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_int64_t)) == __pyx_v_itemsize) != 0);
@@ -15523,9 +16567,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L38_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15537,7 +16581,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L38_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint64_t)) == __pyx_v_itemsize) != 0);
@@ -15546,9 +16590,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L42_bool_binop_done;
           }
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_8); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15560,7 +16604,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L42_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L16_break;
           }
           break;
@@ -15589,7 +16633,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
@@ -15611,7 +16655,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
@@ -15633,7 +16677,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
@@ -15655,7 +16699,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
@@ -15677,7 +16721,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
@@ -15699,29 +16743,29 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L16_break;
       }
       /*else*/ {
         PyErr_Clear(); 
       }
     }
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
     goto __pyx_L16_break;
   }
   __pyx_L16_break:;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_t_3 = ((1 < __pyx_t_10) != 0);
   if (__pyx_t_3) {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_8 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF_SET(__pyx_v_arg, __pyx_t_8);
     __pyx_t_8 = 0;
@@ -15729,16 +16773,16 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   }
   if (unlikely(__pyx_v_kwargs == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_ref_coords, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_ref_coords, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
     if (unlikely(__pyx_v_kwargs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_8 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_ref_coords); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_ref_coords); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF_SET(__pyx_v_arg, __pyx_t_8);
     __pyx_t_8 = 0;
@@ -15747,25 +16791,25 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   /*else*/ {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
-    __pyx_t_8 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_8 = PyInt_FromSsize_t(__pyx_t_10); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_arguments, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_arguments, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_9);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_9);
     __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_Raise(__pyx_t_9, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
   __pyx_L69:;
   while (1) {
@@ -15775,7 +16819,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = __Pyx_TypeCheck(__pyx_v_arg, __pyx_v_ndarray); 
       __pyx_t_2 = (__pyx_t_3 != 0);
       if (__pyx_t_2) {
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_XDECREF_SET(__pyx_v_dtype, __pyx_t_9);
         __pyx_t_9 = 0;
@@ -15784,14 +16828,14 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_2 = __pyx_memoryview_check(__pyx_v_arg); 
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_base); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_base); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_XDECREF_SET(__pyx_v_arg_base, __pyx_t_9);
         __pyx_t_9 = 0;
         __pyx_t_3 = __Pyx_TypeCheck(__pyx_v_arg_base, __pyx_v_ndarray); 
         __pyx_t_2 = (__pyx_t_3 != 0);
         if (__pyx_t_2) {
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg_base, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg_base, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_XDECREF_SET(__pyx_v_dtype, __pyx_t_9);
           __pyx_t_9 = 0;
@@ -15813,14 +16857,14 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_2 = (__pyx_v_dtype != Py_None);
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_itemsize); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_v_itemsize = __pyx_t_10;
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_kind); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_dtype, __pyx_n_s_kind); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_9); if (unlikely(__pyx_t_11 == (long)(Py_UCS4)-1)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_9); if (unlikely(__pyx_t_11 == (long)(Py_UCS4)-1)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_v_kind = __pyx_t_11;
         __pyx_v_dtype_signed = (__pyx_v_kind == 'i');
@@ -15833,9 +16877,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L77_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15847,7 +16891,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L77_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint16_t)) == __pyx_v_itemsize) != 0);
@@ -15856,9 +16900,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L81_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15870,7 +16914,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L81_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_int32_t)) == __pyx_v_itemsize) != 0);
@@ -15879,9 +16923,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L85_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15893,7 +16937,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L85_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint32_t)) == __pyx_v_itemsize) != 0);
@@ -15902,9 +16946,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L89_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15916,7 +16960,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L89_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_int64_t)) == __pyx_v_itemsize) != 0);
@@ -15925,9 +16969,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L93_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15939,7 +16983,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L93_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           __pyx_t_2 = (((sizeof(__pyx_t_5numpy_uint64_t)) == __pyx_v_itemsize) != 0);
@@ -15948,9 +16992,9 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
             __pyx_t_3 = __pyx_t_2;
             goto __pyx_L97_bool_binop_done;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_n_s_ndim); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyIndex_AsSsize_t(__pyx_t_9); if (unlikely((__pyx_t_10 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __pyx_t_2 = ((((Py_ssize_t)__pyx_t_10) == 1) != 0);
           if (__pyx_t_2) {
@@ -15962,7 +17006,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           __pyx_t_3 = __pyx_t_2;
           __pyx_L97_bool_binop_done:;
           if (__pyx_t_3) {
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             goto __pyx_L71_break;
           }
           break;
@@ -15991,7 +17035,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
@@ -16013,7 +17057,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint16_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
@@ -16035,7 +17079,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
@@ -16057,7 +17101,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint32_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
@@ -16079,7 +17123,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_int64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
@@ -16101,27 +17145,27 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_memslice.memview != 0);
       if (__pyx_t_3) {
         __PYX_XDEC_MEMVIEW((&__pyx_v_memslice), 1); 
-        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, __pyx_n_s_uint64_t, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         goto __pyx_L71_break;
       }
       /*else*/ {
         PyErr_Clear(); 
       }
     }
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 1, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
     goto __pyx_L71_break;
   }
   __pyx_L71_break:;
-  __pyx_t_9 = PyList_New(0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_9 = PyList_New(0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_v_candidates = ((PyObject*)__pyx_t_9);
   __pyx_t_9 = 0;
   __pyx_t_10 = 0;
   if (unlikely(__pyx_v_signatures == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_8 = __Pyx_dict_iterator(((PyObject*)__pyx_v_signatures), 1, ((PyObject *)NULL), (&__pyx_t_13), (&__pyx_t_7)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_dict_iterator(((PyObject*)__pyx_v_signatures), 1, ((PyObject *)NULL), (&__pyx_t_13), (&__pyx_t_7)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
   __pyx_t_9 = __pyx_t_8;
@@ -16129,23 +17173,23 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
   while (1) {
     __pyx_t_14 = __Pyx_dict_iter_next(__pyx_t_9, __pyx_t_13, &__pyx_t_10, &__pyx_t_8, NULL, NULL, __pyx_t_7);
     if (unlikely(__pyx_t_14 == 0)) break;
-    if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_XDECREF_SET(__pyx_v_sig, __pyx_t_8);
     __pyx_t_8 = 0;
     __pyx_v_match_found = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_n_s_strip); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_n_s_strip); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_split); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_split); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
@@ -16153,16 +17197,16 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __Pyx_GIVEREF(__pyx_v_dest_sig);
     PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_dest_sig);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_8 = __pyx_t_1; __Pyx_INCREF(__pyx_t_8); __pyx_t_15 = 0;
       __pyx_t_16 = NULL;
     } else {
-      __pyx_t_15 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+      __pyx_t_15 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_16 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 81, __pyx_L1_error)
+      __pyx_t_16 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 85, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -16170,17 +17214,17 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
         if (likely(PyList_CheckExact(__pyx_t_8))) {
           if (__pyx_t_15 >= PyList_GET_SIZE(__pyx_t_8)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_15); __Pyx_INCREF(__pyx_t_1); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_15); __Pyx_INCREF(__pyx_t_1); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_8, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_8, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_15 >= PyTuple_GET_SIZE(__pyx_t_8)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_15); __Pyx_INCREF(__pyx_t_1); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_15); __Pyx_INCREF(__pyx_t_1); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_8, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_8, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -16190,7 +17234,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 81, __pyx_L1_error)
+            else __PYX_ERR(0, 85, __pyx_L1_error)
           }
           break;
         }
@@ -16206,7 +17250,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 81, __pyx_L1_error)
+          __PYX_ERR(0, 85, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -16219,15 +17263,15 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
         __Pyx_INCREF(__pyx_t_17);
         __Pyx_INCREF(__pyx_t_18);
         #else
-        __pyx_t_17 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_17 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_17);
-        __pyx_t_18 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_18 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_18);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_19 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_19 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_19);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_20 = Py_TYPE(__pyx_t_19)->tp_iternext;
@@ -16235,7 +17279,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
         __Pyx_GOTREF(__pyx_t_17);
         index = 1; __pyx_t_18 = __pyx_t_20(__pyx_t_19); if (unlikely(!__pyx_t_18)) goto __pyx_L128_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_18);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_20(__pyx_t_19), 2) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_20(__pyx_t_19), 2) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
         __pyx_t_20 = NULL;
         __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
         goto __pyx_L129_unpacking_done;
@@ -16243,7 +17287,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
         __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
         __pyx_t_20 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 81, __pyx_L1_error)
+        __PYX_ERR(0, 85, __pyx_L1_error)
         __pyx_L129_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_src_type, __pyx_t_17);
@@ -16253,8 +17297,8 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
       __pyx_t_3 = (__pyx_v_dst_type != Py_None);
       __pyx_t_2 = (__pyx_t_3 != 0);
       if (__pyx_t_2) {
-        __pyx_t_1 = PyObject_RichCompare(__pyx_v_src_type, __pyx_v_dst_type, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_1 = PyObject_RichCompare(__pyx_v_src_type, __pyx_v_dst_type, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         if (__pyx_t_2) {
           __pyx_v_match_found = 1;
@@ -16271,37 +17315,37 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_2jaccard_coords_col(CYTHON_UNU
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_2 = (__pyx_v_match_found != 0);
     if (__pyx_t_2) {
-      __pyx_t_21 = __Pyx_PyList_Append(__pyx_v_candidates, __pyx_v_sig); if (unlikely(__pyx_t_21 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+      __pyx_t_21 = __Pyx_PyList_Append(__pyx_v_candidates, __pyx_v_sig); if (unlikely(__pyx_t_21 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
     }
   }
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_2 = (__pyx_v_candidates != Py_None) && (PyList_GET_SIZE(__pyx_v_candidates) != 0);
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_Raise(__pyx_t_9, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
-  __pyx_t_13 = PyList_GET_SIZE(__pyx_v_candidates); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_13 = PyList_GET_SIZE(__pyx_v_candidates); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_t_3 = ((__pyx_t_13 > 1) != 0);
   if (__pyx_t_3) {
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_Raise(__pyx_t_9, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __PYX_ERR(0, 81, __pyx_L1_error)
+    __PYX_ERR(0, 85, __pyx_L1_error)
   }
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
     if (unlikely(__pyx_v_signatures == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 81, __pyx_L1_error)
+      __PYX_ERR(0, 85, __pyx_L1_error)
     }
-    __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 1, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 1, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_8 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_signatures), __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_signatures), __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_r = __pyx_t_8;
@@ -16367,16 +17411,16 @@ static PyObject *__pyx_fuse_0_0__pyx_pw_5midas_6cython_7metrics_79jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -16385,13 +17429,13 @@ static PyObject *__pyx_fuse_0_0__pyx_pw_5midas_6cython_7metrics_79jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16427,36 +17471,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_78jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -16474,7 +17518,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_78jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -16484,7 +17528,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_78jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -16493,7 +17537,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_78jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -16505,7 +17549,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_78jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -16572,16 +17616,16 @@ static PyObject *__pyx_fuse_0_1__pyx_pw_5midas_6cython_7metrics_81jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -16590,13 +17634,13 @@ static PyObject *__pyx_fuse_0_1__pyx_pw_5midas_6cython_7metrics_81jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16632,36 +17676,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_80jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -16679,7 +17723,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_80jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -16689,7 +17733,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_80jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -16698,7 +17742,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_80jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -16710,7 +17754,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_80jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -16777,16 +17821,16 @@ static PyObject *__pyx_fuse_0_2__pyx_pw_5midas_6cython_7metrics_83jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -16795,13 +17839,13 @@ static PyObject *__pyx_fuse_0_2__pyx_pw_5midas_6cython_7metrics_83jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16837,36 +17881,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_82jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -16884,7 +17928,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_82jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -16894,7 +17938,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_82jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -16903,7 +17947,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_82jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -16915,7 +17959,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_82jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -16982,16 +18026,16 @@ static PyObject *__pyx_fuse_0_3__pyx_pw_5midas_6cython_7metrics_85jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17000,13 +18044,13 @@ static PyObject *__pyx_fuse_0_3__pyx_pw_5midas_6cython_7metrics_85jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17042,36 +18086,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_84jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -17089,7 +18133,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_84jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -17099,7 +18143,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_84jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -17108,7 +18152,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_84jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -17120,7 +18164,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_84jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -17187,16 +18231,16 @@ static PyObject *__pyx_fuse_0_4__pyx_pw_5midas_6cython_7metrics_87jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17205,13 +18249,13 @@ static PyObject *__pyx_fuse_0_4__pyx_pw_5midas_6cython_7metrics_87jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17247,36 +18291,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_86jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -17294,7 +18338,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_86jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -17304,7 +18348,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_86jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -17313,7 +18357,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_86jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -17325,7 +18369,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_86jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -17392,16 +18436,16 @@ static PyObject *__pyx_fuse_0_5__pyx_pw_5midas_6cython_7metrics_89jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17410,13 +18454,13 @@ static PyObject *__pyx_fuse_0_5__pyx_pw_5midas_6cython_7metrics_89jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17452,36 +18496,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_88jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -17499,7 +18543,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_88jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -17509,7 +18553,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_88jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -17518,7 +18562,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_88jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -17530,7 +18574,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_88jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -17597,16 +18641,16 @@ static PyObject *__pyx_fuse_1_0__pyx_pw_5midas_6cython_7metrics_91jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17615,13 +18659,13 @@ static PyObject *__pyx_fuse_1_0__pyx_pw_5midas_6cython_7metrics_91jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17657,36 +18701,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_90jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -17704,7 +18748,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_90jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -17714,7 +18758,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_90jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -17723,7 +18767,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_90jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -17735,7 +18779,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_90jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -17802,16 +18846,16 @@ static PyObject *__pyx_fuse_1_1__pyx_pw_5midas_6cython_7metrics_93jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17820,13 +18864,13 @@ static PyObject *__pyx_fuse_1_1__pyx_pw_5midas_6cython_7metrics_93jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17862,36 +18906,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_92jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -17909,7 +18953,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_92jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -17919,7 +18963,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_92jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -17928,7 +18972,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_92jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -17940,7 +18984,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_92jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -18007,16 +19051,16 @@ static PyObject *__pyx_fuse_1_2__pyx_pw_5midas_6cython_7metrics_95jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18025,13 +19069,13 @@ static PyObject *__pyx_fuse_1_2__pyx_pw_5midas_6cython_7metrics_95jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18067,36 +19111,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_94jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -18114,7 +19158,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_94jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -18124,7 +19168,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_94jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -18133,7 +19177,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_94jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -18145,7 +19189,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_94jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -18212,16 +19256,16 @@ static PyObject *__pyx_fuse_1_3__pyx_pw_5midas_6cython_7metrics_97jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18230,13 +19274,13 @@ static PyObject *__pyx_fuse_1_3__pyx_pw_5midas_6cython_7metrics_97jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18272,36 +19316,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_96jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -18319,7 +19363,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_96jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -18329,7 +19373,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_96jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -18338,7 +19382,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_96jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -18350,7 +19394,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_96jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -18417,16 +19461,16 @@ static PyObject *__pyx_fuse_1_4__pyx_pw_5midas_6cython_7metrics_99jaccard_coords
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18435,13 +19479,13 @@ static PyObject *__pyx_fuse_1_4__pyx_pw_5midas_6cython_7metrics_99jaccard_coords
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18477,36 +19521,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_98jaccard_coords_col(CYTHON_UN
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -18524,7 +19568,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_98jaccard_coords_col(CYTHON_UN
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -18534,7 +19578,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_98jaccard_coords_col(CYTHON_UN
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -18543,7 +19587,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_98jaccard_coords_col(CYTHON_UN
  */
   __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -18555,7 +19599,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_98jaccard_coords_col(CYTHON_UN
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -18622,16 +19666,16 @@ static PyObject *__pyx_fuse_1_5__pyx_pw_5midas_6cython_7metrics_101jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18640,13 +19684,13 @@ static PyObject *__pyx_fuse_1_5__pyx_pw_5midas_6cython_7metrics_101jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18682,36 +19726,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_100jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -18729,7 +19773,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_100jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -18739,7 +19783,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_100jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -18748,7 +19792,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_100jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -18760,7 +19804,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_100jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -18827,16 +19871,16 @@ static PyObject *__pyx_fuse_2_0__pyx_pw_5midas_6cython_7metrics_103jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18845,13 +19889,13 @@ static PyObject *__pyx_fuse_2_0__pyx_pw_5midas_6cython_7metrics_103jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18887,36 +19931,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_102jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -18934,7 +19978,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_102jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -18944,7 +19988,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_102jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -18953,7 +19997,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_102jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -18965,7 +20009,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_102jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -19032,16 +20076,16 @@ static PyObject *__pyx_fuse_2_1__pyx_pw_5midas_6cython_7metrics_105jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19050,13 +20094,13 @@ static PyObject *__pyx_fuse_2_1__pyx_pw_5midas_6cython_7metrics_105jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19092,36 +20136,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_104jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -19139,7 +20183,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_104jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -19149,7 +20193,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_104jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -19158,7 +20202,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_104jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -19170,7 +20214,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_104jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -19237,16 +20281,16 @@ static PyObject *__pyx_fuse_2_2__pyx_pw_5midas_6cython_7metrics_107jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19255,13 +20299,13 @@ static PyObject *__pyx_fuse_2_2__pyx_pw_5midas_6cython_7metrics_107jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19297,36 +20341,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_106jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -19344,7 +20388,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_106jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -19354,7 +20398,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_106jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -19363,7 +20407,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_106jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -19375,7 +20419,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_106jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -19442,16 +20486,16 @@ static PyObject *__pyx_fuse_2_3__pyx_pw_5midas_6cython_7metrics_109jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19460,13 +20504,13 @@ static PyObject *__pyx_fuse_2_3__pyx_pw_5midas_6cython_7metrics_109jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19502,36 +20546,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_108jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -19549,7 +20593,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_108jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -19559,7 +20603,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_108jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -19568,7 +20612,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_108jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -19580,7 +20624,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_108jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -19647,16 +20691,16 @@ static PyObject *__pyx_fuse_2_4__pyx_pw_5midas_6cython_7metrics_111jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19665,13 +20709,13 @@ static PyObject *__pyx_fuse_2_4__pyx_pw_5midas_6cython_7metrics_111jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19707,36 +20751,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_110jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -19754,7 +20798,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_110jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -19764,7 +20808,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_110jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -19773,7 +20817,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_110jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -19785,7 +20829,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_110jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -19852,16 +20896,16 @@ static PyObject *__pyx_fuse_2_5__pyx_pw_5midas_6cython_7metrics_113jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19870,13 +20914,13 @@ static PyObject *__pyx_fuse_2_5__pyx_pw_5midas_6cython_7metrics_113jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19912,36 +20956,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_112jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -19959,7 +21003,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_112jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -19969,7 +21013,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_112jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -19978,7 +21022,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_112jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -19990,7 +21034,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_112jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -20057,16 +21101,16 @@ static PyObject *__pyx_fuse_3_0__pyx_pw_5midas_6cython_7metrics_115jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -20075,13 +21119,13 @@ static PyObject *__pyx_fuse_3_0__pyx_pw_5midas_6cython_7metrics_115jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20117,36 +21161,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_114jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -20164,7 +21208,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_114jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -20174,7 +21218,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_114jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -20183,7 +21227,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_114jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -20195,7 +21239,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_114jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -20262,16 +21306,16 @@ static PyObject *__pyx_fuse_3_1__pyx_pw_5midas_6cython_7metrics_117jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -20280,13 +21324,13 @@ static PyObject *__pyx_fuse_3_1__pyx_pw_5midas_6cython_7metrics_117jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20322,36 +21366,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_116jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -20369,7 +21413,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_116jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -20379,7 +21423,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_116jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -20388,7 +21432,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_116jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -20400,7 +21444,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_116jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -20467,16 +21511,16 @@ static PyObject *__pyx_fuse_3_2__pyx_pw_5midas_6cython_7metrics_119jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -20485,13 +21529,13 @@ static PyObject *__pyx_fuse_3_2__pyx_pw_5midas_6cython_7metrics_119jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20527,36 +21571,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_118jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -20574,7 +21618,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_118jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -20584,7 +21628,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_118jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -20593,7 +21637,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_118jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -20605,7 +21649,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_118jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -20672,16 +21716,16 @@ static PyObject *__pyx_fuse_3_3__pyx_pw_5midas_6cython_7metrics_121jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -20690,13 +21734,13 @@ static PyObject *__pyx_fuse_3_3__pyx_pw_5midas_6cython_7metrics_121jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20732,36 +21776,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_120jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -20779,7 +21823,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_120jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -20789,7 +21833,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_120jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -20798,7 +21842,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_120jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -20810,7 +21854,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_120jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -20877,16 +21921,16 @@ static PyObject *__pyx_fuse_3_4__pyx_pw_5midas_6cython_7metrics_123jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -20895,13 +21939,13 @@ static PyObject *__pyx_fuse_3_4__pyx_pw_5midas_6cython_7metrics_123jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20937,36 +21981,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_122jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -20984,7 +22028,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_122jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -20994,7 +22038,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_122jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -21003,7 +22047,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_122jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -21015,7 +22059,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_122jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -21082,16 +22126,16 @@ static PyObject *__pyx_fuse_3_5__pyx_pw_5midas_6cython_7metrics_125jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -21100,13 +22144,13 @@ static PyObject *__pyx_fuse_3_5__pyx_pw_5midas_6cython_7metrics_125jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21142,36 +22186,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_124jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -21189,7 +22233,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_124jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -21199,7 +22243,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_124jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -21208,7 +22252,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_124jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -21220,7 +22264,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_124jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -21287,16 +22331,16 @@ static PyObject *__pyx_fuse_4_0__pyx_pw_5midas_6cython_7metrics_127jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -21305,13 +22349,13 @@ static PyObject *__pyx_fuse_4_0__pyx_pw_5midas_6cython_7metrics_127jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21347,36 +22391,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_126jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -21394,7 +22438,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_126jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -21404,7 +22448,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_126jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -21413,7 +22457,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_126jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -21425,7 +22469,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_126jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -21492,16 +22536,16 @@ static PyObject *__pyx_fuse_4_1__pyx_pw_5midas_6cython_7metrics_129jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -21510,13 +22554,13 @@ static PyObject *__pyx_fuse_4_1__pyx_pw_5midas_6cython_7metrics_129jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21552,36 +22596,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_128jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -21599,7 +22643,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_128jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -21609,7 +22653,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_128jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -21618,7 +22662,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_128jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -21630,7 +22674,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_128jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -21697,16 +22741,16 @@ static PyObject *__pyx_fuse_4_2__pyx_pw_5midas_6cython_7metrics_131jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -21715,13 +22759,13 @@ static PyObject *__pyx_fuse_4_2__pyx_pw_5midas_6cython_7metrics_131jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21757,36 +22801,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_130jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -21804,7 +22848,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_130jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -21814,7 +22858,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_130jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -21823,7 +22867,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_130jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -21835,7 +22879,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_130jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -21902,16 +22946,16 @@ static PyObject *__pyx_fuse_4_3__pyx_pw_5midas_6cython_7metrics_133jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -21920,13 +22964,13 @@ static PyObject *__pyx_fuse_4_3__pyx_pw_5midas_6cython_7metrics_133jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21962,36 +23006,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_132jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -22009,7 +23053,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_132jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -22019,7 +23063,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_132jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -22028,7 +23072,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_132jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -22040,7 +23084,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_132jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -22107,16 +23151,16 @@ static PyObject *__pyx_fuse_4_4__pyx_pw_5midas_6cython_7metrics_135jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -22125,13 +23169,13 @@ static PyObject *__pyx_fuse_4_4__pyx_pw_5midas_6cython_7metrics_135jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22167,36 +23211,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_134jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -22214,7 +23258,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_134jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -22224,7 +23268,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_134jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -22233,7 +23277,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_134jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -22245,7 +23289,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_134jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -22312,16 +23356,16 @@ static PyObject *__pyx_fuse_4_5__pyx_pw_5midas_6cython_7metrics_137jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -22330,13 +23374,13 @@ static PyObject *__pyx_fuse_4_5__pyx_pw_5midas_6cython_7metrics_137jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22372,36 +23416,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_136jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -22419,7 +23463,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_136jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -22429,7 +23473,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_136jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -22438,7 +23482,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_136jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -22450,7 +23494,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_136jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -22517,16 +23561,16 @@ static PyObject *__pyx_fuse_5_0__pyx_pw_5midas_6cython_7metrics_139jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -22535,13 +23579,13 @@ static PyObject *__pyx_fuse_5_0__pyx_pw_5midas_6cython_7metrics_139jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22577,36 +23621,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_138jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -22624,7 +23668,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_138jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -22634,7 +23678,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_138jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -22643,7 +23687,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_138jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -22655,7 +23699,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_138jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -22722,16 +23766,16 @@ static PyObject *__pyx_fuse_5_1__pyx_pw_5midas_6cython_7metrics_141jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -22740,13 +23784,13 @@ static PyObject *__pyx_fuse_5_1__pyx_pw_5midas_6cython_7metrics_141jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint16_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22782,36 +23826,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_140jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -22829,7 +23873,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_140jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -22839,7 +23883,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_140jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -22848,7 +23892,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_140jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -22860,7 +23904,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_140jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -22927,16 +23971,16 @@ static PyObject *__pyx_fuse_5_2__pyx_pw_5midas_6cython_7metrics_143jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -22945,13 +23989,13 @@ static PyObject *__pyx_fuse_5_2__pyx_pw_5midas_6cython_7metrics_143jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22987,36 +24031,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_142jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -23034,7 +24078,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_142jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -23044,7 +24088,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_142jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -23053,7 +24097,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_142jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -23065,7 +24109,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_142jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -23132,16 +24176,16 @@ static PyObject *__pyx_fuse_5_3__pyx_pw_5midas_6cython_7metrics_145jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -23150,13 +24194,13 @@ static PyObject *__pyx_fuse_5_3__pyx_pw_5midas_6cython_7metrics_145jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint32_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -23192,36 +24236,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_144jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -23239,7 +24283,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_144jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -23249,7 +24293,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_144jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -23258,7 +24302,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_144jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -23270,7 +24314,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_144jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -23337,16 +24381,16 @@ static PyObject *__pyx_fuse_5_4__pyx_pw_5midas_6cython_7metrics_147jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -23355,13 +24399,13 @@ static PyObject *__pyx_fuse_5_4__pyx_pw_5midas_6cython_7metrics_147jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_int64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -23397,36 +24441,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_146jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -23444,7 +24488,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_146jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -23454,7 +24498,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_146jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -23463,7 +24507,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_146jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -23475,7 +24519,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_146jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -23542,16 +24586,16 @@ static PyObject *__pyx_fuse_5_5__pyx_pw_5midas_6cython_7metrics_149jaccard_coord
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 1); __PYX_ERR(0, 85, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ref_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, 2); __PYX_ERR(0, 85, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaccard_coords_col") < 0)) __PYX_ERR(0, 85, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -23560,13 +24604,13 @@ static PyObject *__pyx_fuse_5_5__pyx_pw_5midas_6cython_7metrics_149jaccard_coord
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 81, __pyx_L3_error)
-    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 82, __pyx_L3_error)
-    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_query = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[0]); if (unlikely(!__pyx_v_query.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_ref_coords = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5numpy_uint64_t(values[1]); if (unlikely(!__pyx_v_ref_coords.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_ref_bounds = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T(values[2]); if (unlikely(!__pyx_v_ref_bounds.memview)) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaccard_coords_col", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("midas.cython.metrics.jaccard_coords_col", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -23602,36 +24646,36 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
   __pyx_pybuffernd_out_array.data = NULL;
   __pyx_pybuffernd_out_array.rcbuffer = &__pyx_pybuffer_out_array;
 
-  /* "midas/cython/metrics.pyx":112
+  /* "midas/cython/metrics.pyx":116
  * 	cdef np.ndarray[SCORE_T, ndim=1] out_array
  * 	cdef SCORE_T[:] out
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)             # <<<<<<<<<<<<<<
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  */
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_ref_bounds, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5midas_6cython_7metrics_BOUNDS_T, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t((__pyx_t_2 - 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_SCORE_DTYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5numpy_ndarray), __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_ds_nn___pyx_t_5midas_6cython_7metrics_SCORE_T(__pyx_t_4);
-  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 116, __pyx_L1_error)
   __PYX_INC_MEMVIEW(&__pyx_t_5, 0);
   __pyx_v_out = __pyx_t_5;
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_4);
@@ -23649,7 +24693,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
       }
     }
     __pyx_pybuffernd_out_array.diminfo[0].strides = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_array.diminfo[0].shape = __pyx_pybuffernd_out_array.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
   }
   __pyx_t_6 = 0;
   __Pyx_INCREF(__pyx_t_4);
@@ -23659,7 +24703,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
   __pyx_t_5.data = NULL;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "midas/cython/metrics.pyx":114
+  /* "midas/cython/metrics.pyx":118
  * 	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
  * 
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)             # <<<<<<<<<<<<<<
@@ -23668,7 +24712,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
  */
   __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(__pyx_v_query, __pyx_v_ref_coords, __pyx_v_ref_bounds, __pyx_v_out);
 
-  /* "midas/cython/metrics.pyx":116
+  /* "midas/cython/metrics.pyx":120
  * 	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
  * 
  * 	return out_array             # <<<<<<<<<<<<<<
@@ -23680,7 +24724,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
   __pyx_r = ((PyObject *)__pyx_v_out_array);
   goto __pyx_L0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -23716,7 +24760,7 @@ static PyObject *__pyx_pf_5midas_6cython_7metrics_148jaccard_coords_col(CYTHON_U
   return __pyx_r;
 }
 
-/* "midas/cython/metrics.pyx":121
+/* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -23738,7 +24782,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -23747,7 +24791,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -23776,7 +24820,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -23807,7 +24851,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -23817,7 +24861,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -23826,7 +24870,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -23849,7 +24893,7 @@ static void __pyx_fuse_0_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -23985,7 +25029,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -24015,7 +25059,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -24024,7 +25068,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -24053,7 +25097,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -24084,7 +25128,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -24094,7 +25138,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -24103,7 +25147,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -24126,7 +25170,7 @@ static void __pyx_fuse_0_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -24262,7 +25306,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -24292,7 +25336,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -24301,7 +25345,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -24330,7 +25374,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -24361,7 +25405,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -24371,7 +25415,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -24380,7 +25424,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -24403,7 +25447,7 @@ static void __pyx_fuse_0_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -24539,7 +25583,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -24569,7 +25613,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -24578,7 +25622,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -24607,7 +25651,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -24638,7 +25682,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -24648,7 +25692,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -24657,7 +25701,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -24680,7 +25724,7 @@ static void __pyx_fuse_0_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -24816,7 +25860,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -24846,7 +25890,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -24855,7 +25899,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -24884,7 +25928,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -24915,7 +25959,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -24925,7 +25969,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -24934,7 +25978,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -24957,7 +26001,7 @@ static void __pyx_fuse_0_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -25093,7 +26137,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -25123,7 +26167,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -25132,7 +26176,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -25161,7 +26205,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -25192,7 +26236,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -25202,7 +26246,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -25211,7 +26255,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -25234,7 +26278,7 @@ static void __pyx_fuse_0_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -25370,7 +26414,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -25400,7 +26444,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -25409,7 +26453,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -25438,7 +26482,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -25469,7 +26513,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -25479,7 +26523,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -25488,7 +26532,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -25511,7 +26555,7 @@ static void __pyx_fuse_1_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -25647,7 +26691,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -25677,7 +26721,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -25686,7 +26730,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -25715,7 +26759,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -25746,7 +26790,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -25756,7 +26800,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -25765,7 +26809,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -25788,7 +26832,7 @@ static void __pyx_fuse_1_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -25924,7 +26968,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -25954,7 +26998,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -25963,7 +27007,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -25992,7 +27036,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -26023,7 +27067,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -26033,7 +27077,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -26042,7 +27086,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -26065,7 +27109,7 @@ static void __pyx_fuse_1_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -26201,7 +27245,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -26231,7 +27275,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -26240,7 +27284,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -26269,7 +27313,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -26300,7 +27344,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -26310,7 +27354,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -26319,7 +27363,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -26342,7 +27386,7 @@ static void __pyx_fuse_1_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -26478,7 +27522,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -26508,7 +27552,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -26517,7 +27561,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -26546,7 +27590,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -26577,7 +27621,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -26587,7 +27631,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -26596,7 +27640,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -26619,7 +27663,7 @@ static void __pyx_fuse_1_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -26755,7 +27799,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -26785,7 +27829,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -26794,7 +27838,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -26823,7 +27867,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -26854,7 +27898,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -26864,7 +27908,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -26873,7 +27917,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -26896,7 +27940,7 @@ static void __pyx_fuse_1_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -27032,7 +28076,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -27062,7 +28106,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -27071,7 +28115,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -27100,7 +28144,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -27131,7 +28175,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -27141,7 +28185,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -27150,7 +28194,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -27173,7 +28217,7 @@ static void __pyx_fuse_2_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -27309,7 +28353,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -27339,7 +28383,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -27348,7 +28392,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -27377,7 +28421,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -27408,7 +28452,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -27418,7 +28462,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -27427,7 +28471,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -27450,7 +28494,7 @@ static void __pyx_fuse_2_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -27586,7 +28630,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -27616,7 +28660,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -27625,7 +28669,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -27654,7 +28698,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -27685,7 +28729,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -27695,7 +28739,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -27704,7 +28748,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -27727,7 +28771,7 @@ static void __pyx_fuse_2_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -27863,7 +28907,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -27893,7 +28937,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -27902,7 +28946,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -27931,7 +28975,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -27962,7 +29006,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -27972,7 +29016,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -27981,7 +29025,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -28004,7 +29048,7 @@ static void __pyx_fuse_2_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -28140,7 +29184,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -28170,7 +29214,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -28179,7 +29223,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -28208,7 +29252,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -28239,7 +29283,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -28249,7 +29293,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -28258,7 +29302,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -28281,7 +29325,7 @@ static void __pyx_fuse_2_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -28417,7 +29461,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -28447,7 +29491,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -28456,7 +29500,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -28485,7 +29529,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -28516,7 +29560,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -28526,7 +29570,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -28535,7 +29579,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -28558,7 +29602,7 @@ static void __pyx_fuse_2_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -28694,7 +29738,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -28724,7 +29768,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -28733,7 +29777,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -28762,7 +29806,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -28793,7 +29837,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -28803,7 +29847,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -28812,7 +29856,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -28835,7 +29879,7 @@ static void __pyx_fuse_3_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -28971,7 +30015,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -29001,7 +30045,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -29010,7 +30054,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -29039,7 +30083,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -29070,7 +30114,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -29080,7 +30124,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -29089,7 +30133,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -29112,7 +30156,7 @@ static void __pyx_fuse_3_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -29248,7 +30292,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -29278,7 +30322,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -29287,7 +30331,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -29316,7 +30360,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -29347,7 +30391,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -29357,7 +30401,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -29366,7 +30410,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -29389,7 +30433,7 @@ static void __pyx_fuse_3_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -29525,7 +30569,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -29555,7 +30599,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -29564,7 +30608,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -29593,7 +30637,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -29624,7 +30668,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -29634,7 +30678,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -29643,7 +30687,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -29666,7 +30710,7 @@ static void __pyx_fuse_3_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -29802,7 +30846,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -29832,7 +30876,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -29841,7 +30885,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -29870,7 +30914,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -29901,7 +30945,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -29911,7 +30955,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -29920,7 +30964,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -29943,7 +30987,7 @@ static void __pyx_fuse_3_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -30079,7 +31123,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -30109,7 +31153,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -30118,7 +31162,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -30147,7 +31191,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -30178,7 +31222,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -30188,7 +31232,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -30197,7 +31241,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -30220,7 +31264,7 @@ static void __pyx_fuse_3_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -30356,7 +31400,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -30386,7 +31430,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -30395,7 +31439,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -30424,7 +31468,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -30455,7 +31499,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -30465,7 +31509,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -30474,7 +31518,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -30497,7 +31541,7 @@ static void __pyx_fuse_4_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -30633,7 +31677,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -30663,7 +31707,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -30672,7 +31716,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -30701,7 +31745,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -30732,7 +31776,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -30742,7 +31786,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -30751,7 +31795,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -30774,7 +31818,7 @@ static void __pyx_fuse_4_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -30910,7 +31954,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -30940,7 +31984,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -30949,7 +31993,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -30978,7 +32022,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -31009,7 +32053,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -31019,7 +32063,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -31028,7 +32072,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -31051,7 +32095,7 @@ static void __pyx_fuse_4_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -31187,7 +32231,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -31217,7 +32261,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -31226,7 +32270,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -31255,7 +32299,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -31286,7 +32330,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -31296,7 +32340,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -31305,7 +32349,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -31328,7 +32372,7 @@ static void __pyx_fuse_4_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -31464,7 +32508,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -31494,7 +32538,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -31503,7 +32547,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -31532,7 +32576,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -31563,7 +32607,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -31573,7 +32617,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -31582,7 +32626,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -31605,7 +32649,7 @@ static void __pyx_fuse_4_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -31741,7 +32785,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -31771,7 +32815,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -31780,7 +32824,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -31809,7 +32853,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -31840,7 +32884,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -31850,7 +32894,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -31859,7 +32903,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -31882,7 +32926,7 @@ static void __pyx_fuse_4_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -32018,7 +33062,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -32048,7 +33092,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -32057,7 +33101,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -32086,7 +33130,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -32117,7 +33161,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -32127,7 +33171,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -32136,7 +33180,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -32159,7 +33203,7 @@ static void __pyx_fuse_5_0__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -32295,7 +33339,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -32325,7 +33369,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -32334,7 +33378,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -32363,7 +33407,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -32394,7 +33438,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -32404,7 +33448,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -32413,7 +33457,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -32436,7 +33480,7 @@ static void __pyx_fuse_5_1__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -32572,7 +33616,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -32602,7 +33646,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -32611,7 +33655,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -32640,7 +33684,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -32671,7 +33715,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -32681,7 +33725,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -32690,7 +33734,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -32713,7 +33757,7 @@ static void __pyx_fuse_5_2__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -32849,7 +33893,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -32879,7 +33923,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -32888,7 +33932,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -32917,7 +33961,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -32948,7 +33992,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -32958,7 +34002,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -32967,7 +34011,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -32990,7 +34034,7 @@ static void __pyx_fuse_5_3__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -33126,7 +34170,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -33156,7 +34200,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -33165,7 +34209,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -33194,7 +34238,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -33225,7 +34269,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -33235,7 +34279,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -33244,7 +34288,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -33267,7 +34311,7 @@ static void __pyx_fuse_5_4__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -33403,7 +34447,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -33433,7 +34477,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
   int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
 
-  /* "midas/cython/metrics.pyx":132
+  /* "midas/cython/metrics.pyx":136
  * 	"""
  * 
  * 	cdef np.intp_t N = ref_bounds.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -33442,7 +34486,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
  */
   __pyx_v_N = ((__pyx_v_ref_bounds.shape[0]) - 1);
 
-  /* "midas/cython/metrics.pyx":136
+  /* "midas/cython/metrics.pyx":140
  * 	cdef int i
  * 
  * 	with parallel():             # <<<<<<<<<<<<<<
@@ -33471,7 +34515,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
           Py_BEGIN_ALLOW_THREADS
           #endif /* _OPENMP */
 
-          /* "midas/cython/metrics.pyx":137
+          /* "midas/cython/metrics.pyx":141
  * 
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):             # <<<<<<<<<<<<<<
@@ -33502,7 +34546,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_v_begin = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
                           __pyx_v_end = ((__pyx_t_5midas_6cython_7metrics_BOUNDS_T)0xbad0bad0);
 
-                          /* "midas/cython/metrics.pyx":138
+                          /* "midas/cython/metrics.pyx":142
  * 	with parallel():
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]             # <<<<<<<<<<<<<<
@@ -33512,7 +34556,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_4 = __pyx_v_i;
                           __pyx_v_begin = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_4 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":139
+                          /* "midas/cython/metrics.pyx":143
  * 		for i in prange(N, schedule='dynamic'):
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]             # <<<<<<<<<<<<<<
@@ -33521,7 +34565,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
                           __pyx_t_5 = (__pyx_v_i + 1);
                           __pyx_v_end = (*((__pyx_t_5midas_6cython_7metrics_BOUNDS_T *) ( /* dim=0 */ (__pyx_v_ref_bounds.data + __pyx_t_5 * __pyx_v_ref_bounds.strides[0]) )));
 
-                          /* "midas/cython/metrics.pyx":140
+                          /* "midas/cython/metrics.pyx":144
  * 			begin = ref_bounds[i]
  * 			end = ref_bounds[i+1]
  * 			out[i] = c_jaccard_coords(query, ref_coords[begin:end])             # <<<<<<<<<<<<<<
@@ -33544,7 +34588,7 @@ static void __pyx_fuse_5_5__pyx_f_5midas_6cython_7metrics_c_jaccard_coords_col(_
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 140, __pyx_L9_error)
+    __PYX_ERR(0, 144, __pyx_L9_error)
 }
 
 __pyx_t_8 = __pyx_v_i;
@@ -33680,7 +34724,7 @@ __pyx_t_8 = __pyx_v_i;
       #define unlikely(x) __builtin_expect(!!(x), 0)
   #endif
 
-  /* "midas/cython/metrics.pyx":121
+  /* "midas/cython/metrics.pyx":125
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void c_jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
@@ -48743,23 +49787,23 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
  *                        COORDS_T_2[:] ref_coords,
  *                        BOUNDS_T[:] ref_bounds):
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s__3); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s__3); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_No_matching_signature_found); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_No_matching_signature_found); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_Function_call_with_ambiguous_arg); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_Function_call_with_ambiguous_arg); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
@@ -49018,17 +50062,17 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__33);
   __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jared_git_midas_midas_cyth, __pyx_n_s_jaccard_coords, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 15, __pyx_L1_error)
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
  *                        COORDS_T_2[:] ref_coords,
  *                        BOUNDS_T[:] ref_bounds):
  */
-  __pyx_tuple__35 = PyTuple_Pack(5, __pyx_n_s_query, __pyx_n_s_ref_coords, __pyx_n_s_ref_bounds, __pyx_n_s_out_array, __pyx_n_s_out); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(5, __pyx_n_s_query, __pyx_n_s_ref_coords, __pyx_n_s_ref_bounds, __pyx_n_s_out_array, __pyx_n_s_out); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jared_git_midas_midas_cyth, __pyx_n_s_jaccard_coords_col, 81, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jared_git_midas_midas_cyth, __pyx_n_s_jaccard_coords_col, 85, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 85, __pyx_L1_error)
 
   /* "View.MemoryView":282
  *         return self.name
@@ -49580,201 +50624,201 @@ PyMODINIT_FUNC PyInit_metrics(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaccard_coords, __pyx_t_2) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "midas/cython/metrics.pyx":81
+  /* "midas/cython/metrics.pyx":85
  * 
  * 
  * def jaccard_coords_col(COORDS_T[:] query,             # <<<<<<<<<<<<<<
  *                        COORDS_T_2[:] ref_coords,
  *                        BOUNDS_T[:] ref_bounds):
  */
-  __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_0__pyx_mdef_5midas_6cython_7metrics_79jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_0__pyx_mdef_5midas_6cython_7metrics_79jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_1__pyx_mdef_5midas_6cython_7metrics_81jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_1__pyx_mdef_5midas_6cython_7metrics_81jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_2__pyx_mdef_5midas_6cython_7metrics_83jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_2__pyx_mdef_5midas_6cython_7metrics_83jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_3__pyx_mdef_5midas_6cython_7metrics_85jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_3__pyx_mdef_5midas_6cython_7metrics_85jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_4__pyx_mdef_5midas_6cython_7metrics_87jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_4__pyx_mdef_5midas_6cython_7metrics_87jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_5__pyx_mdef_5midas_6cython_7metrics_89jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_0_5__pyx_mdef_5midas_6cython_7metrics_89jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int16_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_0__pyx_mdef_5midas_6cython_7metrics_91jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_0__pyx_mdef_5midas_6cython_7metrics_91jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_1__pyx_mdef_5midas_6cython_7metrics_93jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_1__pyx_mdef_5midas_6cython_7metrics_93jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_2__pyx_mdef_5midas_6cython_7metrics_95jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_2__pyx_mdef_5midas_6cython_7metrics_95jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_3__pyx_mdef_5midas_6cython_7metrics_97jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_3__pyx_mdef_5midas_6cython_7metrics_97jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_4__pyx_mdef_5midas_6cython_7metrics_99jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_4__pyx_mdef_5midas_6cython_7metrics_99jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_5__pyx_mdef_5midas_6cython_7metrics_101jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_1_5__pyx_mdef_5midas_6cython_7metrics_101jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint16_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_0__pyx_mdef_5midas_6cython_7metrics_103jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_0__pyx_mdef_5midas_6cython_7metrics_103jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_1__pyx_mdef_5midas_6cython_7metrics_105jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_1__pyx_mdef_5midas_6cython_7metrics_105jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_2__pyx_mdef_5midas_6cython_7metrics_107jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_2__pyx_mdef_5midas_6cython_7metrics_107jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_3__pyx_mdef_5midas_6cython_7metrics_109jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_3__pyx_mdef_5midas_6cython_7metrics_109jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_4__pyx_mdef_5midas_6cython_7metrics_111jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_4__pyx_mdef_5midas_6cython_7metrics_111jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_5__pyx_mdef_5midas_6cython_7metrics_113jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_2_5__pyx_mdef_5midas_6cython_7metrics_113jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int32_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_0__pyx_mdef_5midas_6cython_7metrics_115jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_0__pyx_mdef_5midas_6cython_7metrics_115jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_1__pyx_mdef_5midas_6cython_7metrics_117jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_1__pyx_mdef_5midas_6cython_7metrics_117jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_2__pyx_mdef_5midas_6cython_7metrics_119jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_2__pyx_mdef_5midas_6cython_7metrics_119jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_3__pyx_mdef_5midas_6cython_7metrics_121jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_3__pyx_mdef_5midas_6cython_7metrics_121jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_4__pyx_mdef_5midas_6cython_7metrics_123jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_4__pyx_mdef_5midas_6cython_7metrics_123jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_5__pyx_mdef_5midas_6cython_7metrics_125jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_3_5__pyx_mdef_5midas_6cython_7metrics_125jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint32_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_0__pyx_mdef_5midas_6cython_7metrics_127jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_0__pyx_mdef_5midas_6cython_7metrics_127jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_1__pyx_mdef_5midas_6cython_7metrics_129jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_1__pyx_mdef_5midas_6cython_7metrics_129jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_2__pyx_mdef_5midas_6cython_7metrics_131jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_2__pyx_mdef_5midas_6cython_7metrics_131jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_3__pyx_mdef_5midas_6cython_7metrics_133jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_3__pyx_mdef_5midas_6cython_7metrics_133jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_4__pyx_mdef_5midas_6cython_7metrics_135jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_4__pyx_mdef_5midas_6cython_7metrics_135jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_5__pyx_mdef_5midas_6cython_7metrics_137jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_4_5__pyx_mdef_5midas_6cython_7metrics_137jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_int64_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_0__pyx_mdef_5midas_6cython_7metrics_139jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_0__pyx_mdef_5midas_6cython_7metrics_139jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_1__pyx_mdef_5midas_6cython_7metrics_141jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_1__pyx_mdef_5midas_6cython_7metrics_141jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint16_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_2__pyx_mdef_5midas_6cython_7metrics_143jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_2__pyx_mdef_5midas_6cython_7metrics_143jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_3__pyx_mdef_5midas_6cython_7metrics_145jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_3__pyx_mdef_5midas_6cython_7metrics_145jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint32_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_4__pyx_mdef_5midas_6cython_7metrics_147jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_4__pyx_mdef_5midas_6cython_7metrics_147jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_int64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_5__pyx_mdef_5midas_6cython_7metrics_149jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_fuse_5_5__pyx_mdef_5midas_6cython_7metrics_149jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_kp_s_uint64_t_uint64_t, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_mdef_5midas_6cython_7metrics_3jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_4 = __pyx_FusedFunction_NewEx(&__pyx_mdef_5midas_6cython_7metrics_3jaccard_coords_col, 0, __pyx_n_s_jaccard_coords_col, NULL, __pyx_n_s_midas_cython_metrics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_empty_tuple);
   ((__pyx_FusedFunctionObject *) __pyx_t_4)->__signatures__ = __pyx_t_3;
   __Pyx_GIVEREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaccard_coords_col, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaccard_coords_col, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "midas/cython/metrics.pyx":1
