@@ -321,7 +321,9 @@ class SignatureArray(collections.Sequence):
 		:rtype: .SignatureArray
 		"""
 
-		bounds = np.zeros(len(lengths) + 1, dtype='i8')
+		from midas.cython.metrics import BOUNDS_DTYPE
+
+		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)
 		bounds[1:] = np.cumsum(lengths)
 
 		if values is None:
