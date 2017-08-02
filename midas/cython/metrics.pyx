@@ -43,15 +43,20 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 	"""
 
 	cdef:
+		# Lengths of the two arrays
 		np.intp_t N = coords1.shape[0]
 		np.intp_t M = coords2.shape[0]
 
+		# Index and value of items in each array as we are iterating
 		np.intp_t i = 0, j = 0
 		COORDS_T a
 		COORDS_T_2 b
 
-		np.intp_t u = 0
+		np.intp_t u = 0  # Size of union
 
+	# Iterate through both arrays simultaneously, advance index for the array
+	# with the smaller value. Advance both if they are equal. Increment the
+	# union count each loop.
 	while i < N and j < M:
 		a = coords1[i]
 		b = coords2[j]
@@ -64,9 +69,12 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 		if b <= a:
 			j += 1
 
+	# In most cases we won't have i == N and j == M at the end of the loop,
+	# account for the items that we didn't get through
 	u += N - i
 	u += M - j
 
+	# |A intersection B| = |A| + |B| - |A union B|
 	return <SCORE_T>(N + M - u) / u
 
 
