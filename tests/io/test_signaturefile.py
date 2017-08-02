@@ -98,6 +98,21 @@ def test_read_all(sigarray, sigfile):
 	assert np.array_equal(sigarray.bounds, sigarray2.bounds)
 
 
+def test_read_subset(sigarray, sigfile):
+	"""Test reading a subset of signatures into an array."""
+
+	n = len(sigarray)
+	random = np.random.RandomState()
+	indices = random.choice(n, n // 2)
+
+	subarray = sigfile.get_array(indices)
+
+	assert len(subarray) == len(indices)
+
+	for idx, sig in zip(indices, subarray):
+		assert np.array_equal(sig, sigarray[idx])
+
+
 def test_iter(sigarray, sigfile):
 	"""Test iterating over signatures."""
 

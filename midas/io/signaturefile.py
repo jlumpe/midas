@@ -114,19 +114,48 @@ class SignatureFile:
 		if header.version != cls._VERSION:
 			raise ValueError('Unexpected version identifier')
 
-	def get_array(self):
+	def get_array(self, indices=None):
 		"""Read signatures from file as a SignatureArray.
 
 		:type: midas.kmers.SignatureArray
 		"""
 
-		self.fobj.seek(self._header.offsets['data'][0])
-		values = read_npy(self.fobj, self.dtype, shape=self.nelems)
+		# Use this dtype as it is what the Cython metric functions expect
+		from midas.cython.metrics import BOUNDS_DTYPE
 
-		bounds = np.zeros(self.count + 1, dtype='u8')
+		data_start = self._header.offsets['data'][0]
+
+		# Calculate sub-array bounds from lengths
+		bounds = np.zeros(self.count + 1, dtype=BOUNDS_DTYPE)
 		bounds[1:] = np.cumsum(self.lengths)
 
-		return SignatureArray(values, bounds)
+		if indices is None:
+
+			# Just read all the data in one shot
+			self.fobj.seek(data_start)
+			values = read_npy(self.fobj, self.dtype, shape=self.nelems)
+
+			return SignatureArray(values, bounds)
+
+		else:
+
+			# Calculate bounds for indices only
+			subset_bounds = np.zeros(len(indices) + 1, dtype=BOUNDS_DTYPE)
+			subset_bounds[1:] = np.cumsum(self.lengths[indices])
+
+			values = np.zeros(subset_bounds[-1], dtype=self.dtype)
+
+			# Read one at a time, in order of position in file
+			index_pairs_sorted = sorted((j, i) for i, j in enumerate(indices))
+
+			for file_idx, out_idx in index_pairs_sorted:
+
+				self.fobj.seek(data_start + bounds[file_idx] * self.dtype.itemsize)
+				signature = read_npy(self.fobj, self.dtype, self.lengths[file_idx])
+
+				values[subset_bounds[out_idx]:subset_bounds[out_idx + 1]] = signature
+
+			return SignatureArray(values, subset_bounds)
 
 	def iter_signatures(self):
 		"""Iterate over signatures in the file.
