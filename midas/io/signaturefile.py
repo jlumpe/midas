@@ -46,6 +46,10 @@ class SignatureFile:
 
 		True if file has metadata stored, False otherwise.
 
+	.. attribute:: closed
+
+		True if :attr:`fobj` is closed, False otherwise.
+
 	:param fobj: Readable file-like object in binary mode.
 	"""
 
@@ -111,6 +115,14 @@ class SignatureFile:
 
 	def __exit__(self, *args):
 		self.fobj.close()
+
+	def close(self):
+		"""Close the underlying file stream."""
+		self.fobj.close()
+
+	@property
+	def closed(self):
+		return self.fobj.closed
 
 	@classmethod
 	def _validate_header(cls, header):
