@@ -15,6 +15,8 @@ class SignatureFile:
 	Constructor creates an object to read data from a stream. Use the
 	:meth:`write` method to write data to a file.
 
+	Acts as a context manager which closes its stream on exit.
+
 	.. attribute:: fobj
 
 		Stream file is being read from.
@@ -103,6 +105,12 @@ class SignatureFile:
 		self.lengths.flags.writeable = False
 
 		self.nelems = self.lengths.sum()
+
+	def __enter__(self):
+		return self
+
+	def __exit__(self, *args):
+		self.fobj.close()
 
 	@classmethod
 	def _validate_header(cls, header):

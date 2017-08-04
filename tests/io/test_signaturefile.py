@@ -118,3 +118,13 @@ def test_iter(sigarray, sigfile):
 
 	for sig1, sig2 in zip(sigarray, sigfile.iter_signatures()):
 		assert np.array_equal(sig1, sig2)
+
+
+def test_context(sigfile):
+	"""Test context manager methods."""
+
+	with sigfile as obj:
+		assert obj is sigfile
+		assert not sigfile.fobj.closed
+
+	assert sigfile.fobj.closed
