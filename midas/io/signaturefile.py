@@ -117,10 +117,10 @@ class SignatureFile:
 		"""Validate header data."""
 
 		if header.magic_number != cls._MAGIC_NUMBER:
-			raise ValueError('File does not appear to be in the correct format')
+			raise OSError('File does not appear to be in the correct format')
 
 		if header.version != cls._VERSION:
-			raise ValueError('Unexpected version identifier')
+			raise OSError('Unexpected version identifier')
 
 	def get_array(self, indices=None):
 		"""Read signatures from file as a SignatureArray.
