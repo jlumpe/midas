@@ -16,10 +16,9 @@ def sigarray():
 	random = np.random.RandomState(0)
 
 	lengths = random.randint(2000, 10000, size=20)
-	choices = np.arange(4 ** 11)
 
 	return SignatureArray.from_signatures([
-		np.sort(random.choice(choices, replace=False, size=len_))
+		np.sort(random.choice(4 ** 11, replace=False, size=len_))
 		for len_ in lengths
 	])
 
