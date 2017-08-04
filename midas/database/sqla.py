@@ -13,8 +13,12 @@ from sqlalchemy.orm.session import Session
 class ReadOnlySession(Session):
 	"""Session class that doesn't allow flushing/committing"""
 
-	def _flush(self, *args, **kwargs):
-		raise RuntimeError('This sessison is read-only')
+	def flush(self, *args, **kwargs):
+		# Make flush a no-op
+		pass
+
+	def commit(self):
+		raise TypeError('Session is read-only')
 
 
 # Python types corresponding to non-collection types storable in JSON
