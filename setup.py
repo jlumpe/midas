@@ -47,6 +47,7 @@ setup(
 	author='Jared Lumpe',
 	author_email='mjlumpe@gmail.com',
 	packages=find_packages(),
+	namespace_packages=['midas'],
 	install_requires=install_requires,
 	ext_modules=cythonize(extensions),
 	include_package_data=True,
