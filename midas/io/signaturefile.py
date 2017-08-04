@@ -349,12 +349,12 @@ class SignatureFile:
 			# Numpy format is next two bytes
 			dtype = np.dtype(self.fobj.read(2).decode())
 
-			return read_npy(self.fobj, dtype, self.count)
+			ids = read_npy(self.fobj, dtype, self.count)
 
 		elif fmt == b's':
 			# Null-terminated strings
-			data = self.fobj.read(end - begin)
 
+			data = self.fobj.read(end - begin)
 			if data[-1] != 0:
 				raise ValueError('Error reading signature file IDs')
 
@@ -376,10 +376,12 @@ class SignatureFile:
 			if finish != len(data) - 1:
 				raise ValueError('Error reading signature file IDs')
 
-			return ids
-
 		else:
 			raise ValueError(
 				'Unknown ID format character {!r}'
 				.format(fmt.decode())
 			)
+
+		# Make read-only to prevent accidental modification
+		ids.flags.writeable = False
+		return ids
