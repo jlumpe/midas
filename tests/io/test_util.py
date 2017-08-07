@@ -5,23 +5,7 @@ import io
 import pytest
 import numpy as np
 
-from midas.io.util import read_npy, write_npy, NamedStruct
-
-
-# Data type for struct to test - stolen from SignatureFile
-STRUCT_DTYPE = np.dtype([
-	('magic_number', 'S4'),
-	('version', 'S4'),
-	('count', 'u8'),
-	('dtype', 'S2'),
-	('offsets', [
-		('lengths', '2u8'),
-		('metadata', '2u8'),
-		('ids', '2u8'),
-		('data', '2u8'),
-	]),
-	('multid_array', '(3,4,5)i4'),
-])
+from midas.io import util
 
 
 @pytest.mark.parametrize('shape', [(), (1,), (100,), (5, 3, 4)])
@@ -42,61 +26,75 @@ def test_read_write_npy(shape, dtype_str):
 	buf = io.BytesIO()
 
 	# Write
-	write_npy(buf, array)
+	util.write_npy(buf, array)
 	assert buf.tell() == len(data)
 
 	# Read
 	buf.seek(0)
-	array2 = read_npy(buf, dtype_str, shape)
+	array2 = util.read_npy(buf, dtype_str, shape)
 
 	assert np.array_equal(array, array2)
-
-
-def field_eq(val1, val2):
-	"""Check if two field values are equal.
-
-	Values may be scalars, arrays, or NamedStructs.
-	"""
-
-	if isinstance(val1, NamedStruct):
-		val1 = val1._astuple()
-
-	if isinstance(val2, NamedStruct):
-		val2 = val2._astuple()
-
-	if isinstance(val1, tuple):
-
-		if isinstance(val2, tuple):
-			return val1 == val2
-
-		else:
-			return False
-
-	else:
-		return np.array_equiv(val1, val2)
 
 
 class TestNamedStruct:
 	"""Test NamedStruct class."""
 
+	# Data type for struct to test - stolen from SignatureFile
+	STRUCT_DTYPE = np.dtype([
+		('magic_number', 'S4'),
+		('version', 'S4'),
+		('count', 'u8'),
+		('dtype', 'S2'),
+		('offsets', [
+			('lengths', '2u8'),
+			('metadata', '2u8'),
+			('ids', '2u8'),
+			('data', '2u8'),
+		]),
+		('multid_array', '(3,4,5)i4'),
+	])
+
 	@pytest.fixture
 	def struct_data(self):
 		"""Random bytes to create struct with."""
 		random = np.random.RandomState(0)
-		return random.bytes(STRUCT_DTYPE.itemsize)
+		return random.bytes(self.STRUCT_DTYPE.itemsize)
 
 	@pytest.fixture
 	def struct(self, struct_data):
 		"""Struct from data."""
-		return NamedStruct._frombuffer(STRUCT_DTYPE, struct_data)
+		return util.NamedStruct._frombuffer(self.STRUCT_DTYPE, struct_data)
+
+	def field_eq(self, val1, val2):
+		"""Check if two NamedStruct field values are equal.
+
+		Values may be scalars, arrays, or NamedStructs.
+		"""
+
+		if isinstance(val1, util.NamedStruct):
+			val1 = val1._astuple()
+
+		if isinstance(val2, util.NamedStruct):
+			val2 = val2._astuple()
+
+		if isinstance(val1, tuple):
+
+			if isinstance(val2, tuple):
+				return val1 == val2
+
+			else:
+				return False
+
+		else:
+			return np.array_equiv(val1, val2)
 
 	def test_basic(self, struct, struct_data):
 		"""Test basic attributes."""
 
-		assert struct._dtype == STRUCT_DTYPE
-		assert struct._fields == STRUCT_DTYPE.fields
-		assert struct._names == STRUCT_DTYPE.names
-		assert struct._size == STRUCT_DTYPE.itemsize
+		assert struct._dtype == self.STRUCT_DTYPE
+		assert struct._fields == self.STRUCT_DTYPE.fields
+		assert struct._names == self.STRUCT_DTYPE.names
+		assert struct._size == self.STRUCT_DTYPE.itemsize
 
 		assert struct._tobytes() == struct_data
 		assert struct._astuple() == struct._data[()]
@@ -105,13 +103,13 @@ class TestNamedStruct:
 		"""Test equality."""
 		struct_data = struct._tobytes()
 
-		assert struct == NamedStruct._frombuffer(STRUCT_DTYPE, struct_data)
+		assert struct == util.NamedStruct._frombuffer(self.STRUCT_DTYPE, struct_data)
 
 		# Same dtype, zero data
-		assert struct != NamedStruct(STRUCT_DTYPE)
+		assert struct != util.NamedStruct(self.STRUCT_DTYPE)
 
 		# Same data, different dtype
-		assert struct != NamedStruct._frombuffer(
+		assert struct != util.NamedStruct._frombuffer(
 			[('foo', 'b', struct._size)],
 			struct_data,
 		)
@@ -133,9 +131,9 @@ class TestNamedStruct:
 
 			if field_dtype.fields is not None:
 				# Sub-struct
-				assert isinstance(value, NamedStruct)
+				assert isinstance(value, util.NamedStruct)
 
-			assert field_eq(array_value, value)
+			assert self.field_eq(array_value, value)
 
 		# Check nonexistant fields
 		with pytest.raises(KeyError):
@@ -152,14 +150,14 @@ class TestNamedStruct:
 
 			prev_val = struct[name]
 
-			if isinstance(prev_val, NamedStruct):
+			if isinstance(prev_val, util.NamedStruct):
 				# Sub-struct - try first assigning as NamedStruct
 
 				prev_substruct = prev_val._copy()
 				prev_val = prev_substruct._astuple()
 
 				# Zero version of sub-struct (shouldn't already be equal)
-				zero_substruct = NamedStruct(prev_substruct._dtype)
+				zero_substruct = util.NamedStruct(prev_substruct._dtype)
 				assert zero_substruct != prev_substruct
 
 				# Set to zero using item assignment syntax
@@ -172,15 +170,15 @@ class TestNamedStruct:
 
 			# Zero version of value (shouldn't already be equal)
 			zeros = np.zeros_like(prev_val)[()]
-			assert not field_eq(zeros, prev_val)
+			assert not self.field_eq(zeros, prev_val)
 
 			# Set to zero using item assignment syntax
 			struct[name] = zeros
-			assert field_eq(struct._data[name][()], zeros)
+			assert self.field_eq(struct._data[name][()], zeros)
 
 			# Set back to original using attribute assignment syntax
 			setattr(struct, name, prev_val)
-			assert field_eq(struct._data[name][()], prev_val)
+			assert self.field_eq(struct._data[name][()], prev_val)
 
 		# Check nonexistant fields
 		with pytest.raises(KeyError):
@@ -192,9 +190,9 @@ class TestNamedStruct:
 	def test_sequence(self, struct):
 		"""Test sequence protocol."""
 
-		assert len(struct) == len(STRUCT_DTYPE.fields)
+		assert len(struct) == len(self.STRUCT_DTYPE.fields)
 
 		for i, value in enumerate(struct):
-			assert field_eq(value, struct[i])
+			assert self.field_eq(value, struct[i])
 
 		assert i == len(struct) - 1
