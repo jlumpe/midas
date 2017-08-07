@@ -16,7 +16,7 @@ import collections
 import numpy as np
 
 from .cython import seqs as cseqs
-from .cython.seqs import kmer_to_index, index_to_kmer
+from .cython.seqs import kmer_to_index
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -195,7 +195,8 @@ def vec_to_coords(vec):
 
 	:param vec: Boolean vector indicating which k-mers are present.
 	:type vec: numpy.ndarray
-	:returns: Sorted array of coordinates of k-mers present in vector.
+	:returns: Sorted array of coordinates of k-mers present in vector. Data
+	          type will be ``intp``.
 	:rtype: numpy.ndarray
 	"""
 	return np.flatnonzero(vec)

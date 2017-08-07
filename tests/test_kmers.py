@@ -193,7 +193,8 @@ class TestFindKmers:
 		"""Test general k-mer finding."""
 
 		seq, kspec, vec = make_kmer_seq(
-			100000, k=11,
+			100000,
+			k=11,
 			prefix_len=5,
 			kmer_interval=50,
 			n_interval=10
