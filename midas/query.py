@@ -3,7 +3,8 @@
 import numpy as np
 
 from midas.cython import metrics
-from midas.kmers import find_kmers_parse, vec_to_coords
+from midas.kmers import vec_to_coords
+from midas.io.seq import find_kmers_parse
 from midas.util import kwargs_done, path_str
 
 

@@ -1,12 +1,11 @@
 """Tests for midas.kmers module."""
 
-import itertools
-
 import pytest
 import numpy as np
 
 from midas import kmers
 from midas.cython.seqs import reverse_complement
+from midas.test import fill_bytearray, make_kmer_seq
 
 
 # Complements to nucleotide ASCII codes
@@ -187,93 +186,6 @@ def test_revcomp():
 		assert reverse_complement(rc) == seq2
 
 
-def fill_bytearray(pattern, length):
-	"""Create a bytearray with a repeating pattern.
-
-	:param bytes pattern: Pattern to repeat in array.
-	:param int length: Length of array to create.
-	:returns: Filled array
-	:rtype: bytearray
-	"""
-
-	array = bytearray(length)
-
-	n = len(pattern)
-
-	for i in range(0, length, n):
-		n2 = min(n, length - i)
-		array[i:i + n2] = pattern[:n2]
-
-	return array
-
-
-def make_kmer_seq(seqlen, k, prefix_len, kmer_interval, n_interval=None, seed=0):
-	"""Create a test sequence with a known set of k-mers present.
-
-	:param int seqlen: Length of sequence.
-	:param int k: Length of k-mers to find (not including prefix).
-	:param int prefix_len: Prefix preceding k-mers to match.
-	:param int kmer_interval: Number of nucleotides between each k-mer added.
-	:param int n_interval: Every this many k-mers, add an N to the k-mer
-		sequence to create a k-mer that should not be matched.
-
-	:returns: Tuple of (seq, kmer_spec, kmer_vector).
-	"""
-
-	if kmer_interval < k + prefix_len:
-		raise ValueError()
-
-	# Seed RNG
-	random = np.random.RandomState(seed)
-
-	# Sequence of all ATN's
-	seq_array = fill_bytearray(b'ATN', seqlen)
-
-	# Choose prefix with nucleotides not found in sequence "background"
-	prefix = bytes(fill_bytearray(b'CGG', prefix_len))
-	kspec = kmers.KmerSpec(k, prefix)
-
-	assert kmers.find_kmers(kspec, bytes(seq_array)).sum() == 0
-
-	# Keep track of which kmers have been added
-	vec = np.zeros(kspec.idx_len, dtype=bool)
-
-	# Plant matches
-	for i in itertools.count():
-
-		p = i * kmer_interval
-
-		if p + kspec.total_len >= seqlen:
-			break
-
-		# Use a k-mer without nucleotides in prefix so that we won't create
-		# another accidental match
-		kmer_array = bytearray(kspec.k)
-		kmer_num = random.randint(2 ** k)
-		for j in range(kspec.k):
-			kmer_array[j] = b'AT'[(kmer_num >> j) & 1]
-
-		# Every so often add an N just to throw things off
-		invalid_kmer = n_interval is not None and i % n_interval == 0
-		if invalid_kmer:
-			kmer_array[0] = ord(b'N')
-
-		kmer = bytes(kmer_array)
-
-		if not invalid_kmer:
-			vec[kmers.kmer_to_index(kmer)] = True
-
-		match = kspec.prefix + kmer
-
-		# Reverse every other match
-		if i % 2 == 1:
-			match = reverse_complement(match)
-
-		seq_array[p:p + kspec.total_len] = match
-
-	return bytes(seq_array), kspec, vec
-
-
 class TestFindKmers:
 	"""Test k-mer finding."""
 
@@ -360,63 +272,6 @@ class TestFindKmers:
 
 			assert len(found) == len(expected)
 			assert all(kmer in expected for kmer in found)
-
-	def test_parse(self):
-		"""Test k-mer finding in FASTA files."""
-
-		from io import StringIO
-
-		from Bio.Seq import Seq
-		from Bio.SeqIO import write as write_seqs, SeqRecord
-
-		k = 11
-
-		vec = np.zeros(4 ** k, dtype=bool)
-		kspec = None
-
-		records = []
-
-		# Create FASTA file with 10 records
-		for i in range(10):
-
-			seq, _kspec, rec_vec = make_kmer_seq(
-				100000,
-				k=k,
-				prefix_len=5,
-				kmer_interval=50,
-				n_interval=10,
-				seed=i,
-			)
-
-			# Combine vectors of all sequences
-			vec |= rec_vec
-
-			# Just check that our specs are all the same...
-			if kspec is None:
-				kspec = _kspec
-			else:
-				assert kspec == _kspec
-
-			# Convert every other sequence to lower case, just to switch things up...
-			if i % 2:
-				seq = seq.lower()
-
-			# Create the BioPython sequence record object
-			records.append(SeqRecord(
-				seq=Seq(seq.decode('ascii')),
-				id='SEQ{}'.format(i + 1),
-				description='sequence {}'.format(i + 1),
-			))
-
-		# Write records to string buffer in FASTA format
-		buf = StringIO()
-		write_seqs(records, buf, 'fasta')
-		buf.seek(0)
-
-		# Parse from buffer
-		parsed_vec = kmers.find_kmers_parse(kspec, buf, 'fasta')
-
-		assert np.array_equal(vec, parsed_vec)
 
 
 class TestSignatureArray:

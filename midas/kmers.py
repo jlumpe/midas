@@ -14,7 +14,6 @@ bytes containing ascii-encoded nucleotide codes.
 import collections
 
 import numpy as np
-from Bio import SeqIO
 
 from .cython import seqs as cseqs
 from .cython.seqs import kmer_to_index, index_to_kmer
@@ -187,32 +186,6 @@ def find_kmers(kspec, seq, out=None):
 			pass
 
 		start = loc + 1
-
-	return out
-
-
-def find_kmers_parse(kspec, data, format, out=None):
-	"""Parse sequence data with Bio.Seq.parse() and find k-mers.
-
-	:param kspec: Spec for k-mer search.
-	:type kspec: .KmerSpec
-	:param data: Stream with sequence data. Readable file-like object in text
-		mode.
-	:param str format: Squence file format, as interpreted by
-		:func:`Bio.SeqIO.parse`.
-	:param out: Existing numpy array to write output to. Should be of length
-		``kspec.idx_len``. If given the same array will be returned.
-	:type out: numpy.ndarray
-
-	:returns: K-mer vector. Same array as ``out`` if it was given.
-	:rtype: numpy.ndarray
-	"""
-
-	if out is None:
-		out = np.zeros(kspec.idx_len, dtype=bool)
-
-	for record in SeqIO.parse(data, format):
-		find_kmers(kspec, record.seq, out=out)
 
 	return out
 
