@@ -2,6 +2,112 @@
 
 import numpy as np
 
+from midas.util import path_str
+
+
+COMPRESSED_OPENERS = {None: open}
+
+
+def _compressed_opener(compression):
+	"""Decorator to register opener functions for compression types."""
+	def decorator(func):
+		COMPRESSED_OPENERS[compression] = func
+		return func
+	return decorator
+
+
+@_compressed_opener('gzip')
+def _open_gzip(path, **kwargs):
+	"""Opener for gzip-compressed files."""
+	import gzip
+	return gzip.open(path, **kwargs)
+
+
+def open_compressed(compression, path, mode=None, **kwargs):
+	"""Open a file with compression method specified by a string.
+
+	:param str compression. Compression method. None is no compression. Keys
+		of :data:`COMPRESSED_OPENERS` are the allowed values.
+	:param path: Path of file to open. May be string or path-like object.
+	:param str mode: Mode to open file in - same as in :func:`open`.
+	:param \\**kwargs: Additional text-specific keyword arguments identical to
+		the following :func:`open` arguments: ``encoding``, ``errors``, and
+		``newlines``.
+	:returns: Open file object.
+	:rtype: io.BufferedIOBase
+	"""
+
+	try:
+		opener = COMPRESSED_OPENERS[compression]
+
+	except KeyError:
+		raise ValueError('Unknown compression type {!r}'.format(compression)) from None
+
+	return opener(path_str(path), mode=mode, **kwargs)
+
+
+class ClosingIterator:
+	"""Wraps an iterator which reads from a stream, closes the stream when finished.
+
+	Used to wrap return values from functions which do some sort of lazy IO
+	operation (specifically :func:`Bio.SeqIO.parse`) and return an iterator
+	which reads from a stream every time ``next()`` is called on it. The object
+	is an iterator itself, but will close the stream automatically when it
+	finishes. May also be used as a context manager which closes the stream
+	on exit.
+
+	.. attribute:: fobj
+
+		The underlying file-like object or stream which the instance is
+		responsible for closing
+
+	.. attribute:: iterator
+
+		The iterator which the instance wraps.
+
+	.. attribute:: closed
+
+		Read-only boolean property, mirrors the same attribute of :attr:`fobj`.
+
+	:param iterable: Iterable to iterate over. The :attr:`iterator` attribute
+		will be obtained from calling :func:`iter` on this.
+	:param fobj: File-like object to close when the iterator finishes, context
+		is exited or the :meth:`close` method is called.
+	"""
+
+	def __init__(self, iterable, fobj):
+		self.iterator = iter(iterable)
+		self.fobj = fobj
+
+	def __iter__(self):
+		return self
+
+	def __next__(self):
+		try:
+			return next(self.iterator)
+
+		except StopIteration:
+			# Close when iterator runs out
+			self.close()
+			raise
+
+	def close(self):
+		"""Close the stream.
+
+		Just calls the ``close`` method on :attr:`fobj`.
+		"""
+		self.fobj.close()
+
+	@property
+	def closed(self):
+		return self.fobj.closed
+
+	def __enter__(self):
+		return self
+
+	def __exit__(self, *args):
+		self.close()
+
 
 def read_npy(fobj, dtype, shape):
 	"""Read a numpy array from raw data in a stream.
