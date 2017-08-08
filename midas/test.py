@@ -36,6 +36,35 @@ def make_signatures(k, nsets, dtype):
 	return SignatureArray.from_signatures(signatures_list, dtype=dtype)
 
 
+def random_seq(size, chars='ACGT', asbytes=False, state=0):
+	"""Generate a simple random DNA sequence.
+
+	:param int size: Length of sequence to generate.
+	:param str chars: Characters to use for sequence. Must be encodable as ascii.
+	:param bool asbytes: Return unencoded bytes if true, otherwise return str.
+	:param state: :class:`numpy.random.RandomState` to use, or seed to use for
+		random state if integer.
+
+	:returns: Sequence as bytes or str.
+	"""
+
+	import numpy as np
+
+	if isinstance(state, int):
+		random = np.random.RandomState(seed=state)
+	else:
+		random = state
+
+	chars_array = np.frombuffer(chars.encode('ascii'), dtype='u1')
+
+	seq_bytes = random.choice(chars_array, size).tobytes()
+
+	if asbytes:
+		return seq_bytes
+	else:
+		return seq_bytes.decode('ascii')
+
+
 def fill_bytearray(pattern, length):
 	"""Create a bytearray with a repeating pattern.
 
