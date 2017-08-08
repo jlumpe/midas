@@ -17,10 +17,15 @@ def _compressed_opener(compression):
 
 
 @_compressed_opener('gzip')
-def _open_gzip(path, **kwargs):
+def _open_gzip(path, mode, **kwargs):
 	"""Opener for gzip-compressed files."""
 	import gzip
-	return gzip.open(path, **kwargs)
+
+	# gzip defaults to binary mode, change to text instead of not specified
+	if mode[-1] not in 'tb':
+		mode += 't'
+
+	return gzip.open(path, mode=mode, **kwargs)
 
 
 def open_compressed(compression, path, mode=None, **kwargs):

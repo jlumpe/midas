@@ -22,17 +22,17 @@ class TestOpenCompressed:
 		"""Compression method string."""
 		return request.param
 
-	@pytest.fixture(params=[False, True])
+	@pytest.fixture(params=['w', 'wt', 'wb'])
 	def text_file(self, request, text_data, compression, tmpdir):
+		"""Path to file with text_data written to it using open_compressed."""
 
 		file = tmpdir.join('chars.txt')
+		mode = request.param
 
-		if request.param:
-			mode = 'wt'
+		if mode[-1] != 'b':
 			to_write = text_data.decode('ascii')
 
 		else:
-			mode = 'wb'
 			to_write = text_data
 
 		with util.open_compressed(compression, file.strpath, mode) as fobj:
@@ -40,20 +40,24 @@ class TestOpenCompressed:
 
 		return file
 
-	@pytest.mark.parametrize('text_mode', [False, True])
-	def test_read(self, text_mode, text_data, compression, text_file):
-
-		if text_mode:
-			mode = 'rt'
-			expected = text_data.decode('ascii')
-		else:
-			mode = 'rb'
-			expected = text_data
+	@pytest.mark.parametrize('mode,binary', [
+		('r', False),
+		('rt', False),
+		('rb', True),
+	])
+	def test_read(self, mode, binary, text_data, compression, text_file):
+		"""Check that the file is readable and its contents match what was written."""
 
 		with util.open_compressed(compression, text_file.strpath, mode) as fobj:
 			contents = fobj.read()
 
-		assert contents == expected
+		if binary:
+			assert isinstance(contents, bytes)
+			assert contents == text_data
+
+		else:
+			assert isinstance(contents, str)
+			assert contents == text_data.decode('ascii')
 
 
 class TestClosingIterator:
