@@ -9,6 +9,27 @@ from midas.io.signaturefile import SignatureFile
 from midas.kmers import SignatureArray
 
 
+class ProgressChecker:
+	"""Callback for get_array method that checks it is called correctly."""
+
+	def __init__(self, total, chunksize=None):
+		self.total = total
+		self.chunksize = 1 if chunksize is None else chunksize
+		self.last_value = 0
+
+	def __call__(self, completed, total):
+		"""The callback function."""
+		assert total == self.total
+
+		assert completed == min(self.last_value + self.chunksize, self.total)
+
+		self.last_value = completed
+
+	def check_called(self):
+		"""To be called at end, check we went all the way through."""
+		assert self.last_value == self.total
+
+
 @pytest.fixture(scope='module')
 def sigarray():
 	"""Array of random signatures."""
@@ -89,27 +110,54 @@ def test_metadata(sigarray, sigfile, metadata):
 		assert sigfile.get_metadata() == metadata
 
 
-def test_read_all(sigarray, sigfile):
+@pytest.mark.parametrize('chunksize', [None, 1, 3, 100])
+@pytest.mark.parametrize('progress', [False, True])
+def test_read_all(sigarray, sigfile, chunksize, progress):
 	"""Test reading all signatures into an array."""
 
-	sigarray2 = sigfile.get_array()
+	# Progresss callback
+	if progress:
+		callback = ProgressChecker(
+			len(sigarray),
+			len(sigarray) if chunksize is None else chunksize
+		)
+	else:
+		callback = None
+
+	# Read signatures
+	sigarray2 = sigfile.get_array(chunksize=chunksize, progress=callback)
+
 	assert np.array_equal(sigarray.values, sigarray2.values)
 	assert np.array_equal(sigarray.bounds, sigarray2.bounds)
 
+	# Check progress callback was called the correct number of times
+	if progress:
+		callback.check_called()
 
-def test_read_subset(sigarray, sigfile):
+
+@pytest.mark.parametrize('progress', [False, True])
+def test_read_subset(sigarray, sigfile, progress):
 	"""Test reading a subset of signatures into an array."""
 
+	# Random set of indices
 	n = len(sigarray)
 	random = np.random.RandomState()
 	indices = random.choice(n, n // 2)
 
-	subarray = sigfile.get_array(indices)
+	# Progress callback
+	callback = ProgressChecker(len(indices)) if progress else None
+
+	# Read subset of signatures
+	subarray = sigfile.get_array(indices, progress=callback)
 
 	assert len(subarray) == len(indices)
 
 	for idx, sig in zip(indices, subarray):
 		assert np.array_equal(sig, sigarray[idx])
+
+	# Check progress callback was called the correct number of times
+	if progress:
+		callback.check_called()
 
 
 def test_iter(sigarray, sigfile):

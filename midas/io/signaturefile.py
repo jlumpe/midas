@@ -134,48 +134,87 @@ class SignatureFile:
 		if header.version != cls._VERSION:
 			raise OSError('Unexpected version identifier')
 
-	def get_array(self, indices=None):
+	def get_array(self, indices=None, progress=None, chunksize=None):
 		"""Read signatures from file as a SignatureArray.
 
-		:type: midas.kmers.SignatureArray
+		:param indices: List or array of indices of a subset of signatures to
+			get. Array signatures will then correspond to the ids
+			`signaturefile.ids[indices]``. If None will get all signatures.
+		:param progress: Progress callback that will be called periodically
+			with the number of signatures read. Will be called with positional
+			arguments ``(ncompleted, total)`` where ``ncompleted`` is the total
+			number of signatures read so far and ``total`` is the total number
+			to read. Will be called after every signature has been read if
+			``indices`` is not None or after every ``chunksize`` signatures
+			otherwise.
+		:type progress: function
+		:param int chunksize: Number of signatures to read at a time, if
+			``indices`` is None (``indices`` and ``chunksize`` should not both
+			be given). Only useful with the ``progress`` argument. If None
+			(default) will read all signatures in one shot.
+		:rtype: midas.kmers.SignatureArray
 		"""
 
-		# Use this dtype as it is what the Cython metric functions expect
-		from midas.cython.metrics import BOUNDS_DTYPE
-
+		# File position at start of data
 		data_start = self._header.offsets['data'][0]
 
-		# Calculate sub-array bounds from lengths
-		bounds = np.zeros(self.count + 1, dtype=BOUNDS_DTYPE)
-		bounds[1:] = np.cumsum(self.lengths)
-
 		if indices is None:
+			# Reading whole array in order
 
-			# Just read all the data in one shot
+			if chunksize is None:
+				chunksize = self.count
+
+			# Array to read into
+			array = SignatureArray.empty(self.lengths, dtype=self.dtype)
+
+			# Read in chunks
 			self.fobj.seek(data_start)
-			values = read_npy(self.fobj, self.dtype, shape=self.nelems)
 
-			return SignatureArray(values, bounds)
+			for begin in range(0, self.count, chunksize):
+				end = min(begin + chunksize, self.count)
+
+				nitems = self.lengths[begin:end].sum()
+				values = read_npy(self.fobj, self.dtype, shape=nitems)
+
+				array.values[array.bounds[begin]:array.bounds[end]] = values
+
+				# Progress callback
+				if progress is not None:
+					progress(end, self.count)
+
+			return array
 
 		else:
+			# Reading subset or permutation
+
+			if chunksize is not None:
+				raise TypeError('chunksize and indices cannot both be None')
+
+			# Use this dtype as it is what the Cython metric functions expect
+			from midas.cython.metrics import BOUNDS_DTYPE
+
+			# Calculate file sub-array bounds from lengths
+			bounds = np.zeros(self.count + 1, dtype=BOUNDS_DTYPE)
+			bounds[1:] = np.cumsum(self.lengths)
 
 			# Calculate bounds for indices only
-			subset_bounds = np.zeros(len(indices) + 1, dtype=BOUNDS_DTYPE)
-			subset_bounds[1:] = np.cumsum(self.lengths[indices])
-
-			values = np.zeros(subset_bounds[-1], dtype=self.dtype)
+			array = SignatureArray.empty(self.lengths[indices], dtype=self.dtype)
 
 			# Read one at a time, in order of position in file
 			index_pairs_sorted = sorted((j, i) for i, j in enumerate(indices))
 
-			for file_idx, out_idx in index_pairs_sorted:
+			for i, (file_idx, out_idx) in enumerate(index_pairs_sorted):
 
 				self.fobj.seek(data_start + bounds[file_idx] * self.dtype.itemsize)
 				signature = read_npy(self.fobj, self.dtype, self.lengths[file_idx])
 
-				values[subset_bounds[out_idx]:subset_bounds[out_idx + 1]] = signature
+				array[out_idx] = signature
 
-			return SignatureArray(values, subset_bounds)
+				# Progress callback
+				if progress is not None:
+					progress(i + 1, len(indices))
+
+			return array
 
 	def iter_signatures(self):
 		"""Iterate over signatures in the file.
