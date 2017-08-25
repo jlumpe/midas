@@ -132,6 +132,19 @@ class SeqRecordBase(metaclass=ABCMeta):
 		return {key: getattr(self, key) for key in SEQ_ID_ATTRS}
 
 
+def entrez_url(entrez_db, entrez_id):
+	"""Get the URL for an entry in Entrez, more or less.
+
+	:param str entrez_db: Name of the Entrez database - e.g. "nuccore".
+	:param int entrez_id: ID of the database entry.
+	:rtype: str:
+	"""
+	from urllib.parse import urljoin, quote_plus
+
+	path = [quote_plus(str(p)) for p in [entrez_db, entrez_id]]
+	return urljoin(NCBI_BASE_URL, '/'.join(path))
+
+
 def ncbi_sequence_url(**ncbi_ids):
 	"""Attempt to guess the URL for a sequence on NCBI.
 
@@ -142,19 +155,13 @@ def ncbi_sequence_url(**ncbi_ids):
 	:returns: Guess for URL, or None no guess could be made.
 	:rtype: str
 	"""
-	from urllib.parse import urljoin, quote_plus
-
 	ncbi_ids = {k: v for k, v in ncbi_ids.items() if v is not None}
 	check_seq_ids(ncbi_ids)
 
 	try:
-		entrez_db = ncbi_ids['entrez_db']
-		entrez_id = ncbi_ids['entrez_id']
+		return entrez_url(ncbi_ids['entrez_db'], ncbi_ids['entrez_id'])
 	except KeyError:
 		return None
-
-	path = [quote_plus(str(p)) for p in [entrez_db, entrez_id]]
-	return urljoin(NCBI_BASE_URL, '/'.join(path))
 
 
 def ncbi_search_url(term):
