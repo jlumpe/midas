@@ -1,11 +1,14 @@
 """Tools for working with NCBI databases.
 
 
+.. data:: NCBI_BASE_URL
+
+	Base URL for NCBI web site.
+
 .. data:: SEQ_ID_ATTRS
 
 	Attributes which represent IDs for sequences in NCBI databases. List of
 	strings.
-
 
 .. data:: SEQ_ID_ATTR_TYPES
 
@@ -20,6 +23,9 @@
 
 from abc import ABCMeta, abstractproperty
 from types import MappingProxyType
+
+
+NCBI_BASE_URL = 'https://www.ncbi.nlm.nih.gov/'
 
 
 SEQ_ID_ATTRS = [
@@ -124,3 +130,39 @@ class SeqRecordBase(metaclass=ABCMeta):
 		:rtype: dict
 		"""
 		return {key: getattr(self, key) for key in SEQ_ID_ATTRS}
+
+
+def ncbi_sequence_url(**ncbi_ids):
+	"""Attempt to guess the URL for a sequence on NCBI.
+
+	Not too smart about it right now, only operates off the entrez IDs.
+
+	:param \\**ncbi_ids: Valid set of NCBI sequence IDs as keyword arguments.
+		See :func:`check_seq_ids`.
+	:returns: Guess for URL, or None no guess could be made.
+	:rtype: str
+	"""
+	from urllib.parse import urljoin, quote_plus
+
+	ncbi_ids = {k: v for k, v in ncbi_ids.items() if v is not None}
+	check_seq_ids(ncbi_ids)
+
+	try:
+		entrez_db = ncbi_ids['entrez_db']
+		entrez_id = ncbi_ids['entrez_id']
+	except KeyError:
+		return None
+
+	path = [quote_plus(str(p)) for p in [entrez_db, entrez_id]]
+	return urljoin(NCBI_BASE_URL, '/'.join(path))
+
+
+def ncbi_search_url(term):
+	"""Get the URL for the NCBI search results page for a given term.
+
+	:param str term: Search term.
+	:returns; URL for search page.
+	:rtype str:
+	"""
+	from urllib.parse import urljoin, urlencode
+	return urljoin(NCBI_BASE_URL, 'gquery/?' + urlencode({'term': term}))
