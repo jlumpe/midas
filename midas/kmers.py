@@ -16,7 +16,7 @@ import collections
 import numpy as np
 
 from .cython import seqs as cseqs
-from .cython.seqs import kmer_to_index
+from .cython.seqs import kmer_to_index, index_to_kmer
 
 
 # Byte representations of the four nucleotide codes in the order used for
