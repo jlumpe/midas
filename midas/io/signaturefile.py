@@ -188,7 +188,7 @@ class SignatureFile:
 			# Reading subset or permutation
 
 			if chunksize is not None:
-				raise TypeError('chunksize and indices cannot both be None')
+				raise TypeError('Cannot specify both chunksize and indices')
 
 			# Use this dtype as it is what the Cython metric functions expect
 			from midas.cython.metrics import BOUNDS_DTYPE
