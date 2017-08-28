@@ -476,6 +476,30 @@ class Taxon(Base):
 
 		return l
 
+	def root(self):
+		"""Get the root taxon of this taxon's tree.
+
+		The set of taxa in a :class:`.ReferenceGenomeSet` will generally form
+		a forest instead of a single tree, so there can be multiple root taxa.
+
+		Returns self if the taxon has no parent.
+
+		:rtype: .Taxon
+		"""
+		if self.parent is None:
+			return self
+		else:
+			return self.parent.root()
+
+	def print_tree(self, indent='  ', *, _depth=0):
+		"""Print the taxon's subtree for debugging.
+
+		:param str indent: String used to indent each level of descendants.
+		"""
+		print(indent * _depth + self.name)
+		for child in sorted(self.children, key=lambda c: c.name):
+			child.print_tree(indent=indent, _depth=_depth + 1)
+
 	def __repr__(self):
 		return '<{}:{} {!r}>'.format(
 			type(self).__name__,
