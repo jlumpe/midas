@@ -197,13 +197,13 @@ def test_has_ids(filestore, uncomp_seq_file):
 	# Test has and has_any with correct IDs
 	assert filestore.has(**ids1)
 	assert filestore.has_any(**ids1)
-	for index in ncbi.SEQ_ID_INDICES:
+	for index in ncbi.SEQ_IDS.values():
 		index_ids = {key: ids1[key] for key in index}
 		assert filestore.has(**index_ids)
 		assert filestore.has_any(**index_ids)
 
 	# Test with some different - should be false for has() and true for has_any()
-	for index in ncbi.SEQ_ID_INDICES:
+	for index in ncbi.SEQ_IDS.values():
 
 		ids2 = dict(ids1)
 		ids2.update({key: TEST_IDS_2[key] for key in index})

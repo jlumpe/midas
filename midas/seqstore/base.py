@@ -29,7 +29,7 @@ class BaseSequenceStoreRecord(ncbi.SeqRecordBase):
 # Basic namedtuple implementation of BaseSequenceStoreRecord
 _SequenceStoreRecord = namedtuple(
 	'_SequenceStoreRecord',
-	['store_id', 'format'] + ncbi.SEQ_ID_ATTRS
+	('store_id', 'format') + ncbi.SEQ_ID_ATTRS
 )
 class SequenceStoreRecord(_SequenceStoreRecord, BaseSequenceStoreRecord):
 	"""Record describing a sequence stored in a :class:`.SequenceStore`."""
@@ -143,7 +143,7 @@ class SequenceStore(metaclass=ABCMeta):
 		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
 			:func:`midas.ncbi.check_seq_ids`. Unlike :meth:`has` if multiple IDs
 			are given a sequence only needs to match the attributes in a single
-			index (see :data:`midas.ncbi.SEQ_ID_INDICES`).
+			index (see :data:`midas.ncbi.SEQ_IDS`).
 		:rtype: bool
 		"""
 		pass

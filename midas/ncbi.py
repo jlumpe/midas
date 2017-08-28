@@ -5,50 +5,52 @@
 
 	Base URL for NCBI web site.
 
+.. data:: SEQ_IDS
+
+	Indices/IDs which can uniquely identify an NCBI sequence. Mapping from index
+	names to tuples of attribute names. Simple indices have a single attribute,
+	compound indices have more than one. The current indices are:
+
+	* ``entrez (entrez_db, entrez_id)`` -- Compound index of Entrez database
+	  name (``str``) and ID within that database (``int``).
+	* ``genbank_acc (genbank_acc)`` -- Genbank accession number.
+	* ``refseq_acc (refseq_acc)`` -- RefSeq accession number.
+
 .. data:: SEQ_ID_ATTRS
 
-	Attributes which represent IDs for sequences in NCBI databases. List of
-	strings.
+	Names of attributes which represent IDs for sequences in NCBI databases.
+	Sequence of strings, corresponds to concatenation of values in
+	:data:`.SEQ_IDS`.
 
 .. data:: SEQ_ID_ATTR_TYPES
 
 	Mapping from attribute names in :data:`.SEQ_ID_ATTRS` to their types.
-
-.. data:: SEQ_ID_INDICES
-
-	A partition of the attribute names in :data:`.SEQ_ID_ATTRS` into sets which
-	form unique indices - a combination of values for the attributes in an index
-	matches	at most one NCBI sequence. List of sets.
 """
 
 from abc import ABCMeta, abstractproperty
+from collections import OrderedDict
 from types import MappingProxyType
 
 
 NCBI_BASE_URL = 'https://www.ncbi.nlm.nih.gov/'
 
 
-SEQ_ID_ATTRS = [
-	'entrez_db',
-	'entrez_id',
-	'genbank_acc',
-	'refseq_acc',
-]
+SEQ_IDS = MappingProxyType(OrderedDict([
+	('entrez', ('entrez_db', 'entrez_id',)),
+	('genbank_acc', ('genbank_acc',)),
+	('refseq_acc', ('refseq_acc',)),
+]))
 
 
-SEQ_ID_ATTR_TYPES = MappingProxyType(dict(
-	entrez_db=str,
-	entrez_id=int,
-	genbank_acc=str,
-	refseq_acc=str,
-))
+SEQ_ID_ATTRS = tuple(attr for attrs in SEQ_IDS.values() for attr in attrs)
 
 
-SEQ_ID_INDICES = [
-	frozenset({'entrez_db', 'entrez_id'}),
-	frozenset({'genbank_acc'}),
-	frozenset({'refseq_acc'}),
-]
+SEQ_ID_ATTR_TYPES = MappingProxyType({
+	'entrez_db': str,
+	'entrez_id': int,
+	'genbank_acc': str,
+	'refseq_acc': str,
+})
 
 
 def check_seq_ids(ids, extra_ok=False, empty_ok=True, null_ok=False):
@@ -56,7 +58,7 @@ def check_seq_ids(ids, extra_ok=False, empty_ok=True, null_ok=False):
 
 	Checks all ID values are of the correct type and that no incomplete indices
 	are present (keys are present for some but not all attributes in an item of
-	:data:`.SEQ_ID_INDICES`\\ ).
+	:data:`.SEQ_IDS`\\ ).
 
 	:param dict ids: Dictionary of ID values, with keys matching the names in
 		:data:`.SEQ_ID_ATTRS`.
@@ -78,7 +80,7 @@ def check_seq_ids(ids, extra_ok=False, empty_ok=True, null_ok=False):
 		raise TypeError('Must give at least one ID value')
 
 	# Check unique indices
-	for index_keys in SEQ_ID_INDICES:
+	for index_keys in SEQ_IDS.values():
 		in_ids = set(filter(lambda key: ids.get(key, None) is not None, index_keys))
 
 		if 0 < len(in_ids) < len(index_keys):

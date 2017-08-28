@@ -214,7 +214,7 @@ class DbIndexedSequenceStore(base.SequenceStore):
 	def has_any(self, **ids):
 		ncbi.check_seq_ids(ids, empty_ok=False)
 
-		for index_keys in ncbi.SEQ_ID_INDICES:
+		for index_keys in ncbi.SEQ_IDS.values():
 			try:
 				index_ids = {key: ids[key] for key in index_keys}
 			except KeyError:
