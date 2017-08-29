@@ -198,7 +198,7 @@ class DbIndexedSequenceStore(base.SequenceStore):
 			row = self._get_row_by_id(store_id)
 
 		else:
-			ncbi.check_seq_ids(ids, empty_ok=False)
+			ncbi.get_seq_ids(ids, empty_ok=False)
 
 			stmt = self._seq_table.select().where(self._make_where_stmt(ids))
 			row = self._engine.execute(stmt).first()
@@ -206,13 +206,13 @@ class DbIndexedSequenceStore(base.SequenceStore):
 		return self._row_to_record(row) if row is not None else None
 
 	def has(self, **ids):
-		ncbi.check_seq_ids(ids, empty_ok=False)
+		ncbi.get_seq_ids(ids, empty_ok=False)
 
 		stmt = self._seq_table.select().where(self._make_where_stmt(ids))
 		return self._engine.execute(stmt).scalar() is not None
 
 	def has_any(self, **ids):
-		ncbi.check_seq_ids(ids, empty_ok=False)
+		ncbi.get_seq_ids(ids, empty_ok=False)
 
 		for index_keys in ncbi.SEQ_IDS.values():
 			try:
@@ -239,8 +239,8 @@ class DbIndexedSequenceStore(base.SequenceStore):
 		record = self.get_record(self._which_arg_id(which))
 
 		# Validate new set of IDs
-		new_ids = {**record.ncbi_ids(), **ids}
-		ncbi.check_seq_ids(new_ids, empty_ok=False, null_ok=True)
+		new_ids = {**record.ncbi_ids(flat=True), **ids}
+		ncbi.get_seq_ids(new_ids, empty_ok=False, null_ok=True)
 
 		# Update
 		stmt = self._seq_table.update()\
@@ -262,7 +262,7 @@ class DbIndexedSequenceStore(base.SequenceStore):
 			raise ValueError('Unknown src compression {}'.format(src_compression))
 
 		# Check ids
-		ncbi.check_seq_ids(ids, empty_ok=False)
+		ncbi.get_seq_ids(ids, empty_ok=False)
 
 		# Check duplicate
 		if self.has_any(**ids):

@@ -53,66 +53,191 @@ SEQ_ID_ATTR_TYPES = MappingProxyType({
 })
 
 
-def check_seq_ids(ids, extra_ok=False, empty_ok=True, null_ok=False):
-	"""Raise an exception if a dictionary of NCBI sequence IDs is not valid.
+def check_seq_id_value(id_name, id_vals):
+	"""Check the values for the attributes of an NCBI sequence ID.
+
+	:param str id_name: Name of ID (key of :data:`.SEQ_IDS`).
+	:param id_vals: Tuple of values corresponding to the attributes of the ID.
+
+	:raises ValueError: If ``id_vals`` is not the correct length.
+	:raises TypeError: If any elements of ``id_vals`` are not of the correct
+		type (see :data:`SEQ_ID_ATTR_TYPES`).
+	"""
+
+	attr_names = SEQ_IDS[id_name]
+
+	if len(attr_names) != len(id_vals):
+		raise ValueError(
+			'NCBI sequence ID {!r} has {} elements but got {}'
+			.format(id_name, len(attr_names), len(id_vals))
+		)
+
+	for name, val in zip(attr_names, id_vals):
+		type_ = SEQ_ID_ATTR_TYPES[name]
+		if not isinstance(val, type_):
+			raise TypeError(
+				'NCBI sequence ID attribute {!r} should be of type {}, not {}'
+				.format(name, type_.__name__, type(val).__name__)
+			)
+
+
+def get_seq_ids(mapping, single=False, *, extra_ok=False, empty_ok=True,
+                null_ok=False, ignore_partial=False, check_types=True):
+	"""Get NCBI sequence IDs from a mapping of attribute values.
 
 	Checks all ID values are of the correct type and that no incomplete indices
 	are present (keys are present for some but not all attributes in an item of
 	:data:`.SEQ_IDS`\\ ).
 
-	:param dict ids: Dictionary of ID values, with keys matching the names in
-		:data:`.SEQ_ID_ATTRS`.
-	:param bool extra_ok: If additional keys are allowed in ``ids``.
-	:param bool empty_ok: If False and ``ids`` is empty or all values are
-		``None`` a :exc:`KeyError` will be raised.
-	:param bool null_ok: If values are allowed to be ``None``.
+	Can also be used to check if a set of attribute values are valid, in which
+	case the return value can be ignored.
 
-	:raises KeyError: If extra keys are found and ``extra_ok`` is False or if an
-		incomplete set of keys for a unique index is specified.
-	:raises TypeError: If any ID values are of an incorect type (including
-		``None`` if ``null_ok`` is False) or  if ``ids`` is empty (or all Nones)
-		and ``empty_ok`` is False,
+	:param mapping: Mapping from NCBI sequence ID attribute names to their
+		values. See :data:`.SEQ_ID_ATTRS`.
+	:param bool single: If True, expect attribute values for a single ID to be
+		present in the mapping and return a pair of ID name and value. If False
+		(default), return a mapping of a variable number ID names to values.
+	:param bool extra_ok: If True, ignore keys in ``mapping`` that are not in
+		:data:`.SEQ_ID_ATTRS`. Default False.
+	:param bool empty_ok: If False and no IDs found, raise :exc:TypeError:.
+		Default True.
+	:param bool null_ok: If True allow values of None for attributes. These will
+		be treated as if the key for the attribute was not present. If False
+		(default) raise :exc:`TypeError` when value is None.
+	:param bool ignore_partial: If True ignore cases where some but not all
+		attributes of a compound ID are present (or not None). If False (default)
+		will raise :exc:`TypeError`.
+	:param bool check_types: If True check types of non-null attribute values
+		and raise :exc:`TypeError`  if they do not match
+		:data:`.SEQ_ID_ATTR_TYPES`.
+
+	:raises KeyError: If extra keys are found and ``extra_ok`` is False.
+	:raises TypeError: If ``single`` is True and more or less than one ID value
+		found, if ``empty_ok`` is False and no ID values found, if ``null_ok``
+		is False any any ID attribute values are None, if ``ignore_partial`` is
+		False and any IDs have only a partial set of attributes present, if
+		``check_types`` is True and any attribute values are not None or of the
+		correct type.
 	"""
 
-	# Check empty / values all None
-	if not empty_ok and\
-			all(ids.get(key, None) is None for key in SEQ_ID_ATTRS):
-		raise TypeError('Must give at least one ID value')
+	mapping = dict(mapping)
 
-	# Check unique indices
-	for index_keys in SEQ_IDS.values():
-		in_ids = set(filter(lambda key: ids.get(key, None) is not None, index_keys))
+	# Mapping from ID names to values
+	ids = dict()
 
-		if 0 < len(in_ids) < len(index_keys):
-			raise KeyError(
-				'Partial set of keys given for unique index {{{}}}'
-				.format(', '.join(map(repr, index_keys)))
+	# Look for each NCBI ID
+	for id_name, id_attrs in SEQ_IDS.items():
+
+		attr_vals = []
+
+		# Try to get the value for each attribute from the mapping
+		for attrname in id_attrs:
+			try:
+				attrval = mapping.pop(attrname)
+
+			except KeyError:
+				attrval = None
+
+			else:
+				# Key there but value is None - raise exception if not allowed
+				if not null_ok and attrval is None:
+					raise TypeError(
+						'Value of NCBI sequence ID attribute {!r} cannot be None'
+						.format(attrname)
+					)
+
+			attr_vals.append(attrval)
+
+		if None in attr_vals:
+			# Either at least one key was missing or had a null value
+
+			# All None - Nothing at all found, just skip
+			if all(val is None for val in attr_vals):
+				continue
+
+			# We have a partial index, skip or raise exception
+			if ignore_partial:
+				continue
+
+			# Format exception message and raise
+			null_attr = None
+			not_null_attr = None
+			for attrname, val in zip(id_attrs, attr_vals):
+				if null_attr is None and val is None:
+					null_attr = attrname
+				if not_null_attr is None and val is not None:
+					not_null_attr = attrname
+
+			raise TypeError(
+				'Incomplete value for NCBI sequence ID {!r}: got value for '
+				'{!r} but not {!r}'
+				.format(id_name, not_null_attr, null_attr)
 			)
 
-	# Check extra keys
-	extra_keys = set(ids).difference(SEQ_ID_ATTRS)
-	if extra_keys and not extra_ok:
-		raise KeyError('Invalid ID key: {!r}'.format(extra_keys.pop()))
+		# We're good, record it
+		ids[id_name] = tuple(attr_vals)
+
+	# Check for leftover keys
+	if mapping and not extra_ok:
+		raise KeyError(
+			'{!r} is not an NCBI sequence ID attribute'
+			.format(next(iter(mapping)))
+		)
+
+	# Check empty
+	if not ids and (not empty_ok or single):
+		raise TypeError('No NCBI sequence ID attributes present')
 
 	# Check types
-	for key in SEQ_ID_ATTRS:
+	if check_types:
+		for id_name, id_vals in ids.items():
+			check_seq_id_value(id_name, id_vals)
 
-		try:
-			value = ids[key]
-		except KeyError:
-			continue
+	if single:
+		# Return exactly one
 
-		type_ = SEQ_ID_ATTR_TYPES[key]
-
-		if value is None:
-			if not null_ok:
-				raise TypeError('Null value not allowed for key {!r}'.format(key))
-
-		elif not isinstance(value, type_):
+		# Got more than one ID
+		if len(ids) > 1:
 			raise TypeError(
-				'Key {!r} should be {!r}, got {!r}'
-				.format(key, type_, type(value))
+				'Got values for more than one NCBI sequence ID: {!r}'
+				.format(list(ids))
 			)
+
+		# Return the only item
+		return next(iter(ids.items()))
+
+	else:
+		# Multiple requested, return full mapping
+		return ids
+
+
+def parse_seq_id_args(args, kwargs, multiple=False, **more):
+	""""""
+	if args:
+		if kwargs:
+			raise TypeError(
+				'Must give NCBI sequence IDS in either positional or keyword '
+				'arguments, not both'
+			)
+
+		# Single ID name followed by values
+		id_name, *id_vals = args
+
+		# Check that number and type of values are OK
+		check_seq_id_value(id_name, id_vals)
+
+		# Return in correct format
+		if multiple:
+			return {id_name: tuple(id_vals)}
+		else:
+			return id_name, tuple(id_vals)
+
+	elif kwargs:
+		# Attribute values passed as keyword arguments
+		return get_seq_ids(kwargs, single=not multiple, **more)
+
+	else:
+		raise TypeError('Must pass either positional or keyword arguments')
 
 
 class SeqRecordBase(metaclass=ABCMeta):
@@ -126,12 +251,22 @@ class SeqRecordBase(metaclass=ABCMeta):
 	genbank_acc = abstractproperty()
 	refseq_acc = abstractproperty()
 
-	def ncbi_ids(self):
+	def ncbi_ids(self, flat=False):
 		"""Get a dictionary of all NCBI sequence ID attribute values.
+
+		:param bool flat: If True, get a flat mapping of attribute names to
+			values. False (default) gets mapping from ID names to tuples of
+			attribute values (see :data:`.SEQ_IDS`).
 
 		:rtype: dict
 		"""
-		return {key: getattr(self, key) for key in SEQ_ID_ATTRS}
+		if flat:
+			return {name: getattr(self, name) for name in SEQ_ID_ATTRS}
+		else:
+			return {
+				k: tuple(getattr(self, name) for name in names)
+				for k, names in SEQ_IDS.items()
+			}
 
 
 def entrez_url(entrez_db, entrez_id):
@@ -147,23 +282,27 @@ def entrez_url(entrez_db, entrez_id):
 	return urljoin(NCBI_BASE_URL, '/'.join(path))
 
 
-def ncbi_sequence_url(**ncbi_ids):
-	"""Attempt to guess the URL for a sequence on NCBI.
+def ncbi_sequence_url(*args, **kwargs):
+	"""Attempt to guess the URL for a sequence on get_seq_ids.
 
 	Not too smart about it right now, only operates off the entrez IDs.
 
-	:param \\**ncbi_ids: Valid set of NCBI sequence IDs as keyword arguments.
-		See :func:`check_seq_ids`.
+	:param \\*args: Name of NCBI sequence ID followed by its attribute values
+		(see :data:`.SEQ_IDS`). Mututally exclusive with ``**kwargs``.
+	:param \\**kwargs: Valid set of NCBI sequence ID attribute values as keyword
+		arguments (see :func:`.get_seq_ids`). Mututally exclusive with ``*args``.
 	:returns: Guess for URL, or None no guess could be made.
 	:rtype: str
 	"""
-	ncbi_ids = {k: v for k, v in ncbi_ids.items() if v is not None}
-	check_seq_ids(ncbi_ids)
+	ids = parse_seq_id_args(args, kwargs, multiple=True)
 
 	try:
-		return entrez_url(ncbi_ids['entrez_db'], ncbi_ids['entrez_id'])
+		entrez_id_vals = ids['entrez']
+
 	except KeyError:
 		return None
+
+	return entrez_url(*entrez_id_vals)
 
 
 def ncbi_search_url(term):

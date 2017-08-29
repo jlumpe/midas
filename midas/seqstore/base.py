@@ -60,7 +60,7 @@ class SequenceStore(metaclass=ABCMeta):
 		:param src: Open file-like object containing the sequence data, or
 			alternatively a string containing the path to such a file.
 		:param dict ids: NCBI IDs for the sequence. At least one is required.
-			See :func:`midas.ncbi.check_seq_ids` for other requirements.
+			See :func:`midas.ncbi.get_seq_ids` for other requirements.
 		:param \\**kwargs: Additional keyword arguments.
 
 		:returns: Record for the added sequence.
@@ -116,7 +116,7 @@ class SequenceStore(metaclass=ABCMeta):
 			Can be found in the ``store_id`` attribute of an existing record.
 			This parameter is mutually exclusive with ``**ids``.
 		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
-			:func:`midas.ncbi.check_seq_ids`. If multiple IDs are given the
+			:func:`midas.ncbi.get_seq_ids`. If multiple IDs are given the
 			returned sequence must match all of them.
 		:returns: Record of stored sequence if it exists, otherwise ``None``.
 		:rtype: .BaseSequenceStoreRecord
@@ -130,7 +130,7 @@ class SequenceStore(metaclass=ABCMeta):
 		This should be equivalent to ``seqstore.get_record(**ids) is not None``.
 
 		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
-			:func:`midas.ncbi.check_seq_ids`. If multiple IDs are given a
+			:func:`midas.ncbi.get_seq_ids`. If multiple IDs are given a
 			sequence must match all of them.
 		:rtype: bool
 		"""
@@ -141,7 +141,7 @@ class SequenceStore(metaclass=ABCMeta):
 		"""Check if a sequence with any of the given NCBI IDs exists in the store.
 
 		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
-			:func:`midas.ncbi.check_seq_ids`. Unlike :meth:`has` if multiple IDs
+			:func:`midas.ncbi.get_seq_ids`. Unlike :meth:`has` if multiple IDs
 			are given a sequence only needs to match the attributes in a single
 			index (see :data:`midas.ncbi.SEQ_IDS`).
 		:rtype: bool
