@@ -212,7 +212,30 @@ def get_seq_ids(mapping, single=False, *, extra_ok=False, empty_ok=True,
 
 
 def parse_seq_id_args(args, kwargs, multiple=False, **more):
-	""""""
+	"""Parse NCBI sequence IDS from positional and keyword arguments.
+
+	Meant to be used as a convenience in other functions where the signature
+	allows you to specify a single NCBI sequence ID in positional arguments
+	as ``(id_name1, *id_attr_vals...)`` or possibly multiple IDs by giving their
+	attribute values in keyword arguments like
+	``(... attr1=val1, attr2=val2, ...)``.
+
+	:param tuple args: Zero or one sequence IDs encoded in positional arguments.
+	:param dict kwargs: Any number of sequence ID attribute values in keyword
+		arguments.
+	:param bool multiple: If True get values for multiple sequence IDs. If
+		False (default) expect
+	:param \\**more: Additional keyword arguments to forward to
+		:func:`get_seq_ids`.
+	:returns: If ``multiple`` is False returns a``(id_name, id_values)`` pair,
+		where ``id_name`` is a key of :data:`.SEQ_IDS` and ``id_values`` is a
+		tuple of values for the corresponding attributes. If ``multiple`` is
+		True returns a dictionary where elements of ``items()`` are formatted
+		in the same way.
+	:rtype: tuple or dict
+
+	:raises TypeError: If both or neither of ``args`` and ``kwargs`` are empty.
+	"""
 	if args:
 		if kwargs:
 			raise TypeError(
