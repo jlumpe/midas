@@ -385,8 +385,16 @@ class Taxon(Base):
 
 	.. attribute:: distance_threshold
 
-		Maximum distance from a query genome to a reference genome in this taxon
-		for the query to be classified within the taxon.
+		Float column. Maximum distance from a query genome to a reference genome
+		in this taxon for the query to be classified within the taxon.
+
+	.. attribute:: report
+
+		Boolean column. Whether to report this taxon directly as a match when
+		producing a human-readable query result. Some custom taxa might need to
+		be "hidden" from the user, in which case the value should be false. The
+		application should then ascend the taxon's lineage and choose the first
+		ancestor where this field is true. Defaults to true.
 
 	.. attribute:: extra
 
@@ -442,6 +450,7 @@ class Taxon(Base):
 	rank = Column(String(), index=True)
 	description = Column(String())
 	distance_threshold = Column(sa.Float())
+	report = Column(Boolean(), nullable=False, default=True, server_default=sa.true())
 
 	reference_set_id = Column(
 		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
