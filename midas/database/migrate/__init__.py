@@ -26,3 +26,12 @@ def get_alembic_config(engine, **kwargs):
 	config.attributes['engine'] = engine
 
 	return config
+
+
+def upgrade(engine, revision=None, tag=None, **kwargs):
+	from alembic import command
+
+	config = get_alembic_config(engine, **kwargs)
+
+
+	command.upgrade(config, revision, tag=tag)
