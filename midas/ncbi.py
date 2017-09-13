@@ -317,7 +317,7 @@ def ncbi_sequence_url(*args, **kwargs):
 	:returns: Guess for URL, or None no guess could be made.
 	:rtype: str
 	"""
-	ids = parse_seq_id_args(args, kwargs, multiple=True)
+	ids = parse_seq_id_args(args, kwargs, multiple=True, null_ok=True)
 
 	try:
 		entrez_id_vals = ids['entrez']
