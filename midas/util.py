@@ -44,6 +44,9 @@ class SubPath:
 	returns the absolute path on instances and a function giving the absolute
 	path given the root path on classes.
 
+	Using the division operator with a SubPath instance on the left is syntacitc
+	sugar for the :meth:`join` method.
+
 	:param path: Path relative to parent object's root directory.
 	"""
 
@@ -70,6 +73,18 @@ class SubPath:
 
 	def __set__(self, obj, value):
 		raise AttributeError("Can't set attribute")
+
+	def join(self, *args):
+		"""Create a new SubPath by joining this path with a sub(-sub?)-path.
+
+		:param \\*args: See :meth:`pathlib.Path.joinpath`.
+		:rtype: .SubPath
+		"""
+		return SubPath(self.path.joinpath(*args))
+
+
+	def __truediv__(self, subpath):
+		return self.join(subpath)
 
 
 def path_str(path):
