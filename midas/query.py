@@ -1,11 +1,10 @@
 """Run queries against a reference database."""
 
+from collections import namedtuple
+
 import numpy as np
 
 from midas.cython import metrics
-from midas.kmers import vec_to_coords
-from midas.io.seq import find_kmers_parse
-from midas.util import kwargs_done, path_str
 
 
 def sigarray_scores(signature, sigarray, distance=False):
@@ -90,83 +89,6 @@ def find_closest_signatures(query, refarray, *, k=None, distance=False):
 			)
 
 		return indices, scores
-
-
-def _query_files_worker(args):
-	"""Thread worker function to calculate signatures from sequence files.
-
-	:param args: Tuple of ``(i, file, format_ kmerspec)``. ``i`` is file index,
-		``file`` is file name, ``format_`` is file format for parsing, and
-		``kmerspec`` is the :class:`midas.kmers.KmerSpec` for k-mer finding.
-	:returns: ``(i, signature)`` tuple
-	"""
-	i, file, format_, kmerspec = args
-
-	with open(path_str(file)) as fobj:
-		vec = find_kmers_parse(kmerspec, fobj, format_)
-		return i, vec_to_coords(vec)
-
-
-def query_files_parallel(query_files, format_, kmerspec, refarray, *,
-                         k=None, nthreads=None, **kwargs):
-	"""Find closest reference genomes for a set of query sequence files.
-
-	A process pool is set up to parse input files and calculate their
-	signatures. Querying is done in the main thread as signatures become
-	available, but the Cython function implementation is parallelized as well
-	and releases the GIL.
-	"""
-
-	from multiprocessing import Pool
-
-	# Get keyword arguments
-	distance = kwargs.pop('distance', False)
-	progress = kwargs.pop('progress', None)
-	threads = kwargs.pop('threads', None)
-	kwargs_done(kwargs)
-
-	# Format strings to list
-	if isinstance(format_, str):
-		format_ = [format_] * len(query_files)
-
-	elif len(format_) != len(query_files):
-		raise ValueError('format_ must have same length as files argument')
-
-	# Output arrays
-	out_shape = len(query_files) if k is None else (len(query_files), k)
-	closest_indices = np.zeros(out_shape, dtype=int)
-	closest_scores = np.zeros(out_shape, dtype=metrics.SCORE_DTYPE)
-
-	# Jobs for worker threads
-	jobs = [
-		(i, file, fmt, kmerspec)
-		for i, (file, fmt) in enumerate(zip(query_files, format_))
-	]
-
-	with Pool(threads) as pool:
-
-		# Iterate over signatures as they finish
-		for i, signature in pool.imap_unordered(_query_files_worker, jobs):
-
-			# Run query with signature
-			indices, scores = find_closest_signatures(signature, refarray, k=k,
-			                                          distance=distance)
-
-			# Fill in results
-			closest_indices[i] = indices
-			closest_scores[i] = scores
-
-			# Call progress function
-			if progress:
-				progress(
-					i=i,
-					file=query_files[i],
-					indices=indices,
-					scores=scores,
-					signature=signature,
-				)
-
-	return closest_indices, closest_scores
 
 
 def get_genome_by_attr(session, attrname, attrval, *, ref_set=None, force=False):
