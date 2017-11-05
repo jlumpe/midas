@@ -8,7 +8,7 @@ from pathlib import Path
 import sqlalchemy as sa
 
 from midas.util import SubPath, sanitize_filename
-from midas.database.sqla import KeyValueTable
+from midas.db.sqla import KeyValueTable
 from .dbstore import DbIndexedSequenceStore, make_seq_table
 
 

@@ -339,7 +339,7 @@ class BasicDatabase(base.AbstractDatabase):
 		from alembic.config import Config
 		from pkg_resources import resource_filename
 
-		migrations_dir = resource_filename('midas.database', 'migrate')
+		migrations_dir = resource_filename('midas.db', 'migrate')
 		ini_path = os.path.join(migrations_dir, 'alembic.ini')
 		script_path = os.path.join(migrations_dir, 'basicdatabase')
 

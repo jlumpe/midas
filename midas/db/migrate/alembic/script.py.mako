@@ -7,7 +7,7 @@ Create Date: ${create_date}
 """
 from alembic import op
 import sqlalchemy as sa
-import midas.database.sqla
+import midas.db.sqla
 ${imports if imports else ""}
 
 # revision identifiers, used by Alembic.

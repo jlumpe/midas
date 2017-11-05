@@ -93,7 +93,7 @@ def find_closest_signatures(query, refarray, *, k=None, distance=False):
 
 def get_genome_by_attr(session, attrname, attrval, *, ref_set=None, force=False):
 
-	from midas.database import models
+	from midas.db import models
 
 	if ref_set is None:
 		query = session.query(models.Genome).filter_by({attrname: attrval})

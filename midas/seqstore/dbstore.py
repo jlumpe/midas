@@ -20,8 +20,8 @@ import operator
 
 import sqlalchemy as sa
 
-from midas.database.mixins import SeqRecordMixin
-from midas.database.sqla import KeyValueTable
+from midas.db.mixins import SeqRecordMixin
+from midas.db.sqla import KeyValueTable
 from midas import ncbi
 from midas.util import kwargs_done
 from . import base
@@ -93,7 +93,7 @@ class DbIndexedSequenceStore(base.SequenceStore):
 		  is False.
 
 		* **use_meta** (*bool*) --
-		  Whether to use a :class:`midas.database.sqla.KeyValueTable` to store
+		  Whether to use a :class:`midas.db.sqla.KeyValueTable` to store
 		  metadata in the database.
 
 	.. attribute:: VERSION
@@ -117,7 +117,7 @@ class DbIndexedSequenceStore(base.SequenceStore):
 	.. attribute:: _meta
 
 		Private attribute containing metadata in a
-		:class:`midas.database.sqla.KeyValueTable` if ``use_meta=True`` was
+		:class:`midas.db.sqla.KeyValueTable` if ``use_meta=True`` was
 		passed to the constructor.
 	"""
 

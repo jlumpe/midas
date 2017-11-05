@@ -7,7 +7,7 @@ Create Date: 2017-08-01 10:42:48.423161
 """
 from alembic import op
 import sqlalchemy as sa
-import midas.database.sqla
+import midas.db.sqla
 
 
 # revision identifiers, used by Alembic.
@@ -30,8 +30,8 @@ def upgrade():
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('is_assembled', sa.Boolean(), nullable=True),
     sa.Column('ncbi_taxid', sa.Integer(), nullable=True),
-    sa.Column('entrez_summary', midas.database.sqla.JsonType(), nullable=True),
-    sa.Column('extra', midas.database.sqla.JsonType(), nullable=True),
+    sa.Column('entrez_summary', midas.db.sqla.JsonType(), nullable=True),
+    sa.Column('extra', midas.db.sqla.JsonType(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('entrez_db', 'entrez_id'),
     sa.UniqueConstraint('genbank_acc'),
@@ -45,7 +45,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('description', sa.String(), nullable=True),
-    sa.Column('extra', midas.database.sqla.JsonType(), nullable=True),
+    sa.Column('extra', midas.db.sqla.JsonType(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('key', 'version'),
     sa.UniqueConstraint('name')
@@ -56,8 +56,8 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('prefix', sa.String(), nullable=False),
     sa.Column('k', sa.Integer(), nullable=False),
-    sa.Column('parameters', midas.database.sqla.JsonType(), nullable=False),
-    sa.Column('extra', midas.database.sqla.JsonType(), nullable=True),
+    sa.Column('parameters', midas.db.sqla.JsonType(), nullable=False),
+    sa.Column('extra', midas.db.sqla.JsonType(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -82,8 +82,8 @@ def upgrade():
     sa.Column('reference_set_id', sa.Integer(), nullable=False),
     sa.Column('parent_id', sa.Integer(), nullable=True),
     sa.Column('ncbi_id', sa.Integer(), nullable=True),
-    sa.Column('entrez_data', midas.database.sqla.JsonType(), nullable=True),
-    sa.Column('extra', midas.database.sqla.JsonType(), nullable=True),
+    sa.Column('entrez_data', midas.db.sqla.JsonType(), nullable=True),
+    sa.Column('extra', midas.db.sqla.JsonType(), nullable=True),
     sa.ForeignKeyConstraint(['parent_id'], ['taxa.id'], ondelete='SET NULL'),
     sa.ForeignKeyConstraint(['reference_set_id'], ['reference_genome_sets.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')

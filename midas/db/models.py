@@ -57,11 +57,11 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 
 	.. attribute:: key
 
-		String column. See :class:`midas.database.mixins.KeyMixin`.
+		String column. See :class:`midas.db.mixins.KeyMixin`.
 
 	.. attribute:: version
 
-		String column. See :class:`midas.database.mixins.KeyMixin`.
+		String column. See :class:`midas.db.mixins.KeyMixin`.
 
 	.. attribute:: description
 
@@ -148,11 +148,11 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 	.. attribute:: key
 
-		String column. See :class:`midas.database.mixins.KeyMixin`.
+		String column. See :class:`midas.db.mixins.KeyMixin`.
 
 	.. attribute:: version
 
-		String column, required. See :class:`midas.database.mixins.KeyMixin`.
+		String column, required. See :class:`midas.db.mixins.KeyMixin`.
 
 	.. attribute:: name
 
