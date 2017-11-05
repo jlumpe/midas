@@ -3,12 +3,11 @@
 from abc import ABCMeta
 
 import sqlalchemy as sa
-from sqlalchemy import Column, Integer, String, Boolean, Binary
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, backref, deferred
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
-from sqlalchemy.ext.associationproxy import association_proxy
 
 from midas.ncbi import SeqRecordBase
 from .mixins import KeyMixin, SeqRecordMixin
