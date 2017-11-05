@@ -162,6 +162,16 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 		Text column. Optional description.
 
+	.. attribute:: signatureset_key
+
+		String column. Key of signature set that should be used to query this
+		genome set.
+
+	.. attribute:: signatureset_version
+
+		String column. Key of signature set that should be used to query this
+		genome set.
+
 	.. attribute:: extra
 
 		JSON column. Additional arbitrary data.
@@ -186,6 +196,9 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	id = Column(Integer(), primary_key=True)
 	name = Column(String(), unique=True, nullable=False)
 	description = Column(String())
+
+	signatureset_key = Column(String())
+	signatureset_version = Column(String())
 
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
