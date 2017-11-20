@@ -1,9 +1,9 @@
-"""Test SQLAlchemy utility code in midas.database.sqla."""
+"""Test SQLAlchemy utility code in midas.db.sqla."""
 
 import pytest
 import sqlalchemy as sa
 
-from midas.database import sqla
+from midas.db import sqla
 
 
 @pytest.mark.parametrize('nullable', [False, True])
