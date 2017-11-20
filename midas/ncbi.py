@@ -27,7 +27,6 @@
 	Mapping from attribute names in :data:`.SEQ_ID_ATTRS` to their types.
 """
 
-from abc import ABCMeta, abstractproperty
 from collections import OrderedDict
 from types import MappingProxyType
 
@@ -263,16 +262,11 @@ def parse_seq_id_args(args, kwargs, multiple=False, **more):
 		raise TypeError('Must pass either positional or keyword arguments')
 
 
-class SeqRecordBase(metaclass=ABCMeta):
+class SeqRecordBase:
 	"""ABC for a record describing a sequence from an NCBI database.
 
-	Should include all attributes from :data:`.SEQ_ID_ATTRS`.
+	Includes all attributes from :data:`.SEQ_ID_ATTRS`.
 	"""
-
-	entrez_db = abstractproperty()
-	entrez_id = abstractproperty()
-	genbank_acc = abstractproperty()
-	refseq_acc = abstractproperty()
 
 	def ncbi_ids(self, flat=False):
 		"""Get a dictionary of all NCBI sequence ID attribute values.

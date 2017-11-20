@@ -1,13 +1,11 @@
 """SQLAlchemy models for MIDAS database."""
 
-from abc import ABCMeta
-
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
+from sqlalchemy.ext.declarative import declarative_base
 
 from midas.ncbi import SeqRecordBase
 from .mixins import KeyMixin, SeqRecordMixin
@@ -22,18 +20,8 @@ __all__ = [
 ]
 
 
-class DeclarativeABCMeta(DeclarativeMeta, ABCMeta):
-	"""Metaclass inheriting from both SQLAlchemy's DeclarativeMeta and ABCMeta
-
-	This is needed because :class:`.Genome` uses a mixin which inherits from
-	an abstract base class with ABCMeta as its metaclass, and all classes must
-	have a metaclass that inherits from each of its base classes metaclasses.
-	"""
-	pass
-
-
-# SqlAlchemy declarative base, using metaclass defined above
-Base = declarative_base(metaclass=DeclarativeABCMeta)
+# SqlAlchemy declarative base
+Base = declarative_base()
 
 
 class Genome(Base, SeqRecordMixin, KeyMixin):
