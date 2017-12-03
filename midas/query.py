@@ -1,7 +1,5 @@
 """Run queries against a reference database."""
 
-from collections import namedtuple
-
 import numpy as np
 
 from midas.cython import metrics
@@ -89,29 +87,3 @@ def find_closest_signatures(query, refarray, *, k=None, distance=False):
 			)
 
 		return indices, scores
-
-
-def get_genome_by_attr(session, attrname, attrval, *, ref_set=None, force=False):
-
-	from midas.db import models
-
-	if ref_set is None:
-		query = session.query(models.Genome).filter_by({attrname: attrval})
-
-	else:
-		ref_set_id = ref_set if isinstance(ref_set, int) else ref_set.id
-		query = session.query(models.AnnotatedGenome)\
-			.filter(models.AnnotatedGenome.reference_set_id == ref_set_id)\
-			.filter_by({attrname: attrval})
-
-	if force:
-		return query.one()
-	else:
-		return query.scalar()
-
-
-def genomes_from_ids(ids, session, *, id_attr='key', ref_set=None, force=False):
-	return [
-		get_genome_by_attr(session, id_, id_attr, ref_set=ref_set, force=force)
-		for id_ in ids
-	]
