@@ -42,3 +42,9 @@ def test_annotatedgenome_hybrid_props():
 
 	for attrname in hybrid_attrs:
 		assert getattr(genome, attrname) == getattr(annotated, attrname)
+
+
+class TestJsonableMixin:
+	"""Test concrete classes of midas.db.mixins.JsonableMixin."""
+
+	# TODO

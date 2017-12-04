@@ -5,6 +5,7 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy.ext.declarative import declared_attr
 
 from .sqla import MutableJsonCollection
+from midas.util import Jsonable, JsonConstructible
 from midas import ncbi
 
 
@@ -48,38 +49,56 @@ class KeyMixin:
 			return query.filter_by(version=version).scalar()
 
 
+@Jsonable.register
+@JsonConstructible.register
 class JsonableMixin:
-	"""Mixin that allows model instances to be converted to/from JSON"""
+	"""Mixin that allows model instances to be converted to/from JSON.
+
+	Subclasses must have a class attribute ``__json_attrs__`` which is
+	a sequence of field names which are converted to JSON.
+	"""
 
 	def to_json(self):
-		"""Converts to JSONable dict"""
+		"""Convert to a value serializable as JSON.
 
-		json_data = dict()
+		:returns: Dictionary which can be passed to :func:`json.dump`.
+		:rtype: dict
+		"""
+
+		data = dict()
 
 		for name in self.__json_attrs__:
 			value = getattr(self, name)
 			if isinstance(value, MutableJsonCollection):
 				value = value.as_builtin()
 
-			json_data[name] = value
+			data[name] = value
 
-		return json_data
+		return data
 
 	@classmethod
-	def from_json(cls, json_data):
-		"""Creates from parsed JSON dict"""
+	def from_json(cls, data):
+		"""Create an instance of the class from JSON data.
+
+		:param dict data: JSON object data as returned by :func:`json.load`.
+		:returns: Model instance.
+		"""
 		return cls(**{
-			name: value for name, value in json_data.items()
+			name: value for name, value in data.items()
 			if name in cls.__json_attrs__
 		})
 
-	def update_from_json(self, json_data):
-		"""Updates attributes from parsed JSON dict"""
-		for name, value in json_data.items():
-			if isinstance(value, MutableJsonCollection):
-				value = value.as_builtin()
+	def update_from_json(self, data):
+		"""Updates attributes from parsed JSON dict.
 
+		:param dict data: JSON object data as returned by :func:`json.load`.
+		"""
+		for name, value in data.items():
 			if name in self.__json_attrs__:
+
+				if isinstance(value, MutableJsonCollection):
+					value = value.as_builtin()
+
 				setattr(self, name, value)
 
 
