@@ -17,6 +17,7 @@ import numpy as np
 
 from .cython import seqs as cseqs
 from .cython.seqs import kmer_to_index, index_to_kmer
+from .util import Jsonable, JsonConstructible
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -24,6 +25,8 @@ from .cython.seqs import kmer_to_index, index_to_kmer
 NUCLEOTIDES = b'ACGT'
 
 
+@Jsonable.register
+@JsonConstructible.register
 class KmerSpec(object):
 	"""Specifications for a k-mer search operation.
 
@@ -108,6 +111,13 @@ class KmerSpec(object):
 			self.k,
 			self.prefix.decode('ascii')
 		)
+
+	def to_json(self):
+		return dict(k=self.k, prefix=self.prefix.decode('ascii'))
+
+	@classmethod
+	def from_json(cls, data):
+		return cls(data['k'], data['prefix'])
 
 
 def find_kmers(kspec, seq, out=None):

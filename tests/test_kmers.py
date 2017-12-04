@@ -104,6 +104,18 @@ class TestKmerSpec:
 
 		assert kspec == pickle.loads(pickle.dumps(kspec))
 
+	def test_json(self):
+		"""Test conversion to/from JSON."""
+
+		import json
+
+		kspec = kmers.KmerSpec(11, 'ATGAC')
+
+		jsonstr = json.dumps(kspec.to_json())
+		kspec2 = kmers.KmerSpec.from_json(json.loads(jsonstr))
+
+		assert kspec2 == kspec
+
 
 def test_vec_coords_conversion():
 	"""Test conversion between k-mer vector and coordinates."""
