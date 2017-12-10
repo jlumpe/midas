@@ -66,6 +66,7 @@ class KmerSpec(object):
 	def __init__(self, k, prefix):
 		self.k = k
 
+		# Convert prefix to types
 		if isinstance(prefix, str):
 			self.prefix = prefix.upper().encode('ascii')
 		else:
@@ -79,6 +80,17 @@ class KmerSpec(object):
 		self.total_len = self.k + self.prefix_len
 		self.idx_len = 4 ** self.k
 
+		if self.k <= 4:
+			self.coords_dtype = np.dtype('u1')
+		elif self.k <= 8:
+			self.coords_dtype = np.dtype('u2')
+		elif self.k <= 16:
+			self.coords_dtype = np.dtype('u4')
+		elif self.k <= 32:
+			self.coords_dtype = np.dtype('u8')
+		else:
+			self.coords_dtype = None
+
 	def __get_newargs__(self):
 		return self.k, self.prefix
 
@@ -90,23 +102,8 @@ class KmerSpec(object):
 	def coords_to_vec(self, coords):
 		return coords_to_vec(coords, self.idx_len)
 
-	@property
-	def coords_dtype(self):
-		if self.k <= 4:
-			strtype = 'u1'
-		elif self.k <= 8:
-			strtype = 'u2'
-		elif self.k <= 16:
-			strtype = 'u4'
-		elif self.k <= 32:
-			strtype = 'u8'
-		else:
-			return None
-
-		return np.dtype(strtype)
-
 	def __repr__(self):
-		return '<{} k={} prefix="{}">'.format(
+		return '{}({}, {!r})'.format(
 			self.__class__.__name__,
 			self.k,
 			self.prefix.decode('ascii')
