@@ -20,6 +20,7 @@ install_requires = [
 	'sqlalchemy~=1.0',
 	'biopython~=1.68',
 	'alembic~=0.8',
+	'pydatatypes~=0.1',
 ]
 
 

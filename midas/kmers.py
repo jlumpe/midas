@@ -15,9 +15,9 @@ import collections
 
 import numpy as np
 
+from pydatatypes import Jsonable, JsonConstructible
 from .cython import seqs as cseqs
 from .cython.seqs import kmer_to_index, index_to_kmer
-from .util import Jsonable, JsonConstructible
 
 
 # Byte representations of the four nucleotide codes in the order used for

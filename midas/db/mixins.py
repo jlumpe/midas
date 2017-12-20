@@ -5,7 +5,7 @@ from sqlalchemy import UniqueConstraint
 from sqlalchemy.ext.declarative import declared_attr
 
 from .sqla import MutableJsonCollection
-from midas.util import Jsonable, JsonConstructible
+from pydatatypes import Jsonable, JsonConstructible
 from midas import ncbi
 
 

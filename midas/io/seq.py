@@ -1,19 +1,17 @@
 """Read and parse sequence files and calculate their k-mer signatures."""
 
-from collections import namedtuple
 from pathlib import Path
 
 import numpy as np
 from Bio import SeqIO
 
+from pydatatypes import dataclass, field
 from midas.kmers import find_kmers, vec_to_coords
 from .util import open_compressed, ClosingIterator
 
 
-_SeqFileInfoBase = namedtuple('_SeqFileInfoBase', 'path fmt compression')
-
-
-class SeqFileInfo(_SeqFileInfoBase):
+@dataclass(frozen=True, slots=True)
+class SeqFileInfo:
 	"""A reference to a DNA sequence file stored in the file system.
 
 	Contains all the information needed to read and parse the file.
@@ -38,11 +36,9 @@ class SeqFileInfo(_SeqFileInfoBase):
 	:param str compression: Value of :attr:`compression` attribute.
 	"""
 
-	def __new__(cls, path, fmt, compression=None):
-		if not isinstance(path, Path):
-			path = Path(path)
-
-		return super().__new__(cls, path, fmt, compression)
+	path = field(Path, convert=Path)
+	fmt = field(str)
+	compression = field(str, optional=True)
 
 	def open(self, mode='r', **kwargs):
 		"""
