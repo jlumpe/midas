@@ -5,7 +5,7 @@ import json
 
 import numpy as np
 
-from midas.kmers import KmerSpec, SignatureArray
+from midas.kmers import SignatureArray
 from .util import read_npy, write_npy, NamedStruct
 
 
