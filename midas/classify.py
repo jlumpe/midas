@@ -1,8 +1,14 @@
 """Alternative taxonomy classification methods."""
 
 import functools
+import json
+import pickle
+from typing import List
 
 import numpy as np
+
+from pydatatypes import dataclass, field
+from .kmers import KmerSpec
 
 
 def signatures_to_features(signatures, kspec, kmers):
@@ -174,6 +180,137 @@ class Classifier:
 
 		def __set__(self, obj, value):
 			obj._fit_params[self.key] = value
+
+
+@dataclass(json=True)
+class ClassifierInfo:
+	"""
+	Data object which describes how a classifier links to MIDAS database objects.
+
+	.. attribute:: id
+
+		String ID intended to uniquely identify the classifier for the purposes
+		of distributing updates, etc.
+
+	.. attribute:: version
+
+		Version string indicating the current revision of the ID. Should be
+		digits separated by commas, e.g. ``'1.0'``.
+
+	.. attribute:: parent_taxon
+
+		Name of the :class:`midas.db.models.taxon` this classifier works within.
+
+	.. attribute:: class_taxa
+
+		Ordered list of taxa names that corresond to the classes of the model.
+
+	.. attribute:: kspec
+
+		:class:`midas.kmers.KmerSpec` used to calculate features used as input
+		to the model (see :attr:`.Classifier.kspec)`.
+
+	.. attribute:: description
+
+		Optional string with longer description of the classifier.
+
+	.. attribute:: metadata
+
+		Optionable ``dict`` containing arbitrary extra metadata for the
+		classifier. Should be convertible to JSON.
+	"""
+
+	id = field(str)
+	version = field(str)
+	parent_taxon = field(str)
+	class_taxa = field(List[str])
+	kspec = field(KmerSpec)
+	description = field(str, optional=True)
+	metadata = field(dict, optional=True)
+
+
+def _check_classifier_info(classifier, info):
+	"""Check for consistency between ClassifierInfo and Classifier instance.
+
+	:param classifier: Classifier instance.
+	:type classifier: .Classifier
+	:param info: ClassifierInfo describing the classifier
+	:type info: .ClassifierInfo
+
+	:raises ValueError: If there is an inconsistency between the classifier and
+		the info object.
+	"""
+	if classifier.n_classes != len(info.class_taxa):
+		raise ValueError('classifier.n_classes does not match length of info.class_taxa')
+
+	if classifier.kspec != info.kspec:
+		raise ValueError('classifier.kspec does not match info.kspec')
+
+
+def dump_classifier(stream, info, classifier, check=True):
+	"""Save Classifier and ClassifierInfo to a binary stream.
+
+	:param stream: Writeable stream in binary mode.
+	:param info: Classifier info.
+	:type info: .ClassifierInfo
+	:param classifier: Classifier instance.
+	:type classifier: .Classifier
+	:param bool check: If True check that the classifier and info are consistent
+		with one another.
+
+	:raises ValueError: If ``check`` is True and the classifier and info objects
+		are inconsistent.
+	"""
+
+	from io import TextIOWrapper
+
+	if check:
+		_check_classifier_info(classifier, info)
+
+	# Dump info as JSON
+	# New lines in strings should be encoded as "\n" so there shouldn't be any
+	# newline characters until the separator.
+	text = TextIOWrapper(stream)
+	json.dump(info.to_json(), text)
+	text.detach()
+
+	# Separate by newline
+	stream.write(b'\n')
+
+	# Dump classifier using pickle
+	pickle.dump(classifier, stream)
+
+
+def load_classifier(stream, info_only=False, check=True):
+	"""Read Classifier and ClassifierInfo from a binary stream.
+
+	:param stream: Readable stream in binary mode.
+	:param bool info_only: Return only the :class:`.ClassifierInfo` object, not
+		the :class:`.Classifier`.
+	:param bool check: If True check that the classifier and info are consistent
+		with one another.
+
+	:returns: Classifier info only if ``info_only`` is True, othewise
+		``(info, classifier)`` pair.
+
+	:raises ValueError: If ``check`` is True and the classifier and info objects
+		are inconsistent.
+	"""
+
+	# Read info
+	info_bytes = stream.readline()  # Reads up to newline
+	info = ClassifierInfo.from_json(json.loads(info_bytes.decode()))
+
+	if info_only:
+		return info
+
+	# Remaining data should be pickled classifier instance
+	classifier = pickle.load(stream)
+
+	if check:
+		_check_classifier_info(classifier, info)
+
+	return info, classifier
 
 
 def kmer_class_freqs(x, labels, k=None, sample_weights=None, smoothing=None):

@@ -5,6 +5,7 @@ import pytest
 import numpy as np
 
 from midas import classify
+from midas.classify import Classifier, ClassifierInfo
 from midas.kmers import KmerSpec
 
 
@@ -34,6 +35,105 @@ def test_signatures_to_features():
 	# Check individually
 	for i in range(len(signatures)):
 		assert np.array_equal(features[i], np.in1d(kmers, signatures[i]))
+
+
+class TestClassifierSerialization:
+	"""Test serialization of classifiers."""
+
+	class DummyClassifier(Classifier):
+		"""Simple classifier for testing."""
+		a = Classifier.Param('a')
+		b = Classifier.Param('b')
+		c = Classifier.FitParam('c')
+
+		def __init__(self, n_classes, kspec, kmers, a, b, c):
+			Classifier.__init__(self, n_classes, kspec, kmers)
+			self.a = a
+			self.b = b
+			self.c = c
+
+	@pytest.fixture(scope='class')
+	def classifier(self):
+		"""Test classifier instance."""
+		kspec = KmerSpec(11, 'ATGAC')
+		kmers = np.arange(10000) * 100
+		return self.DummyClassifier(10, kspec, kmers, a=1, b=2, c=3)
+
+	@pytest.fixture(scope='class')
+	def info(self, classifier):
+		"""Test ClassifierInfo instance."""
+		return ClassifierInfo(
+			id='foo',
+			version='1.0',
+			parent_taxon='E coli',
+			class_taxa=['E coli {}'.format(i + 1) for i in range(classifier.n_classes)],
+			kspec=classifier.kspec,
+		)
+
+	@pytest.fixture()
+	def stream(self, info, classifier):
+		"""Readable binary data stream with classifier written to it."""
+		from io import BytesIO
+
+		stream = BytesIO()
+		classify.dump_classifier(stream, info, classifier)
+		stream.seek(0)
+
+		return stream
+
+	def test_load_both(self, stream, info, classifier):
+		info2, classifier2 = classify.load_classifier(stream)
+
+		# Check info
+		assert info2 == info
+
+		# Check classifier
+		assert classifier.n_classes == classifier2.n_classes
+		assert classifier.kspec == classifier2.kspec
+		assert np.array_equal(classifier.kmers, classifier2.kmers)
+
+		assert classifier.a == classifier2.a
+		assert classifier.b == classifier2.b
+		assert classifier.c == classifier2.c
+
+	def test_info_mismatch(self, classifier, info):
+
+		from io import BytesIO
+		from attr import asdict
+
+		info_dict = asdict(info)
+
+		bad_info = []
+
+		# Number of classes doesn't match
+		bad_info.append(ClassifierInfo(**{
+			**info_dict,
+			'class_taxa': info.class_taxa[:-1]
+		}))
+		bad_info.append(ClassifierInfo(**{
+			**info_dict,
+			'kspec': KmerSpec(info.kspec.k + 1, info.kspec.prefix)
+		}))
+
+		for info2 in bad_info:
+
+			stream = BytesIO()
+
+			# Check writing fails
+			with pytest.raises(ValueError):
+				classify.dump_classifier(stream, info2, classifier)
+
+			# Write without checking, should succeed
+			classify.dump_classifier(stream, info2, classifier, check=False)
+
+			# Read should fail
+			stream.seek(0)
+			with pytest.raises(ValueError):
+				classify.load_classifier(stream)
+
+			# Should succeed if checking disabled
+			stream.seek(0)
+			classify.load_classifier(stream, check=False)
 
 
 class TestNaiveBayesClassifier:
