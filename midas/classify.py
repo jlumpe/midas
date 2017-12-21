@@ -60,13 +60,13 @@ class Classifier:
 			self.n_classes,
 			self.kspec,
 			self.kmers,
-			self.params,
-			self.fit_params
+			self._params,
+			self._fit_params
 		)
 
 	def __setstate__(self, state):
 		*init_args, params, fit_params = state
-		Classifier.__init__(*init_args)
+		Classifier.__init__(self, *init_args)
 		self._params = dict(params)
 		self._fit_params = dict(fit_params)
 
