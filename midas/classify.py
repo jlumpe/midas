@@ -230,8 +230,8 @@ class ClassifierInfo:
 	parent_taxon = field(str)
 	class_taxa = field(List[str])
 	kspec = field(KmerSpec)
-	description = field(str, optional=True)
-	metadata = field(dict, optional=True)
+	description = field(str, optional=True, repr=False)
+	metadata = field(dict, optional=True, repr=False)
 
 
 def _check_classifier_info(classifier, info):
