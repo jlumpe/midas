@@ -360,8 +360,8 @@ class NaiveBayesClassifier(Classifier):
 	"""
 
 	alpha = Classifier.Param('alpha')
-	log_p = Classifier.FitParam('log_p')
-	log_1mp = Classifier.FitParam('log_1mp')
+	log_p_ = Classifier.FitParam('log_p')
+	log_1mp_ = Classifier.FitParam('log_1mp')
 
 	def __init__(self, n_classes, kspec, kmers, alpha=1.0):
 		Classifier.__init__(self, n_classes, kspec, kmers)
@@ -395,8 +395,8 @@ class NaiveBayesClassifier(Classifier):
 			)
 
 		# Log of probability and 1 - probability
-		self.log_p = np.log(class_freqs)
-		self.log_1mp = np.log(1 - class_freqs)
+		self.log_p_ = np.log(class_freqs)
+		self.log_1mp_ = np.log(1 - class_freqs)
 
 	@Classifier._process_features
 	def log_prob(self, x, normalize=False):
@@ -417,7 +417,7 @@ class NaiveBayesClassifier(Classifier):
 		:rtype: np.ndarray
 		"""
 
-		probs = np.dot(x, self.log_p.T) + np.dot(~x, self.log_1mp.T)
+		probs = np.dot(x, self.log_p_.T) + np.dot(~x, self.log_1mp_.T)
 
 		if normalize:
 			# Scale rows to have max of 0 first, to avoid all elements

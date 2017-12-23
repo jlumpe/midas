@@ -207,13 +207,13 @@ class TestNaiveBayesClassifier:
 
 		# Probabilities have correct range and are not zero
 		# (2nd requirement is a current constraint on the model).
-		assert np.all(np.isfinite(model.log_p))
-		assert np.all(np.isfinite(model.log_1mp))
-		assert np.all(model.log_p <= 0)
-		assert np.all(model.log_1mp <= 0)
+		assert np.all(np.isfinite(model.log_p_))
+		assert np.all(np.isfinite(model.log_1mp_))
+		assert np.all(model.log_p_ <= 0)
+		assert np.all(model.log_1mp_ <= 0)
 
 		# Probabilities sum to one
-		assert np.allclose(np.exp(model.log_p) + np.exp(model.log_1mp), 1)
+		assert np.allclose(np.exp(model.log_p_) + np.exp(model.log_1mp_), 1)
 
 	@pytest.fixture(scope='class')
 	def x_signatures(self):
