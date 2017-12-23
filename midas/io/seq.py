@@ -207,7 +207,7 @@ class FileSignatureCalculator:
 
 				files[i] = SeqFileInfo(val, fmt, compression)
 
-		# Create jobs and sent to process pool
+		# Create jobs and send to process pool
 		jobs = [(i, file, kmerspec) for i, file in enumerate(files)]
 
 		if ordered:
@@ -225,7 +225,7 @@ class FileSignatureCalculator:
 	def worker(args):
 		"""Thread worker function to calculate signatures from sequence files.
 
-		:param args: Tuple of ``(i, info kmerspec)``. ``i`` is file index,
+		:param args: Tuple of ``(i, info, kmerspec)``. ``i`` is file index,
 			``file`` is an instance of :class:`SeqFileInfo`, and ``kmerspec`` is
 			the :class:`midas.kmers.KmerSpec` for k-mer finding.
 		:returns: ``(i, signature)`` tuple
