@@ -217,7 +217,7 @@ class TestNaiveBayesClassifier:
 
 	@pytest.fixture(scope='class')
 	def x_signatures(self):
-		"""Test samples, im signature (coordinate) format.
+		"""Test samples, in signature (coordinate) format.
 
 		Don't care about modeling actual classes, sample from same distribution
 		as class prototypes.
@@ -231,6 +231,26 @@ class TestNaiveBayesClassifier:
 		]
 
 		return signatures
+
+	@pytest.fixture(scope='class')
+	def margin_model(self, model, x_signatures):
+
+		# Hacky way to copy since I haven't written a method for it yet
+		model2 = object.__new__(classify.NaiveBayesClassifier)
+		model2.__setstate__(model.__getstate__())
+
+		log_probs = model2.log_prob(x_signatures)
+
+		probs_argsort = np.argsort(log_probs, -1)
+
+		diffs = log_probs[:, probs_argsort[:, -1]] - log_probs[:, probs_argsort[:, -2]]
+		assert np.all(diffs >= 0)
+
+		# Put 10% of test signatures within margin
+		model2.margin = np.percentile(diffs, 10)
+
+		return model2
+
 
 	def test_signatures_to_features(self, model, x_signatures):
 		"""Test the signatures_to_features method."""
@@ -274,14 +294,25 @@ class TestNaiveBayesClassifier:
 
 		return result
 
-	def test_predict(self, model, x_signatures):
+	def test_predict(self, model, margin_model, x_signatures):
 		"""Check the predict() method."""
 
 		result = self.check_x_arg(model.predict, model.kmers, x_signatures)
+		margin_result = self.check_x_arg(margin_model.predict, margin_model.kmers, x_signatures)
 
 		# Check result is integer vector
-		assert result.ndim == 1
-		assert result.dtype.kind in 'iu'
+		for r in [result, margin_result]:
+			assert r.shape == (len(x_signatures),)
+			assert r.dtype.kind in 'iu'
+
+		# Check margin-less result has margins within correct range
+		assert np.all((result >= 0) & (result < model.n_classes))
+
+		# Check margin results match values where non-negative
+		assert np.any(margin_result < 0)
+		assert np.all((margin_result == result) | (margin_result < 0))
+
+		# TODO - check values more thoroughly
 
 	@pytest.mark.parametrize('log', [False, True])
 	def test_prob(self, model, x_signatures, log):
@@ -314,10 +345,6 @@ class TestNaiveBayesClassifier:
 		# Check normalized matches unnormalized (off by constant per row)
 		diffs = result - norm_result if log else result / norm_result  # No zeros so OK
 		assert np.allclose(diffs, diffs[:, [0]])
-
-	def test_margin(self, train_labels, x_signatures):
-		"""Test the margin parameter."""
-		# TODO
 
 	def test_compare_sklearn(self, model, train_labels, train_features, x_signatures):
 		"""Compare model performance to equivalent Scikit-learn implementation."""
