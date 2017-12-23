@@ -21,6 +21,9 @@ def _open_gzip(path, mode, **kwargs):
 	"""Opener for gzip-compressed files."""
 	import gzip
 
+	if mode is None:
+		mode = 'rt'
+
 	# gzip defaults to binary mode, change to text instead of not specified
 	if mode[-1] not in 'tb':
 		mode += 't'
