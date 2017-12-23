@@ -283,22 +283,37 @@ class TestNaiveBayesClassifier:
 		assert result.ndim == 1
 		assert result.dtype.kind in 'iu'
 
-	@pytest.mark.parametrize('normalize', [False, True])
-	def test_log_prob(self, model, x_signatures, normalize):
-		"""Check the log_prob() method."""
+	@pytest.mark.parametrize('log', [False, True])
+	def test_prob(self, model, x_signatures, log):
+		"""Check the prob() and log_prob() methods."""
 
-		result = self.check_x_arg(model.log_prob, model.kmers, x_signatures, normalize=normalize)
+		method = model.log_prob if log else model.prob
+		result = self.check_x_arg(method, model.kmers, x_signatures, normalize=False)
+		norm_result = self.check_x_arg(method, model.kmers, x_signatures, normalize=True)
 
 		# Check result shape and dtype
 		assert result.shape == (len(x_signatures), self.N_CLASSES)
 		assert result.dtype.kind == 'f'
+		assert norm_result.shape == (len(x_signatures), self.N_CLASSES)
+		assert norm_result.dtype.kind == 'f'
 
 		# Check value ranges
-		assert np.all(result <= 0)
+		if log:
+			assert np.all(result <= 0)
+			assert np.all(norm_result <= 0)
+		else:
+			assert np.all((result >= 0) & (result <= 1))
+			assert np.all((norm_result >= 0) & (norm_result <= 1))
 
-		# Check probabilities sum to one
-		if normalize:
-			assert np.allclose(np.exp(result).sum(axis=1), 1)
+		# Check normalized probabilities sum to one
+		if log:
+			assert np.allclose(np.exp(norm_result).sum(axis=1), 1)
+		else:
+			assert np.allclose(norm_result.sum(axis=1), 1)
+
+		# Check normalized matches unnormalized (off by constant per row)
+		diffs = result - norm_result if log else result / norm_result  # No zeros so OK
+		assert np.allclose(diffs, diffs[:, [0]])
 
 	def test_compare_sklearn(self, model, train_labels, train_features, x_signatures):
 		"""Compare model performance to equivalent Scikit-learn implementation."""
