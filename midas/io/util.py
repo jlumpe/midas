@@ -31,7 +31,7 @@ def _open_gzip(path, mode, **kwargs):
 def open_compressed(compression, path, mode=None, **kwargs):
 	"""Open a file with compression method specified by a string.
 
-	:param str compression. Compression method. None is no compression. Keys
+	:param str compression: Compression method. None is no compression. Keys
 		of :data:`COMPRESSED_OPENERS` are the allowed values.
 	:param path: Path of file to open. May be string or path-like object.
 	:param str mode: Mode to open file in - same as in :func:`open`.

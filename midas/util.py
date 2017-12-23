@@ -91,7 +91,7 @@ def path_str(path):
 
 	On Python 3.6 this uses the path-like interface (``__fspath__`` method).
 	On 3.5 only recognizes :class:`pathlib.Path` objects. Strings are passed
-	through. If the object is :type:`bytes` or the ``__fspath`__`` method
+	through. If the object is :class:`bytes` or the ``__fspath`__`` method
 	returns bytes they are decoded as UTF-8.
 
 	:param path: String, bytes, or path-like object representing a filesystem

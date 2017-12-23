@@ -32,7 +32,7 @@ def find_closest_signatures(query, refarray, *, k=None, distance=False):
 
 	:param query: Single query signature in coordinate format
 		(:class:`numpy.ndarray` of increasing integer values) or sequence of
-		query signatures (e.g. :class:`midas.kmers.SignatureArray or list).
+		query signatures (e.g. :class:`midas.kmers.SignatureArray` or list).
 	:type query: numpy.ndarray
 	:param refarray: Array of reference signatures to calculate scores against.
 	:type refarray: midas.kmers.SignatureArray

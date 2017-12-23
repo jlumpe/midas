@@ -326,7 +326,7 @@ def ncbi_search_url(term):
 	"""Get the URL for the NCBI search results page for a given term.
 
 	:param str term: Search term.
-	:returns; URL for search page.
+	:returns: URL for search page.
 	:rtype str:
 	"""
 	from urllib.parse import urljoin, urlencode

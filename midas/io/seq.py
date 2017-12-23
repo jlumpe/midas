@@ -174,7 +174,7 @@ class FileSignatureCalculator:
 
 		:param kmerspec: K-mer spec to use for calculating signatures.
 		:type kmerspec: midas.kmers.kmerspec
-		:param files_: Sequence or collection of files to parse. Items may be
+		:param files: Sequence or collection of files to parse. Items may be
 			:class:`.SeqFileInfo` or simply file paths (as strings or path-like
 			objects), in which case ``fmt`` should be specified.
 		:param str fmt: Format of sequence files, if ``files`` contains
@@ -188,7 +188,7 @@ class FileSignatureCalculator:
 			the results of each file in the order they were in the ``files``
 			argument. This could end up being a bit slower.
 
-		:returns; Iterator yielding  ``(i, signature)`` tuples where ``i`` is
+		:returns: Iterator yielding  ``(i, signature)`` tuples where ``i`` is
 			the index of the file in ``files`` and ``signature`` is the file's
 			signature in coordinate format.
 		:rtype: tuple[int, numpy.ndarray]

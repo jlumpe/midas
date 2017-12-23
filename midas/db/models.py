@@ -415,7 +415,7 @@ class Taxon(Base):
 		JSON column. Entrez EFetch result of the corresponding entry in the
 		NCBI taxonomy database, converted to JSON.
 
-	.. atribute:: parent
+	.. attribute:: parent
 
 		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon
 		(if any).
