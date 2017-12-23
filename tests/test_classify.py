@@ -315,6 +315,10 @@ class TestNaiveBayesClassifier:
 		diffs = result - norm_result if log else result / norm_result  # No zeros so OK
 		assert np.allclose(diffs, diffs[:, [0]])
 
+	def test_margin(self, train_labels, x_signatures):
+		"""Test the margin parameter."""
+		# TODO
+
 	def test_compare_sklearn(self, model, train_labels, train_features, x_signatures):
 		"""Compare model performance to equivalent Scikit-learn implementation."""
 
