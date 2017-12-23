@@ -44,6 +44,8 @@ class Classifier:
 	Should describe the model only, not any metadata such as IDs or references
 	to taxonomy nodes, etc.
 
+	Subclasses must implement the :meth:`predict` method.
+
 	:param int n_classes: Number of classes the classifier has been trained on.
 	:param kspec: K-mer spec used to calculate signatures.
 	:type kspec: midas.kmers.KmerSpec
@@ -84,7 +86,10 @@ class Classifier:
 
 		:returns: Predicted class labels for x. Will be a scalar integer if
 			argument was a single signature or feature vector, or a 1D array
-			if argument was a sequence of signatures or a feature matrix.
+			if argument was a sequence of signatures or a feature matrix. Array
+			elements are integers from 0 to ``n_classes - 1`` which correspond
+			to class assignments, or negative values which indicate no class/
+			unsure.
 		"""
 		raise NotImplementedError()
 
@@ -353,18 +358,146 @@ def kmer_class_freqs(x, labels, k=None, sample_weights=None, smoothing=None):
 	return out
 
 
-class NaiveBayesClassifier(Classifier):
+class GenerativeClassifier(Classifier):
+	"""
+	ABC for classifiers which are generative models and fit a probability
+	distribution to the inputs/outputs and classify according to the likelihood/
+	probability of the class labels.
+
+	Subclasses must implement :meth:`_log_prob`.
+
+	:param float margin: Minimum log-ratio between 1st and 2nd largest class
+		probabilities for a call to be made.
+	"""
+
+	margin = Classifier.Param('margin')
+
+	def __init__(self, n_classes, kspec, kmers, margin=0):
+		Classifier.__init__(self, n_classes, kspec, kmers)
+		self.margin = margin
+
+	@Classifier._process_features
+	def log_prob(self, x, normalize=False):
+		"""Get the log-probability of each signature/class pair.
+
+		The values will be the probabilities of elements of ``x`` given
+		each class label if ``normalize`` is False. If ``normalize`` is True the
+		rows will be normalized so that the values sum to one.
+
+		:param x: One or more signatures or feature vectors. See argument to
+			:meth:`.Classifier.predict`.
+		:param bool normalize: Normalize rows of return values so that their
+			exponentials sum to one.
+		:returns: Matrix of log probabilities where rows correspond to samples
+			and columns to classes. Will be a vector if a single signature or
+			vector is given.
+		:rtype: np.ndarray
+		"""
+		log_probs = self._log_prob(x)
+
+		if normalize:
+			return self._normalize(log_probs)
+
+		return log_probs
+
+	def _log_prob(self, x):
+		"""Actual implementation of :meth:`log_prob`."""
+		raise NotImplementedError()
+
+	@staticmethod
+	def _normalize(log_probs, return_log=True):
+		"""Normalize a matix of log-probabilities so that probabilities sum to one.
+
+		WARNING: this modifies the first argument in-place.
+
+		:param log_probs: 2D matrix of log-probabilities in sample x class format.
+		:type log_probs: np.ndarray
+		:param bool return_log: Return log-probabilities (True) or regular
+			probabilities (False).
+		:returns: Normalized probabilities.
+		:rtype: np.ndarray
+		"""
+
+		# Scale rows to have max of 0 first, to avoid all elements
+		# underflowing when we calculate exponential
+		log_probs -= np.max(log_probs, axis=-1).reshape(-1, 1)
+
+		# Expect underflow errors to occur
+		with np.errstate(under='ignore'):
+			probs = np.exp(log_probs)
+
+		rowsums = np.sum(probs, -1, keepdims=True)
+
+		if return_log:
+			# Subtract row sums
+			log_probs -= np.log(rowsums)
+			return log_probs
+
+		else:
+			# Divide by row sums
+			probs /= rowsums
+			return probs
+
+	@Classifier._process_features
+	def prob(self, x, normalize=False):
+		"""Get the likelihood/probability of each signature/class pair.
+
+		See documentation for :meth:`log_prob`.
+
+		:param x: One or more signatures or feature vectors. See argument to
+			:meth:`.Classifier.predict`.
+		:param bool normalize: Normalize rows of return values so that they sum
+			to one.
+		:returns: Matrix of probabilities where rows correspond to samples
+			and columns to classes. Will be a vector if a single signature or
+			vector is given.
+		:rtype: np.ndarray
+		"""
+		# Derive from log probs
+		log_probs = self._log_prob(x)
+
+		if normalize:
+			return self._normalize(log_probs, return_log=False)
+
+		else:
+			# Take exponential, expect underflow to occur
+			with np.errstate(under='ignore'):
+				return np.exp(log_probs)
+
+	def predict(self, x):
+		log_probs = self.log_prob(x)
+
+		# No margin, just take argmax across classes
+		if self.margin == 0:
+			return np.argmax(log_probs, -1)
+
+		# More complicated...
+		else:
+			sort = np.argsort(log_probs, -1)
+			i = np.arange(x.shape[0])
+
+			# Difference in log p between 1st and 2nd most likely
+			diffs = log_probs[i, sort[:, -1]] - log_probs[i, sort[:, -2]]
+
+			# Replace predictions with -1 where difference less than margin
+			predictions = sort[:, -1].copy()
+			predictions[diffs < self.margin] = -1
+
+			return predictions
+
+
+class NaiveBayesClassifier(GenerativeClassifier):
 	"""Naive Bayes classifier model.
 
-	:param float alpha: Additive smoothing parameter to use when traiing.
+	:param float alpha: Additive smoothing parameter to use when training.
 	"""
 
 	alpha = Classifier.Param('alpha')
 	log_p_ = Classifier.FitParam('log_p')
 	log_1mp_ = Classifier.FitParam('log_1mp')
 
-	def __init__(self, n_classes, kspec, kmers, alpha=1.0):
-		Classifier.__init__(self, n_classes, kspec, kmers)
+	def __init__(self, n_classes, kspec, kmers, alpha=1.0, margin=0):
+		GenerativeClassifier.__init__(self, n_classes, kspec, kmers, margin=margin)
 		self.alpha = alpha
 
 	def fit(self, x, y, sample_weights=None):
@@ -398,63 +531,5 @@ class NaiveBayesClassifier(Classifier):
 		self.log_p_ = np.log(class_freqs)
 		self.log_1mp_ = np.log(1 - class_freqs)
 
-	@Classifier._process_features
-	def log_prob(self, x, normalize=False):
-		"""Get the log-likelihood/probability of each signature/class pair.
-
-		The probabilities will be the likelihoods of elements of ``x`` given
-		each class label if ``normalize`` is False. If ``normalize`` is True the
-		rows will be normalized so that the probabilities sum to one, making
-		them the probability of class labels given each element of ``x``.
-
-		:param x: One or more signatures or feature vectors. See argument to
-			:meth:`.Classifier.predict`.
-		:param bool normalize: Normalize rows of return values so that their
-			exponentials sum to one.
-		:returns: Matrix of log probabilities where rows correspond to samples
-			and columns to classes. Will be a vector if a single signature or
-			vector is given.
-		:rtype: np.ndarray
-		"""
-
-		probs = np.dot(x, self.log_p_.T) + np.dot(~x, self.log_1mp_.T)
-
-		if normalize:
-			# Scale rows to have max of 0 first, to avoid all elements
-			# underflowing when we calculate exponential
-			probs -= np.max(probs, axis=-1).reshape(-1, 1)
-
-			# Expect underflow and divide by zero errors to occur
-			with np.errstate(under='ignore', divide='ignore'):
-				# Sums of exponentiated rows
-				rowsums = np.sum(np.exp(probs), -1)
-
-				# Subtract from result
-				probs -= np.log(rowsums).reshape(-1, 1)
-
-		return probs
-
-	def prob(self, x, normalize=False):
-		"""Get the likelihood/probability of each signature/class pair.
-
-		See documentation for :meth:`log_prob`.
-
-		:param x: One or more signatures or feature vectors.
-		:param bool normalize: Normalize rows of return values so that they sum
-			to one.
-		:returns: Matrix of likelihoods/probabilities.
-		:rtype: np.ndarray
-		"""
-		probs = self.log_prob(x, normalize=False)
-
-		# Take exponential, expect underflow to occur
-		with np.errstate(under='ignore'):
-			probs = np.exp(probs)
-
-		if normalize:
-			probs *= np.sum(probs, -1).reshape(-1, 1)
-
-		return probs
-
-	def predict(self, x):
-		return np.argmax(self.log_prob(x), -1)
+	def _log_prob(self, x):
+		return np.dot(x, self.log_p_.T) + np.dot(~x, self.log_1mp_.T)
