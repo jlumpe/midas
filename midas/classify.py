@@ -401,7 +401,17 @@ class GenerativeClassifier(Classifier):
 		return log_probs
 
 	def _log_prob(self, x):
-		"""Actual implementation of :meth:`log_prob`."""
+		"""Actual implementation of :meth:`log_prob`.
+
+		It's assumed that calculating the probability for the model is easier in
+		log-space.
+
+		:param x: 2D feature matrix.
+		:type x: numpy.ndarray
+		:returns: 2D matrix of log-probabilities. Rows correspond to rows of
+			``x``, columns correspond to class labels.
+		:rtype: np.ndarray
+		"""
 		raise NotImplementedError()
 
 	@staticmethod
@@ -464,6 +474,7 @@ class GenerativeClassifier(Classifier):
 			with np.errstate(under='ignore'):
 				return np.exp(log_probs)
 
+	@Classifier._process_features
 	def predict(self, x):
 		log_probs = self.log_prob(x)
 
