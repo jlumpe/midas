@@ -1,4 +1,4 @@
-"""Test midas.query.
+"""Test midas.knn.
 
 Note: when comparing Jaccard scores with distances you need to be careful
 with exact equality testing - for floating point numbers it is not always true
@@ -10,7 +10,7 @@ import pytest
 import numpy as np
 
 from midas.test import make_signatures
-from midas import query
+from midas import knn
 from midas.kmers import SignatureArray
 from midas.cython import metrics
 
@@ -18,7 +18,7 @@ from midas.cython import metrics
 def todist(value, convert):
 	"""Conditionally convert Jaccard scores to distances.
 
-	Helper function for comparing output of query functions to expected values,
+	Helper function for comparing output of knn functions to expected values,
 	which may return Jaccard distances or scores depending on the value of a
 	parameter. Converts first argument from score to distance if second arg
 	is true, otherwise returns it unchanged.
@@ -39,7 +39,7 @@ def query_sigs():
 @pytest.mark.parametrize('distance', [False, True])
 @pytest.mark.parametrize('alt_bounds_dtype', [False, True])
 def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
-	"""Test midas.query.sigarray_scores."""
+	"""Test midas.knn.sigarray_scores."""
 
 	# The Cython function takes a specific type for the bounds array.
 	# Try with this type and a different type
@@ -54,7 +54,7 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 	querysig = query_sigs[0]
 
 	# Calculate scores
-	scores = query.sigarray_scores(querysig, ref_sigs, distance=distance)
+	scores = knn.sigarray_scores(querysig, ref_sigs, distance=distance)
 
 	# Check shape
 	assert scores.shape == (len(ref_sigs),)
@@ -73,8 +73,8 @@ def test_find_closest_signatures(query_sigs, ref_sigs, single_query, k, distance
 
 	query_arg = query_sigs[0] if single_query else query_sigs
 
-	indices, scores = query.find_closest_signatures(query_arg, ref_sigs, k=k,
-	                                                distance=distance)
+	indices, scores = knn.find_closest_signatures(query_arg, ref_sigs, k=k,
+	                                              distance=distance)
 
 	# Expected shape
 	expected_shape = ()
@@ -103,7 +103,7 @@ def test_find_closest_signatures(query_sigs, ref_sigs, single_query, k, distance
 	for i, qsig in enumerate([query_sigs[0]] if single_query else query_sigs):
 
 		# All scores from query to ref array (not distances)
-		full_scores = query.sigarray_scores(qsig, ref_sigs)
+		full_scores = knn.sigarray_scores(qsig, ref_sigs)
 
 		# Check indices and scores match
 		assert np.array_equal(

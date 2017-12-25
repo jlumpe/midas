@@ -1,4 +1,4 @@
-"""Run queries against a reference database."""
+"""Run k-nearest-neighbor queries on a set of reference signatures."""
 
 import numpy as np
 
