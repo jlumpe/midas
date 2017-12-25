@@ -1,4 +1,4 @@
-"""Test midas.knn.
+"""Test midas.query.
 
 Note: when comparing Jaccard scores with distances you need to be careful
 with exact equality testing - for floating point numbers it is not always true
@@ -66,20 +66,54 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 		assert score == todist(expected, distance)
 
 
-@pytest.mark.parametrize('single_query', [True, False])
 @pytest.mark.parametrize('k', [None, 5])
 @pytest.mark.parametrize('distance', [False, True])
-def test_find_closest_signatures(query_sigs, ref_sigs, single_query, k, distance):
+def test_nn_search(query_sigs, ref_sigs, k, distance):
 
-	query_arg = query_sigs[0] if single_query else query_sigs
+	query = query_sigs[0]
 
-	indices, scores = knn.find_closest_signatures(query_arg, ref_sigs, k=k,
-	                                              distance=distance)
+	indices, scores = knn.nn_search(query, ref_sigs, k=k, distance=distance)
 
 	# Expected shape
-	expected_shape = ()
-	if not single_query:
-		expected_shape += (len(query_sigs),)
+	if k is None:
+		assert np.isscalar(indices)
+		assert np.isscalar(scores)
+	else:
+		assert indices.shape == (k,)
+		assert scores.shape == (k,)
+
+	# Check indices and scores match
+	full_scores = knn.sigarray_scores(query, ref_sigs)
+	assert np.array_equal(todist(full_scores[indices], distance), scores)
+
+	# Check they are ordered closest to furthest
+	if k is not None:
+		if distance:
+			assert np.all(np.diff(scores) >= 0)
+		else:
+			assert np.all(np.diff(scores) <= 0)
+
+	# Check they are the k closest
+	if k is None:
+		assert scores == todist(np.max(full_scores), distance)
+
+	else:
+		partition = full_scores[np.argpartition(full_scores, -k)[-k]]
+
+		if distance:
+			assert np.all(scores <= 1 - partition)
+		else:
+			assert np.all(scores >= partition)
+
+
+@pytest.mark.parametrize('k', [None, 5])
+@pytest.mark.parametrize('distance', [False, True])
+def test_nn_search_multi(query_sigs, ref_sigs, k, distance):
+
+	indices, scores = knn.nn_search_multi(query_sigs, ref_sigs, k=k, distance=distance)
+
+	# Expected shape
+	expected_shape = (len(query_sigs),)
 	if k is not None:
 		expected_shape += (k,)
 
@@ -92,15 +126,12 @@ def test_find_closest_signatures(query_sigs, ref_sigs, single_query, k, distance
 		assert np.isscalar(scores)
 
 	# Expand to 2D to make comparison easier
-	if single_query:
-		indices = indices[None, ...]
-		scores = scores[None, ...]
 	if k is None:
 		indices = indices[..., None]
 		scores = scores[..., None]
 
 	# Check results for each individual query sequence
-	for i, qsig in enumerate([query_sigs[0]] if single_query else query_sigs):
+	for i, qsig in enumerate(query_sigs):
 
 		# All scores from query to ref array (not distances)
 		full_scores = knn.sigarray_scores(qsig, ref_sigs)
@@ -112,10 +143,11 @@ def test_find_closest_signatures(query_sigs, ref_sigs, single_query, k, distance
 		)
 
 		# Check they are ordered closest to furthest
-		if distance:
-			assert np.all(np.diff(scores[i]) >= 0)
-		else:
-			assert np.all(np.diff(scores[i]) <= 0)
+		if k is not None:
+			if distance:
+				assert np.all(np.diff(scores[i]) >= 0)
+			else:
+				assert np.all(np.diff(scores[i]) <= 0)
 
 		# Check they are the k closest
 		if k is None:
