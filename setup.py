@@ -16,10 +16,10 @@ version = version_ns['__version__']
 
 # Dependencies
 install_requires = [
-	'numpy~=1.11',
-	'sqlalchemy~=1.0',
-	'biopython~=1.68',
-	'alembic~=0.8',
+	'numpy~=1.13',
+	'sqlalchemy~=1.1',
+	'biopython~=1.69',
+	'alembic~=0.9',
 	'pydatatypes~=0.1',
 ]
 
