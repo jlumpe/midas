@@ -50,6 +50,9 @@ setup(
 	packages=find_packages(),
 	namespace_packages=['midas'],
 	install_requires=install_requires,
+	dependency_links=[
+		'https://github.com/jlumpe/pydatatypes/archive/master.tar.gz#egg=pydatatypes-0.1',
+	],
 	ext_modules=cythonize(extensions),
 	include_package_data=True,
 )
