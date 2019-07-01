@@ -14,6 +14,7 @@ notifications:
 # Installation command
 install:
   - pip install Cython
+  - python setup.py build_ext --inplace
   - python setup.py install
 
 # Run pytest
