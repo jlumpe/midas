@@ -12,7 +12,9 @@ notifications:
   email: false
 
 # Installation command
-install: python setup.py install
+install:
+  - pip install Cython
+  - python setup.py install
 
 # Run pytest
 script: python -m pytest -v
