@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     midas.db.migrate
+    midas.db.old
 
 Submodules
 ----------

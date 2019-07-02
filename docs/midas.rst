@@ -18,8 +18,8 @@ Submodules
 
    midas.classify
    midas.kmers
+   midas.knn
    midas.ncbi
-   midas.query
    midas.test
    midas.util
    midas.version
