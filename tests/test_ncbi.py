@@ -83,8 +83,8 @@ def test_get_seq_ids_multiple():
 	# Partial index, some values None
 	ids = dict(**SEQ_IDS_GB, entrez_db='nuccore', entrez_id=None)
 
-	with pytest.raises(TypeError, null_ok=True):
-		get_seq_ids(ids)
+	with pytest.raises(TypeError):
+		get_seq_ids(ids, null_ok=True)
 
 	assert get_seq_ids(ids, null_ok=True, ignore_partial=True) == \
 		get_seq_ids(SEQ_IDS_GB)
@@ -165,7 +165,7 @@ def test_get_seq_ids_single():
 	# Partial index, some values None
 	ids = dict(**SEQ_IDS_GB, entrez_db='nuccore', entrez_id=None)
 
-	with pytest.raises(TypeError, null_ok=True):
-		get_ids(ids)
+	with pytest.raises(TypeError):
+		get_ids(ids, null_ok=True)
 
 	assert get_ids(ids, null_ok=True, ignore_partial=True) == get_ids(SEQ_IDS_GB)
