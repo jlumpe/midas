@@ -36,7 +36,7 @@ class SeqFileInfo:
 	:param str compression: Value of :attr:`compression` attribute.
 	"""
 
-	path = field(Path, convert=Path)
+	path = field(Path, converter=Path)
 	fmt = field(str)
 	compression = field(str, optional=True)
 
