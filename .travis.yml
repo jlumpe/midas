@@ -1,0 +1,22 @@
+language: python
+python:
+  - '3.5'
+  - '3.6'
+
+# Whitelist of branches to build
+branches:
+  only:
+    - v1-master
+
+# Avoid email notifications on every build
+notifications:
+  email: false
+
+# Installation command
+install:
+  - pip install Cython
+  - python setup.py build_ext --inplace
+  - python setup.py install
+
+# Run pytest
+script: python -m pytest -v
