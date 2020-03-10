@@ -6,12 +6,24 @@ Subpackages
 
 .. toctree::
 
-    midas.database
+   midas.cython
+   midas.database
+
+Submodules
+----------
+
+.. toctree::
+
+   midas.archive
+   midas.kmers
+   midas.remote
+   midas.util
+   midas.version
 
 Module contents
 ---------------
 
 .. automodule:: midas
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
