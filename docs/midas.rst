@@ -18,7 +18,6 @@ Submodules
    midas.kmers
    midas.remote
    midas.util
-   midas.version
 
 Module contents
 ---------------

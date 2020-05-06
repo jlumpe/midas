@@ -1,10 +1,5 @@
-.. MIDAS documentation master file, created by
-   sphinx-quickstart on Fri Aug  5 21:21:58 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to MIDAS's documentation!
-=================================
+MIDAS v1 documentation
+======================
 
 Contents:
 
