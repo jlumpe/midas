@@ -32,41 +32,6 @@ class AbstractDatabase(metaclass=ABCMeta):
 
 	This class defines the interface for all database subtypes so they can
 	be used consistently without regard to the underlying implementation.
-
-	.. attribute:: Base
-
-		:class:`abc.abstractproperty` SQLAlchemy declarative base for
-		concrete database subclass.
-
-	.. attribute:: Genome
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.Genome`.
-
-	.. attribute:: Sequence
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.Sequence`.
-
-	.. attribute:: GenomeSet
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.GenomeSet`.
-
-	.. attribute:: GenomeAnnotations
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.GenomeAnnotations`.
-
-	.. attribute:: KmerSetCollection
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.KmerSetCollection`.
-
-	.. attribute:: KmerSet
-
-		:class:`abc.abstractproperty` Subclass' implementation of
-		:class:`.KmerSet`.
 	"""
 
 	@abstractmethod
@@ -148,14 +113,21 @@ class AbstractDatabase(metaclass=ABCMeta):
 		"""
 		pass
 
-	# Concrete model subclasses must be attributes on concrete database
-	# subclasses
+	# Concrete model subclasses must be attributes on concrete database subclasses:
+
+	#: SQLAlchemy declarative base for concrete database subclass.
 	Base = abstractproperty()
+	#: Subclass' implementation of :class:`.Genome`.
 	Genome = abstractproperty()
+	#: Subclass' implementation of :class:`.Sequence`.
 	Sequence = abstractproperty()
+	#: Subclass' implementation of :class:`.GenomeSet`.
 	GenomeSet = abstractproperty()
+	#: Subclass' implementation of :class:`.GenomeAnnotations`.
 	GenomeAnnotations = abstractproperty()
+	#: Subclass' implementation of :class:`.KmerSetCollection`.
 	KmerSetCollection = abstractproperty()
+	#: Subclass' implementation of :class:`.KmerSet`.
 	KmerSet = abstractproperty()
 
 
