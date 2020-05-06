@@ -1,7 +1,7 @@
-midas\.ncbi module
-==================
+midas.ncbi module
+=================
 
 .. automodule:: midas.ncbi
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

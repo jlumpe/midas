@@ -1,7 +1,7 @@
-midas\.cython\.metrics module
-=============================
+midas.cython.metrics module
+===========================
 
 .. automodule:: midas.cython.metrics
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

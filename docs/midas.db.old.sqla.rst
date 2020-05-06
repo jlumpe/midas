@@ -1,7 +1,7 @@
-midas.db.migrate package
+midas.db.old.sqla module
 ========================
 
-.. automodule:: midas.db.migrate
+.. automodule:: midas.db.old.sqla
    :members:
    :undoc-members:
    :show-inheritance:

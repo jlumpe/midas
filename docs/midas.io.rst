@@ -1,5 +1,10 @@
-midas\.io package
-=================
+midas.io package
+================
+
+.. automodule:: midas.io
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------
@@ -9,11 +14,3 @@ Submodules
    midas.io.seq
    midas.io.signaturefile
    midas.io.util
-
-Module contents
----------------
-
-.. automodule:: midas.io
-    :members:
-    :undoc-members:
-    :show-inheritance:

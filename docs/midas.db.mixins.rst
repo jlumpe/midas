@@ -1,7 +1,7 @@
-midas\.db\.mixins module
-========================
+midas.db.mixins module
+======================
 
 .. automodule:: midas.db.mixins
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

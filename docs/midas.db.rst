@@ -1,13 +1,18 @@
-midas\.db package
-=================
+midas.db package
+================
+
+.. automodule:: midas.db
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Subpackages
 -----------
 
 .. toctree::
 
-    midas.db.migrate
-    midas.db.old
+   midas.db.migrate
+   midas.db.old
 
 Submodules
 ----------
@@ -17,11 +22,3 @@ Submodules
    midas.db.mixins
    midas.db.models
    midas.db.sqla
-
-Module contents
----------------
-
-.. automodule:: midas.db
-    :members:
-    :undoc-members:
-    :show-inheritance:

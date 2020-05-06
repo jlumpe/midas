@@ -1,5 +1,10 @@
-midas\.cython package
-=====================
+midas.cython package
+====================
+
+.. automodule:: midas.cython
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------
@@ -9,11 +14,3 @@ Submodules
    midas.cython.metrics
    midas.cython.seqs
    midas.cython.test
-
-Module contents
----------------
-
-.. automodule:: midas.cython
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,7 @@
-midas\.classify module
-======================
+midas.classify module
+=====================
 
 .. automodule:: midas.classify
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

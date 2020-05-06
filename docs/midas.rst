@@ -1,15 +1,20 @@
 midas package
 =============
 
+.. automodule:: midas
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
 
-    midas.cython
-    midas.db
-    midas.io
-    midas.seqstore
+   midas.cython
+   midas.db
+   midas.io
+   midas.seqstore
 
 Submodules
 ----------
@@ -22,12 +27,3 @@ Submodules
    midas.ncbi
    midas.test
    midas.util
-   midas.version
-
-Module contents
----------------
-
-.. automodule:: midas
-    :members:
-    :undoc-members:
-    :show-inheritance:

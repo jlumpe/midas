@@ -1,7 +1,7 @@
-midas\.io\.seq module
-=====================
+midas.io.seq module
+===================
 
 .. automodule:: midas.io.seq
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

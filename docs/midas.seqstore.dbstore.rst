@@ -1,7 +1,7 @@
-midas\.seqstore\.dbstore module
-===============================
+midas.seqstore.dbstore module
+=============================
 
 .. automodule:: midas.seqstore.dbstore
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

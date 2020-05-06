@@ -1,7 +1,7 @@
-midas\.io\.signaturefile module
-===============================
+midas.io.signaturefile module
+=============================
 
 .. automodule:: midas.io.signaturefile
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

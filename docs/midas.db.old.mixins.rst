@@ -1,7 +1,7 @@
-midas.seqstore.base module
+midas.db.old.mixins module
 ==========================
 
-.. automodule:: midas.seqstore.base
+.. automodule:: midas.db.old.mixins
    :members:
    :undoc-members:
    :show-inheritance:

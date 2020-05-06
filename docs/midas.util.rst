@@ -1,7 +1,7 @@
-midas\.util module
-==================
+midas.util module
+=================
 
 .. automodule:: midas.util
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

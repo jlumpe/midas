@@ -1,7 +1,7 @@
-midas\.db\.models module
-========================
+midas.db.models module
+======================
 
 .. automodule:: midas.db.models
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

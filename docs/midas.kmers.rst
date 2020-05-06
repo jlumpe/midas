@@ -1,7 +1,7 @@
-midas\.kmers module
-===================
+midas.kmers module
+==================
 
 .. automodule:: midas.kmers
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

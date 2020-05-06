@@ -1,5 +1,10 @@
-midas\.seqstore package
-=======================
+midas.seqstore package
+======================
+
+.. automodule:: midas.seqstore
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------
@@ -9,11 +14,3 @@ Submodules
    midas.seqstore.base
    midas.seqstore.dbstore
    midas.seqstore.filestore
-
-Module contents
----------------
-
-.. automodule:: midas.seqstore
-    :members:
-    :undoc-members:
-    :show-inheritance:
