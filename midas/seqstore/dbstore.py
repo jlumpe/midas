@@ -2,7 +2,7 @@
 
 .. data:: default_metadata
 
-	:class:`sqlalchemy.MetaData` used for :data:``default_seq_table`` and
+	:class:`sqlalchemy.MetaData` used for :data:`.default_seq_table` and
 	:data:`.default_meta_table`.
 
 .. data:: default_seq_table
