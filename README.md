@@ -1,7 +1,9 @@
-# midas
+# midas v2
 [![Build Status](https://travis-ci.com/jlumpe/midas.svg?token=vA4q9wqpx3uYk3vmyAfq&branch=master)](https://travis-ci.com/jlumpe/midas)
 
-Core MIDAS library.
+Version 2 of the core MIDAS library.
+
+For version 1, see the [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch.
 
 ## Installation
 
@@ -20,13 +22,9 @@ Build and install:
     python setup.py install
 
 
-## Other MIDAS repos
+## Other MIDAS v2 repos
 
-* Analysis
-  * [midas-analysis](http://github.com/jlumpe/midas-analysis)
-  * [midas-notebooks](http://github.com/jlumpe/midas-notebooks)
-* Applications
-  * [midas-app](http://github.com/jlumpe/midas-app)
-  * [midas-gui](http://github.com/jlumpe/midas-gui)
-* Other
-  * [midas-utils](http://github.com/jlumpe/midas-utils)
+* [midas-app](http://github.com/jlumpe/midas-app)
+* [midas-gui](http://github.com/jlumpe/midas-gui)
+  
+See [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch for repos which use the v1 version of the library.
