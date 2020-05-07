@@ -6,6 +6,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   installation
+   database
+   fileformats
+
 
 
 Indices and tables
