@@ -88,7 +88,7 @@ to identify them.
 Genome annotations
 ------------------
 
-:class:`.GenomeAnnotaORM model base class: tions`
+ORM model base class: :class:`.GenomeAnnotations`
 
 Connects a genome with a genome set. Can
 also carry additional annotations for the genome that are different
