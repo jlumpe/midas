@@ -5,7 +5,12 @@ from distutils.version import LooseVersion
 
 
 class DatabaseArchive:
-	"""Zipped file for storing and distributing MIDAS database data"""
+	"""Zipped file for storing and distributing MIDAS database data.
+
+	Data is stored internally in JSON format, and may be retrieved as parsed
+	JSON (e.g. ``dict``s) or as ORM model instances. Storing data requires the
+	ORM model format.
+	"""
 
 	_CURRENT_FORMAT_VERSION = '1.0'
 
@@ -22,12 +27,28 @@ class DatabaseArchive:
 		return self._zipfile.mode != 'r'
 
 	def list_genomes(self):
+		"""List keys of all genomes stored in archive.
+
+		Returns
+		-------
+		list of str
+		"""
 		return [
 			f.split('/', 1)[1] for f in self._zipfile.namelist()
 			if f.startswith('genomes/')
 		]
 
 	def has_genome(self, key):
+		"""Check if genome with ``key`` exists in archive.
+
+		Parameters
+		----------
+		key : str
+
+		Returns
+		-------
+		bool
+		"""
 		try:
 			self._zipfile.getinfo(self._genome_path(key))
 		except KeyError:
@@ -36,6 +57,17 @@ class DatabaseArchive:
 			return True
 
 	def store_genome(self, genome):
+		"""Store a genome in the archive.
+
+		Parameters
+		----------
+		genome : midas.database.base.Genome
+
+		Raises
+		------
+		KeyError
+			If a genome with the same key already exists in the archive.
+		"""
 		if genome.key is None or genome.key_version is None:
 			raise TypeError('Genome key and version must be present')
 
@@ -50,6 +82,24 @@ class DatabaseArchive:
 		self._zipfile.writestr(path, data)
 
 	def get_genome(self, key, class_=None):
+		"""Get the genome in the archive with a given key.
+
+		Parameters
+		----------
+		key :
+		class_ : type
+			ORM model class to return instance of, if any (subclass of
+			:type:`midas.database.base.Genome`).
+
+		Returns
+		-------
+		ORM model instance if ``class_=True``, otherwise its JSON representation.
+
+		Raises
+		------
+		KeyError
+			If no genome with the given key exists.
+		"""
 		with self._open_text(self._genome_path(key)) as fobj:
 			data = json.load(fobj)
 
@@ -59,16 +109,48 @@ class DatabaseArchive:
 			return class_.from_json(data)
 
 	def all_genomes(self, class_=None):
+		"""Iterate over all genomes stored in the archive.
+
+		Parameters
+		----------
+		class_ : type
+			ORM model class to yield instances of, if any (subclass of
+			:type:`midas.database.base.Genome`).
+
+		Returns
+		-------
+		Iterator over genome data.
+
+		See Also
+		--------
+		:method:`.get_genome`
+		"""
 		for key in self.list_genomes():
 			yield self.get_genome(key, class_=class_)
 
 	def list_genome_sets(self):
+		"""List keys of all genome sets stored in the archive.
+
+		Returns
+		-------
+		list of str
+		"""
 		return [
 			f.split('/', 1)[1] for f in self._zipfile.namelist()
 			if f.startswith('genome_sets/')
 		]
 
 	def has_genome_set(self, key):
+		"""Check if a genome set with the given key is stored in the archive.
+
+		Parameters
+		----------
+		key : str
+
+		Returns
+		-------
+		bool
+		"""
 		try:
 			self._zipfile.getinfo(self._genome_set_path(key))
 		except KeyError:
@@ -77,6 +159,20 @@ class DatabaseArchive:
 			return True
 
 	def store_genome_set(self, genome_set, store_genomes=False):
+		"""Store a genome set in the archive.
+
+		Parameters
+		----------
+		genome_set : midas.database.base.GenomeSet
+		store_genomes : bool
+			Whether to also store corresponding genome objects for all
+			of the genome set's annotations.
+
+		Raises
+		------
+		KeyError
+			If a genome set with the given key already exists in the archive.
+		"""
 		if genome_set.key is None or genome_set.key_version is None:
 			raise TypeError('Genome set key and version must be present')
 
@@ -100,6 +196,28 @@ class DatabaseArchive:
 				self.store_genome(genome)
 
 	def get_genome_set(self, key, classes=None):
+		"""Get a stored genome set by key.
+
+		Parameters
+		----------
+		key : str
+		classes :
+			Optional, 2-tuple of ORM classes for genome set and genome
+			annotations, e.g.``(GenomeSet, GenomeAnnotations)``.
+
+		Returns
+		-------
+			``(genome_set, annotations)`` pair. If ``classes`` is given,
+			the first item is a ``GenomeSet`` instance and the second is a
+			mapping from genome keys to ``GenomeAnnotations`` instances. If
+			``classes`` is omitted JSON data is substituted for the ORM model
+			instances.
+
+		Raises
+		------
+		KeyError
+			If no genome with the given key exists.
+		"""
 		with self._open_text(self._genome_set_path(key)) as fobj:
 			data = json.load(fobj)
 
@@ -117,11 +235,34 @@ class DatabaseArchive:
 			return gset, annotations
 
 	def all_genome_sets(self, classes=None):
+		"""Iterate through all stored genome sets.
+
+		Parameters
+		----------
+		classes :
+			Optional, 2-tuple of ORM classes for genome set and genome
+			annotations, e.g.``(GenomeSet, GenomeAnnotations)``.
+
+		Returns
+		-------
+			Iterator over ``(metadata, annotations)`` pairs.
+
+		See Also
+		--------
+		:meth:`.get_genome_set`
+		"""
 		for key in self.list_genome_sets():
 			yield self.get_genome_set(key, classes=classes)
 
 	def extract(self, db, session=None):
-		"""Extract archive into database"""
+		"""Extract archive into MIDAS database.
+
+		Parameters
+		----------
+		db : midas.database.base.BasicDatabase
+		session : sqlalchemy.orm.session.Session
+			SQLAlchemy session to use.
+		"""
 
 		# Create session if needed (remember to commit after)
 		if session is None:
@@ -210,6 +351,24 @@ class DatabaseArchive:
 
 	@classmethod
 	def create(cls, file, overwrite=False):
+		"""Create a new empty archive file.
+
+		Parameters
+		----------
+		file : str
+			Path to file to create.
+		overwrite : bool
+			If False, raise an exception if file already exists.
+
+		Returns
+		-------
+		.DatabaseArchive
+
+		Raises
+		------
+		FileExistsError
+			If ``file`` exists and ``overwrite`` is false.
+		"""
 		zf = ZipFile(file, 'x' if overwrite else 'w')
 
 		info = dict(
