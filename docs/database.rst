@@ -11,10 +11,10 @@ Implementation
 --------------
 
 The database schema is defined using Object Relational Mapping (ORM)
-through the `SQLAlchemy <https://www.sqlalchemy.org/>`__, meaning that
+through the `SQLAlchemy <https://www.sqlalchemy.org/>`__ package, meaning that
 every database object corresponds to a Python class. The data itself is
 stored in a standard relational database (SQLAlchemy supports many
-DBMS's, in both versions of the application SQlite is used). SQLAlchemy
+DBMSs, in both versions of the application SQlite is used). SQLAlchemy
 automatically translates commands in its Python API into SQL queries, so
 there is no need to interact with the DBMS directly.
 
