@@ -177,7 +177,7 @@ class DatabaseArchive:
 			raise TypeError('Genome set key and version must be present')
 
 		path = self._genome_set_path(genome_set.key)
-		if self.has_genome(genome_set.key):
+		if self.has_genome_set(genome_set.key):
 			raise KeyError(
 				'Genome set already exists in archive with key "{}"'
 				.format(genome_set.key)
@@ -369,7 +369,7 @@ class DatabaseArchive:
 		FileExistsError
 			If ``file`` exists and ``overwrite`` is false.
 		"""
-		zf = ZipFile(file, 'x' if overwrite else 'w')
+		zf = ZipFile(file, 'w' if overwrite else 'x')
 
 		info = dict(
 			archive_version=cls._CURRENT_FORMAT_VERSION
