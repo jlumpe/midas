@@ -18,7 +18,7 @@ def kwargs_done(kwargs):
 	"""
 	if kwargs:
 		raise KeyError(
-			'Unknown keyword argument {:r}'
+			'Unknown keyword argument {!r}'
 			.format(next(iter(kwargs)))
 		)
 
