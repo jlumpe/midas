@@ -7,6 +7,7 @@ import gzip
 import numpy as np
 
 from midas.database.basicdatabase import BasicDatabase
+from midas.kmers import KmerCoordsCollection
 
 
 
@@ -168,64 +169,61 @@ class TestSeqStorage:
 
 
 class TestCoordsStorage:
-	"""Tests for k-mer coordinate storage"""
+	"""Tests for k-mer coordinate storage."""
+
+	# Number of genomes to store coords for
+	N = 10
+
+	@pytest.fixture(params=['i1', 'u1', 'i2', 'u2', 'i4', 'u4', 'i8', 'u8'])
+	def coords_dtype(self, request):
+		return np.dtype(request.param)
 
 	@pytest.fixture()
-	def dbobjs(self, db):
-		"""Create database objects"""
+	def coords_db(self, db, coords_dtype):
+		"""Database with test genomes and (empty) KmerSetCollection."""
 
 		session = db.get_session()
 
-		# Create test genome
-		genome = db.Genome(description='test', is_assembled=True)
-		session.add(genome)
-		session.commit()
-
-		# Create test KmerSetCollection
-		kcol = db.KmerSetCollection(name='test', prefix='ATGAC', k=11)
+		k = 4 * coords_dtype.itemsize
+		kcol = db.KmerSetCollection(name='test', prefix='ATGAC', k=k)
 		session.add(kcol)
+
+		for i in range(self.N):
+			session.add(db.Genome(description='test%d' % i))
+
 		session.commit()
 
-		return genome, kcol
+		return db
 
+	@pytest.fixture
+	def coords_col(self, coords_dtype):
+		"""
+		Several coordinate arrays spanning approximately the full positive range
+		of the given dtype.
+		"""
+		max_val = np.iinfo(coords_dtype).max - self.N
 
-int_dtypes = [np.uint8, np.int8, np.uint16, np.int16, np.uint32, np.int32,
-              np.uint64, np.int64]
+		# At least n apart, if possible enough for 10000 elements up to max
+		step = max(self.N, max_val / 10000)
+		coords0 = np.arange(0, max_val, step)
+		coords_all = [coords0 + i for i in range(self.N)]
 
-@pytest.fixture(params=int_dtypes)
-def coords(request):
-	"""
-	Creates coordinate arrays for all integral dtypes spanning approximately
-	their full positive range
-	"""
-	dtype = request.param
+		return KmerCoordsCollection.from_coords_seq(coords_all, dtype=coords_dtype)
 
-	max_val = np.iinfo(dtype).max
+	def test_coords_storage(self, coords_db, coords_col):
+		"""Test that kmer coordindate arrays can be stored and retrieved"""
 
-	return np.arange(0, max_val, max(max_val / 10000, 1), dtype=dtype)
+		db = coords_db
+		session = db.get_session()
 
+		kcol = session.query(db.KmerSetCollection).one()
+		genomes = session.query(db.Genome).all()
 
-def test_coords_storage(db, coords):
-	"""Test that kmer coordindate arrays can be stored and retrieved"""
+		# Store coords
+		for genome, coords in zip(genomes, coords_col):
+			db.store_kset_coords(kcol.id, genome.id, coords)
 
-	session = db.get_session()
-
-	# Create test genome
-	genome = db.Genome(description='test', is_assembled=True)
-	session.add(genome)
-	session.commit()
-
-	# Create test KmerSetCollection
-	kcol = db.KmerSetCollection(name='test', prefix='ATGAC',
-	                            k=4 * coords.dtype.itemsize)
-	session.add(kcol)
-	session.commit()
-
-	# Store coords
-	db.store_kset_coords(kcol.id, genome.id, coords)
-
-	# Load back again
-	loaded = db.load_kset_coords(kcol.id, genome.id)
-
-	# Check equal
-	assert np.array_equal(coords, loaded)
+		# Load back again
+		for genome, coords in zip(genomes, coords_col):
+			loaded = db.load_kset_coords(kcol.id, genome.id)
+			assert np.array_equal(coords, loaded)
