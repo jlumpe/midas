@@ -1,4 +1,4 @@
-"""Utilities for parallel processing"""
+"""Utilities for parallel processing."""
 
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -6,7 +6,19 @@ import signal
 
 
 class AbortableThreadPoolExecutor(ThreadPoolExecutor):
-	"""ThreadPoolExecutor with ability to abort all futures cleanly"""
+	"""ThreadPoolExecutor with ability to abort all futures cleanly.
+
+	Used as standard :class:`concurrent.futures.ThreadPoolExecutor`, with the
+	addition of an ``abort()`` method which attempts to cleanly shut down all
+	current jobs.
+
+	The *first* time a SIGINT / ``KeyboardInterrupt`` is caught in its context,
+	``abort()`` will be called and the exception will not propagate (future
+	ones will, however).
+
+	You can check whether the pool was aborted for any reason with
+	:meth:`is_aborted` after the context has exited.
+	"""
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -14,11 +26,14 @@ class AbortableThreadPoolExecutor(ThreadPoolExecutor):
 		self._futures = set()
 
 	def is_aborted(self):
-		"""Check if abort() has been called"""
+		"""Check if abort() has been called."""
 		return self._aborted
 
 	def abort(self):
-		"""Cancel all pending futures. Should only be called from main thread"""
+		"""Cancel all pending futures.
+
+		Should only be called from main thread.
+		"""
 		if not self._aborted:
 			self._aborted = True
 			for future in self._futures:
@@ -66,7 +81,21 @@ class AbortableThreadPoolExecutor(ThreadPoolExecutor):
 		return future
 
 	def as_completed(self, skip_cancelled=False, **kwargs):
-		"""Convenience method as all futures are already stored anyways"""
+		"""Iterate over completed futures.
+
+		Convenience method as all futures are already stored anyways.
+
+		Parameters
+		----------
+		skip_cancelled : bool
+			Don't yield canceled futures.
+		kwargs :
+		    Passed to :func:`concurrent.futures.as_completed`.
+
+		Returns
+		-------
+			Iterator over completed :class:`concurrent.futures.Future`.
+		"""
 		for future in as_completed(self._futures, **kwargs):
 			if not (skip_cancelled and future.cancelled()):
 				yield future
