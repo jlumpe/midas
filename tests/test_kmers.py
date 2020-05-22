@@ -37,11 +37,18 @@ def test_nucleotide_order():
 def test_index_conversion():
 	"""Test converting k-mers to and from their indices."""
 
-	# Test for k in range 0-10
-	for k in range(11):
+	# Try k from 0 to 16 (1-4 byte index)
+	# (Cython implementation of kmer <-> index conversion only works up to uint32)
+	for k in range(17):
+
+		# Test up to 10k indices, spaced over the whole range
+		maxidx = 4 ** k
+		n = min(maxidx, 10000)
+		step = maxidx // n
+		indices = range(0, maxidx, step)
 
 		# Test all indices to max of 1000
-		for index in range(min(4 ** k, 1000)):
+		for index in indices:
 
 			kmer = kmers.index_to_kmer(index, k)
 
@@ -56,8 +63,8 @@ def test_index_conversion():
 def test_kmerspec():
 	"""Test basic KmerSpec attributes."""
 
-	# Try k from 0 to 16 (all have dtypes)
-	for k in range(17):
+	# Try k from 0 to 17 (1-8 byte index)
+	for k in range(18):
 
 		spec = make_kmerspec(k)
 
@@ -69,8 +76,8 @@ def test_kmerspec():
 def test_kmerspec_dtype():
 	"""Test KmerSpec.coords_dtype."""
 
-	# Try k from 0 to 16 (all have dtypes)
-	for k in range(17):
+	# Try k from 0 to 17 (1-8 byte index)
+	for k in range(18):
 
 		spec = make_kmerspec(k)
 
@@ -78,8 +85,8 @@ def test_kmerspec_dtype():
 		top_idx = spec.idx_len - 1
 		assert spec.coords_dtype.type(top_idx) == top_idx
 
-	# k > 16 should have no dtype
-	assert make_kmerspec(17).coords_dtype is None
+	# k > 32 should have no dtype
+	assert make_kmerspec(33).coords_dtype is None
 
 
 def test_vec_coords_conversion():
