@@ -88,7 +88,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 
 		:keyword arguments:
 
-		* *seq_format* (``str``) --
+		* *format* (``str``) --
 		  Value for ``format`` attribute of :class:`.Sequence`. Defaults to
 		  ``'fasta'``.
 		* *src_compression* (``str``) --
