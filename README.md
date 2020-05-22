@@ -1,5 +1,5 @@
 # midas v2
-[![Build Status](https://travis-ci.com/jlumpe/midas.svg?token=vA4q9wqpx3uYk3vmyAfq&branch=master)](https://travis-ci.com/jlumpe/midas)
+[![Build Status](https://travis-ci.com/hesslab-midas/midas.svg?token=vA4q9wqpx3uYk3vmyAfq&branch=master)](https://travis-ci.com/hesslab-midas/midas)
 
 Version 2 of the core MIDAS library.
 
