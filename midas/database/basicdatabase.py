@@ -225,11 +225,9 @@ class BasicDatabase(base.AbstractDatabase):
 		return gzip.open(path, 'rt')
 
 	def store_kset_coords(self, collection_id, genome_id, coords, _session=None):
-		with self._optional_session(_session) as session:
-			collection = session.query(self.KmerSetCollection).\
-				get(collection_id)
-			coords = coords.astype(collection.kmerspec().coords_dtype,
-			                       copy=False)
+		with self._optional_session(_session, commit=True) as session:
+			kcol = session.query(self.KmerSetCollection).get(collection_id)
+			coords = coords.astype(kcol.kmerspec().coords_dtype, copy=False)
 
 			kset = KmerSet(genome_id=genome_id, collection_id=collection_id,
 			               count=len(coords), _data=coords.tobytes())
