@@ -55,7 +55,7 @@ cdef score_t c_jaccard_coords(coords_t[:] coords1,
 
 def jaccard_coords_col(coords_t[:] query,
                        coords_t[:] ref_coords,
-                       coords_t[:] ref_bounds):
+                       np.intp_t[:] ref_bounds):
 	"""Python wrapper for c_jaccard_coords_col"""
 
 	cdef np.ndarray[score_t, ndim=1] out
@@ -70,7 +70,7 @@ def jaccard_coords_col(coords_t[:] query,
 @cython.wraparound(False)
 cdef void c_jaccard_coords_col(coords_t[:] query,
                                coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds,
+                               np.intp_t[:] ref_bounds,
                                score_t[:] out):
 	"""Calculate jaccard scores between one k-mer set and a collection
 
@@ -78,7 +78,7 @@ cdef void c_jaccard_coords_col(coords_t[:] query,
 	"""
 
 	cdef np.intp_t N = ref_bounds.shape[0] - 1
-	cdef coords_t begin, end
+	cdef np.intp_t begin, end
 	cdef int i
 
 	with nogil, parallel():

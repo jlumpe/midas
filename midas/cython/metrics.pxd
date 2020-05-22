@@ -14,4 +14,4 @@ cdef score_t c_jaccard_coords(coords_t[:] coords1,
                               coords_t[:] coords2) nogil
 
 cdef void c_jaccard_coords_col(coords_t[:] query, coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds, score_t[:] out)
+                               np.intp_t[:] ref_bounds, score_t[:] out)
