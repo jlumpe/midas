@@ -16,6 +16,7 @@ Submodules
 
    midas.archive
    midas.kmers
+   midas.parallel
    midas.remote
    midas.util
 
