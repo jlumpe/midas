@@ -13,9 +13,7 @@ from .parallel import AbortableThreadPoolExecutor
 class URLRetryError(Exception):
 	"""Raised by urlopen_retry when all attempts fail.
 
-	Attributes
-	----------
-	attempt_errors : list
+	:attr attempt_errors:
 		List of errors encountered on all attempts.
 	"""
 
@@ -28,21 +26,13 @@ class URLRetryError(Exception):
 def urlopen_retry(url, attempts=3, **kwargs):
 	"""Calls ``urlopen()`` but retries a given number of times after failure.
 
-	Parameters
-	----------
-	url : str
-	attempts : int
-		Number of attempts to make.
-	kwargs :
-		Passed to :func:`urllib.request.urlopen`.
+	:param str url:
+	:param int attempts: Number of attempts to make.
+	:param kwargs: Passed to :func:`urllib.request.urlopen`.
 
-	Returns
-	-------
-		Readable file-like object.
+	:returns: Readable file-like object.
 
-	Raises
-	------
-	URLRetryError
+	:raises URLRetryError:
 		If maximum number of attempts exceeded. Context is the error encountered
 		on the most recent attempt.
 	"""
@@ -114,18 +104,14 @@ def download_sequences_parallel(db, items, **kwargs):
 	This includes the first KeyboardInterrupt, which will print a warning
 	message, but subsequent ones will exit immediately.
 
-	Parameters
-	----------
-	db : midas.database.base.AbstractDatabase
-	items :
-		Collection of ``(genome, url)`` or ``(genome, url, store_opts)`` tuples
-		representing sequences to download.
-	max_workers : int
-		Maximum number of worker threads to use
-	store_opts : dict
-		Keyword arguments to :meth:`midas.database.base.AbstractDatabase.store_sequence`
-		to use for all items.
-	callback : callable
+	:type db: midas.database.base.AbstractDatabase
+	:param items: Collection of ``(genome, url)`` or ``(genome, url, store_opts)``
+		tuples representing sequences to download.
+	:param int max_workers: Maximum number of worker threads to use
+	:param dict store_opts: Keyword arguments to
+		:meth:`midas.database.base.AbstractDatabase.store_sequence` to use for
+		all items.
+	:param callable callback:
 		Function with signature ``(genome, exc)`` that is called (in the main
 		thread) for each item that completes. If the download failed the exception
 		which caused the failure will be passed as ``exc``, otherwise this
@@ -134,10 +120,8 @@ def download_sequences_parallel(db, items, **kwargs):
 
 	Additional keyword arguments are passed to :func:`urlopen_retry`.
 
-	Returns
-	-------
-	bool
-		False if the process was aborted before it could finish, True otherwise.
+	:returns: False if the process was aborted before it could finish, True otherwise.
+	:rtype: bool
 	"""
 
 	max_workers = kwargs.pop('max_workers', None)
