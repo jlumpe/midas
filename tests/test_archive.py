@@ -4,6 +4,7 @@ import pytest
 
 import midas.database.basicdatabase as basicdb
 from midas.archive import DatabaseArchive
+from midas.database.io import extract_archive, extract_genomes, extract_genome_set
 
 
 genome_attrs = [
@@ -37,6 +38,7 @@ annotations_attrs = [
 
 
 def json_equal(d1, d2):
+	"""Check parsed JSON values for equality."""
 	for data in (d1, d2):
 		if not isinstance(data, (str, int, float, list, dict)):
 			raise TypeError('{} is not a JSONable type'.format(type(data)))
@@ -56,6 +58,7 @@ def json_equal(d1, d2):
 
 
 def obj_equal(o1, o2, attrs):
+	"""Check if two ORM object instances ar equal."""
 	for name, is_sqla_json in attrs:
 		val1 = getattr(o1, name)
 		val2 = getattr(o2, name)
@@ -70,6 +73,7 @@ def obj_equal(o1, o2, attrs):
 
 
 def obj_json_equal(obj, jsondata, attrs):
+	"""Check if ORM object instance is equivalent to JSON data."""
 	for name, is_sqla_json in attrs:
 		val1 = getattr(obj, name)
 		val2 = jsondata[name]
@@ -153,7 +157,7 @@ def archive(request, tmpdir, genomes, genome_set):
 
 	with DatabaseArchive.create(archive_path) as archive:
 
-		if request.param:
+		if use_store_all:
 			for genome in genomes:
 				archive.store_genome(genome)
 
@@ -165,7 +169,7 @@ def archive(request, tmpdir, genomes, genome_set):
 	return DatabaseArchive(archive_path)
 
 
-class TestGenomeStorage:
+class TestGenomeRetrieval:
 
 	def test_list(self, archive, genomes):
 		keys = set(g.key for g in genomes)
@@ -195,7 +199,7 @@ class TestGenomeStorage:
 	# TODO - test overwrite old version
 
 
-class TestGenomeSetStorage:
+class TestGenomeSetRetrieval:
 
 	def test_list(self, archive, genome_set):
 		stored_keys = archive.list_genome_sets()
@@ -231,10 +235,29 @@ class TestGenomeSetStorage:
 			assert obj_equal(annotations, loaded_annotations, annotations_attrs)
 
 
-def test_extract(archive, tmpdir):
+class TestExtract:
 
-	db = basicdb.BasicDatabase.create(tmpdir.join('testdb').strpath)
+	@pytest.fixture
+	def db(self, tmpdir):
+		return basicdb.BasicDatabase.create(tmpdir.join('testdb').strpath)
 
-	archive.extract(db)
 
-	# TODO...
+	def test_extract_genomes(self, archive, db, genomes, genome_set):
+		# TODO...
+		extract_genomes(archive, db)
+
+
+	def test_extract_genome_set(self, archive, db, genomes, genome_set):
+		# TODO...
+		extract_genomes(archive, db)
+		extract_genome_set(archive, db, genome_set.key)
+
+
+	def test_extract_all(self, archive, db, genomes, genome_set):
+		# TODO...
+		extract_archive(archive, db)
+
+
+	def test_extract_method(self, archive, db, genomes, genome_set):
+		# TODO...
+		archive.extract(db)

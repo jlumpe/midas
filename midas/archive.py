@@ -1,7 +1,9 @@
 import io
 from zipfile import ZipFile
 import json
-from distutils.version import LooseVersion
+import warnings
+
+from midas.database.io import extract_archive
 
 
 class DatabaseArchive:
@@ -199,88 +201,23 @@ class DatabaseArchive:
 			yield self.get_genome_set(key, classes=classes)
 
 	def extract(self, db, session=None):
-		"""Extract archive into MIDAS database.
+		"""Extract all contents of archive into MIDAS database.
 
-		:type db: midas.database.base.BasicDatabase
+		This method is deprecated, use :func:`midas.database.io.extract_archive` instead.
+
+		:type archive: .DatabaseArchive
+		:type db: midas.database.base.AbstractDatabase
 		:param session: SQLAlchemy session to use.
 		:type session: sqlalchemy.orm.session.Session
 		"""
-
-		# Create session if needed (remember to commit after)
-		if session is None:
-			commit_after = True
-			session = db.get_session()
-		else:
-			commit_after = False
-
-		# Extract genomes
-		for genome_data in self.all_genomes():
-			existing = session.query(db.Genome)\
-				.filter_by(key=genome_data['key'])\
-				.scalar()
-
-			if existing is None:
-				# Create new
-				genome = db.Genome.from_json(genome_data)
-				session.add(genome)
-
-			else:
-				# Update existing
-				current_version = LooseVersion(existing.key_version)
-				new_version = LooseVersion(genome_data['key_version'])
-
-				if current_version < new_version:
-					existing.update_from_json(genome_data)
-				else:
-					pass  # TODO - warn?
-
-		# Extract genome sets
-		for gset_data, annotations_data_dicts in self.all_genome_sets():
-
-			existing = session.query(db.GenomeSet)\
-				.filter_by(key=gset_data['key'])\
-				.scalar()
-
-			if existing is None:
-				# Create new
-				gset = db.GenomeSet.from_json(gset_data)
-				session.add(gset)
-
-			else:
-				# Update existing
-				current_version = LooseVersion(existing.key_version)
-				new_version = LooseVersion(gset_data['key_version'])
-
-				if current_version >= new_version:
-					continue  # TODO - warn?
-
-				existing.update_from_json(gset_data)
-				gset = existing
-
-			# Reset exising annotations (if any) and recreate
-			gset.annotations = []
-			for genome_key, annotations_data in annotations_data_dicts.items():
-
-				genome = session.query(db.Genome)\
-					.filter_by(key=genome_key)\
-					.scalar()
-
-				if genome is None:
-					raise RuntimeError(
-						'Genome key {} not found in database'
-						.format(genome_key)
-					)
-
-				annotations = db.GenomeAnnotations.from_json(annotations_data)
-				annotations.genome = genome
-
-				gset.annotations.append(annotations)
-
-		if commit_after:
-			session.commit()
+		warnings.warn(
+			'DatabaseArchive.extract() is deprecated, use midas.database.io.extract_archive() instead.',
+			DeprecationWarning
+		)
+		extract_archive(self, db, session)
 
 	def _open_text(self, name):
-		"""Open archive file in test mode"""
+		"""Open archive file in text mode"""
 		return io.TextIOWrapper(self._zipfile.open(name))
 
 	@classmethod
