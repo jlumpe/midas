@@ -10,8 +10,8 @@ from .seqs cimport coords_t
 ctypedef np.float32_t score_t
 
 
-cdef float c_jaccard_coords(coords_t[:] coords1,
-                            coords_t[:] coords2) nogil
+cdef score_t c_jaccard_coords(coords_t[:] coords1,
+                              coords_t[:] coords2) nogil
 
 cdef void c_jaccard_coords_col(coords_t[:] query, coords_t[:] ref_coords,
-                               coords_t[:] ref_bounds, float[:] out)
+                               coords_t[:] ref_bounds, score_t[:] out)
