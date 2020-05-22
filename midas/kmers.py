@@ -297,7 +297,7 @@ class KmerCoordsCollection(collections.Sequence):
 		:rtype: KmerCoordsCollection
 		"""
 
-		bounds = np.zeros(len(lengths) + 1, dtype=dtype)
+		bounds = np.zeros(len(lengths) + 1, dtype=np.intp)
 		bounds[1:] = np.cumsum(lengths)
 
 		if coords_array is None:
