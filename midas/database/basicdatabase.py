@@ -11,9 +11,10 @@ from sqlalchemy import Column, String, Binary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import select
-from sqlalchemy.orm import sessionmaker, deferred, undefer
+from sqlalchemy.orm import sessionmaker, deferred, load_only
 
 from midas.util import kwargs_done, SubPath
+from midas.kmers import KmerCoordsCollection
 from . import base
 
 
@@ -233,17 +234,46 @@ class BasicDatabase(base.AbstractDatabase):
 			               count=len(coords), _data=coords.tobytes())
 			session.add(kset)
 
-			session.commit()
-
 	def load_kset_coords(self, collection_id, genome_id, _session=None):
 		with self._optional_session(_session) as session:
-			kset = session.query(self.KmerSet).\
-				options(undefer('_data')).\
-				filter_by(collection_id=collection_id, genome_id=genome_id).\
-				one()
+			kcol = session.query(self.KmerSetCollection).get(collection_id)
+			dtype = kcol.kmerspec().coords_dtype
+			return self._load_kset_coords(collection_id, genome_id, session, dtype)
 
-			coords_dtype = kset.collection.kmerspec().coords_dtype
-			return np.frombuffer(kset._data, dtype=coords_dtype)
+	def _load_kset_coords(self, cid, gid, session, dtype):
+		data, = session.query(self.KmerSet._data)\
+			.filter_by(collection_id=cid, genome_id=gid)\
+			.one()
+
+		return np.frombuffer(data, dtype=dtype)
+
+	def load_kset_collection(self, collection_id, genome_ids, callback=None, _session=None):
+		"""Load stored coordinates for multiple k-mer sets in a collection.
+
+		:param int collection_id: ID of :class:`KmerSetCollection` to load
+			coordinates for.
+		:param genome_ids: IDs of :class:`Genome` to load coordinates for.
+		:returns: K-mer set in coordinate array format.
+		:rtype: midas.kmers.KmerCoordsCollection
+		"""
+		with self._optional_session(_session) as session:
+			kcol = session.query(self.KmerSetCollection).get(collection_id)
+			dtype = kcol.kmerspec().coords_dtype
+
+			lengths = [
+				session.query(self.KmerSet.count).\
+					filter_by(collection_id=collection_id, genome_id=gid)\
+					.one()[0]
+				for gid in genome_ids
+			]
+			coords = KmerCoordsCollection.empty(lengths, dtype=dtype)
+
+			for i, gid in enumerate(genome_ids):
+				coords[i] = self._load_kset_coords(collection_id, gid, session, dtype)
+				if callback is not None:
+					callback(gid)
+
+			return coords
 
 	def _get_seq_file_path(self, sequence):
 		"""Gets path to sequence file"""

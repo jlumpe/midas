@@ -7,7 +7,7 @@ import gzip
 import numpy as np
 
 from midas.database.basicdatabase import BasicDatabase
-from midas.kmers import KmerCoordsCollection
+from midas.kmers import KmerSpec, KmerCoordsCollection
 
 
 
@@ -174,18 +174,17 @@ class TestCoordsStorage:
 	# Number of genomes to store coords for
 	N = 10
 
-	@pytest.fixture(params=['i1', 'u1', 'i2', 'u2', 'i4', 'u4', 'i8', 'u8'])
-	def coords_dtype(self, request):
-		return np.dtype(request.param)
+	@pytest.fixture(params=[4, 8, 11, 16, 20])
+	def kspec(self, request):
+		return KmerSpec(request.param, 'ATGAC')
 
 	@pytest.fixture()
-	def coords_db(self, db, coords_dtype):
+	def coords_db(self, db, kspec):
 		"""Database with test genomes and (empty) KmerSetCollection."""
 
 		session = db.get_session()
 
-		k = 4 * coords_dtype.itemsize
-		kcol = db.KmerSetCollection(name='test', prefix='ATGAC', k=k)
+		kcol = db.KmerSetCollection(name='test', prefix=kspec.prefix.decode(), k=kspec.k)
 		session.add(kcol)
 
 		for i in range(self.N):
@@ -196,11 +195,12 @@ class TestCoordsStorage:
 		return db
 
 	@pytest.fixture
-	def coords_col(self, coords_dtype):
+	def coords_col(self, kspec):
 		"""
 		Several coordinate arrays spanning approximately the full positive range
 		of the given dtype.
 		"""
+		coords_dtype = kspec.coords_dtype
 		max_val = np.iinfo(coords_dtype).max - self.N
 
 		# At least n apart, if possible enough for 10000 elements up to max
@@ -227,3 +227,10 @@ class TestCoordsStorage:
 		for genome, coords in zip(genomes, coords_col):
 			loaded = db.load_kset_coords(kcol.id, genome.id)
 			assert np.array_equal(coords, loaded)
+
+		# Load as KmerCoordsCollection
+		gids = [genome.id for genome in genomes]
+		coords_col2 = db.load_kset_collection(kcol.id, gids)
+		assert isinstance(coords_col2, KmerCoordsCollection)
+		assert len(coords_col2) == len(coords_col)
+		assert all(np.array_equal(c1, c2) for c1, c2 in zip(coords_col2, coords_col))

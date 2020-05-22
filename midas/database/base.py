@@ -137,6 +137,18 @@ class AbstractDatabase(metaclass=ABCMeta):
 		"""
 		pass
 
+	@abstractmethod
+	def load_kset_collection(self, collection_id, genome_ids, callback=None, _session=None):
+		"""Load stored coordinates for multiple k-mer sets in a collection.
+
+		:param int collection_id: ID of :class:`KmerSetCollection` to load
+			coordinates for.
+		:param genome_ids: IDs of :class:`Genome` to load coordinates for.
+		:returns: K-mer set in coordinate array format.
+		:rtype: midas.kmers.KmerCoordsCollection
+		"""
+		pass
+
 	# Concrete model subclasses must be attributes on concrete database subclasses:
 
 	#: SQLAlchemy declarative base for concrete database subclass.
