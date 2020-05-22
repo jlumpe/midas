@@ -403,29 +403,33 @@ class TestFindKmers:
 class TestKmerCoordsCollection:
 	"""Test KmerCoordsCollection."""
 
+	@pytest.fixture(params=['i1', 'u1', 'i2', 'u2', 'i4', 'u4', 'i8', 'u8'])
+	def coords_dtype(self, request):
+		return np.dtype(request.param)
+
 	@pytest.fixture()
-	def coords_list(self):
+	def coords_list(self, coords_dtype):
 		"""List of k-mer coordinate arrays."""
 
 		random = np.random.RandomState(seed=0)
+		high = np.iinfo(coords_dtype).max + 1
 
-		ncoords = 100
-		nkmers_range = (5000, 15000)
+		cl = []
 
-		cl = [
-			np.arange(random.randint(*nkmers_range)) * ncoords + i
-			for i in range(ncoords)
-		]
+		for i in range(100):
+			n = random.randint(5000, 15000)
+			coords = np.sort(random.randint(high, size=n, dtype=coords_dtype))
+			cl.append(coords)
 
 		# Add a zero-length set in there just to throw everything off
-		cl.append(np.empty(0, dtype=cl[0].dtype))
+		cl.append(np.empty(0, dtype=coords_dtype))
 
 		return cl
 
 	@pytest.fixture()
-	def kcol(self, coords_list):
+	def kcol(self, coords_list, coords_dtype):
 		"""Create from coords_list using from_coords_seq()."""
-		return kmers.KmerCoordsCollection.from_coords_seq(coords_list)
+		return kmers.KmerCoordsCollection.from_coords_seq(coords_list, dtype=coords_dtype)
 
 	def test_basic(self, kcol, coords_list):
 		"""Test item access and calling methods without side effects."""
