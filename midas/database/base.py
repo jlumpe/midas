@@ -53,6 +53,30 @@ class AbstractDatabase(metaclass=ABCMeta):
 		"""
 		return contextlib.closing(self.get_session())
 
+	@contextlib.contextmanager
+	def _optional_session(self, session, commit=False):
+		"""
+		Internal convenience method for methods which take an optional session
+		argument. Return a context manager which gives a session object on enter.
+		This session will be the argument to the method if it is not None and
+		it will remain open on exit. Otherwise a new session will be created and
+		closed on exit.
+		"""
+
+		if session is not None:
+			created_session = False
+		else:
+			session =  self.get_session()
+			created_session = True
+
+		try:
+			yield session
+			if commit and created_session:
+				session.commit()
+		finally:
+			if created_session:
+				session.close()
+
 	@abstractmethod
 	def store_sequence(self, genome_id, src, **kwargs):
 		"""Store a genome sequence in the database.
@@ -81,7 +105,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 		pass
 
 	@abstractmethod
-	def open_sequence(self, genome_id):
+	def open_sequence(self, genome_id, _session=None):
 		"""Get an open file handle/stream to the sequence for a stored genome.
 
 		:param int genome_id: ID of genome to get sequence for.
@@ -90,7 +114,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 		pass
 
 	@abstractmethod
-	def store_kset_coords(self, collection_id, genome_id, coords):
+	def store_kset_coords(self, collection_id, genome_id, coords, _session=None):
 		"""Store a k-mer set in coordinate format.
 
 		:param int collection_id: ID of :class:`KmerSetCollection` to store
@@ -102,7 +126,7 @@ class AbstractDatabase(metaclass=ABCMeta):
 		pass
 
 	@abstractmethod
-	def load_kset_coords(self, collection_id, genome_id):
+	def load_kset_coords(self, collection_id, genome_id, _session=None):
 		"""Load stored coordinates for a k-mer set.
 
 		:param int collection_id: ID of :class:`KmerSetCollection` to load

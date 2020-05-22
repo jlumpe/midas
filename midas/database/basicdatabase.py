@@ -103,7 +103,7 @@ class BasicDatabase(base.AbstractDatabase):
 	def get_session(self):
 		return self._Session()
 
-	def store_sequence(self, genome_id, src, **kwargs):
+	def store_sequence(self, genome_id, src, _session=None, **kwargs):
 
 		# Get keyword arguments
 		seq_format = kwargs.pop('format', 'fasta')
@@ -119,7 +119,7 @@ class BasicDatabase(base.AbstractDatabase):
 			                 .format(src_compression))
 
 		# Create session context
-		with self.session_context() as session:
+		with self._optional_session(_session) as session:
 
 			# Get genome
 			genome = session.query(self.Genome).get(genome_id)
@@ -212,8 +212,8 @@ class BasicDatabase(base.AbstractDatabase):
 				if needs_delete:
 					os.remove(src)
 
-	def open_sequence(self, genome_id):
-		with self.session_context() as session:
+	def open_sequence(self, genome_id, _session=None):
+		with self._optional_session(_session) as session:
 			sequence = session.query(self.Sequence).get(genome_id)
 			if sequence is None:
 				raise RuntimeError(
@@ -224,8 +224,8 @@ class BasicDatabase(base.AbstractDatabase):
 
 		return gzip.open(path, 'rt')
 
-	def store_kset_coords(self, collection_id, genome_id, coords):
-		with self.session_context() as session:
+	def store_kset_coords(self, collection_id, genome_id, coords, _session=None):
+		with self._optional_session(_session) as session:
 			collection = session.query(self.KmerSetCollection).\
 				get(collection_id)
 			coords = coords.astype(collection.kmerspec().coords_dtype,
@@ -237,8 +237,8 @@ class BasicDatabase(base.AbstractDatabase):
 
 			session.commit()
 
-	def load_kset_coords(self, collection_id, genome_id):
-		with self.session_context() as session:
+	def load_kset_coords(self, collection_id, genome_id, _session=None):
+		with self._optional_session(_session) as session:
 			kset = session.query(self.KmerSet).\
 				options(undefer('_data')).\
 				filter_by(collection_id=collection_id, genome_id=genome_id).\
