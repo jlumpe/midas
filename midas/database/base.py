@@ -19,6 +19,7 @@ import contextlib
 from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship, backref, deferred
+from sqlalchemy.orm.session import object_session
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -441,10 +442,11 @@ class GenomeSet(KeyMixin, JsonableMixin):
 	def genomes(cls):
 		return association_proxy('annotations', 'genome')
 
-	def genomes_query(self, session):
+	def genomes_query(self, session=None):
 		"""Create a query for the :class:`.Genome`\\ s in this set.
 
-		:param session: Session to create query from.
+		:param session: Session to create query from. Defaults to the session the
+			instance belongs to.
 		:type session: sqlalchemy.orm.session.Session
 		:return: Query on :class:`.Genome` filtered by membership in this set.
 		:rtype: sqlalchemy.orm.query.Query
@@ -452,6 +454,9 @@ class GenomeSet(KeyMixin, JsonableMixin):
 		# Get exact Genome and GenomeAnnotations classes
 		GenomeAnnotations = type(self).annotations.prop.mapper.class_
 		Genome = self.genomes.parent.remote_attr.prop.mapper.class_
+
+		if session is None:
+			session = object_session(self)
 
 		filter_clause = Genome.annotations.any(
 			GenomeAnnotations.genome_set == self
