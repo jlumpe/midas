@@ -242,7 +242,7 @@ class KmerCoordsCollection(collections.Sequence):
 
 	def _check_index(self, index):
 		"""Check an index passed as an argument is valid."""
-		if not isinstance(index, int):
+		if not isinstance(index, (int, np.integer)):
 			raise TypeError('Index must be single integer')
 		elif not 0 <= index < len(self):
 			raise IndexError('Index out of bounds: {}'.format(index))

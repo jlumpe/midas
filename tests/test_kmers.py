@@ -438,7 +438,16 @@ class TestKmerCoordsCollection:
 		"""Create from coords_list using from_coords_seq()."""
 		return kmers.KmerCoordsCollection.from_coords_seq(coords_list, dtype=coords_dtype)
 
-	def test_basic(self, kcol, coords_list):
+	@pytest.fixture(params=[int, np.int64])
+	def index_type(self, request):
+		"""Type to use for single integer indexing.
+
+		Necessary because isinstance(x, int) doesn't work for integer elements
+		of numpy arrays.
+		"""
+		return request.param
+
+	def test_basic(self, kcol, coords_list, index_type):
 		"""Test item access and calling methods without side effects."""
 
 		# Check correct length
@@ -446,24 +455,26 @@ class TestKmerCoordsCollection:
 
 		# Check each coordinate set matches
 		for i, coords in enumerate(coords_list):
-
+			i = index_type(i)
 			assert np.array_equal(kcol[i], coords)
 			assert kcol.size_of(i) == len(coords)
 
-	def test_invalid_index(self, kcol):
+	def test_invalid_index(self, kcol, index_type):
 		"""Test passing invalid indices."""
 
 		# Check negative integer index
+		i = index_type(-1)
 		with pytest.raises(IndexError):
-			kcol[-1]
+			kcol[i]
 		with pytest.raises(IndexError):
-			kcol[-1] = 0
+			kcol[i] = 0
 
 		# Test integer index too large
+		i = index_type(len(kcol))
 		with pytest.raises(IndexError):
-			kcol[len(kcol)]
+			kcol[i]
 		with pytest.raises(IndexError):
-			kcol[len(kcol)] = 0
+			kcol[i] = 0
 
 		# Test slice
 		with pytest.raises(TypeError):
@@ -483,10 +494,11 @@ class TestKmerCoordsCollection:
 		for i in range(len(kcol)):
 			assert kcol.size_of(i) == len(coords_list[i])
 
-	def test_assignment(self, kcol):
+	def test_assignment(self, kcol, index_type):
 		"""Test item assignment."""
 
 		for i in range(len(kcol)):
+			i = index_type(i)
 
 			# Assign to single number
 			n = i * 11 % 23
