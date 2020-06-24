@@ -5,6 +5,10 @@ import numpy as np
 from libc.stdlib cimport malloc, free
 
 
+# Numpy dtype equivalent to coords_t
+coords_dtype = np.dtype(np.uint32)
+
+
 cdef class CKmerSpec:
 	"""Describes a k-mer pattern to match"""
 
