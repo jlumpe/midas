@@ -10,7 +10,7 @@ class DatabaseArchive:
 	"""Zipped file for storing and distributing MIDAS database data.
 
 	Data is stored internally in JSON format, and may be retrieved as parsed
-	JSON (e.g. ``dict``\ s) or as ORM model instances. Storing data requires the
+	JSON (e.g. ``dict``\\ s) or as ORM model instances. Storing data requires the
 	ORM model format.
 	"""
 
