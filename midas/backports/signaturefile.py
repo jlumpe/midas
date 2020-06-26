@@ -112,6 +112,13 @@ class SignatureFile:
 
 		self.nelems = self.lengths.sum()
 
+		# File offsets to individual signatures
+		self._offsets = np.empty(self.count, dtype=int)
+		self._offsets[0] = 0
+		self._offsets[1:] = np.cumsum(self.lengths[:-1])
+		self._offsets *= self.dtype.itemsize
+		self._offsets += self._header.offsets['data'][0]
+
 	def __enter__(self):
 		return self
 
@@ -135,6 +142,15 @@ class SignatureFile:
 
 		if header.version != cls._VERSION:
 			raise OSError('Unexpected version identifier')
+
+	def get_signature(self, i):
+		"""Read a single signature from the file.
+
+		:param int i: Index of signature to read.
+		:rtype: numpy.ndarray
+		"""
+		self.fobj.seek(self._offsets[i])
+		return read_npy(self.fobj, self.dtype, self.lengths[i])
 
 	def get_coords_collection(self, indices=None, progress=None, chunksize=None):
 		"""Read signatures from file as a KmerCoordsCollection.
@@ -190,10 +206,6 @@ class SignatureFile:
 			if chunksize is not None:
 				raise TypeError('Cannot specify both chunksize and indices')
 
-			# Calculate file sub-array bounds from lengths
-			bounds = np.zeros(self.count + 1, dtype=np.intp)
-			bounds[1:] = np.cumsum(self.lengths)
-
 			# Calculate bounds for indices only
 			kcol = KmerCoordsCollection.empty(self.lengths[indices], dtype=self.dtype)
 
@@ -202,10 +214,7 @@ class SignatureFile:
 
 			for i, (file_idx, out_idx) in enumerate(index_pairs_sorted):
 
-				self.fobj.seek(data_start + bounds[file_idx] * self.dtype.itemsize)
-				signature = read_npy(self.fobj, self.dtype, self.lengths[file_idx])
-
-				kcol[out_idx] = signature
+				kcol[out_idx] = self.get_signature(file_idx)
 
 				# Progress callback
 				if progress is not None:

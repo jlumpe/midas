@@ -110,6 +110,14 @@ def test_metadata(kcol, sigfile, metadata):
 		assert sigfile.get_metadata() == metadata
 
 
+def test_read_single(kcol, sigfile):
+	"""Test reading single signatures at a time."""
+
+	for i, sig in enumerate(kcol):
+		sig2 = sigfile.get_signature(i)
+		assert np.array_equal(sig, sig2)
+
+
 @pytest.mark.parametrize('chunksize', [None, 1, 3, 100])
 @pytest.mark.parametrize('progress', [False, True])
 def test_read_all(kcol, sigfile, chunksize, progress):
