@@ -55,12 +55,19 @@ SEQ_ID_ATTR_TYPES = MappingProxyType({
 def check_seq_id_value(id_name, id_vals):
 	"""Check the values for the attributes of an NCBI sequence ID.
 
-	:param str id_name: Name of ID (key of :data:`.SEQ_IDS`).
-	:param id_vals: Tuple of values corresponding to the attributes of the ID.
+	Parameters
+	----------
+	id_name : str
+		Name of ID (key of :data:`.SEQ_IDS`).
+	id_vals
+		Tuple of values corresponding to the attributes of the ID.
 
-	:raises ValueError: If ``id_vals`` is not the correct length.
-	:raises TypeError: If any elements of ``id_vals`` are not of the correct
-		type (see :data:`SEQ_ID_ATTR_TYPES`).
+	Raises
+	------
+	ValueError
+		If ``id_vals`` is not the correct length.
+	TypeError
+		If any elements of ``id_vals`` are not of the correct type (see :data:`SEQ_ID_ATTR_TYPES`).
 	"""
 
 	attr_names = SEQ_IDS[id_name]
@@ -91,27 +98,38 @@ def get_seq_ids(mapping, single=False, *, extra_ok=False, empty_ok=True,
 	Can also be used to check if a set of attribute values are valid, in which
 	case the return value can be ignored.
 
-	:param mapping: Mapping from NCBI sequence ID attribute names to their
-		values. See :data:`.SEQ_ID_ATTRS`.
-	:param bool single: If True, expect attribute values for a single ID to be
+	Parameters
+	----------
+	mapping
+		Mapping from NCBI sequence ID attribute names to their values. See :data:`.SEQ_ID_ATTRS`.
+	single : bool
+		If True, expect attribute values for a single ID to be
 		present in the mapping and return a pair of ID name and value. If False
 		(default), return a mapping of a variable number ID names to values.
-	:param bool extra_ok: If True, ignore keys in ``mapping`` that are not in
+	extra_ok : bool
+		If True, ignore keys in ``mapping`` that are not in
 		:data:`.SEQ_ID_ATTRS`. Default False.
-	:param bool empty_ok: If False and no IDs found, raise :exc:TypeError:.
-		Default True.
-	:param bool null_ok: If True allow values of None for attributes. These will
+	empty_ok : bool
+		If False and no IDs found, raise :exc:TypeError:. Default True.
+	null_ok : bool
+		If True allow values of None for attributes. These will
 		be treated as if the key for the attribute was not present. If False
 		(default) raise :exc:`TypeError` when value is None.
-	:param bool ignore_partial: If True ignore cases where some but not all
+	ignore_partial : bool
+		If True ignore cases where some but not all
 		attributes of a compound ID are present (or not None). If False (default)
 		will raise :exc:`TypeError`.
-	:param bool check_types: If True check types of non-null attribute values
+	check_types : bool
+		If True check types of non-null attribute values
 		and raise :exc:`TypeError`  if they do not match
 		:data:`.SEQ_ID_ATTR_TYPES`.
 
-	:raises KeyError: If extra keys are found and ``extra_ok`` is False.
-	:raises TypeError: If ``single`` is True and more or less than one ID value
+	Raises
+	------
+	KeyError
+		If extra keys are found and ``extra_ok`` is False.
+	TypeError
+		If ``single`` is True and more or less than one ID value
 		found, if ``empty_ok`` is False and no ID values found, if ``null_ok``
 		is False any any ID attribute values are None, if ``ignore_partial`` is
 		False and any IDs have only a partial set of attributes present, if
@@ -219,21 +237,30 @@ def parse_seq_id_args(args, kwargs, multiple=False, **more):
 	attribute values in keyword arguments like
 	``(... attr1=val1, attr2=val2, ...)``.
 
-	:param tuple args: Zero or one sequence IDs encoded in positional arguments.
-	:param dict kwargs: Any number of sequence ID attribute values in keyword
-		arguments.
-	:param bool multiple: If True get values for multiple sequence IDs. If
-		False (default) expect
-	:param \\**more: Additional keyword arguments to forward to
-		:func:`get_seq_ids`.
-	:returns: If ``multiple`` is False returns a``(id_name, id_values)`` pair,
+	Parameters
+	----------
+	args : tuple
+		Zero or one sequence IDs encoded in positional arguments.
+	kwargs : dict
+		Any number of sequence ID attribute values in keyword arguments.
+	multiple : bool
+		If True get values for multiple sequence IDs. If False (default) expect
+	\\**more
+		Additional keyword arguments to forward to :func:`get_seq_ids`.
+
+	Returns
+	-------
+	tuple or dict
+		If ``multiple`` is False returns a``(id_name, id_values)`` pair,
 		where ``id_name`` is a key of :data:`.SEQ_IDS` and ``id_values`` is a
 		tuple of values for the corresponding attributes. If ``multiple`` is
 		True returns a dictionary where elements of ``items()`` are formatted
 		in the same way.
-	:rtype: tuple or dict
 
-	:raises TypeError: If both or neither of ``args`` and ``kwargs`` are empty.
+	Raises
+	------
+	TypeError
+		If both or neither of ``args`` and ``kwargs`` are empty.
 	"""
 	if args:
 		if kwargs:
@@ -271,11 +298,16 @@ class SeqRecordBase:
 	def ncbi_ids(self, flat=False):
 		"""Get a dictionary of all NCBI sequence ID attribute values.
 
-		:param bool flat: If True, get a flat mapping of attribute names to
+		Parameters
+		----------
+		flat : bool
+			If True, get a flat mapping of attribute names to
 			values. False (default) gets mapping from ID names to tuples of
 			attribute values (see :data:`.SEQ_IDS`).
 
-		:rtype: dict
+		Returns
+		-------
+		dict
 		"""
 		if flat:
 			return {name: getattr(self, name) for name in SEQ_ID_ATTRS}
@@ -289,9 +321,16 @@ class SeqRecordBase:
 def entrez_url(entrez_db, entrez_id):
 	"""Get the URL for an entry in Entrez, more or less.
 
-	:param str entrez_db: Name of the Entrez database - e.g. "nuccore".
-	:param int entrez_id: ID of the database entry.
-	:rtype: str:
+	Parameters
+	----------
+	entrez_db : str
+		Name of the Entrez database - e.g. "nuccore".
+	entrez_id : int
+		ID of the database entry.
+
+	Returns
+	-------
+	str
 	"""
 	from urllib.parse import urljoin, quote_plus
 
@@ -304,12 +343,19 @@ def ncbi_sequence_url(*args, **kwargs):
 
 	Not too smart about it right now, only operates off the entrez IDs.
 
-	:param \\*args: Name of NCBI sequence ID followed by its attribute values
-		(see :data:`.SEQ_IDS`). Mututally exclusive with ``**kwargs``.
-	:param \\**kwargs: Valid set of NCBI sequence ID attribute values as keyword
-		arguments (see :func:`.get_seq_ids`). Mututally exclusive with ``*args``.
-	:returns: Guess for URL, or None no guess could be made.
-	:rtype: str
+	Parameters
+	----------
+	\\*args
+		Name of NCBI sequence ID followed by its attribute values (see :data:`.SEQ_IDS`).
+		Mututally exclusive with ``**kwargs``.
+	\\**kwargs
+		Valid set of NCBI sequence ID attribute values as keyword arguments
+		(see :func:`.get_seq_ids`). Mututally exclusive with ``*args``.
+
+	Returns
+	-------
+	str
+		Guess for URL, or None no guess could be made.
 	"""
 	ids = parse_seq_id_args(args, kwargs, multiple=True, null_ok=True)
 
@@ -325,9 +371,15 @@ def ncbi_sequence_url(*args, **kwargs):
 def ncbi_search_url(term):
 	"""Get the URL for the NCBI search results page for a given term.
 
-	:param str term: Search term.
-	:returns: URL for search page.
-	:rtype str:
+	Parameters
+	----------
+	term : str
+		Search term.
+
+	Returns
+	-------
+	str
+		URL for search page.
 	"""
 	from urllib.parse import urljoin, urlencode
 	return urljoin(NCBI_BASE_URL, 'gquery/?' + urlencode({'term': term}))

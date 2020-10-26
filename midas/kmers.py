@@ -30,37 +30,42 @@ NUCLEOTIDES = b'ACGT'
 class KmerSpec(object):
 	"""Specifications for a k-mer search operation.
 
-	:param int k: Value of :attr:`k` attribute.
-	:param prefix: Value of :attr:`prefix` attribute. If ``str`` and not
-		``bytes`` will be encoded as ascii.
+	Parameters
+	----------
+	k : int
+		Value of :attr:`k` attribute.
+	prefix : str or bytes
+		Value of :attr:`prefix` attribute. If ``str`` and not ``bytes`` will be encoded as ascii.
 
-	.. attribute:: prefix
+	Attributes
+	----------
+
+	prefix : bytes
 
 		Constant prefix of k-mers to search for, upper-case nucleotide codes
 		as ascii-encoded ``bytes``.
 
-	.. attribute:: k
+	k : int
 
 		Number of nucleotides in k-mer *after* prefix.
 
-	.. attribute:: prefix_len
+	prefix_len : int
 
 		Number of nucleotides in prefix.
 
-	.. attribute:: total_len
+	total_len : int
 
 		Sum of ``prefix_len`` and ``k``.
 
-	.. attribute:: idx_len
+	idx_len : int
 
 		Maximum value (plus one) of integer needed to index one of the
 		found k-mers. Also the number of possible k-mers fitting the spec.
 		Equal to ``4 ** k``.
 
-	.. attribute:: coords_dtype
+	coords_dtype : numpy.dtype
 
-		Smallest unsigned integer ``numpy.dtype`` that can store k-mer
-		indices.
+		Smallest unsigned integer dtype that can store k-mer indices.
 	"""
 
 	def __init__(self, k, prefix):
@@ -124,18 +129,24 @@ def find_kmers(kspec, seq, out=None):
 	sequence may contain invalid characters (not one of the four nucleotide
 	codes) which will simply not be matched.
 
-	:param kspec: K-mer spec to use for search.
-	:type kspec: .KmerSpec
-	:param seq: Sequence to search within as ``bytes`` or ``str``. If ``str``
+	Parameters
+	----------
+	kspec : .KmerSpec
+		K-mer spec to use for search.
+	seq
+		Sequence to search within as ``bytes`` or ``str``. If ``str``
 		will be encoded as ASCII. Lower-case characters are OK ans will be
 		matched as upper-case.
-	:param out: Existing numpy array to write output to. Should be of length
+	out : numpy.ndarrray
+		Existing numpy array to write output to. Should be of length
 		``kspec.idx_len``. If given the same array will be returned.
-	:type out: numpy.ndarray
-	:returns: Array of length ``kspec.idx_len`` containing ones in the
+
+	Returns
+	-------
+	numpy.ndarray
+		Array of length ``kspec.idx_len`` containing ones in the
 		index of each k-mer found and zeros elsewhere. If ``out`` is not
 		given the array will be of type ``bool``.
-	:rtype: numpy.ndarray
 	"""
 	if out is None:
 		out = np.zeros(kspec.idx_len, dtype=bool)
@@ -198,26 +209,35 @@ def find_kmers(kspec, seq, out=None):
 
 
 def vec_to_coords(vec):
-	"""Convert k-mer vector to compressed coordinate representation.
+	"""Convert boolean k-mer vector to sparse coordinate representation.
 
-	:param vec: Boolean vector indicating which k-mers are present.
-	:type vec: numpy.ndarray
-	:returns: Sorted array of coordinates of k-mers present in vector. Data
-	          type will be ``intp``.
-	:rtype: numpy.ndarray
+	Parameters
+	----------
+	vec : numpy.ndarray
+		Boolean vector indicating which k-mers are present.
+
+	Returns
+	-------
+	numpy.ndarray
+		Sorted array of coordinates of k-mers present in vector. Data type will be ``intp``.
 	"""
 	return np.flatnonzero(vec)
 
 
 def coords_to_vec(coords, idx_len):
-	"""Convert from coordinate representation back to k-mer vector.
+	"""Convert from sparse coordinate representation back to boolean k-mer vector.
 
-	:param coords: Coordinate array.
-	:type coords: numpy.ndarray
-	:param int idx_len: Value of ``idx_len`` property of corresponding
-		:class:`.KmerSpec`.
-	:returns: Boolean k-mer vector.
-	:rtype: numpy.ndarray
+	Parameters
+	----------
+	coords : numpy.ndarray
+		Coordinate array.
+	idx_len : int
+		Value of ``idx_len`` property of corresponding :class:`.KmerSpec`.
+
+	Returns
+	-------
+	numpy.ndarray
+		Boolean k-mer vector.
 	"""
 	vec = np.zeros(idx_len, dtype=np.bool)
 	vec[coords] = 1
@@ -226,7 +246,7 @@ def coords_to_vec(coords, idx_len):
 
 class SignatureArray(collections.Sequence):
 	"""
-	Stores a collection of k-mer signatures (k-mer sets in coordinate format) in
+	Stores a collection of k-mer signatures (k-mer sets in sparse coordinate format) in
 	a single Numpy array.
 
 	Acts as a non-mutable sequence of :class:`numpy.ndarray` objects (however
@@ -267,7 +287,10 @@ class SignatureArray(collections.Sequence):
 
 		    kcol.size_of(i) == len(kcol[i])
 
-		:param int index: Index of k-mer set in collection.
+		Parameters
+		----------
+		index : int
+			Index of k-mer set in collection.
 		"""
 		return self.bounds[index + 1] - self.bounds[index]
 
@@ -275,11 +298,16 @@ class SignatureArray(collections.Sequence):
 	def from_signatures(cls, signatures, dtype=np.uint32):
 		"""Create from sequence of individual signature (k-mer coordinate) arrays.
 
-		:param signatures: Sequence of coordinate arrays.
-		:param dtype: Numpy dtype of shared coordinates array.
-		:type dtype: numpy.dtype
+		Parameters
+		----------
+		signatures
+			Sequence of coordinate arrays.
+		dtype : numpy.dtype
+			Numpy dtype of shared coordinates array.
 
-		:rtype: .SignatureArray
+		Returns
+		-------
+		.SignatureArray
 		"""
 
 		array = cls.empty(list(map(len, signatures)), dtype=dtype)
@@ -293,13 +321,18 @@ class SignatureArray(collections.Sequence):
 	def empty(cls, lengths, values=None, dtype=np.uint32):
 		"""Create with an empty array.
 
-		:param lengths: Sequence of lengths for each sub-array/signature.
-		:param values: Initial shared coordinates array.
-		:type values: numpy.ndarray
-		:param dtype: Numpy dtype of shared coordinates array.
-		:type dtype: numpy.dtype
+		Parameters
+		----------
+		lengths
+			Sequence of lengths for each sub-array/signature.
+		values : numpy.ndarray
+			Initial shared coordinates array.
+		dtype : numpy.dtype
+		Numpy dtype of shared coordinates array.
 
-		:rtype: .SignatureArray
+		Returns
+		-------
+		.SignatureArray
 		"""
 
 		from midas.cython.metrics import BOUNDS_DTYPE

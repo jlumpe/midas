@@ -17,40 +17,29 @@ class SignatureFile:
 
 	Acts as a context manager which closes its stream on exit.
 
-	.. attribute:: fobj
+	Parameters
+	----------
+	fobj
+		Readable file-like object in binary mode.
 
+	Attributes
+	----------
+	fobj
 		Stream file is being read from.
-
-	.. attribute:: count
-
+	count : int
 		Number of signatures in the file.
-
-	.. attribute:: dtype
-
-		:class:`numpy.dtype` of signatures in the file.
-
-	.. attribute:: lengths
-
-		:class:`numpy.ndarray` of lengths of each signature in the file.
-
-	.. attribute:: nelems
-
+	dtype : numpy.dtype
+		 Data type of signatures in the file.
+	lengths : numpy.ndarray
+		Length of each signature in the file.
+	nelems : int
 		Total number of elements of all signatures in the file.
-
-	.. attribute:: ids
-
-		IDs for signatures as :class:`numpy.ndarray` of integers or string
-		objects, or None if the file doesn't have IDs.
-
-	.. attribute:: has_metadata
-
-		True if file has metadata stored, False otherwise.
-
-	.. attribute:: closed
-
-		True if :attr:`fobj` is closed, False otherwise.
-
-	:param fobj: Readable file-like object in binary mode.
+	ids : numpy.ndarray
+		IDs for signatures array of integers or string objects, or None if the file doesn't have IDs.
+	has_metadata : bool
+		Whether the file has metadata stored.
+	closed : bool
+		Whether :attr:`fobj` is closed.
 	"""
 
 	# Four-byte magic number to put at beginning of file
@@ -137,22 +126,25 @@ class SignatureFile:
 	def get_array(self, indices=None, progress=None, chunksize=None):
 		"""Read signatures from file as a SignatureArray.
 
-		:param indices: List or array of indices of a subset of signatures to
-			get. Array signatures will then correspond to the ids
-			`signaturefile.ids[indices]``. If None will get all signatures.
-		:param progress: Progress callback that will be called periodically
-			with the number of signatures read. Will be called with positional
-			arguments ``(ncompleted, total)`` where ``ncompleted`` is the total
-			number of signatures read so far and ``total`` is the total number
-			to read. Will be called after every signature has been read if
-			``indices`` is not None or after every ``chunksize`` signatures
-			otherwise.
-		:type progress: function
-		:param int chunksize: Number of signatures to read at a time, if
-			``indices`` is None (``indices`` and ``chunksize`` should not both
-			be given). Only useful with the ``progress`` argument. If None
-			(default) will read all signatures in one shot.
-		:rtype: midas.kmers.SignatureArray
+		Parameters
+		----------
+		indices
+			List or array of indices of a subset of signatures to get. Array signatures will then
+			correspond to the ids `signaturefile.ids[indices]``. If None will get all signatures.
+		progress : function
+			Progress callback that will be called periodically with the number of signatures read.
+			Will be called with positional arguments ``(ncompleted, total)`` where ``ncompleted`` is
+			the total number of signatures read so far and ``total`` is the total number to read.
+			Will be called after every signature has been read if ``indices`` is not None or after
+			every ``chunksize`` signatures otherwise.
+		chunksize : int
+			Number of signatures to read at a time, if ``indices`` is None (``indices`` and
+			``chunksize`` should not both be given). Only useful with the ``progress`` argument. If
+			None (default) will read all signatures in one shot.
+
+		Returns
+		-------
+		midas.kmers.SignatureArray
 		"""
 
 		# File position at start of data
@@ -219,7 +211,9 @@ class SignatureFile:
 	def iter_signatures(self):
 		"""Iterate over signatures in the file.
 
-		:returns: Generator yielding :class:`numpy.ndarray`.
+		Returns
+		-------
+			Generator yielding :class:`numpy.ndarray`.
 		"""
 
 		self.fobj.seek(self._header.offsets['data'][0])
@@ -231,16 +225,21 @@ class SignatureFile:
 	def write(cls, fobj, signatures, *, dtype=None, ids=None, metadata=None):
 		"""Write signatures to file.
 
-		:param fobj: Writeable file-like object in binary mode.
-		:param signatures: Sequence of signatures, as numpy arrays.
-		:param dtype: Numpy data type of signatures to write (should be unsigned
-			integer). If None will be determined automatically by signatures.
-		:type: numpy.dtype
-		:param ids: Sequence of IDs for the signatures, for example accession
-			numbers of the genomes the signatures are from. Must be the same
-			length as ``signatures`` and items must be all strings or integers.
-		:param metadata: Arbitrary metadata that will be included with file.
-			Must be JSONable.
+		Parameters
+		----------
+		fobj
+			Writeable file-like object in binary mode.
+		signatures
+			Sequence of signatures, as numpy arrays.
+		dtype : numpy.dtype
+			Numpy data type of signatures to write (should be unsigned integer). If None will be
+			determined automatically by signatures.
+		ids
+			Sequence of IDs for the signatures, for example accession numbers of the genomes the
+			signatures are from. Must be the same length as ``signatures`` and items must be all
+			strings or integers.
+		metadata
+			Arbitrary metadata that will be included with file. Must be JSONable.
 		"""
 
 		count = len(signatures)
@@ -305,7 +304,10 @@ class SignatureFile:
 
 		Currently only supports JSON format.
 
-		:returns: Tuple of begin and end file offsets for the metadata section.
+		Returns
+		-------
+		tuple
+			Tuple of begin and end file offsets for the metadata section.
 		"""
 		begin = fobj.tell()
 
@@ -323,7 +325,10 @@ class SignatureFile:
 	def _write_ids(cls, fobj, ids):
 		"""Write IDs to file.
 
-		:returns: Tuple of begin and end file offsets for the IDs section.
+		Returns
+		-------
+		tuple
+			Tuple of begin and end file offsets for the IDs section.
 		"""
 		begin = fobj.tell()
 
@@ -356,8 +361,9 @@ class SignatureFile:
 	def get_metadata(self):
 		"""Read metadata from the file, if it has any.
 
-		:returns: File's metadata object (typically dict), or None if the file
-			has no metadata.
+		Returns
+		-------
+			File's metadata object (typically dict), or None if the file has no metadata.
 		"""
 
 		if not self.has_metadata:
@@ -385,7 +391,9 @@ class SignatureFile:
 	def _read_ids(self):
 		"""Read the IDs from the file if it has any.
 
-		:returns: IDs stored in file.
+		Returns
+		-------
+			IDs stored in file.
 		"""
 
 		begin, end = map(int, self._header.offsets.ids)

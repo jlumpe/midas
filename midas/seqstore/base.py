@@ -11,14 +11,13 @@ class BaseSequenceStoreRecord(ncbi.SeqRecordBase):
 
 	Inherits all attributes from :class:`midas.ncbi.SeqRecordBase`.
 
-	.. attribute:: store_id
-
+	Attributes
+	----------
+	store_id
 		Unique ID of the sequence within the :class:`.SequenceStore` it is
 		stored in. Does not have any meaning outside of this.
-
-	.. attribute:: format
-
-		``str`` describing the file format the sequence is stored in, e.g.
+	format : str
+		String describing the file format the sequence is stored in, e.g.
 		"fasta".
 	"""
 
@@ -57,28 +56,30 @@ class SequenceStore(metaclass=ABCMeta):
 	def store(self, src, ids, **kwargs):
 		"""Add a new genome sequence to the store.
 
-		:param src: Open file-like object containing the sequence data, or
-			alternatively a string containing the path to such a file.
-		:param dict ids: NCBI IDs for the sequence. At least one is required.
-			See :func:`midas.ncbi.get_seq_ids` for other requirements.
-		:param \\**kwargs: Additional keyword arguments.
-
-		:returns: Record for the added sequence.
-		:rtype: .SeqStoreRecord
-
-		:Keyword Arguments:
-
-			* **seq_format** (``str``) --
+		Parameters
+		----------
+		src
+			Open file-like object containing the sequence data, or alternatively a string containing
+			the path to such a file.
+		ids : dict
+			NCBI IDs for the sequence. At least one is required. See :func:`midas.ncbi.get_seq_ids`
+			for other requirements.
+		seq_format : str
 			  File format of the sequence. Defaults to "fasta".
-			* **src_compression** (``str``) --
+		src_compression : str
 			  Compression of the source data. Allowable values are ``None`` and
 			  "gzip".
-			* **keep_src** (``bool``) --
+		keep_src : bool
 			  If a file name is given for ``src``, whether to copy (True) or
 			  move (False) the source file. Defaults to True.
-			* **src_mode** (``text``) --
+		src_mode : str
 			  Mode of ``src`` if it is a file-like object - "t" or "b". Only
 			  applicable if compression is ``None`` (otherwise assumes binary).
+
+		Returns
+		-------
+		.SeqStoreRecord
+			Record for the added sequence.
 		"""
 		pass
 
@@ -86,13 +87,20 @@ class SequenceStore(metaclass=ABCMeta):
 	def open(self, which):
 		"""Get an open file handle/stream to the sequence for a stored genome.
 
-		:param which: Either the store ID of the sequence or its
-			:class:`.BaseSequenceStoreRecord`. See :meth:`get_record` for getting
-			records of stored sequences by their NCBI IDs.
-		:returns: Open file-like object in text mode from which the sequence
-			data can be read.
-		:raises SequenceNotFoundError: If no sequence corresponding to ``which``
-			exists.
+		Parameters
+		----------
+		which
+			Either the store ID of the sequence or its :class:`.BaseSequenceStoreRecord`. See
+			:meth:`get_record` for getting records of stored sequences by their NCBI IDs.
+
+		Returns
+		-------
+			Open file-like object in text mode from which the sequence data can be read.
+
+		Raises
+		------
+		SequenceNotFoundError
+			If no sequence corresponding to ``which`` exists.
 		"""
 		pass
 
@@ -100,11 +108,17 @@ class SequenceStore(metaclass=ABCMeta):
 	def remove(self, which):
 		"""Remove a sequence from the store.
 
-		:param which: Either the store ID of the sequence or its
-			:class:`.BaseSequenceStoreRecord`. See :meth:`get_record` for getting
-			records of stored sequences by their NCBI IDs.
-		:raises SequenceNotFoundError: If no sequence corresponding to ``which``
-			exists.
+		Parameters
+		----------
+		which
+			Either the store ID of the sequence or its :class:`.BaseSequenceStoreRecord`. See
+			:meth:`get_record` for getting records of stored sequences by their NCBI IDs.
+
+
+		Raises
+		------
+		SequenceNotFoundError
+			If no sequence corresponding to ``which`` exists.
 		"""
 		pass
 
@@ -112,14 +126,19 @@ class SequenceStore(metaclass=ABCMeta):
 	def get_record(self, store_id=None, **ids):
 		"""Get the record for a stored sequence by store ID or NCBI IDs.
 
-		:param store_id: ID of record specific to this :class:`.SequenceStore`.
-			Can be found in the ``store_id`` attribute of an existing record.
-			This parameter is mutually exclusive with ``**ids``.
-		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
-			:func:`midas.ncbi.get_seq_ids`. If multiple IDs are given the
-			returned sequence must match all of them.
-		:returns: Record of stored sequence if it exists, otherwise ``None``.
-		:rtype: .BaseSequenceStoreRecord
+		Parameters
+		----------
+		store_id
+			ID of record specific to this :class:`.SequenceStore`. Can be found in the ``store_id``
+			attribute of an existing record. This parameter is mutually exclusive with ``**ids``.
+		\\**ids
+			NCBI IDs of sequence. Must be valid set of IDs as per :func:`midas.ncbi.get_seq_ids`. If
+			multiple IDs are given the returned sequence must match all of them.
+
+		Returns
+		-------
+		.BaseSequenceStoreRecord
+			Record of stored sequence if it exists, otherwise ``None``.
 		"""
 		pass
 
@@ -129,10 +148,15 @@ class SequenceStore(metaclass=ABCMeta):
 
 		This should be equivalent to ``seqstore.get_record(**ids) is not None``.
 
-		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
-			:func:`midas.ncbi.get_seq_ids`. If multiple IDs are given a
-			sequence must match all of them.
-		:rtype: bool
+		Parameters
+		----------
+		\\**ids
+			NCBI IDs of sequence. Must be valid set of IDs as per :func:`midas.ncbi.get_seq_ids`. If
+			multiple IDs are given a sequence must match all of them.
+
+		Returns
+		-------
+		bool
 		"""
 		pass
 
@@ -140,11 +164,17 @@ class SequenceStore(metaclass=ABCMeta):
 	def has_any(self, **ids):
 		"""Check if a sequence with any of the given NCBI IDs exists in the store.
 
-		:param \\**ids: NCBI IDs of sequence. Must be valid set of IDs as per
+		Parameters
+		----------
+		\\**ids
+			NCBI IDs of sequence. Must be valid set of IDs as per
 			:func:`midas.ncbi.get_seq_ids`. Unlike :meth:`has` if multiple IDs
 			are given a sequence only needs to match the attributes in a single
 			index (see :data:`midas.ncbi.SEQ_IDS`).
-		:rtype: bool
+
+		Returns
+		-------
+		bool
 		"""
 		pass
 
@@ -152,14 +182,20 @@ class SequenceStore(metaclass=ABCMeta):
 	def update_record(self, which, **attrs):
 		"""Update the attributes of a sequence record.
 
-		:param which: Either the store ID of the sequence or its
-			:class:`.BaseSequenceStoreRecord`. See :meth:`get_record` for getting
-			records of stored sequences by their NCBI IDs.
-		:param \\**attrs: Attributes of record to modify. Keywords may be
-			``format`` or any NCBI ID attributes. The NCBI IDs of the record
-			after the updates are applied must be valid. Values may be ``None``.
-		:raises SequenceNotFoundError: If no sequence corresponding to ``which``
-			exists.
+		Parameters
+		----------
+		which
+			Either the store ID of the sequence or its :class:`.BaseSequenceStoreRecord`. See
+			:meth:`get_record` for getting records of stored sequences by their NCBI IDs.
+		\\**attrs
+			Attributes of record to modify. Keywords may be ``format`` or any NCBI ID attributes.
+			The NCBI IDs of the record after the updates are applied must be valid. Values may be
+			``None``.
+
+		Raises
+		------
+		SequenceNotFoundError
+			If no sequence corresponding to ``which`` exists.
 		"""
 		pass
 

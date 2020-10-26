@@ -26,11 +26,16 @@ meta_table = KeyValueTable.make_table('metadata', metadata)
 def make_filename(record, ext=''):
 	"""Create a unique and descriptive name for a sequence file.
 
-	:param record: Record for sequence containing store_id and NCBI IDs.
-	:type record: midas.seqstore.base.BaseSequenceStoreRecord
-	:param str ext: File extension, including dot.
+	Parameters
+	----------
+	record : midas.seqstore.base.BaseSequenceStoreRecord
+		Record for sequence containing store_id and NCBI IDs.
+	ext : str
+		File extension, including dot.
 
-	:rtype: str
+	Returns
+	-------
+	str
 	"""
 
 	fname = str(record.store_id)
@@ -54,10 +59,14 @@ class FileSequenceStore(DbIndexedSequenceStore):
 
 	All sequence files as well as index data are stored in a single directory.
 
-	:param str path: Path to existing ``FileSequenceStore`` directory.
+	Parameters
+	----------
+	path : str
+		Path to existing ``FileSequenceStore`` directory.
 
-	.. attribute:: path
-
+	Attributes
+	----------
+	path : pathlib.Path
 		Path to root directory of sequence store.
 	"""
 
@@ -86,9 +95,14 @@ class FileSequenceStore(DbIndexedSequenceStore):
 	def create(cls, path):
 		"""Create a new :class:`.FileSequenceStore`.
 
-		:param str path: Path to sequence store directory. Must not already
-			exist.
-		:rtype: .FileSequenceStore
+		Parameters
+		----------
+		path : str
+		Path to sequence store directory. Must not already exist.
+
+		Returns
+		-------
+		.FileSequenceStore
 		"""
 
 		# Create directories
@@ -109,8 +123,14 @@ class FileSequenceStore(DbIndexedSequenceStore):
 	def get_version(cls, root_path):
 		"""Get the version string of an existing FileSequenceStore.
 
-		:param str root_path: Path of store's root directory.
-		:rtype: str
+		Parameters
+		----------
+		root_path : str
+			Path of store's root directory.
+
+		Returns
+		-------
+		str
 		"""
 		engine = cls._make_engine(root_path)
 		meta = KeyValueTable(engine, meta_table)

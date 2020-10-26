@@ -12,8 +12,9 @@ from midas import ncbi
 class KeyMixin:
 	"""Mixin that defines key/version columns.
 
-	.. attribute:: key
-
+	Attributes
+	----------
+	key
 		Intended to be a universally unique key that can be used to identify
 		objects across databases on different systems. This is primarily
 		intended to be used for distributing database updates. It can be any
@@ -22,9 +23,7 @@ class KeyMixin:
 		format that supports using namespaces to avoid key conflicts. Example:
 		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific
 		genome stored in the Genbank assembly database.
-
-	.. attribute:: version
-
+	version
 		Version of the keyed object according to whatever source defined the key.
 		Used to determine when the	metadata needs to be updated. Should be in
 		the format defined by
@@ -61,8 +60,10 @@ class JsonableMixin:
 	def to_json(self):
 		"""Convert to a value serializable as JSON.
 
-		:returns: Dictionary which can be passed to :func:`json.dump`.
-		:rtype: dict
+		Returns
+		-------
+		dict
+			Dictionary which can be passed to :func:`json.dump`.
 		"""
 
 		data = dict()
@@ -80,8 +81,14 @@ class JsonableMixin:
 	def from_json(cls, data):
 		"""Create an instance of the class from JSON data.
 
-		:param dict data: JSON object data as returned by :func:`json.load`.
-		:returns: Model instance.
+		Parameters
+		----------
+		data : dict
+			JSON object data as returned by :func:`json.load`.
+
+		Returns
+		-------
+			Model instance.
 		"""
 		return cls(**{
 			name: value for name, value in data.items()
@@ -91,7 +98,10 @@ class JsonableMixin:
 	def update_from_json(self, data):
 		"""Updates attributes from parsed JSON dict.
 
-		:param dict data: JSON object data as returned by :func:`json.load`.
+		Parameters
+		----------
+		data : dict
+			JSON object data as returned by :func:`json.load`.
 		"""
 		for name, value in data.items():
 			if name in self.__json_attrs__:
@@ -119,21 +129,24 @@ class SeqRecordMixin(ncbi.SeqRecordBase):
 
 	@classmethod
 	def get_ncbi_id_filter(cls, *args, **kwargs):
-		"""Get an expression to filter model isntances based on NCBI sequence IDs.
+		"""Get an expression to filter model instances based on NCBI sequence IDs.
 
 		If values for multiple sequence IDs are given, their sub-expressions
 		will combined via logical AND.
 
-		:param \\*args: Name of NCBI sequence ID followed by its attribute
-			values (see :data:`midas.ncbi.SEQ_IDS`). Mututally exclusive with
-			``**kwargs``.
-		:param \\**kwargs: Valid set of NCBI sequence ID attribute values as
-			keyword arguments (see :func:`midas.ncbi.get_seq_ids`).
-			Mututally exclusive with``*args``.
+		Parameters
+		----------
+		\\*args
+			Name of NCBI sequence ID followed by its attribute values (see :data:`midas.ncbi.SEQ_IDS`). Mututally
+			exclusive with``**kwargs``.
+		\\**kwargs
+			Valid set of NCBI sequence ID attribute values as keyword arguments (see :func:`midas.ncbi.get_seq_ids`).
+			Mututally exclusive with ``*args``.
 
-		:returns: Expression indicating that this model's NCBI ID attributes
-			match the given values.
-		:rtype: sqlalchemy.sql.elements.ClauseElement
+		Returns
+		-------
+		sqlalchemy.sql.elements.ClauseElement
+			Expression indicating whether this model's NCBI ID attributes match the given values.
 		"""
 
 		ids = ncbi.parse_seq_id_args(args, kwargs, multiple=True, empty_ok=False)
@@ -162,17 +175,21 @@ class SeqRecordMixin(ncbi.SeqRecordBase):
 		will combined via logical AND (i.e., query results must match all of
 		them).
 
-		:param session: SQLAlchemy session object to create query with.
-		:type session: sqlalchemy.orm.session.Session
-		:param \\*args: Name of NCBI sequence ID followed by its attribute
-			values (see :data:`midas.ncbi.SEQ_IDS`). Mututally exclusive with
-			``**kwargs``.
-		:param \\**kwargs: Valid set of NCBI sequence ID attribute values as
-			keyword arguments (see :func:`midas.ncbi.get_seq_ids`).
-			Mututally exclusive with``*args``.
+		Parameters
+		----------
+		session : sqlalchemy.orm.session.Session
+			SQLAlchemy session object to create query with.
+		\\*args
+			Name of NCBI sequence ID followed by its attribute values
+			(see :data:`midas.ncbi.SEQ_IDS`). Mututally exclusive with ``**kwargs``.
+		\\**kwargs
+			Valid set of NCBI sequence ID attribute values as keyword arguments
+			(see :func:`midas.ncbi.get_seq_ids`). Mututally exclusive with``*args``.
 
-		:returns: SQLAlchemy query on model with ID filter applied.
-		:rtype: sqlalchemy.orm.query.Query
+		Returns
+		-------
+		sqlalchemy.orm.query.Query
+			SQLAlchemy query on model with ID filter applied.
 		"""
 		exp = cls.get_ncbi_id_filter(*args, **kwargs)
 		return session.query(cls).filter(exp)

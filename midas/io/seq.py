@@ -16,24 +16,25 @@ class SeqFileInfo:
 
 	Contains all the information needed to read and parse the file.
 
-	.. attribute:: path
+	Parameters
+	----------
+	path
+		Value of :attr:`path` attribute. May be string or path-like object.
+	fmt : str
+		Value of :attr:`fmt` attribute.
+	compression : str
+		Value of :attr:`compression` attribute.
 
-		Path to the file, as :class:`pathlib.Path`.
-
-	.. attribute:: fmt
-
+	Attributes
+	----------
+	path : pathlib.Path
+		Path to the file.
+	fmt : str
 		String describing the file format, as interpreted by
 		:func:`Bio.SeqIO.parse`. E.g. ``'fasta'``.
-
-	.. attribute:: compression
-
+	compression : str
 		String describing compression method of the file, e.g. ``'gzip'``. None
 		means no compression. See :func:`midas.io.util.open_compressed`.
-
-	:param path: Value of :attr:`path` attribute. May be string or path-like
-		object.
-	:param str fmt: Value of :attr:`fmt` attribute.
-	:param str compression: Value of :attr:`compression` attribute.
 	"""
 
 	path = field(Path, converter=Path)
@@ -45,13 +46,20 @@ class SeqFileInfo:
 		Open a stream to the file, with compression/decompression applied
 		transparently.
 
-		:param str mode: Same as equivalent argument to the built-in :func:open`.
-			Some modes may not be supported by all compression types.
-		:param \\**kwargs: Additional text mode specific keyword arguments to
-			pass to opener. Equivlent to the following arguments of the built-in
-			:func:`open`: ``encoding``, ``errors``, and ``newlines``. May not be
-			supported by all compression types.
-		:returns: Stream to file in given mode.
+		Parameters
+		----------
+
+		mode : str
+			Same as equivalent argument to the built-in :func:open`. Some modes may not be supported
+			by all compression types.
+		\\**kwargs
+			Additional text mode specific keyword arguments to pass to opener. Equivlent to the
+			following arguments of the built-in :func:`open`: ``encoding``, ``errors``, and
+			``newlines``. May not be supported by all compression types.
+
+		Returns
+		-------
+		Stream to file in given mode.
 		"""
 		return open_compressed(self.compression, self.path, mode, **kwargs)
 
@@ -65,10 +73,15 @@ class SeqFileInfo:
 		that closes the stream on exit. You may also close the stream explicitly
 		using the iterator's ``close`` method.
 
-		:param \\**kwargs: Keyword arguments to :meth:`open`.
-		:returns: Iterator yielding :class:`Bio.SeqIO.SeqRecord` instances for
-			each sequence in the file.
-		:rtype: midas.io.util.ClosingIterator
+		Parameters
+		----------
+		\\**kwargs
+			Keyword arguments to :meth:`open`.
+
+		Returns
+		-------
+		midas.io.util.ClosingIterator
+			Iterator yielding :class:`Bio.SeqIO.SeqRecord` instances for each sequence in the file.
 		"""
 
 		fobj = self.open('rt', **kwargs)
@@ -84,7 +97,9 @@ class SeqFileInfo:
 	def absolute(self):
 		"""Make a copy of the instance with an absolute path.
 
-		:rtype: .SeqFileInfo
+		Returns
+		-------
+		.SeqFileInfo
 		"""
 		if self.path.is_absolute():
 			return self
@@ -97,11 +112,18 @@ class SeqFileInfo:
 		Create many instances at once from a collection of paths and a single
 		format and compression type.
 
-		:param paths: Collection of paths as strings or path-like objects.d
-		:param str format: Sequence file format of files.
-		:param str compression: Compression method of files.
+		Parameters
+		----------
+		paths
+			Collection of paths as strings or path-like objects.d
+		format : str
+			Sequence file format of files.
+		compression : str
+			Compression method of files.
 
-		:rtype: list[.SeqFileInfo]
+		Returns
+		-------
+		list[.SeqFileInfo]
 		"""
 		return [cls(path, fmt, compression) for path in paths]
 
@@ -109,22 +131,26 @@ class SeqFileInfo:
 def find_kmers_parse(kspec, data, format, out=None, coords=False):
 	"""Parse sequence data with Bio.Seq.parse() and find k-mers.
 
-	:param kspec: Spec for k-mer search.
-	:type kspec: .KmerSpec
-	:param data: Stream with sequence data. Readable file-like object in text
-		mode.
-	:param str format: Squence file format, as interpreted by
-		:func:`Bio.SeqIO.parse`.
-	:param out: Existing numpy array to write output to. Should be of length
-		``kspec.idx_len``. If given the same array will be returned.
-	:type out: numpy.ndarray
-	:param bool coords: If True return k-mers in coordinate rather than vector
-		format.
+	Parameters
+	----------
+	kspec : midas.kmers.KmerSpec
+		Spec for k-mer search.
+	data
+		Stream with sequence data. Readable file-like object in text mode.
+	format : str
+		Squence file format, as interpreted by :func:`Bio.SeqIO.parse`.
+	out : numpy.ndarray
+		Existing numpy array to write output to. Should be of length ``kspec.idx_len``. If given the
+		same array will be returned.
+	coords : bool
+		If True return k-mers in coordinate rather than vector format.
 
-	:returns: If coords is False, returns boolean K-mer vector (same array as
-		``out`` if it was given). If coords is True returns k-mers in coordinate
-		format (dtype will match :func:`midas.kmers.vec_to_coords`).
-	:rtype: numpy.ndarray
+	Returns
+	-------
+	numpy.ndarray
+		If ``coords`` is False, returns boolean K-mer vector (same array as ``out`` if it was given).
+		If coords is True returns k-mers in coordinate format (dtype will match
+		:func:`midas.kmers.vec_to_coords`).
 	"""
 
 	if out is None:
@@ -147,15 +173,18 @@ class FileSignatureCalculator:
 	Class can be used as a context manager which will shut down the pool
 	(calling the :meth:`multiprocessing.Pool.terminate` method) upon exit.
 
-	.. attribute:: pool
+	Parameters
+	----------
+	processes : int
+		Number of processes to use in the pool. If None will use machine's CPU count.
+	use_threads : bool
+		If True will parse the files in separate threads within the same process, using
+		:class:`multiprocessing.dummy.Pool` instead of :class:`multiprocessing.Pool`.
 
+	Attributes
+	----------
+	pool
 		The process pool in use.
-
-	:param int processes: Number of processes to use in the pool. If None will
-		use machine's CPU count.
-	:param bool use_threads: If True will parse the files in separate threads
-		within the same process, using :class:`multiprocessing.dummy.Pool`
-		instead of :class:`multiprocessing.Pool`.
 	"""
 
 	def __init__(self, processes=None, use_threads=False):
@@ -172,26 +201,28 @@ class FileSignatureCalculator:
 		"""
 		Parse a set of sequence files and calculate their signatures in parallel.
 
-		:param kmerspec: K-mer spec to use for calculating signatures.
-		:type kmerspec: midas.kmers.kmerspec
-		:param files: Sequence or collection of files to parse. Items may be
-			:class:`.SeqFileInfo` or simply file paths (as strings or path-like
-			objects), in which case ``fmt`` should be specified.
-		:param str fmt: Format of sequence files, if ``files`` contains
-			only file paths instead of :class:`.SeqFileInfo` instances.
-			Passed to :func:`Bio.SeqIO.parse`.
-		:param str compression: Compresssion format of sequence files if
-			`files`` contains only file paths instead of :class:`.SeqFileInfo`
-			instances. Passed to :func:`midas.io.util.open_compressed`. None
+		Parameters
+		----------
+		kmerspec : midas.kmers.kmerspec
+			K-mer spec to use for calculating signatures.
+		files
+			Sequence or collection of files to parse. Items may be :class:`.SeqFileInfo` or simply
+			file paths (as strings or path-like objects), in which case ``fmt`` should be specified.
+		fmt : str
+			Format of sequence files, if ``files`` contains only file paths instead of
+			:class:`.SeqFileInfo` instances. Passed to :func:`Bio.SeqIO.parse`.
+		compression : str
+			Compresssion format of sequence files if `files`` contains only file paths instead of
+			:class:`.SeqFileInfo` instances. Passed to :func:`midas.io.util.open_compressed`. None
 			means files are uncompressed.
-		:param bool ordered: If True the returned iterator will iterate over
-			the results of each file in the order they were in the ``files``
-			argument. This could end up being a bit slower.
+		ordered : bool
+			If True the returned iterator will iterate over the results of each file in the order
+			they were in the ``files`` argument. This could end up being a bit slower.
 
-		:returns: Iterator yielding  ``(i, signature)`` tuples where ``i`` is
-			the index of the file in ``files`` and ``signature`` is the file's
-			signature in coordinate format.
-		:rtype: tuple[int, numpy.ndarray]
+		Returns
+		-------
+		Iterator yielding  ``(i, signature)`` tuples where ``i`` is the index of the file in
+		``files`` and ``signature`` is the file's signature in coordinate format.
 		"""
 
 		# Format files to SeqFileInfo
@@ -225,10 +256,17 @@ class FileSignatureCalculator:
 	def worker(args):
 		"""Thread worker function to calculate signatures from sequence files.
 
-		:param args: Tuple of ``(i, info, kmerspec)``. ``i`` is file index,
-			``file`` is an instance of :class:`SeqFileInfo`, and ``kmerspec`` is
-			the :class:`midas.kmers.KmerSpec` for k-mer finding.
-		:returns: ``(i, signature)`` tuple
+		Parameters
+		----------
+		args : tuple
+			Tuple of ``(i, info, kmerspec)``. ``i`` is file index, ``file`` is an instance of
+			:class:`SeqFileInfo`, and ``kmerspec`` is the :class:`midas.kmers.KmerSpec` for k-mer
+			finding.
+
+		Returns
+		-------
+		tuple
+			``(i, signature)``
 		"""
 		i, file, kmerspec = args
 

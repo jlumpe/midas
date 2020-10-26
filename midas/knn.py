@@ -11,12 +11,14 @@ def sigarray_scores(signature, sigarray, distance=False):
 	This internally uses Cython code that runs in parallel over all signatures
 	in ``sigarray``.
 
-	:param signature: K-mer signature in coordinate format, increasing sequence
-		of integer values.
-	:type signature: numpy.ndarray
-	:param sigarray: Signature array to calculate scores against.
-	:type sigarray: midas.kmers.SignatureArray
-	:param bool distance: Return Jaccard distances instead of scores.
+	Parameters
+	----------
+	signature : numpy.ndarray
+		K-mer signature in sparse coordinate format, increasing sequence of integer values.
+	sigarray : midas.kmers.SignatureArray
+		Signature array to calculate scores against.
+	distance : bool
+		Return Jaccard distances instead of scores.
 	"""
 
 	values = sigarray.values
@@ -30,21 +32,25 @@ def sigarray_scores(signature, sigarray, distance=False):
 def nn_search(query_sig, refarray, k=None, distance=False):
 	"""Find the closest reference signatures to a query signature.
 
-	:param query_sig: Single query signature in coordinate format
-		(:class:`numpy.ndarray` of increasing integer values).
-	:type query_sig: numpy.ndarray
-	:param refarray: Array of reference signatures to calculate scores against.
-	:type refarray: midas.kmers.SignatureArray
-	:param int k: Number of reference signatures to find for each query. If
-		None will only find the closest.
-	:param bool distance: Report Jaccard distances instead of scores.
+	Parameters
+	----------
+	query_sig : numpy.ndarray
+		Single query signature in coordinate format (:class:`numpy.ndarray` of increasing integer values).
+	refarray : midas.kmers.SignatureArray
+		Array of reference signatures to calculate scores against.
+	k : int
+		Number of reference signatures to find for each query. If None will only find the closest.
+	distance : bool
+		Report Jaccard distances instead of scores.
 
-	:returns: ``(index, score)`` tuple giving the index of the closest reference
+	Returns
+	-------
+	tuple
+		``(index, score)`` tuple giving the index of the closest reference
 		signature in the array and the score between the query and the reference.
 		If ``k`` is None both will be scalars, otherwise each will be an array
 		of length ``k`` and correspond to reference matches in order of
 		decreasing similarity.
-	:rtype: tuple
 	"""
 
 	# Check k
@@ -70,29 +76,34 @@ def nn_search_multi(query_sigs, refarray, k=None, distance=False,
                     query_size=None, has_index=False, progress=None):
 	"""Find the closest reference signatures to a collection of query signatures.
 
-	:param query: iterable of query signatures (e.g.
-		:class:`midas.kmers.SignatureArray` or list).
-	:param refarray: Array of reference signatures to calculate scores against.
-	:type refarray: midas.kmers.SignatureArray
-	:param int k: Number of reference signatures to find for each query. If
-		None will only find the closest.
-	:param bool distance: Report Jaccard distances instead of scores.
-	:param int query_size: Size of query if it does not implement the ``len()``
-		protocol.
-	:param bool has_index: If ``query_sigs`` actually contains
-		``(index, signature)`` pairs indicating which index in the output
-		arrays the results of each signature belongs in.
-	:param progress: Optional callable to report progress. Called with the next
-		index after each query signature processed.
-	:type progress: callable
+	Parameters
+	----------
+	query
+		Iterable of query signatures (e.g. :class:`midas.kmers.SignatureArray` or list).
+	refarray : midas.kmers.SignatureArray
+		Array of reference signatures to calculate scores against.
+	k : int
+		Number of reference signatures to find for each query. If None will only find the closest.
+	distance : bool
+		Report Jaccard distances instead of scores.
+	query_size : int
+		Size of query if it does not implement the ``len()`` protocol.
+	has_index : bool
+		If ``query_sigs`` actually contains ``(index, signature)`` pairs indicating which index in
+		the output arrays the results of each signature belongs in.
+	progress : callable
+		Optional callable to report progress. Called with the next index after each query signature
+		processed.
 
-	:returns: ``(index, score)`` tuple giving the index of the closest reference
+	Returns
+	-------
+	tuple
+		``(index, score)`` tuple giving the index of the closest reference
 		signature(s) in the array to each query signature and the distance
 		between the query signature and the corresponding reference signature(s).
 		Both are scalars or arrays of the same shape. If ``query`` is a sequence
 		If ``k`` is not None then the last axis corresponds to reference matches
 		in order of decreasing similarity.
-	:rtype: tuple
 	"""
 
 	if query_size is None:

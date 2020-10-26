@@ -4,7 +4,9 @@
 def make_signatures(k, nsets, dtype):
 	"""Make artificial k-mer signatures.
 
-	:rtype: SignatureArray
+	Returns
+	-------
+	SignatureArray
 	"""
 
 	import numpy as np
@@ -39,13 +41,20 @@ def make_signatures(k, nsets, dtype):
 def random_seq(size, chars='ACGT', asbytes=False, state=0):
 	"""Generate a simple random DNA sequence.
 
-	:param int size: Length of sequence to generate.
-	:param str chars: Characters to use for sequence. Must be encodable as ascii.
-	:param bool asbytes: Return unencoded bytes if true, otherwise return str.
-	:param state: :class:`numpy.random.RandomState` to use, or seed to use for
-		random state if integer.
+	Parameters
+	----------
+	size : int
+		Length of sequence to generate.
+	chars : str
+		Characters to use for sequence. Must be encodable as ascii.
+	asbytes : bool
+		Return unencoded bytes if true, otherwise return str.
+	state
+		:class:`numpy.random.RandomState` to use, or seed to use for random state if integer.
 
-	:returns: Sequence as bytes or str.
+	Returns
+	-------
+		Sequence as bytes or str.
 	"""
 
 	import numpy as np
@@ -68,10 +77,17 @@ def random_seq(size, chars='ACGT', asbytes=False, state=0):
 def fill_bytearray(pattern, length):
 	"""Create a bytearray with a repeating pattern.
 
-	:param bytes pattern: Pattern to repeat in array.
-	:param int length: Length of array to create.
-	:returns: Filled array
-	:rtype: bytearray
+	Parameters
+	----------
+	pattern : bytes
+		Pattern to repeat in array.
+	length : int
+		Length of array to create.
+
+	Returns
+	-------
+	bytearray
+		Filled array
 	"""
 
 	array = bytearray(length)
@@ -88,15 +104,26 @@ def fill_bytearray(pattern, length):
 def make_kmer_seq(seqlen, k, prefix_len, kmer_interval, n_interval=None, seed=0):
 	"""Create a DNA sequence with a known k-mer signature.
 
-	:param int seqlen: Length of sequence.
-	:param int k: Length of k-mers to find (not including prefix).
-	:param int prefix_len: Prefix preceding k-mers to match.
-	:param int kmer_interval: Number of nucleotides between each k-mer added.
-	:param int n_interval: Every this many k-mers, add an N to the k-mer
-		sequence to create a k-mer that should not be matched.
-	:param int seed: Seed for PRNG.
+	Parameters
+	----------
+	seqlen : int
+		Length of sequence.
+	k : int
+		Length of k-mers to find (not including prefix).
+	prefix_len : int
+		Prefix preceding k-mers to match.
+	kmer_interval : int
+		Number of nucleotides between each k-mer added.
+	n_interval : int
+		Every this many k-mers, add an N to the k-mer sequence to create a k-mer that should not be
+		matched.
+	seed : int
+		Seed for PRNG.
 
-	:returns: Tuple of (seq, kmer_vector).
+	Returns
+	-------
+	tuple
+		Tuple of (seq, kmer_vector).
 	"""
 
 	import itertools

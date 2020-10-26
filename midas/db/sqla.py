@@ -248,23 +248,21 @@ class KeyValueTable(collections.MutableMapping):
 	Fully implements :class:`collections.MutableMapping`, with all methods
 	translating into database queries.
 
-	:param engine: Engine connected to database containing table.
-	:type engine: sqlalchemy.engine.Engine
-	:param table: Table storing key-value pairs. Should be created with
-		:meth:`make_table`.
-	:type table: sqlalchemy.Table
-
-	.. attribute:: engine
-
+	Parameters
+	----------
+	engine : sqlalchemy.engine.Engine
 		Engine connected to database containing table.
+	table : sqlalchemy.Table
+		Table storing key-value pairs. Should be created with :meth:`make_table`.
 
-	.. attribute:: table
-
+	Attributes
+	----------
+	engine
+		Engine connected to database containing table.
+	table
 		SQLAlchemy table object containing key-value pairs.
-
-	.. attribute:: nullable
-
-		``bool`` indicating if the table allows null values.
+	nullable : bool
+		Whether the table allows null values.
 	"""
 
 	def __init__(self, engine, table):
@@ -276,17 +274,23 @@ class KeyValueTable(collections.MutableMapping):
 	def make_table(cls, name, metadata, *args, nullable=False, **kwargs):
 		"""Create an SQLAlchemy table object to use with this class.
 
-		:param str name: Name of table.
-		:param metadata: SQLAlchemy metadata for table.
-		:type metadata: sqlalchemy.MetaData
-		:param \\*args: Additional positional arguments to
-			:class:`sqlalchemy.Table`.
-		:param bool nullable: Whether to make the value column nullable.
-		:param \\**kwargs: Additional keyword arguments to
-			:class:`sqlalchemy.Table`.
-		:returns: Table with string primary key column "key" and additional
-			string column "value".
-		:rtype: sqlalchemy.Table
+		Parameters
+		----------
+		name : str
+			Name of table.
+		metadata : sqlalchemy.MetaData
+			SQLAlchemy metadata for table.
+		\\*args
+			Additional positional arguments to :class:`sqlalchemy.Table`.
+		nullable : bool
+			Whether to make the value column nullable.
+		\\**kwargs
+			Additional keyword arguments to :class:`sqlalchemy.Table`.
+
+		Returns
+		-------
+		sqlalchemy.Table
+			Table with string primary key column "key" and additional string column "value".
 		"""
 		return sa.Table(
 			name,

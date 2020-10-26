@@ -16,12 +16,21 @@ from midas.test import make_kmer_seq, random_seq
 def create_sequence_records(nseqs, k, prefix_len, seq_len=10000):
 	"""Create a set of random DNA sequences with known combined k-mer signature.
 
-	:param int nseqs: Number of sequences to create.
-	:param int k: Length of k-mers (without prefix)
-	:param int prefix-len: Length of prefix.
-	:param int seq_len: Length of sequences to create.
+	Parameters
+	----------
+	nseqs : int
+		Number of sequences to create.
+	k : int
+		Length of k-mers (without prefix)
+	prefix_len : Int
+		Length of prefix.
+	seq_len : int
+		Length of sequences to create.
 
-	:returns: (kmerspec, records, kmer_vec) tuple.
+	Returns
+	-------
+	tuple
+		(kmerspec, records, kmer_vec) tuple.
 	"""
 	vec = np.zeros(4 ** k, dtype=bool)
 	kspec = None

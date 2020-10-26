@@ -12,10 +12,16 @@ def kwargs_done(kwargs):
 	interpreted. At the end this function can be used to assert that the
 	dictionary is empty.
 
-	:param dict kwargs: Dictionary of keyword arguments, of which all should
-		have been removed.
-	:raises KeyError: If the dictionary is not empty, in a similar format
-		to the built-in error for an unknown keyword argument.
+	Parameters
+	----------
+	kwargs : dict
+		Dictionary of keyword arguments, of which all should have been removed.
+
+	Raises
+	------
+	KeyError
+		If the dictionary is not empty, in a similar format to the built-in error for an unknown
+		keyword argument.
 	"""
 	if kwargs:
 		raise KeyError(
@@ -27,10 +33,17 @@ def kwargs_done(kwargs):
 def sanitize_filename(name, replace='_'):
 	"""Replace invalid characters in a file name.
 
-	:param str name: File name to sanitize.
-	:param str replace: String to replace invalid charcters with.
-	:returns: Name with non-alphanumeric characters other than ``_.-`` replaced.
-	:rtype: str
+	Parameters
+	----------
+	name : str
+		File name to sanitize.
+	replace : str
+		String to replace invalid characters with.
+
+	Returns
+	-------
+	str
+		Name with non-alphanumeric characters other than ``_.-`` replaced.
 	"""
 	return re.sub(r'[^A-Za-z0-9_.-]+', replace, name)
 
@@ -44,10 +57,13 @@ class SubPath:
 	returns the absolute path on instances and a function giving the absolute
 	path given the root path on classes.
 
-	Using the division operator with a SubPath instance on the left is syntacitc
+	Using the division operator with a SubPath instance on the left is syntactic
 	sugar for the :meth:`join` method.
 
-	:param path: Path relative to parent object's root directory.
+	Parameters
+	----------
+	path
+		Path relative to parent object's root directory.
 	"""
 
 	def __init__(self, path):
@@ -77,8 +93,14 @@ class SubPath:
 	def join(self, *args):
 		"""Create a new SubPath by joining this path with a sub(-sub?)-path.
 
-		:param \\*args: See :meth:`pathlib.Path.joinpath`.
-		:rtype: .SubPath
+		Parameters
+		----------
+		\\*args
+			See :meth:`pathlib.Path.joinpath`.
+
+		Returns
+		-------
+		.SubPath
 		"""
 		return SubPath(self.path.joinpath(*args))
 
@@ -94,10 +116,15 @@ def path_str(path):
 	through. If the object is :class:`bytes` or the ``__fspath`__`` method
 	returns bytes they are decoded as UTF-8.
 
-	:param path: String, bytes, or path-like object representing a filesystem
-		path.
-	:returns: Path string.
-	:rtype: str
+	Parameters
+	----------
+	path
+		String, bytes, or path-like object representing a filesystem path.
+
+	Returns
+	-------
+	str
+		Path string.
 	"""
 
 	if hasattr(path, '__fspath__'):

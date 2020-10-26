@@ -20,13 +20,17 @@ def jaccard_coords(COORDS_T[:] coords1, COORDS_T_2[:] coords2):
 	Data types of array arguments may be 16, 32, or 64-bit signed or unsigned
 	integers, but must match.
 
-	:param coords1: k-mer set in ordered coordinate format.
-	:type coords1: numpy.ndarray
-	:param coords2: k-mer set in ordered coordinate format.
-	:type coords2: numpy.ndarray
+	Parameters
+	----------
+	coords1 : numpy.ndarray
+		k-mer set in ordered coordinate format.
+	coords2 : numpy.ndarray
+		k-mer set in ordered coordinate format.
 
-	:returns: Jaccard index for the two sets.
-	:rtype: numpy.float32
+	Returns
+	-------
+	numpy.float32
+		Jaccard index for the two sets.
 	"""
 	return c_jaccard_coords(coords1, coords2)
 
@@ -95,20 +99,22 @@ def jaccard_coords_col(COORDS_T[:] query,
 	Internally, releases the GIL in the main loop and calculates scores
 	concurrently.
 
-	:param query: Query k-mer set in ordered coordinate format.
-	:type query: numpy.ndarray
-	:param ref_coords: Reference k-mer sets in ordered coordinate format,
-		concatenated into a single array.
-	:type ref_coords: numpy.ndarray
-	:param ref_bounds: Bounds of individual k-mer sets within the ``ref_coords``
-		array. The ``n``\ th k-mer set is the slice of ``ref_coords`` between
-		``ref_bounds[n]`` and ``ref_bounds[n + 1]``. Length must be one greater
-		than that of ``ref_coords``.
-	:type ref_bounds: numpy.ndarray
+	Parameters
+	----------
 
-	:returns: Numpy array of floats, the Jaccard score between the query and
-		each reference k-mer set.
-	:rtype: numpy.ndarray
+	query : numpy.ndarray
+		Query k-mer set in ordered coordinate format.
+	ref_coords : numpy.ndarray
+		Reference k-mer sets in ordered coordinate format, concatenated into a single array.
+	ref_bounds : numpy.ndarray
+		Bounds of individual k-mer sets within the ``ref_coords`` array. The ``n``\ th k-mer set is
+		the slice of ``ref_coords`` between ``ref_bounds[n]`` and ``ref_bounds[n + 1]``. Length must
+		be one greater than that of``ref_coords``.
+
+	Returns
+	-------
+	numpy.ndarray
+		Numpy array of floats, the Jaccard score between the query and each reference k-mer set.
 	"""
 
 	cdef np.ndarray[SCORE_T, ndim=1] out_array

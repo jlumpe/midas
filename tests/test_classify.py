@@ -261,16 +261,24 @@ class TestNaiveBayesClassifier:
 	def check_x_arg(self, func, kmers, x_signatures, *args, **kwargs):
 		"""Check method returns consistent results for various forms of x.
 
-		:param func: Function or method that takes signatures or feature vectors
-			as its argument and returns an array of corresponding shape.
-		:param kmers: K-mers used to construct feature matrix.
-		:type kmers: np.ndarray
-		:param x_signatures: Sequence of k-mer signatures.
-		:param \\*args: Additional positional arguments to ``func``.
-		:param \\**kwargs: Additional keyword arguments to ``func``.
+		Parameters
+		----------
+		func : callable
+			Function or method that takes signatures or feature vectors as its argument and returns
+			an array of corresponding shape.
+		kmers : np.ndarray
+			K-mers used to construct feature matrix.
+		x_signatures
+			Sequence of k-mer signatures.
+		\\*args
+			Additional positional arguments to ``func``.
+		\\**kwargs
+			Additional keyword arguments to ``func``.
 
-		:returns: Return value of ``func`` on ``x_signatures``.
-		:rtype: np.ndarray
+		Returns
+		-------
+		np.ndarray
+			Return value of ``func`` on ``x_signatures``.
 		"""
 
 		# Call with signatures

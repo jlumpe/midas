@@ -39,8 +39,14 @@ def kmer_to_index(bytes kmer):
 
 	Convert k-mer byte string into index.
 
-	:param bytes kmer: K-mer as bytes string.
-	:returns: K-mer index as appropriate numpy integer type.
+	Parameters
+	----------
+	kmer : bytes
+		K-mer as bytes string.
+
+	Returns
+	-------
+		K-mer index as appropriate numpy integer type.
 	"""
 	return c_kmer_to_index64(<char*>kmer, len(kmer))
 
@@ -50,11 +56,17 @@ def index_to_kmer(np.uint64_t index, int k):
 
 	Convert k-mer index to sequence.
 
-	:param index: K-mer index.
-	:param k: Length of k-mer.
+	Parameters
+	----------
+	index
+		K-mer index.
+	k
+		Length of k-mer.
 
-	:returns: K-mer as byte string.
-	:rtype: bytes
+	Returns
+	-------
+	bytes
+		K-mer as byte string.
 	"""
 
 	cdef char* buf = <char*>malloc((k + 1) * sizeof(char))
@@ -74,11 +86,16 @@ def reverse_complement(bytes seq):
 
 	Get the reverse complement of a nucleotide sequence.
 
-	:param bytes seq: ASCII-encoded nucleotide sequence. Case does not matter.
-	:returns: Reverse complement sequence. All characters in the input which are
-		not valid nucleotide codes will appear unchanged in the cooresponding
-		reverse position.
-	:rtype: bytes
+	Parameters
+	----------
+	seq : bytes
+		ASCII-encoded nucleotide sequence. Case does not matter.
+
+	Returns
+	-------
+	bytes
+		Reverse complement sequence. All characters in the input which are not valid nucleotide codes will appear
+		unchanged in the cooresponding reverse position.
 	"""
 
 	cdef:
@@ -97,11 +114,21 @@ def reverse_complement(bytes seq):
 cdef np.uint32_t c_kmer_to_index32(const char *kmer, int k) except? 0:
 	"""Convert k-mer byte string into 32-bit unsigned integer index.
 
-	:param kmer: Pointer to k-mer string.
-	:param k: Length of k-mer string. Must be <= 16.
-	:returns: Index of k-mer
+	Parameters
+	----------
+	kmer
+		Pointer to k-mer string.
+	k
+		Length of k-mer string. Must be <= 16.
+		
+	Returns
+	-------
+		Index of k-mer
 
-	:raises ValueError: If an invalid nucleotide code is encountered.
+	Raises
+	------
+	ValueError
+		If an invalid nucleotide code is encountered.
 	"""
 
 	cdef:
@@ -132,11 +159,21 @@ cdef np.uint32_t c_kmer_to_index32(const char *kmer, int k) except? 0:
 cdef np.uint64_t c_kmer_to_index64(const char *kmer, int k) except? 0:
 	"""Convert k-mer byte string into 64-bit unsigned integer index.
 
-	:param kmer: Pointer to k-mer string.
-	:param k: Length of k-mer string. Must be <= 32.
-	:returns: Index of k-mer
+	Parameters
+	----------
+	kmer
+		Pointer to k-mer string.
+	k
+		Length of k-mer string. Must be <= 32.
+	
+	Returns
+	-------
+		Index of k-mer
 
-	:raises ValueError: If an invalid nucleotide code is encountered.
+	Raises
+	------
+	ValueError
+		If an invalid nucleotide code is encountered.
 	"""
 
 	cdef:
@@ -169,9 +206,14 @@ cdef void c_index_to_kmer(COORDS_T index, int k, char* out) nogil:
 
 	Output will be in uppper-case characters.
 
-	:param index: Index of k-mer
-	:param k: Length of k-mer
-	:param out: Destination buffer of length k sequence will be written to.
+	Parameters
+	----------
+	index
+		Index of k-mer
+	k
+		Length of k-mer
+	out
+		Destination buffer of length k sequence will be written to.
 	"""
 	cdef:
 		int i, nuc_index
@@ -225,9 +267,14 @@ cdef inline char nuc_complement(char nuc) nogil:
 cdef void c_reverse_complement(const char* seq, int l, char* out) nogil:
 	"""Get the reverse complement of a nucleotide sequence.
 
-	:param seq: Pointer to start of sequence
-	:param l: Length of sequence
-	:out: Pointer to buffer of same length as seq to store the output.
+	Parameters
+	----------
+	seq
+		Pointer to start of sequence
+	l
+		Length of sequence
+	out
+		Pointer to buffer of same length as seq to store the output.
 	"""
 
 	cdef int i

@@ -39,60 +39,37 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	:class:`AnnotatedGenome` object.
 
 
-	.. attribute:: id
-
+	Attributes
+	----------
+	id
 		Integer primary key.
-
-	.. attribute:: key
-
+	key
 		String column. See :class:`midas.db.mixins.KeyMixin`.
-
-	.. attribute:: version
-
+	version
 		String column. See :class:`midas.db.mixins.KeyMixin`.
-
-	.. attribute:: description
-
+	description
 		String column. Short description. Recommended to be unique but this is
 		not enforced.
-
-	.. attribute:: is_assembled
-
+	is_assembled
 		Boolean column. Whether the genome is completely assembled or has
 		multiple contigs.
-
-	.. attribute:: entrez_db
-
+	entrez_db
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
-
-	.. attribute:: entrez_id
-
+	entrez_id
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
-
-	.. attribute:: genbank_acc
-
+	genbank_acc
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
-
-	.. attribute:: refseq_acc
-
+	refseq_acc
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
-
-	.. attribute:: ncbi_taxid
-
+	ncbi_taxid
 		Integer column. Genbank taxonomy ID (as assigned in original NCBI
 		record).
-
-	.. attribute:: entrez_summary
-
+	entrez_summary
 		JSON column. Optional summary (from EUtils ESummary) for record and
 		associated taxonomy entry.
-
-	.. attribute:: extra
-
+	extra
 		JSON column. Additional arbitrary data.
-
-	.. attribute:: annotations
-
+	annotations
 		One-to-many relationship to :class:`.AnnotatedGenome`.
 	"""
 
@@ -130,52 +107,33 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	Like Genomes they can be distributed via updates, in which case they should
 	have a unique key and version number to identify them.
 
-	.. attribute:: id
-
+	Attributes
+	----------
+	id
 		Integer primary key.
-
-	.. attribute:: key
-
+	key
 		String column. See :class:`midas.db.mixins.KeyMixin`.
-
-	.. attribute:: version
-
+	version
 		String column, required. See :class:`midas.db.mixins.KeyMixin`.
-
-	.. attribute:: name
-
+	name
 		String column. Unique name.
-
-	.. attribute:: description
-
+	description
 		Text column. Optional description.
-
-	.. attribute:: signatureset_key
-
+	signatureset_key
 		String column. Key of signature set that should be used to query this
 		genome set.
-
-	.. attribute:: signatureset_version
-
+	signatureset_version
 		String column. Key of signature set that should be used to query this
 		genome set.
-
-	.. attribute:: extra
-
+	extra
 		JSON column. Additional arbitrary data.
-
-	.. attribute:: genomes
-
+	genomes
 		Many-to-many relationship with :class:`.AnnotatedGenome`, annotated
 		versions of genomes in this set.
-
-	.. attribute:: base_genomes
-
+	base_genomes
 		Unannotated :class:`Genome`\\ s in this set. Association proxy to the
 		``genome`` relationship of members of :attr:`genome`.
-
-	.. attribute:: taxa
-
+	taxa
 		One-to-many relationship to :class:`.Taxon`. The taxa that form the
 		classification system for this reference set.
 	"""
@@ -235,79 +193,52 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	ReferenceGenomeSet. Mostly holds taxonomy information as that is frequently
 	a result of additional analysis on the sequence.
 
-	.. attribute:: genome_id
-
+	Attributes
+	----------
+	genome_id
 		Integer column, part of composite primary key. ID of :class:`.Genome`
 		the annotations are or.
-
-	.. attribute:: reference_set_id
-
+	reference_set_id
 		Integer column, part of composite primary key. ID of
 		:class:`.ReferenceGenomeSet` the annotations are under.
-
-	.. attribute:: organism
-
+	organism
 		String column. Single string describing the organism. May be "Genus,
 		species[, strain]" but could contain more specific information. Intended
 		to be human- readable and shouldn't have any semantic meaning for the
 		application (in contrast to the :attr:`taxa` relationship).
-
-	.. attribute:: primary_taxon_id
-
+	primary_taxon_id
 		Integer column. ID of primary :class:`Taxon` this genome is classified
 		as.
-
-	.. attribute:: genome
-
+	genome
 		Many-to-one relationship to :class:`.Genome`.
-
-	.. attribute:: reference_set
-
+	reference_set
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
-
-	.. attribute:: primary_taxon
-
+	primary_taxon
 		Many-to-one relationship to :class:`.Taxon`. The primary taxon this
 		genome is classified as under the associated ReferenceGenomeSet. Should
 		be the most specific and "regular" (ideally defined on NCBI) taxon this
 		genome belongs to. There may be alternates, which go in the
 		:attr:`alternate_taxa` attribute.
-
-	.. attribute:: alternate_taxa
-
+	alternate_taxa
 		Many-to-many relationship to :class:`.Taxon`. The additional taxa this
 		Genome has been assigned to under the associated ReferenceGenomeSet.
 		Should only link to the most specific taxa, as membership to all
 		additional taxa in each taxon's linage is implied. Will typically be
 		empty, but may contain non-proper (i.e. custom, not defined on GenBank,
 		or paraphyletic) taxa.
-
-	.. attribute:: description
-
+	description
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: is_assembled
-
+	is_assembled
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: entrez_db
-
+	entrez_db
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: entrez_id
-
+	entrez_id
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: genbank_acc
-
+	genbank_acc
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: refseq_acc
-
+	refseq_acc
 		Hybrid property connected to attribute on :attr:`genome`.
-
-	.. attribute:: ncbi_taxid
-
+	ncbi_taxid
 		Hybrid property connected to attribute on :attr:`genome`.
 	"""
 	__tablename__ = 'genome_annotations'
@@ -363,79 +294,51 @@ class Taxon(Base):
 	Taxa are specific to a :class:`.ReferenceGenomeSet` and form a hierarchy,
 	with each having a parent and zero or more children.
 
-	.. attribute:: id
+	Attributes
+	----------
 
+	id
 		Integer primary key.
-
-	.. attribute:: name
-
+	name
 		String column, required. The Taxon's scientific name (if any), e.g.
 		"Escherichia coli", or otherwise any other unique descriptive name.
-
-	.. attribute:: rank
-
+	rank
 		String column. Taxonomic rank, if any. Species, genus, family, etc.
-
-	.. attribute:: description
-
+	description
 		String column. Optional description of taxon. Probably blank unless it
 		is a custom taxon not present in GenBank.
-
-	.. attribute:: distance_threshold
-
+	distance_threshold
 		Float column. Maximum distance from a query genome to a reference genome
 		in this taxon for the query to be classified within the taxon.
-
-	.. attribute:: report
-
+	report
 		Boolean column. Whether to report this taxon directly as a match when
 		producing a human-readable query result. Some custom taxa might need to
 		be "hidden" from the user, in which case the value should be false. The
 		application should then ascend the taxon's lineage and choose the first
 		ancestor where this field is true. Defaults to true.
-
-	.. attribute:: extra
-
+	extra
 		JSON column. Additional arbitrary data.
-
-	.. attribute:: reference_set_id
-
+	reference_set_id
 		Integer column. ID of :class:`.ReferenceGenomeSet` the taxon belongs to.
-
-	.. attribute:: parent_id
-
+	parent_id
 		Integer column. ID of Taxon that is the direct parent of this one.
-
-	.. attribute:: ncbi_id
-
+	ncbi_id
 		Integer column. Genbank taxonomy ID, if any.
-
-	.. attribute:: entrez_data
-
+	entrez_data
 		JSON column. Entrez EFetch result of the corresponding entry in the
 		NCBI taxonomy database, converted to JSON.
-
-	.. attribute:: parent
-
+	parent
 		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon
 		(if any).
-
-	.. attribute:: children
-
+	children
 		One-to-many relationship with :class:`.Taxon`, the children of this
 		taxon.
-
-	.. attribute:: reference_set
-
+	reference_set
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
-
-	.. attribute:: genomes_primary
-
+	genomes_primary
 		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which
 		havet his taxon as their primary taxon.
-
-	.. attribute:: genomes_additional
-
+	genomes_additional
 		Many-to-many relationship with :class:`.AnnotatedGenome`, genomes which
 		havet his taxon in their "additional" taxa.
 	"""
@@ -471,8 +374,10 @@ class Taxon(Base):
 	def lineage(self):
 		"""Get sorted list of the Taxon's ancestors, including itself.
 
-		:returns: List of taxa ordered from parent to child.
-		:rtype: list
+		Returns
+		-------
+		list[.Taxon]
+			List of taxa ordered from parent to child.
 		"""
 		l = list()
 		taxon = self
@@ -491,7 +396,9 @@ class Taxon(Base):
 
 		Returns self if the taxon has no parent.
 
-		:rtype: .Taxon
+		Returns
+		-------
+		.Taxon
 		"""
 		if self.parent is None:
 			return self
@@ -501,7 +408,10 @@ class Taxon(Base):
 	def print_tree(self, indent='  ', *, _depth=0):
 		"""Print the taxon's subtree for debugging.
 
-		:param str indent: String used to indent each level of descendants.
+		Parameters
+		---------
+		indent : str
+			String used to indent each level of descendants.
 		"""
 		print(indent * _depth + self.name)
 		for child in sorted(self.children, key=lambda c: c.name):

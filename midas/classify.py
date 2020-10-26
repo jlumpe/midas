@@ -12,19 +12,24 @@ from .kmers import KmerSpec
 
 
 def signatures_to_features(signatures, kspec, kmers):
-	"""Convert a collection of signatures to a feature matrix.
+	"""Convert a collection of signatures to a boolean feature matrix.
 
-	:param signatures: Sequence of signatures in coordinate format, as
-		:class:`midas.kmers.SignatureArray`, list of numpy arrays, or similar.
-	:param kspec: k-mer spec.
-	:type ksped: midas.kmers.KmerSpec
-	:param kmers: Indices of k-mers to use for the columns in the feature
-		matrix.
-	:type kmers: numpy.ndarray
+	Parameters
+	----------
+	signatures
+		Sequence of signatures in coordinate format, as: class:`midas.kmers.SignatureArray`, list of
+		numpy arrays, or similar.
+	kspec : midas.kmers.KmerSpec
+		k-mer spec.
+	kmers : numpy.ndarray
+		Indices of k-mers to use for the columns in the feature matrix.
 
-	:returns: A 2D boolean array, where rows correspond to elementw of
-		``signatures`` and columns to elements of ``kmers``. Each entry is true
-		the corresponding signature contains the corresponding kmer.
+	Returns
+	-------
+	numpy.ndarray
+		A 2D boolean array, where rows correspond to elements of ``signatures`` and columns to
+		elements of ``kmers``. Each entry is true if the corresponding signature contains the
+		corresponding kmer.
 	"""
 
 	tmp = np.zeros(kspec.idx_len, dtype=bool)
@@ -46,11 +51,14 @@ class Classifier:
 
 	Subclasses must implement the :meth:`predict` method.
 
-	:param int n_classes: Number of classes the classifier has been trained on.
-	:param kspec: K-mer spec used to calculate signatures.
-	:type kspec: midas.kmers.KmerSpec
-	:param kmers: Indices of k-mers which the classifier uses as features.
-	:type kmers: numpy.ndarray
+	Parameters
+	----------
+	n_classes : int
+		Number of classes the classifier has been trained on.
+	kspec : midas.kmers.KmerSpec
+		K-mer spec used to calculate signatures.
+	kmers : numpy.ndarray
+		Indices of k-mers which the classifier uses as features.
 	"""
 
 	def __init__(self, n_classes, kspec, kmers):
@@ -81,25 +89,35 @@ class Classifier:
 	def predict(self, x):
 		"""Predict class labels for a collection of signatures or feature vectors
 
-		:param x: Single signature in corrdinate format, sequence of signatures,
-			or a feature vector or matrix.
+		Parameters
+		----------
+		x
+			Single signature in coordinate format, sequence of signatures, or a feature vector or
+			matrix.
 
-		:returns: Predicted class labels for x. Will be a scalar integer if
-			argument was a single signature or feature vector, or a 1D array
-			if argument was a sequence of signatures or a feature matrix. Array
-			elements are integers from 0 to ``n_classes - 1`` which correspond
-			to class assignments, or negative values which indicate no class/
-			unsure.
+		Returns
+		-------
+		Predicted class labels for x. Will be a scalar integer if
+		argument was a single signature or feature vector, or a 1D array
+		if argument was a sequence of signatures or a feature matrix. Array
+		elements are integers from 0 to ``n_classes - 1`` which correspond
+		to class assignments, or negative values which indicate no class/
+		unsure.
 		"""
 		raise NotImplementedError()
 
 	def signatures_to_features(self, signatures):
 		"""Convert signatures to a binary feature matrix for the model.
 
-		:param signatures: Sequence of k-mer signatures in coordinate format.
-		:returns: Matrix of boolean type where rows are feature vectors of
-			elements of ``signatures``.
-		:rtype: np.ndarray
+		Parameters
+		----------
+		signatures
+			Sequence of k-mer signatures in coordinate format.
+
+		Returns
+		-------
+		np.ndarray
+			Matrix of boolean type where rows are feature vectors of elements of ``signatures``.
 		"""
 		return signatures_to_features(signatures, self.kspec, self.kmers)
 
@@ -110,10 +128,15 @@ class Classifier:
 		Wrapper first argument to a feature matrix, calls wrapped method,
 		and drops first axis of return value if necessary.
 
-		:param method: *Unbound* method that takes a feature matrix as its
-			first argument and returns an array of values for each sample.
+		Parameters
+		----------
+		method
+			*Unbound* method that takes a feature matrix as its first argument and returns an array
+			of values for each sample.
 
-		:returns: Wrapper around argument.
+		Returns
+		-------
+		Wrapper around argument.
 		"""
 
 		@functools.wraps(method)
@@ -192,36 +215,25 @@ class ClassifierInfo:
 	"""
 	Data object which describes how a classifier links to MIDAS database objects.
 
-	.. attribute:: id
-
+	Attributes
+	----------
+	id : str
 		String ID intended to uniquely identify the classifier for the purposes
 		of distributing updates, etc.
-
-	.. attribute:: version
-
+	version : str
 		Version string indicating the current revision of the ID. Should be
 		digits separated by commas, e.g. ``'1.0'``.
-
-	.. attribute:: parent_taxon
-
+	parent_taxon : str
 		Name of the :class:`midas.db.models.taxon` this classifier works within.
-
-	.. attribute:: class_taxa
-
-		Ordered list of taxa names that corresond to the classes of the model.
-
-	.. attribute:: kspec
-
-		:class:`midas.kmers.KmerSpec` used to calculate features used as input
+	class_taxa : str
+		Ordered list of taxa names that correspond to the classes of the model.
+	kspec : midas.kmers.KmerSpec
+		K-mer spec used to calculate features used as input
 		to the model (see :attr:`.Classifier.kspec)`.
-
-	.. attribute:: description
-
+	description : str or None
 		Optional string with longer description of the classifier.
-
-	.. attribute:: metadata
-
-		Optionable ``dict`` containing arbitrary extra metadata for the
+	metadata : dict or None
+		Optional ``dict`` containing arbitrary extra metadata for the
 		classifier. Should be convertible to JSON.
 	"""
 
@@ -237,13 +249,17 @@ class ClassifierInfo:
 def _check_classifier_info(classifier, info):
 	"""Check for consistency between ClassifierInfo and Classifier instance.
 
-	:param classifier: Classifier instance.
-	:type classifier: .Classifier
-	:param info: ClassifierInfo describing the classifier
-	:type info: .ClassifierInfo
+	Parameters
+	----------
+	classifier : .Classifier
+		Classifier instance.
+	info : .ClassifierInfo
+		ClassifierInfo describing the classifier
 
-	:raises ValueError: If there is an inconsistency between the classifier and
-		the info object.
+	Raises
+	------
+	ValueError
+		If there is an inconsistency between the classifier and the info object.
 	"""
 	if classifier.n_classes != len(info.class_taxa):
 		raise ValueError('classifier.n_classes does not match length of info.class_taxa')
@@ -255,16 +271,21 @@ def _check_classifier_info(classifier, info):
 def dump_classifier(stream, info, classifier, check=True):
 	"""Save Classifier and ClassifierInfo to a binary stream.
 
-	:param stream: Writeable stream in binary mode.
-	:param info: Classifier info.
-	:type info: .ClassifierInfo
-	:param classifier: Classifier instance.
-	:type classifier: .Classifier
-	:param bool check: If True check that the classifier and info are consistent
-		with one another.
+	Parameters
+	----------
+	stream
+		Writeable stream in binary mode.
+	info : .ClassifierInfo
+		Classifier info.
+	classifier : .Classifier
+		Classifier instance.
+	check : bool
+		If True check that the classifier and info are consistent with one another.
 
-	:raises ValueError: If ``check`` is True and the classifier and info objects
-		are inconsistent.
+	Raises
+	------
+	ValueError
+		If ``check`` is True and the classifier and info objects are inconsistent.
 	"""
 
 	from io import TextIOWrapper
@@ -289,17 +310,24 @@ def dump_classifier(stream, info, classifier, check=True):
 def load_classifier(stream, info_only=False, check=True):
 	"""Read Classifier and ClassifierInfo from a binary stream.
 
-	:param stream: Readable stream in binary mode.
-	:param bool info_only: Return only the :class:`.ClassifierInfo` object, not
-		the :class:`.Classifier`.
-	:param bool check: If True check that the classifier and info are consistent
-		with one another.
+	Parameters
+	----------
+	stream
+		Readable stream in binary mode.
+	info_only : bool
+		Return only the :class:`.ClassifierInfo` object, not the :class:`.Classifier`.
+	check : bool
+		If True check that the classifier and info are consistent with one another.
 
-	:returns: Classifier info only if ``info_only`` is True, othewise
-		``(info, classifier)`` pair.
+	Returns
+	-------
+	tuple[.ClassifierInfo, .Classifier] or .ClassifierInfo
+		Classifier info only if ``info_only`` is True, otherwise ``(info, classifier)`` pair.
 
-	:raises ValueError: If ``check`` is True and the classifier and info objects
-		are inconsistent.
+	Raises
+	------
+	ValueError
+		If ``check`` is True and the classifier and info objects are inconsistent.
 	"""
 
 	# Read info
@@ -321,16 +349,19 @@ def load_classifier(stream, info_only=False, check=True):
 def kmer_class_freqs(x, labels, k=None, sample_weights=None, smoothing=None):
 	"""Find k-mer frequencies within classes.
 
-	:param x: K-mer feature matrix (see :func:`.signatures_to_features`).
-	:type x: np.ndarray
-	:param labels: Nonnegative integer labels matching first axis of ``x``.
-	:type labels: np.ndarray
-	:param int k: Number of classes. If None will use ``1 + max(labels)``.
-	:param sample_weights: Weights for rows of ``x``, to perform a weighted
-		average.
-	:param float smoothing: Additive smoothing to use for frequency calculations.
-		Adds this amount to the count of both True and False values for each
-		k-mer.
+	Parameters
+	----------
+	x : np.ndarray
+		K-mer feature matrix (see :func:`.signatures_to_features`).
+	labels : np.ndarray
+		Nonnegative integer labels matching first axis of ``x``.
+	k : int
+		Number of classes. If None will use ``1 + max(labels)``.
+	sample_weights
+		Weights for rows of ``x``, to perform a weighted average.
+	smoothing : smoothing
+		Additive smoothing to use for frequency calculations. Adds this amount to the count of both
+		True and False values for each k-mer.
 	"""
 
 	if k is None:
@@ -366,8 +397,10 @@ class GenerativeClassifier(Classifier):
 
 	Subclasses must implement :meth:`_log_prob`.
 
-	:param float margin: Minimum log-ratio between 1st and 2nd largest class
-		probabilities for a call to be made.
+	Parameters
+	----------
+	margin : float
+		Minimum log-ratio between 1st and 2nd largest class probabilities for a call to be made.
 	"""
 
 	margin = Classifier.Param('margin')
@@ -384,14 +417,19 @@ class GenerativeClassifier(Classifier):
 		each class label if ``normalize`` is False. If ``normalize`` is True the
 		rows will be normalized so that the values sum to one.
 
-		:param x: One or more signatures or feature vectors. See argument to
-			:meth:`.Classifier.predict`.
-		:param bool normalize: Normalize rows of return values so that their
-			exponentials sum to one.
-		:returns: Matrix of log probabilities where rows correspond to samples
+		Parameters
+		----------
+		x
+			One or more signatures or feature vectors. See argument to :meth:`.Classifier.predict`.
+		normalize : bool
+			Normalize rows of return values so that their exponentials sum to one.
+
+		Returns
+		-------
+		np.ndarray
+			Matrix of log probabilities where rows correspond to samples
 			and columns to classes. Will be a vector if a single signature or
 			vector is given.
-		:rtype: np.ndarray
 		"""
 		log_probs = self._log_prob(x)
 
@@ -406,11 +444,16 @@ class GenerativeClassifier(Classifier):
 		It's assumed that calculating the probability for the model is easier in
 		log-space.
 
-		:param x: 2D feature matrix.
-		:type x: numpy.ndarray
-		:returns: 2D matrix of log-probabilities. Rows correspond to rows of
-			``x``, columns correspond to class labels.
-		:rtype: np.ndarray
+		Parameters
+		----------
+		x : numpy.ndarray
+			2D feature matrix.
+
+		Returns
+		-------
+		np.ndarray
+			2D matrix of log-probabilities. Rows correspond to rows of ``x``, columns correspond to
+			class labels.
 		"""
 		raise NotImplementedError()
 
@@ -420,12 +463,17 @@ class GenerativeClassifier(Classifier):
 
 		WARNING: this modifies the first argument in-place.
 
-		:param log_probs: 2D matrix of log-probabilities in sample x class format.
-		:type log_probs: np.ndarray
-		:param bool return_log: Return log-probabilities (True) or regular
-			probabilities (False).
-		:returns: Normalized probabilities.
-		:rtype: np.ndarray
+		Parameters
+		----------
+		log_probs : np.ndarray
+		2D matrix of log-probabilities in sample x class format.
+		return_log : bool
+			Return log-probabilities (True) or regular probabilities (False).
+
+		Returns
+		-------
+		np.ndarray
+			Normalized probabilities.
 		"""
 
 		# Scale rows to have max of 0 first, to avoid all elements
@@ -454,14 +502,19 @@ class GenerativeClassifier(Classifier):
 
 		See documentation for :meth:`log_prob`.
 
-		:param x: One or more signatures or feature vectors. See argument to
-			:meth:`.Classifier.predict`.
-		:param bool normalize: Normalize rows of return values so that they sum
-			to one.
-		:returns: Matrix of probabilities where rows correspond to samples
+		Parameters
+		----------
+		x
+			One or more signatures or feature vectors. See argument to :meth:`.Classifier.predict`.
+		normalize : bool
+			Normalize rows of return values so that they sum to one.
+
+		Returns
+		-------
+		np.ndarray
+			Matrix of probabilities where rows correspond to samples
 			and columns to classes. Will be a vector if a single signature or
 			vector is given.
-		:rtype: np.ndarray
 		"""
 		# Derive from log probs
 		log_probs = self._log_prob(x)
@@ -500,7 +553,10 @@ class GenerativeClassifier(Classifier):
 class NaiveBayesClassifier(GenerativeClassifier):
 	"""Naive Bayes classifier model.
 
-	:param float alpha: Additive smoothing parameter to use when training.
+	Parameters
+	----------
+	alpha : float
+		Additive smoothing parameter to use when training.
 	"""
 
 	alpha = Classifier.Param('alpha')
@@ -514,12 +570,14 @@ class NaiveBayesClassifier(GenerativeClassifier):
 	def fit(self, x, y, sample_weights=None):
 		"""Fit the model.
 
-		:param x: K-mer feature matrix.
-		:type x: np.ndarray
-		:param y: Array of integer label values corresonding to rows of ``x``.
-		:type y: np.ndarray
-		:param sample_weights: Weights of samples.
-		:type sample_weights: np.ndarray
+		Parameters
+		----------
+		x : np.ndarray
+			K-mer feature matrix.
+		y : np.ndarray
+			Array of integer label values corresonding to rows of ``x``.
+		sample_weights : np.ndarray
+			Weights of samples.
 		"""
 
 		class_freqs = kmer_class_freqs(

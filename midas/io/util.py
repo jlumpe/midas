@@ -34,15 +34,23 @@ def _open_gzip(path, mode, **kwargs):
 def open_compressed(compression, path, mode=None, **kwargs):
 	"""Open a file with compression method specified by a string.
 
-	:param str compression: Compression method. None is no compression. Keys
-		of :data:`COMPRESSED_OPENERS` are the allowed values.
-	:param path: Path of file to open. May be string or path-like object.
-	:param str mode: Mode to open file in - same as in :func:`open`.
-	:param \\**kwargs: Additional text-specific keyword arguments identical to
-		the following :func:`open` arguments: ``encoding``, ``errors``, and
-		``newlines``.
-	:returns: Open file object.
-	:rtype: io.BufferedIOBase
+	Parameters
+	----------
+	compression : str
+		Compression method. None is no compression. Keys of :data:`COMPRESSED_OPENERS` are the
+		allowed values.
+	path
+		Path of file to open. May be string or path-like object.
+	mode : str
+		Mode to open file in - same as in :func:`open`.
+	\\**kwargs
+		Additional text-specific keyword arguments identical to the following :func:`open`
+		arguments: ``encoding``, ``errors``, and ``newlines``.
+
+	Returns
+	-------
+	io.BufferedIOBase
+		Open file object.
 	"""
 
 	try:
@@ -64,23 +72,29 @@ class ClosingIterator:
 	finishes. May also be used as a context manager which closes the stream
 	on exit.
 
-	.. attribute:: fobj
+	Attributes
+	----------
+	fobj
 
 		The underlying file-like object or stream which the instance is
 		responsible for closing
 
-	.. attribute:: iterator
+	iterator
 
 		The iterator which the instance wraps.
 
-	.. attribute:: closed
+	closed
 
 		Read-only boolean property, mirrors the same attribute of :attr:`fobj`.
 
-	:param iterable: Iterable to iterate over. The :attr:`iterator` attribute
-		will be obtained from calling :func:`iter` on this.
-	:param fobj: File-like object to close when the iterator finishes, context
-		is exited or the :meth:`close` method is called.
+	Parameters
+	----------
+	iterable
+		Iterable to iterate over. The :attr:`iterator` attribute will be obtained from calling
+		:func:`iter` on this.
+	fobj
+		File-like object to close when the iterator finishes, context is exited or the :meth:`close`
+		method is called.
 	"""
 
 	def __init__(self, iterable, fobj):
@@ -122,11 +136,18 @@ def read_npy(fobj, dtype, shape):
 
 	Data expected to be in C-order.
 
-	:param fobj: Readable file-like object in binary mode.
-	:type dtype: numpy.dtype
-	:param shape: Shape of array to read.
+	Parameters
+	----------
+	fobj
+		Readable file-like object in binary mode.
+	dtype : numpy.dtype
+		Data type to read.
+	shape
+		Shape of array to read.
 
-	:rtype: numpy.ndarray
+	Returns
+	-------
+	numpy.ndarray
 	"""
 	array = np.zeros(shape, dtype=dtype)
 	fobj.readinto(array.data)
@@ -139,9 +160,12 @@ def write_npy(fobj, array):
 	Warning! Data will be written in same order as the array, but
 	:func:`read_npy` expects the data to be in c-order.
 
-	:param fobj: Writeable file-like object in binary mode.
-	:param array: Array to write.
-	:type array: numpy.ndarray
+	Parameters
+	----------
+	fobj
+		Writeable file-like object in binary mode.
+	array : numpy.ndarray
+		Array to write.
 	"""
 
 	if array.flags.c_contiguous:
@@ -169,26 +193,19 @@ class NamedStruct:
 	Attributes which are not fields are prefixed by an underscore, but are
 	still part of the public API.
 
-	.. attribute:: _dtype
-
-		:class:`numpy.dtype` defining structure.
-
-	.. attribute:: _data
-
-		Binary data. This is a zero-dimensional :class:`numpy.ndarray` with data
+	Attributes
+	----------
+	_dtype : numpy.dtype
+		Numpy data type defining structure.
+	_data : numpy.ndarray
+		Binary data. This is a zero-dimensional array` with data
 		type :attr:`_dtype`, because Numpy does not support creating scalars of
 		structured data types.
-
-	.. attribute:: _fields
-
+	_fields
 		Mapping from field names to ``(dtype, offset)`` tuples.
-
-	.. attribute:: _names
-
+	_names
 		Field names in same order as physical layout in struct.
-
-	.. attribute:: _size
-
+	_size : int
 		Struct size in bytes.
 	"""
 
@@ -303,14 +320,18 @@ class NamedStruct:
 	def _copy(self):
 		"""Get a copy of the struct with its own data.
 
-		:rtype: .NamedStruct
+		Returns
+		-------
+		.NamedStruct
 		"""
 		return NamedStruct(self._dtype, self._data.copy())
 
 	def _tobytes(self):
 		"""Get the byte representation of the structure's data.
 
-		:rtype: bytes
+		Returns
+		-------
+		bytes
 		"""
 		return self._data.tobytes()
 
@@ -319,7 +340,9 @@ class NamedStruct:
 
 		Sub-structs are converted recursively as well.
 
-		:rtype: tuple
+		Returns
+		-------
+		tuple
 		"""
 		return self._data[()]
 
@@ -327,10 +350,16 @@ class NamedStruct:
 	def _fromfile(cls, dtype, fobj):
 		"""Read struct from a stream.
 
-		:param dtype: Numpy data type for struct.
-		:type dtype: numpy.dtype
-		:param fobj: Readable file-like object in binary mode.
-		:rtype: .NamedStruct
+		Parameters
+		----------
+		dtype : numpy.dtype
+			Numpy data type for struct.
+		fobj
+			Readable file-like object in binary mode.
+
+		Returns
+		-------
+		.NamedStruct
 		"""
 		struct = NamedStruct(dtype)
 		fobj.readinto(struct._data.data)
@@ -340,13 +369,20 @@ class NamedStruct:
 	def _frombuffer(cls, dtype, buffer_, offset=0, copy=True):
 		"""Create struct from raw data in a binary buffer.
 
-		:param dtype: Numpy data type for struct.
-		:type dtype: numpy.dtype
-		:param bytes_: Object implementing buffer protocol.
-		:param int offset: Offset of beginning of struct data.
-		:param bool copy: If True, use a copy of the array's data.
+		Parameters
+		----------
+		dtype : numpy.dtype
+			Numpy data type for struct.
+		buffer_
+			Object implementing buffer protocol.
+		offset : int
+			Offset of beginning of struct data.
+		copy : bool
+			If True, use a copy of the array's data.
 
-		:rtype: .NamedStruct
+		Returns
+		-------
+		.NamedStruct
 		"""
 		array = np.frombuffer(buffer_, dtype=dtype, count=1, offset=offset)
 

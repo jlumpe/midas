@@ -36,14 +36,21 @@ _seq_record_cols = {
 def make_seq_table(name, metadata, *args, **kwargs):
 	"""Make an SQLAlchemy table object for storing sequence records.
 
-	:param str name: Name of table.
-	:param metadata: SQLAlchemy metadata for table.
-	:type metadata: sqlalchemy.MetaData
-	:param \\*args: Additional positional arguments to :class:`sqlalchemy.Table:`,
-		for example for specifying additional columns.
-	:param \\**kwargs: Additional keyword arguments to :class:`sqlalchemy.Table:`.
+	Parameters
+	----------
+	name : str
+		Name of table.
+	metadata : sqlalchemy.MetaData
+	SQLAlchemy metadata for table.
+	\\*args
+		Additional positional arguments to :class:`sqlalchemy.Table:`, for example for specifying
+		additional columns.
+	\\**kwargs
+		Additional keyword arguments to :class:`sqlalchemy.Table:`.
 
-	:rtype: sqlalchemy.Table
+	Returns
+	-------
+	sqlalchemy.Table
 	"""
 
 	return sa.Table(
@@ -76,46 +83,39 @@ class DbIndexedSequenceStore(base.SequenceStore):
 	storage of the actual sequence data.
 
 	Constructor forwards all additional arguments to super constructor so this
-	shoudl be able to be used with multiple inheritance.
+	should be able to be used with multiple inheritance.
 
-	:Keyword Arguments:
 
-		* **engine** --
+	Parameters
+	----------
+	engine
 		  SQLAlchemy engine connected to database.
-
-		* **seq_table** --
+	seq_table
 		  SQLAlchemy table containing the sequence records. If None
 		  :data:`.default_seq_table` will be used.
-
-		* **meta_table** --
+	meta_table
 		  SQLAlchemy table containing the metadata key/value pairs. If None
 		  :data:`.default_meta_table` will be used. Irrelevant if ``use_meta``
 		  is False.
-
-		* **use_meta** (*bool*) --
+	use_meta : bool
 		  Whether to use a :class:`midas.db.sqla.KeyValueTable` to store
 		  metadata in the database.
 
-	.. attribute:: VERSION
-
+	Attributes
+	----------
+	VERSION
 		Class attribute equal to ``None``. If a child class overrides this
 		attribute with a string, when the constructor is called it will check
 		that the metadata contains this value under the "version" key and raise
 		an error if it does not. This string should be changed each time the
 		internal database schema changes in a way that is incompatible with the
 		previous version.
-
-	.. attribute:: _engine
-
+	_engine
 		Private attribute containing SQLAlchemy engine connected to database.
-
-	.. attribute:: _seq_table
-
+	_seq_table
 		Private attribute containing SQLAlchemy table which stores sequence
 		records.
-
-	.. attribute:: _meta
-
+	_meta
 		Private attribute containing metadata in a
 		:class:`midas.db.sqla.KeyValueTable` if ``use_meta=True`` was
 		passed to the constructor.
@@ -177,9 +177,15 @@ class DbIndexedSequenceStore(base.SequenceStore):
 	def _delete_record_from_db(self, store_id):
 		"""Delete a record from the database.
 
-		:param int store_id: Store ID of the record.
-		:raises midas.seqstore.base.SequenceNotFound: If no record with the
-			store ID exists.
+		Parameters
+		----------
+		store_id : int
+			Store ID of the record.
+
+		Raises
+		------
+		midas.seqstore.base.SequenceNotFound
+			If no record with the store ID exists.
 		"""
 
 		stmt = self._seq_table.delete()\
@@ -338,16 +344,23 @@ class DbIndexedSequenceStore(base.SequenceStore):
 		will be removed from the database index during cleanup before the
 		exception is propagated.
 
-		:param src: Source data as file-like object or file name. See ``src``
-			argument to :meth:`store`.
-		:param record: Record for the added sequence, containing store ID and
-			NCBI IDs, as well as sequence format.
-		:type record: midas.seqstore.base.BaseSequenceStoreRecord
-		:param str src_compression: See :meth:`store`.
-		:param bool keep_src: See :meth:`store`.
-		:param str src_mode: See :meth:`store`.
+		Parameters
+		----------
+		src
+			Source data as file-like object or file name. See ``src`` argument to :meth:`store`.
+		record : midas.seqstore.base.BaseSequenceStoreRecord
+			Record for the added sequence, containing store ID and NCBI IDs, as well as sequence
+			format.
+		src_compression : str
+			See :meth:`store`.
+		keep_src : bool
+			See :meth:`store`.
+		src_mode : str
+			See :meth:`store`.
 
-		:returns: ``None``, or optionally a mapping of updates to be applied to
+		Returns
+		-------
+			``None``, or optionally a mapping of updates to be applied to
 			the sequence's database row keyed by column name. Used to store
 			additional data about sequence specific to subclass implementation
 			(e.g., name of file the sequence was stored as). Should only update
@@ -361,8 +374,14 @@ class DbIndexedSequenceStore(base.SequenceStore):
 
 		Abstract method to be implemented by subclass.
 
-		:param row: Contents of database row for sequence.
-		:returns: Open file-like object for reading sequence data.
+		Parameters
+		----------
+		row
+			Contents of database row for sequence.
+
+		Returns
+		-------
+			Open file-like object for reading sequence data.
 		"""
 
 	@abstractmethod
@@ -371,5 +390,8 @@ class DbIndexedSequenceStore(base.SequenceStore):
 
 		Abstract method to be implemented by subclass.
 
-		:param row: Contents of database row for sequence.
+		Parameters
+		----------
+		row
+			Contents of database row for sequence.
 		"""
