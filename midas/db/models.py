@@ -50,9 +50,6 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	description
 		String column. Short description. Recommended to be unique but this is
 		not enforced.
-	is_assembled
-		Boolean column. Whether the genome is completely assembled or has
-		multiple contigs.
 	entrez_db
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
 	entrez_id
@@ -61,12 +58,6 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
 	refseq_acc
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
-	ncbi_taxid
-		Integer column. Genbank taxonomy ID (as assigned in original NCBI
-		record).
-	entrez_summary
-		JSON column. Optional summary (from EUtils ESummary) for record and
-		associated taxonomy entry.
 	extra
 		JSON column. Additional arbitrary data.
 	annotations
@@ -77,11 +68,8 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 
 	id = Column(Integer(), primary_key=True)
 	description = Column(String(), nullable=False)
-	is_assembled = Column(Boolean())
-	ncbi_taxid = Column(Integer(), index=True)
 
 	# TODO - really should be immutable
-	entrez_summary = Column(MutableJsonDict.as_mutable(JsonType))
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
 	annotations = relationship('AnnotatedGenome', lazy=True,
@@ -119,12 +107,6 @@ class ReferenceGenomeSet(Base, KeyMixin):
 		String column. Unique name.
 	description
 		Text column. Optional description.
-	signatureset_key
-		String column. Key of signature set that should be used to query this
-		genome set.
-	signatureset_version
-		String column. Key of signature set that should be used to query this
-		genome set.
 	extra
 		JSON column. Additional arbitrary data.
 	genomes
@@ -142,9 +124,6 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	id = Column(Integer(), primary_key=True)
 	name = Column(String(), unique=True, nullable=False)
 	description = Column(String())
-
-	signatureset_key = Column(String())
-	signatureset_version = Column(String())
 
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
@@ -228,8 +207,6 @@ class AnnotatedGenome(Base, SeqRecordBase):
 		or paraphyletic) taxa.
 	description
 		Hybrid property connected to attribute on :attr:`genome`.
-	is_assembled
-		Hybrid property connected to attribute on :attr:`genome`.
 	entrez_db
 		Hybrid property connected to attribute on :attr:`genome`.
 	entrez_id
@@ -237,8 +214,6 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	genbank_acc
 		Hybrid property connected to attribute on :attr:`genome`.
 	refseq_acc
-		Hybrid property connected to attribute on :attr:`genome`.
-	ncbi_taxid
 		Hybrid property connected to attribute on :attr:`genome`.
 	"""
 	__tablename__ = 'genome_annotations'
@@ -271,8 +246,6 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	)
 
 	description = hybrid_property(lambda self: self.genome.description)
-	is_assembled = hybrid_property(lambda self: self.genome.is_assembled)
-	ncbi_taxid = hybrid_property(lambda self: self.genome.ncbi_taxid)
 	entrez_db = hybrid_property(lambda self: self.genome.entrez_db)
 	entrez_id = hybrid_property(lambda self: self.genome.entrez_id)
 	genbank_acc = hybrid_property(lambda self: self.genome.genbank_acc)
@@ -324,9 +297,6 @@ class Taxon(Base):
 		Integer column. ID of Taxon that is the direct parent of this one.
 	ncbi_id
 		Integer column. Genbank taxonomy ID, if any.
-	entrez_data
-		JSON column. Entrez EFetch result of the corresponding entry in the
-		NCBI taxonomy database, converted to JSON.
 	parent
 		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon
 		(if any).
@@ -361,7 +331,6 @@ class Taxon(Base):
 	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 
 	ncbi_id = Column(Integer(), index=True)
-	entrez_data = Column(MutableJsonDict.as_mutable(JsonType))
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
 	reference_set = relationship(
