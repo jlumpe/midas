@@ -59,7 +59,7 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	refseq_acc
 		String column. See :class:`midas.ncbi.SeqRecordBase`.
 	extra
-		JSON column. Additional arbitrary data.
+		JSON column. Additional arbitrary metadata.
 	annotations
 		One-to-many relationship to :class:`.AnnotatedGenome`.
 	"""
@@ -307,10 +307,10 @@ class Taxon(Base):
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
 	genomes_primary
 		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which
-		havet his taxon as their primary taxon.
+		have this taxon as their primary taxon.
 	genomes_additional
 		Many-to-many relationship with :class:`.AnnotatedGenome`, genomes which
-		havet his taxon in their "additional" taxa.
+		have this taxon in their "additional" taxa.
 	"""
 
 	__tablename__ = 'taxa'
