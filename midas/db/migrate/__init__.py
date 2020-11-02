@@ -7,20 +7,21 @@ from alembic.config import Config
 from pkg_resources import resource_filename
 
 
-def get_alembic_config(engine, **kwargs):
+def get_alembic_config(engine=None, **kwargs):
 	"""Get an alembic config object to perform migrations.
 
 	Parameters
 	----------
 	engine : sqlalchemy.engine.base.Engine
-		SQLAlchemy engine specifying database connection info.
+		SQLAlchemy engine specifying database connection info (optional). Assigned to ``'engine'``
+		key of :attr:`alembic.config.Config.attributes`.
 	\\**kwargs
 		Keyword arguments to pass to :meth:`alembic.config.Config.__init__`.
 
 	Returns
 	-------
 	alembic.config.Config
-		Alembic config object for the engine.
+		Alembic config object.
 	"""
 	ini_path = resource_filename(__name__, 'alembic.ini')
 	script_path = resource_filename(__name__, 'alembic')
@@ -28,7 +29,9 @@ def get_alembic_config(engine, **kwargs):
 	config = Config(ini_path, **kwargs)
 
 	config.set_main_option('script_location', script_path)
-	config.attributes['engine'] = engine
+
+	if engine is not None:
+		config.attributes['engine'] = engine
 
 	return config
 
