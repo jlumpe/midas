@@ -4,6 +4,7 @@ This package also contains all Alembic data files.
 """
 
 from alembic.config import Config
+from alembic import command
 from pkg_resources import resource_filename
 
 
@@ -36,10 +37,21 @@ def get_alembic_config(engine=None, **kwargs):
 	return config
 
 
-def upgrade(engine, revision=None, tag=None, **kwargs):
-	from alembic import command
+def upgrade(engine, revision='head', tag=None, **kwargs):
+	"""Run the alembic upgrade command.
 
+	See :func:`alembic.command.upgrade` for more inforamation on how this works.
+
+	Parameters
+	----------
+	engine : sqlalchemy.engine.base.Engine
+		SQLAlchemy engine specifying database connection info.
+	revision : str
+		Revision to uptrade to. Passed to :func:`alembic.command.upgrade`.
+	tag
+		Passed to :func:`alembic.command.upgrade`.
+	\\**kwargs
+		Passed to :func:`.get_alembic_config`.
+	"""
 	config = get_alembic_config(engine, **kwargs)
-
-
 	command.upgrade(config, revision, tag=tag)
