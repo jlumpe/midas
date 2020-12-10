@@ -28,8 +28,6 @@ def test_annotatedgenome_hybrid_props():
 
 	hybrid_attrs = dict(
 		description='Test genome',
-		is_assembled=False,
-		ncbi_taxid=123,
 		entrez_db='assembly',
 		entrez_id='123456',
 		genbank_acc='GCA_000000.0',
