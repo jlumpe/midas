@@ -53,7 +53,7 @@ class SubPath:
 
 	Intended for classes that manage a single root directory (e.g.,
 	``BasicDatabase``) that have subpaths they need to get the absolute path
-	for. To avoid many ``os.path.join()``\ 's all over the place, the descriptor
+	for. To avoid many ``os.path.join()``\\ 's all over the place, the descriptor
 	returns the absolute path on instances and a function giving the absolute
 	path given the root path on classes.
 
