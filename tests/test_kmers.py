@@ -55,6 +55,18 @@ def test_index_conversion():
 class TestKmerSpec:
 	"""Test midas.kmers.KmerSpec."""
 
+	def test_constructor(self):
+		# Prefix conversion
+		assert kmers.KmerSpec(11, b'ATGAC').prefix == b'ATGAC'
+		assert kmers.KmerSpec(11, 'ATGAC').prefix == b'ATGAC'
+		assert kmers.KmerSpec(11, 'atgac').prefix == b'ATGAC'
+
+		# Invalid prefix
+		with pytest.raises(ValueError):
+			kmers.KmerSpec(11, b'ATGAX')
+			kmers.KmerSpec(11, 'ATGAX')
+			kmers.KmerSpec(11, b'ATGAc')
+
 	def test_attributes(self):
 		"""Test basic attributes."""
 
@@ -89,10 +101,7 @@ class TestKmerSpec:
 		"""Test equality testing."""
 
 		kspec = kmers.KmerSpec(11, 'ATGAC')
-
 		assert kspec == kmers.KmerSpec(11, 'ATGAC')
-		assert kspec == kmers.KmerSpec(11, b'ATGAC')
-
 		assert kspec != kmers.KmerSpec(11, 'ATGAA')
 		assert kspec != kmers.KmerSpec(12, 'ATGAC')
 
@@ -144,7 +153,7 @@ def test_vec_coords_conversion():
 
 
 def check_reverse_complement(seq, rc):
-	"""Assert the reverse complement of a seqeuence is correct.
+	"""Assert the reverse complement of a sequence is correct.
 
 	:param bytes seq: Byte sequence
 	:param bytes rc: Reverse complement of seq
