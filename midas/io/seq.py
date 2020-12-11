@@ -18,11 +18,11 @@ class SeqFileInfo:
 
 	Parameters
 	----------
-	path
+	path : pathlib.Path or str
 		Value of :attr:`path` attribute. May be string or path-like object.
 	fmt : str
 		Value of :attr:`fmt` attribute.
-	compression : str
+	compression : str or None
 		Value of :attr:`compression` attribute.
 
 	Attributes
@@ -30,9 +30,9 @@ class SeqFileInfo:
 	path : pathlib.Path
 		Path to the file.
 	fmt : str
-		String describing the file format, as interpreted by
-		:func:`Bio.SeqIO.parse`. E.g. ``'fasta'``.
-	compression : str
+		String describing the file format as interpreted by
+		:func:`Bio.SeqIO.parse`, e.g. ``'fasta'``.
+	compression : str or None
 		String describing compression method of the file, e.g. ``'gzip'``. None
 		means no compression. See :func:`midas.io.util.open_compressed`.
 	"""
@@ -53,7 +53,7 @@ class SeqFileInfo:
 			Same as equivalent argument to the built-in :func:open`. Some modes may not be supported
 			by all compression types.
 		\\**kwargs
-			Additional text mode specific keyword arguments to pass to opener. Equivlent to the
+			Additional text mode specific keyword arguments to pass to opener. Equivalent to the
 			following arguments of the built-in :func:`open`: ``encoding``, ``errors``, and
 			``newlines``. May not be supported by all compression types.
 
@@ -64,7 +64,7 @@ class SeqFileInfo:
 		return open_compressed(self.compression, self.path, mode, **kwargs)
 
 	def parse(self, **kwargs):
-		"""Open the file and laziy parse its contents.
+		"""Open the file and lazily parse its contents.
 
 		Returns iterator over sequence data in file. File is parsed lazily,
 		and so must be kept open. The returned iterator is of type
@@ -115,7 +115,7 @@ class SeqFileInfo:
 		Parameters
 		----------
 		paths
-			Collection of paths as strings or path-like objects.d
+			Collection of paths as strings or path-like objects.
 		format : str
 			Sequence file format of files.
 		compression : str
@@ -138,7 +138,7 @@ def find_kmers_parse(kspec, data, format, out=None, coords=False):
 	data
 		Stream with sequence data. Readable file-like object in text mode.
 	format : str
-		Squence file format, as interpreted by :func:`Bio.SeqIO.parse`.
+		Sequence file format, as interpreted by :func:`Bio.SeqIO.parse`.
 	out : numpy.ndarray
 		Existing numpy array to write output to. Should be of length ``kspec.idx_len``. If given the
 		same array will be returned.
@@ -212,7 +212,7 @@ class FileSignatureCalculator:
 			Format of sequence files, if ``files`` contains only file paths instead of
 			:class:`.SeqFileInfo` instances. Passed to :func:`Bio.SeqIO.parse`.
 		compression : str
-			Compresssion format of sequence files if `files`` contains only file paths instead of
+			Compression format of sequence files if `files`` contains only file paths instead of
 			:class:`.SeqFileInfo` instances. Passed to :func:`midas.io.util.open_compressed`. None
 			means files are uncompressed.
 		ordered : bool
