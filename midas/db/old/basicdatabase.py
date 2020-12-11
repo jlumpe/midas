@@ -7,7 +7,7 @@ import re
 from contextlib import suppress
 
 import numpy as np
-from sqlalchemy import Column, String, Binary
+from sqlalchemy import Column, String, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import select
@@ -42,7 +42,7 @@ class KmerSetCollection(Base, base.KmerSetCollection):
 
 
 class KmerSet(Base, base.KmerSet):
-	_data = deferred(Column(Binary()))
+	_data = deferred(Column(LargeBinary()))
 
 
 class SubPath:

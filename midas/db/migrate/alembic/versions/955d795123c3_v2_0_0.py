@@ -68,7 +68,7 @@ def upgrade():
     sa.Column('genome_id', sa.Integer(), nullable=False),
     sa.Column('count', sa.Integer(), nullable=False),
     sa.Column('dtype_str', sa.String(length=2), nullable=False),
-    sa.Column('data', sa.Binary(), nullable=False),
+    sa.Column('data', sa.LargeBinary(), nullable=False),
     sa.ForeignKeyConstraint(['genome_id'], ['genomes.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['set_id'], ['signature_sets.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('set_id', 'genome_id')
