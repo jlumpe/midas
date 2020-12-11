@@ -7,7 +7,7 @@ import pytest
 import numpy as np
 from Bio import Seq, SeqIO
 
-import midas.io.seq as mseqio
+from midas.io.seq import SeqFileInfo, find_kmers_parse, FileSignatureCalculator
 import midas.io.util as ioutil
 from midas.kmers import vec_to_coords
 from midas.test import make_kmer_seq, random_seq
@@ -83,7 +83,7 @@ def test_find_kmers_parse(as_coords):
 	buf.seek(0)
 
 	# Parse from buffer
-	kmers = mseqio.find_kmers_parse(kspec, buf, 'fasta', coords=as_coords)
+	kmers = find_kmers_parse(kspec, buf, 'fasta', coords=as_coords)
 
 	if as_coords:
 		assert np.array_equal(vec_to_coords(vec), kmers)
@@ -111,7 +111,7 @@ class TestSeqFileInfo:
 		File does not yet exist.
 		"""
 		path = tmpdir.join('test.' + fmt).strpath
-		return mseqio.SeqFileInfo(path, fmt, compression)
+		return SeqFileInfo(path, fmt, compression)
 
 	@pytest.fixture(scope='class')
 	def seqrecords(self):
@@ -139,6 +139,39 @@ class TestSeqFileInfo:
 
 		with info.open('rt') as fobj:
 			SeqIO.write(seqrecords, fobj, info.fmt)
+
+	def test_constructor(self):
+		"""Test constructor."""
+
+		info = SeqFileInfo('foo.fasta', 'fasta')
+		assert info == SeqFileInfo('foo.fasta', 'fasta', None)
+		assert info.path == Path('foo.fasta')
+
+		# Argument fails validation
+		with pytest.raises(TypeError):
+			SeqFileInfo(b'foo.fasta', 'fasta')
+		with pytest.raises(TypeError):
+			SeqFileInfo('foo.fasta', b'fasta')
+		with pytest.raises(TypeError):
+			SeqFileInfo('foo.fasta', 'fasta', b'gzip')
+
+	def test_eq(self):
+		"""Test equality checking of instances."""
+		infos = [
+			SeqFileInfo(p, fmt, comp)
+			for p in ['foo', 'bar']
+			for fmt in ['fasta', 'genbank']
+			for comp in [None, 'gzip']
+		]
+
+		for i, info1 in enumerate(infos):
+			for j, info2 in enumerate(infos):
+				if i == j:
+					# Try with different instance
+					assert info1 == SeqFileInfo(info1.path, info1.fmt,
+												info1.compression)
+				else:
+					assert info1 != info2
 
 	@pytest.mark.parametrize('binary', [False, True])
 	def test_open(self, info, file_contents, binary):
@@ -186,16 +219,16 @@ class TestSeqFileInfo:
 
 		path = Path('foo/bar.fasta')
 
-		info1 = mseqio.SeqFileInfo(path, 'fasta')
-		assert isinstance(info1, mseqio.SeqFileInfo) and info1.path == path
+		info1 = SeqFileInfo(path, 'fasta')
+		assert isinstance(info1, SeqFileInfo) and info1.path == path
 
-		info2 = mseqio.SeqFileInfo(str(path), 'fasta')
-		assert isinstance(info2, mseqio.SeqFileInfo) and info2.path == path
+		info2 = SeqFileInfo(str(path), 'fasta')
+		assert isinstance(info2, SeqFileInfo) and info2.path == path
 
 	def test_absolute(self):
 		"""Test the absolute() method."""
 
-		relinfo = mseqio.SeqFileInfo('foo/bar.fasta', 'fasta')
+		relinfo = SeqFileInfo('foo/bar.fasta', 'fasta')
 		assert not relinfo.path.is_absolute()
 
 		absinfo = relinfo.absolute()
@@ -211,12 +244,12 @@ class TestSeqFileInfo:
 		# List of unique path strings
 		paths = ['foo/bar{}.{}'.format(i, fmt) for i in range(20)]
 
-		infos = mseqio.SeqFileInfo.from_paths(paths, fmt, compression)
+		infos = SeqFileInfo.from_paths(paths, fmt, compression)
 
 		assert len(paths) == len(infos)
 
 		for path, info in zip(paths, infos):
-			assert isinstance(info, mseqio.SeqFileInfo)
+			assert isinstance(info, SeqFileInfo)
 			assert str(info.path) == path
 			assert info.fmt == fmt
 			assert info.compression == compression
@@ -259,7 +292,7 @@ def test_FileSignatureCalculator(tmpdir, fmt, compression, use_threads,
 
 		# SeqFileInfo for file to eventually read
 		path = tmpdir.join('seq{}.{}'.format(i, fmt)).strpath
-		file = mseqio.SeqFileInfo(path, fmt, compression)
+		file = SeqFileInfo(path, fmt, compression)
 
 		# Write sequences to file
 		with file.open('wt') as fobj:
@@ -269,7 +302,7 @@ def test_FileSignatureCalculator(tmpdir, fmt, compression, use_threads,
 		signatures.append(vec_to_coords(sig_vec))
 
 	# Create the calculator
-	calculator = mseqio.FileSignatureCalculator(use_threads=use_threads)
+	calculator = FileSignatureCalculator(use_threads=use_threads)
 
 	# Run jobs in context
 	with calculator as enterval:
