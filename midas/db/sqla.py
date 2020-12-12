@@ -11,7 +11,7 @@ from sqlalchemy.orm.session import Session
 
 
 class ReadOnlySession(Session):
-	"""Session class that doesn't allow flushing/committing"""
+	"""Session class that doesn't allow flushing/committing."""
 
 	def flush(self, *args, **kwargs):
 		# Make flush a no-op
@@ -26,7 +26,7 @@ JSONABLE_SCALARS = (int, float, str, bool, type(None))
 
 
 class MutableJsonCollection(Mutable):
-	"""ABC for SQLAlchemy JSON collection type, supporting mutation tracking
+	"""ABC for SQLAlchemy JSON collection type, supporting mutation tracking.
 
 	When nested under another collection, keeps a weak reference to its
 	parent so that mutation notifications can be propagated back up to the
@@ -58,14 +58,12 @@ class MutableJsonCollection(Mutable):
 				self._parent = None
 
 	def as_builtin(self):
-		"""Return version of collection as builtin Python type
-
-		(for JSON serialization)
+		"""Return version of collection as builtin Python type (for JSON serialization).
 		"""
 		raise NotImplementedError()
 
 	def _transform_element(self, elem):
-		"""Transforms python types into MutableJsonCollection where possible"""
+		"""Transforms python types into MutableJsonCollection where possible."""
 
 		if isinstance(elem, MutableJsonCollection):
 			return elem
@@ -206,7 +204,7 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 
 
 class MutableJsonCollectionEncoder(json.JSONEncoder):
-	"""JSON encoder capable of serializing MutableJsonCollection objects"""
+	"""JSON encoder capable of serializing MutableJsonCollection objects."""
 
 	def default(self, obj):
 		if isinstance(obj, MutableJsonCollection):

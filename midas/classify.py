@@ -212,8 +212,7 @@ class Classifier:
 
 @dataclass(json=True)
 class ClassifierInfo:
-	"""
-	Data object which describes how a classifier links to MIDAS database objects.
+	"""Data object which describes how a classifier links to MIDAS database objects.
 
 	Attributes
 	----------
@@ -222,14 +221,14 @@ class ClassifierInfo:
 		of distributing updates, etc.
 	version : str
 		Version string indicating the current revision of the ID. Should be
-		digits separated by commas, e.g. ``'1.0'``.
+		digits separated by dots, e.g. ``'1.0'``.
 	parent_taxon : str
 		Name of the :class:`midas.db.models.taxon` this classifier works within.
 	class_taxa : str
 		Ordered list of taxa names that correspond to the classes of the model.
 	kspec : midas.kmers.KmerSpec
 		K-mer spec used to calculate features used as input
-		to the model (see :attr:`.Classifier.kspec)`.
+		to the model (see :attr:`.Classifier.kspec`).
 	description : str or None
 		Optional string with longer description of the classifier.
 	metadata : dict or None

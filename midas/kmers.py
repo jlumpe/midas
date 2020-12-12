@@ -39,32 +39,20 @@ class KmerSpec(object):
 
 	Attributes
 	----------
-
 	prefix : bytes
-
 		Constant prefix of k-mers to search for, upper-case nucleotide codes
 		as ascii-encoded ``bytes``.
-
 	k : int
-
 		Number of nucleotides in k-mer *after* prefix.
-
 	prefix_len : int
-
 		Number of nucleotides in prefix.
-
 	total_len : int
-
 		Sum of ``prefix_len`` and ``k``.
-
 	idx_len : int
-
 		Maximum value (plus one) of integer needed to index one of the
 		found k-mers. Also the number of possible k-mers fitting the spec.
 		Equal to ``4 ** k``.
-
 	coords_dtype : numpy.dtype
-
 		Smallest unsigned integer dtype that can store k-mer indices.
 	"""
 
@@ -281,7 +269,7 @@ class SignatureArray(collections.Sequence):
 		self.values[self.bounds[index]:self.bounds[index + 1]] = value
 
 	def sizeof(self, index):
-		"""Get the size of the coordinate set at the given index.
+		"""Get the size of the signature array at the given index.
 
 		Should be the case that
 
@@ -309,7 +297,6 @@ class SignatureArray(collections.Sequence):
 		-------
 		.SignatureArray
 		"""
-
 		array = cls.empty(list(map(len, signatures)), dtype=dtype)
 
 		for i, sig in enumerate(signatures):
@@ -326,15 +313,14 @@ class SignatureArray(collections.Sequence):
 		lengths
 			Sequence of lengths for each sub-array/signature.
 		values : numpy.ndarray
-			Initial shared coordinates array.
+			Shared data array to use (optional).
 		dtype : numpy.dtype
-		Numpy dtype of shared coordinates array.
+			Numpy dtype of shared coordinates array.
 
 		Returns
 		-------
 		.SignatureArray
 		"""
-
 		from midas.cython.metrics import BOUNDS_DTYPE
 
 		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)

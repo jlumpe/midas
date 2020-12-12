@@ -137,8 +137,8 @@ class SeqRecordMixin(ncbi.SeqRecordBase):
 		Parameters
 		----------
 		\\*args
-			Name of NCBI sequence ID followed by its attribute values (see :data:`midas.ncbi.SEQ_IDS`). Mututally
-			exclusive with``**kwargs``.
+			Name of NCBI sequence ID followed by its attribute values (see :data:`midas.ncbi.SEQ_IDS`).
+			Mutually exclusive with``**kwargs``.
 		\\**kwargs
 			Valid set of NCBI sequence ID attribute values as keyword arguments (see :func:`midas.ncbi.get_seq_ids`).
 			Mututally exclusive with ``*args``.
@@ -181,10 +181,10 @@ class SeqRecordMixin(ncbi.SeqRecordBase):
 			SQLAlchemy session object to create query with.
 		\\*args
 			Name of NCBI sequence ID followed by its attribute values
-			(see :data:`midas.ncbi.SEQ_IDS`). Mututally exclusive with ``**kwargs``.
+			(see :data:`midas.ncbi.SEQ_IDS`). Mutually exclusive with ``**kwargs``.
 		\\**kwargs
 			Valid set of NCBI sequence ID attribute values as keyword arguments
-			(see :func:`midas.ncbi.get_seq_ids`). Mututally exclusive with``*args``.
+			(see :func:`midas.ncbi.get_seq_ids`). Mutually exclusive with``*args``.
 
 		Returns
 		-------

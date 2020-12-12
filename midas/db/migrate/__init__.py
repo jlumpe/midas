@@ -62,7 +62,7 @@ def upgrade(engine, revision='head', tag=None, **kwargs):
 def init_db(engine):
 	"""Initialize the database schema by creating all tables and stamping with the latest Alembic revision.
 
-	Expects a fresh database that does not already contain any  tables for the :mod:`midas.db.models`
+	Expects a fresh database that does not already contain any tables for the :mod:`midas.db.models`
 	models and has not had any migrations run on it yet.
 
 	Parameters

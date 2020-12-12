@@ -269,7 +269,6 @@ class Taxon(Base):
 
 	Attributes
 	----------
-
 	id
 		Integer primary key.
 	name
