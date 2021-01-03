@@ -336,8 +336,7 @@ class Taxon(Base):
 		'ReferenceGenomeSet',
 		backref=backref('taxa', lazy='dynamic', cascade='all, delete-orphan')
 	)
-	parent = relationship('Taxon', remote_side=[id])
-	children = relationship('Taxon')
+	parent = relationship('Taxon', remote_side=[id], backref=backref('children', lazy=True))
 
 	def lineage(self):
 		"""Get sorted list of the Taxon's ancestors, including itself.
