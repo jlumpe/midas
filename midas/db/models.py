@@ -233,8 +233,8 @@ class AnnotatedGenome(Base, SeqRecordBase):
 	)
 	organism = Column(String())
 
-	genome = relationship('Genome')
-	reference_set = relationship('ReferenceGenomeSet')
+	genome = relationship('Genome', back_populates='annotations')
+	reference_set = relationship('ReferenceGenomeSet', back_populates='genomes')
 	primary_taxon = relationship(
 		'Taxon',
 		backref=backref('genomes_primary', lazy='dynamic')
