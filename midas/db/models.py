@@ -130,7 +130,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	genomes = relationship('AnnotatedGenome', lazy='dynamic',
 	                       cascade='all, delete-orphan')
 	base_genomes = relationship('Genome', secondary='genome_annotations',
-	                            lazy='dynamic')
+	                            lazy='dynamic', viewonly=True)
 
 	def __repr__(self):
 		return '<{}:{} {!r}>'.format(
