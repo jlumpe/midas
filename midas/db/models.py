@@ -205,6 +205,10 @@ class AnnotatedGenome(Base, SeqRecordBase):
 		additional taxa in each taxon's linage is implied. Will typically be
 		empty, but may contain non-proper (i.e. custom, not defined on GenBank,
 		or paraphyletic) taxa.
+	key
+		Hybrid property connected to attribute on :attr:`genome`.
+	version
+		Hybrid property connected to attribute on :attr:`genome`.
 	description
 		Hybrid property connected to attribute on :attr:`genome`.
 	entrez_db
@@ -245,6 +249,8 @@ class AnnotatedGenome(Base, SeqRecordBase):
 		backref=backref('genomes_additional', lazy='dynamic'),
 	)
 
+	key = hybrid_property(lambda self: self.genome.key)
+	version = hybrid_property(lambda self: self.genome.version)
 	description = hybrid_property(lambda self: self.genome.description)
 	entrez_db = hybrid_property(lambda self: self.genome.entrez_db)
 	entrez_id = hybrid_property(lambda self: self.genome.entrez_id)
