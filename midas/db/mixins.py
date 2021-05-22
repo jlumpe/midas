@@ -118,9 +118,11 @@ class SeqRecordMixin(ncbi.SeqRecordBase):
 	database.
 	"""
 
-	__table_args__ = (
-		UniqueConstraint('entrez_db', 'entrez_id'),
-	)
+	@declared_attr
+	def __table_args__(cls):
+		return (
+			UniqueConstraint('entrez_db', 'entrez_id'),
+		)
 
 	entrez_db = Column(String())
 	entrez_id = Column(Integer())
