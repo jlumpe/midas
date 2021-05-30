@@ -15,8 +15,9 @@ import collections
 
 import numpy as np
 
-from pydatatypes import Jsonable, JsonConstructible
 from .cython.seqs import kmer_to_index, index_to_kmer, reverse_complement
+from midas.util.attr import attrs, attrib
+from midas.io.json import Jsonable
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -24,9 +25,49 @@ from .cython.seqs import kmer_to_index, index_to_kmer, reverse_complement
 NUCLEOTIDES = b'ACGT'
 
 
-@Jsonable.register
-@JsonConstructible.register
-class KmerSpec(object):
+def validate_dna_seq_bytes(seq):
+	"""Check that a sequence contains only valid nucleotide codes.
+
+	Parameters
+	----------
+	seq : bytes
+		ASCII-encoded nucleotide sequence.
+
+	Raises
+	------
+	ValueError
+		If the sequence contains an invalid nucleotide.
+	"""
+	for i, nuc in enumerate(seq):
+		if nuc not in NUCLEOTIDES:
+			raise ValueError(f'Invalid byte at position {i}: {nuc}')
+
+
+def coords_dtype(k):
+	"""Get the smallest unsigned integer dtype that can store k-mer indices for the given ``k``.
+
+	Parameters
+	----------
+	k : int
+
+	Returns
+	-------
+	numpy.dtype
+	"""
+	if k <= 4:
+		return np.dtype('u1')
+	elif k <= 8:
+		return np.dtype('u2')
+	elif k <= 16:
+		return np.dtype('u4')
+	elif k <= 32:
+		return np.dtype('u8')
+	else:
+		return None
+
+
+@attrs(frozen=True, repr=False)
+class KmerSpec(Jsonable):
 	"""Specifications for a k-mer search operation.
 
 	Parameters
@@ -54,34 +95,29 @@ class KmerSpec(object):
 	coords_dtype : numpy.dtype
 		Smallest unsigned integer dtype that can store k-mer indices.
 	"""
+	k: int = attrib()
+	prefix: bytes = attrib(
+		converter=lambda v: v.upper().encode('ascii') if isinstance(v, str) else v,
+	)
+	prefix_len: int
+	total_len: int
+	idx_len: int
+	coords_dtype: np.dtype
 
-	def __init__(self, k, prefix):
-		self.k = k
+	@k.validator
+	def _validate_k(self, attribute, value):
+		if value < 1:
+			raise ValueError('k must be positive')
 
-		# Convert prefix to types
-		if isinstance(prefix, str):
-			self.prefix = prefix.upper().encode('ascii')
-		else:
-			self.prefix = bytes(prefix)
+	@prefix.validator
+	def _validate_prefix(self, attribute, value):
+		validate_dna_seq_bytes(value)
 
-		for nuc in self.prefix:
-			if nuc not in NUCLEOTIDES:
-				raise ValueError('Invalid byte in prefix: {}'.format(nuc))
-
-		self.prefix_len = len(self.prefix)
-		self.total_len = self.k + self.prefix_len
-		self.idx_len = 4 ** self.k
-
-		if self.k <= 4:
-			self.coords_dtype = np.dtype('u1')
-		elif self.k <= 8:
-			self.coords_dtype = np.dtype('u2')
-		elif self.k <= 16:
-			self.coords_dtype = np.dtype('u4')
-		elif self.k <= 32:
-			self.coords_dtype = np.dtype('u8')
-		else:
-			self.coords_dtype = None
+	def __attrs_post_init__(self):
+		object.__setattr__(self, 'prefix_len', len(self.prefix))
+		object.__setattr__(self, 'total_len', self.k + self.prefix_len)
+		object.__setattr__(self, 'idx_len', 4 ** self.k)
+		object.__setattr__(self, 'coords_dtype', coords_dtype(self.k))
 
 	def __get_newargs__(self):
 		return self.k, self.prefix
@@ -101,11 +137,11 @@ class KmerSpec(object):
 			self.prefix.decode('ascii')
 		)
 
-	def to_json(self):
+	def __to_json__(self):
 		return dict(k=self.k, prefix=self.prefix.decode('ascii'))
 
 	@classmethod
-	def from_json(cls, data):
+	def __from_json__(cls, data):
 		return cls(data['k'], data['prefix'])
 
 

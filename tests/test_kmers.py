@@ -5,6 +5,7 @@ import numpy as np
 
 from midas import kmers
 from midas.cython.seqs import reverse_complement
+import midas.io.json as mjson
 from midas.test import fill_bytearray, make_kmer_seq
 
 
@@ -24,6 +25,19 @@ NUC_COMPLEMENTS = {
 def make_kmerspec(k):
 	"""Create a KmerSpec with some arbitrary prefix."""
 	return kmers.KmerSpec(k, 'ATGC')
+
+
+def test_kmer_coords_dtype():
+	"""Test coords_dtype function."""
+
+	# Try k from 0 to 32 (all have dtypes)
+	for k in range(33):
+		# Check dtype can store the largest index
+		top_idx = 4**k - 1
+		assert kmers.coords_dtype(k).type(top_idx) == top_idx
+
+	# k > 32 should have no dtype
+	assert kmers.coords_dtype(33) is None
 
 
 def test_nucleotide_order():
@@ -74,8 +88,8 @@ class TestKmerSpec:
 	def test_attributes(self):
 		"""Test basic attributes."""
 
-		# Try k from 0 to 32 (all have dtypes)
-		for k in range(33):
+		# Try k from 1 to 32 (all have dtypes)
+		for k in range(1, 33):
 
 			spec = make_kmerspec(k)
 
@@ -85,21 +99,6 @@ class TestKmerSpec:
 
 		# Check prefix is bytes
 		assert isinstance(kmers.KmerSpec(11, 'ATGAC').prefix, bytes)
-
-	def test_dtype(self):
-		"""Test coords_dtype attribute"""
-
-		# Try k from 0 to 32 (all have dtypes)
-		for k in range(33):
-
-			spec = make_kmerspec(k)
-
-			# Check dtype can store the largest index
-			top_idx = spec.idx_len - 1
-			assert spec.coords_dtype.type(top_idx) == top_idx
-
-		# k > 32 should have no dtype
-		assert make_kmerspec(33).coords_dtype is None
 
 	def test_eq(self):
 		"""Test equality testing."""
@@ -120,20 +119,21 @@ class TestKmerSpec:
 	def test_json(self):
 		"""Test conversion to/from JSON."""
 
-		import json
-
 		kspec = kmers.KmerSpec(11, 'ATGAC')
+		data = mjson.to_json(kspec)
 
-		jsonstr = json.dumps(kspec.to_json())
-		kspec2 = kmers.KmerSpec.from_json(json.loads(jsonstr))
+		assert data == dict(
+			k=kspec.k,
+			prefix=kspec.prefix.decode('ascii'),
+		)
 
-		assert kspec2 == kspec
+		assert mjson.from_json(data, kmers.KmerSpec) == kspec
 
 
 def test_vec_coords_conversion():
 	"""Test conversion between k-mer vector and coordinates."""
 
-	for k in range(10):
+	for k in range(1, 10):
 
 		spec = make_kmerspec(k)
 
