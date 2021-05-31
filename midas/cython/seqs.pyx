@@ -95,7 +95,7 @@ def reverse_complement(bytes seq):
 	-------
 	bytes
 		Reverse complement sequence. All characters in the input which are not valid nucleotide codes will appear
-		unchanged in the cooresponding reverse position.
+		unchanged in the corresponding reverse position.
 	"""
 
 	cdef:
@@ -204,7 +204,7 @@ cdef np.uint64_t c_kmer_to_index64(const char *kmer, int k) except? 0:
 cdef void c_index_to_kmer(COORDS_T index, int k, char* out) nogil:
 	"""Convert k-mer index to sequence.
 
-	Output will be in uppper-case characters.
+	Output will be in upper-case characters.
 
 	Parameters
 	----------

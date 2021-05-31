@@ -203,7 +203,7 @@ class FileSignatureCalculator:
 
 		Parameters
 		----------
-		kmerspec : midas.kmers.kmerspec
+		kmerspec : midas.kmers.KmerSpec
 			K-mer spec to use for calculating signatures.
 		files
 			Sequence or collection of files to parse. Items may be :class:`.SeqFileInfo` or simply
@@ -232,7 +232,7 @@ class FileSignatureCalculator:
 			if not isinstance(val, SeqFileInfo):
 				if fmt is None:
 					raise TypeError(
-						'Must specifiy format in "fmt" if "files" conatins '
+						'Must specifiy format in "fmt" if "files" contains '
 						'paths instead of SeqFileInfo instances'
 					)
 

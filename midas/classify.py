@@ -574,7 +574,7 @@ class NaiveBayesClassifier(GenerativeClassifier):
 		x : np.ndarray
 			K-mer feature matrix.
 		y : np.ndarray
-			Array of integer label values corresonding to rows of ``x``.
+			Array of integer label values corresponding to rows of ``x``.
 		sample_weights : np.ndarray
 			Weights of samples.
 		"""
