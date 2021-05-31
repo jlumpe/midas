@@ -1,5 +1,5 @@
 # midas v2
-[![Build Status](https://travis-ci.com/hesslab-midas/midas.svg?token=vA4q9wqpx3uYk3vmyAfq&branch=master)](https://travis-ci.com/hesslab-midas/midas)
+[![Build Status](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml/badge.svg)](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml)
 
 Version 2 of the core MIDAS library.
 
