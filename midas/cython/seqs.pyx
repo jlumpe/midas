@@ -218,7 +218,7 @@ cdef void c_index_to_kmer(COORDS_T index, int k, char* out) nogil:
 
 		out[k - i - 1] = nuc
 
-		index = index / 4
+		index >>= 2
 
 
 cdef inline char nuc_complement(char nuc) nogil:
