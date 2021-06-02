@@ -11,7 +11,7 @@ from midas.test import make_signatures
 
 
 def slow_jaccard_coords(coords1, coords2, idx_len):
-	"""Get jaccard score of two k-mer coordiate arrays the slow but correct way."""
+	"""Get jaccard score of two k-mer coordinate arrays the slow but correct way."""
 
 	vec1 = coords_to_vec(coords1, idx_len)
 	vec2 = coords_to_vec(coords2, idx_len)

@@ -17,7 +17,7 @@ COORDS_DTYPES = frozenset(map(np.dtype, [
 
 
 def kmer_to_index(bytes kmer):
-	"""kmer_to_index(bytes kmer)
+	"""kmer_to_index(kmer)
 
 	Convert k-mer byte string into index.
 
@@ -34,15 +34,15 @@ def kmer_to_index(bytes kmer):
 
 
 def index_to_kmer(np.uint64_t index, int k):
-	"""index_to_kmer(COORDS_T index, int k)
+	"""index_to_kmer(index, k)
 
 	Convert k-mer index to sequence.
 
 	Parameters
 	----------
-	index
+	index : int
 		K-mer index.
-	k
+	k : int
 		Length of k-mer.
 
 	Returns
@@ -64,7 +64,7 @@ def index_to_kmer(np.uint64_t index, int k):
 
 
 def reverse_complement(bytes seq):
-	"""reverse_complement(bytes seq)
+	"""reverse_complement(seq)
 
 	Get the reverse complement of a nucleotide sequence.
 

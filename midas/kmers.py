@@ -123,9 +123,9 @@ def find_kmers(kspec, seq, out=None):
 		K-mer spec to use for search.
 	seq
 		Sequence to search within as ``bytes`` or ``str``. If ``str``
-		will be encoded as ASCII. Lower-case characters are OK ans will be
+		will be encoded as ASCII. Lower-case characters are OK and will be
 		matched as upper-case.
-	out : numpy.ndarrray
+	out : numpy.ndarray
 		Existing numpy array to write output to. Should be of length
 		``kspec.idx_len``. If given the same array will be returned.
 
@@ -279,6 +279,10 @@ class SignatureArray(collections.Sequence):
 		----------
 		index : int
 			Index of k-mer set in collection.
+
+		Returns
+		-------
+		int
 		"""
 		return self.bounds[index + 1] - self.bounds[index]
 
