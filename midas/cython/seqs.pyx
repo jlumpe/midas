@@ -16,24 +16,6 @@ COORDS_DTYPES = frozenset(map(np.dtype, [
 ]))
 
 
-cdef class CKmerSpec:
-	"""Describes a k-mer pattern to match"""
-
-	def __cinit__(self, int k, bytes prefix):
-		self.k = k
-		self.prefix = prefix
-		self.c_prefix = self.prefix
-		self.prefix_len = len(self.prefix)
-		self.idx_len = 1 << (2 * self.k)
-
-	def __repr__(self):
-		return '<{} k={} prefix="{}"">'.format(
-			self.__class__.__name__,
-			self.k,
-			self.prefix
-		)
-
-
 def kmer_to_index(bytes kmer):
 	"""kmer_to_index(bytes kmer)
 

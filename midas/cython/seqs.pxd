@@ -22,18 +22,6 @@ ctypedef fused COORDS_T_2:
 	np.uint64_t
 
 
-cdef class CKmerSpec:
-
-	cdef readonly:
-		int k
-
-		bytes prefix
-		char* c_prefix
-		int prefix_len
-
-		np.intp_t idx_len
-
-
 cdef np.uint32_t c_kmer_to_index32(const char*, int) except? 0
 cdef np.uint64_t c_kmer_to_index64(const char*, int) except? 0
 cdef void c_index_to_kmer(COORDS_T, int, char*) nogil
