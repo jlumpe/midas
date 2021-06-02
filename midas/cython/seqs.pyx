@@ -1,3 +1,5 @@
+# cython: language_level = 3str, wraparound = False
+
 """Cython module for working with DNA sequences and k-mers."""
 
 import numpy as np

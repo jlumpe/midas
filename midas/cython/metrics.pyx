@@ -1,3 +1,5 @@
+# cython: language_level = 3str, wraparound = False
+
 """Cython functions for calculating k-mer similarity metrics"""
 
 cimport cython
