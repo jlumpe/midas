@@ -1,16 +1,17 @@
 """Read and parse sequence files and calculate their k-mer signatures."""
 
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 from Bio import SeqIO
 
-from pydatatypes import dataclass, field
+from midas.util.attr import attrs, attrib
 from midas.kmers import find_kmers, vec_to_coords
 from .util import open_compressed, ClosingIterator
 
 
-@dataclass(frozen=True, slots=True)
+@attrs(frozen=True, slots=True)
 class SeqFileInfo:
 	"""A reference to a DNA sequence file stored in the file system.
 
@@ -37,9 +38,9 @@ class SeqFileInfo:
 		means no compression. See :func:`midas.io.util.open_compressed`.
 	"""
 
-	path = field(Path, converter=Path)
-	fmt = field(str)
-	compression = field(str, optional=True)
+	path: Path = attrib(converter=Path, validate_type=True)
+	fmt: str = attrib(validate_type=True)
+	compression: Optional[str] = attrib(optional=True, validate_type=True)
 
 	def open(self, mode='r', **kwargs):
 		"""
