@@ -101,17 +101,17 @@ class TestClassifierSerialization:
 		from io import BytesIO
 		from attr import asdict
 
-		info_dict = asdict(info)
+		info_data = asdict(info, recurse=False)
 
 		bad_info = []
 
 		# Number of classes doesn't match
 		bad_info.append(ClassifierInfo(**{
-			**info_dict,
+			**info_data,
 			'class_taxa': info.class_taxa[:-1]
 		}))
 		bad_info.append(ClassifierInfo(**{
-			**info_dict,
+			**info_data,
 			'kspec': KmerSpec(info.kspec.k + 1, info.kspec.prefix)
 		}))
 

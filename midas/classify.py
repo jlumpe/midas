@@ -1,13 +1,13 @@
 """Alternative taxonomy classification methods."""
 
 import functools
-import json
 import pickle
-from typing import List
+from typing import List, Dict, Any, Optional
 
 import numpy as np
 
-from pydatatypes import dataclass, field
+from midas.util.attr import attrs, attrib
+import midas.io.json as mjson
 from .kmers import KmerSpec
 
 
@@ -210,7 +210,7 @@ class Classifier:
 			obj._fit_params[self.key] = value
 
 
-@dataclass(json=True)
+@attrs(frozen=True)
 class ClassifierInfo:
 	"""Data object which describes how a classifier links to MIDAS database objects.
 
@@ -235,14 +235,13 @@ class ClassifierInfo:
 		Optional ``dict`` containing arbitrary extra metadata for the
 		classifier. Should be convertible to JSON.
 	"""
-
-	id = field(str)
-	version = field(str)
-	parent_taxon = field(str)
-	class_taxa = field(List[str])
-	kspec = field(KmerSpec)
-	description = field(str, optional=True, repr=False)
-	metadata = field(dict, optional=True, repr=False)
+	id: str = attrib(validate_type=True)
+	version: str = attrib(validate_type=True)
+	parent_taxon: str = attrib(validate_type=True)
+	class_taxa: List[str] = attrib(validate_type=True)
+	kspec: KmerSpec = attrib(validate_type=True)
+	description: Optional[str] = attrib(optional=True, repr=False, validate_type=True)
+	metadata: Optional[Dict[str, Any]] = attrib(optional=True, repr=False, validate_type=True)
 
 
 def _check_classifier_info(classifier, info):
@@ -296,7 +295,7 @@ def dump_classifier(stream, info, classifier, check=True):
 	# New lines in strings should be encoded as "\n" so there shouldn't be any
 	# newline characters until the separator.
 	text = TextIOWrapper(stream)
-	json.dump(info.to_json(), text)
+	mjson.dump(info, text)
 	text.detach()
 
 	# Separate by newline
@@ -330,8 +329,8 @@ def load_classifier(stream, info_only=False, check=True):
 	"""
 
 	# Read info
-	info_bytes = stream.readline()  # Reads up to newline
-	info = ClassifierInfo.from_json(json.loads(info_bytes.decode()))
+	info_str = stream.readline().decode()  # Reads up to newline
+	info = mjson.loads(info_str, ClassifierInfo)
 
 	if info_only:
 		return info
