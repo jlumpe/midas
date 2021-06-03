@@ -51,6 +51,10 @@ def test_index_conversion():
 			assert kmers.kmer_to_index(kmer.upper()) == index
 			assert kmers.kmer_to_index(kmer.lower()) == index
 
+	# Check invalid raises error
+	with pytest.raises(ValueError):
+		kmers.kmer_to_index(b'ATGNC')
+
 
 class TestKmerSpec:
 	"""Test midas.kmers.KmerSpec."""
