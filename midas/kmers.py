@@ -16,8 +16,7 @@ import collections
 import numpy as np
 
 from pydatatypes import Jsonable, JsonConstructible
-from .cython import seqs as cseqs
-from .cython.seqs import kmer_to_index, index_to_kmer
+from .cython.seqs import kmer_to_index, index_to_kmer, reverse_complement
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -140,7 +139,7 @@ def find_kmers(kspec, seq, out=None):
 		out = np.zeros(kspec.idx_len, dtype=bool)
 
 	# Reverse complement of prefix
-	rcprefix = cseqs.reverse_complement(kspec.prefix)
+	rcprefix = reverse_complement(kspec.prefix)
 
 	# Convert sequence to bytes
 	if not isinstance(seq, bytes):
@@ -184,7 +183,7 @@ def find_kmers(kspec, seq, out=None):
 		rckmer = seq[loc - kspec.k:loc]
 		if not isinstance(rckmer, bytes):
 			rckmer = str(rckmer).encode('ascii')
-		kmer = cseqs.reverse_complement(rckmer)
+		kmer = reverse_complement(rckmer)
 
 		try:
 			out[kmer_to_index(kmer)] = 1
