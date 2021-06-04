@@ -1,21 +1,13 @@
-import pytest
-from py.path import local
+from pathlib import Path
 
 import numpy as np
+import pytest
 
 
-# Path to fixtures directory
-FIXTURES_DIR = local(__file__).dirpath().join('fixtures')
-
-
-@pytest.fixture(scope='module')
-def fixture_file():
-	"""Function to get a py.path.local object for a fixture file."""
-
-	def fixture_file_func(path):
-		return FIXTURES_DIR.join(path)
-
-	return fixture_file_func
+@pytest.fixture(scope='session')
+def test_data():
+	"""The directory containing test data."""
+	return Path(__file__).parent / 'data'
 
 
 @pytest.fixture(autouse=True)

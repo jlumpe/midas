@@ -27,12 +27,11 @@ def slow_jaccard_coords(coords1, coords2, idx_len):
 
 
 @pytest.fixture(scope='module')
-def load_test_coords_col(fixture_file):
+def load_test_coords_col(test_data):
 	"""Function to load k-mer coordinates from file."""
 
 	def load_test_coords_col_func():
-
-		with fixture_file('kmer_coords/coords.pickle').open('rb') as fobj:
+		with open(test_data / 'kmer_coords/coords.pickle', 'rb') as fobj:
 			signatures_list = pickle.load(fobj)
 
 		return SignatureArray.from_signatures(signatures_list)
