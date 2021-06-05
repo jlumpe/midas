@@ -11,22 +11,25 @@ class TypeCheckError(Exception):
 	"""Raised when attempting to check a value against an unsupported type annotation."""
 
 
-def _is_union(T):
-	"""Check if a type annotation is a *parameterized* :class:`typing.Union`.
-
-	Parameters
-	----------
-	T
-		Type annotation
-
-	Returns
-	-------
-	bool
-	"""
-	if sys.version_info[1] >= 7:
+if sys.version_info.minor >= 7:
+	def _is_union(T):
 		return isinstance(T, typing._GenericAlias) and T.__origin__ is typing.Union
-	else:
+else:
+	def _is_union(T):
 		return isinstance(T, type(Union)) and T is not Union
+
+_is_union.__doc__ = """
+Check if a type annotation is a *parameterized* :class:`typing.Union`.
+
+Parameters
+----------
+T
+	Type annotation
+
+Returns
+-------
+bool
+"""
 
 
 def _union_types(T):
@@ -44,6 +47,13 @@ def _union_types(T):
 	return T.__args__
 
 
+if sys.version_info.minor >= 9:
+	_GENERIC_BASE = typing._BaseGenericAlias
+elif sys.version_info.minor >= 7:
+	_GENERIC_BASE = typing._GenericAlias
+else:
+	_GENERIC_BASE = typing.GenericMeta
+
 def _is_generic_type(T):
 	"""Check if a type annotation value corresponds to a generic type.
 
@@ -56,45 +66,54 @@ def _is_generic_type(T):
 	-------
 	bool
 	"""
-	if sys.version_info[1] >= 7:
-		return isinstance(T, typing._GenericAlias)
-	else:
-		return isinstance(T, typing.GenericMeta)
+	return isinstance(T, _GENERIC_BASE)
 
 
-def _is_generic_parameterized(T):
-	"""Check if a generic type annotation has (any) parameters specified.
-
-	Parameters
-	----------
-	T
-		Generic type annotation
-
-	Returns
-	-------
-	bool
-	"""
-	if sys.version_info[1] >= 7:
+if sys.version_info.minor >= 9:
+	def _is_generic_parameterized(T):
+		return typing.get_args(T) != ()
+elif sys.version_info.minor >= 7:
+	def _is_generic_parameterized(T):
 		return any(not isinstance(arg, typing.TypeVar) for arg in T.__args__)
-	else:
+else:
+	def _is_generic_parameterized(T):
 		return T.__args__ is not None
 
+_is_generic_parameterized.__doc__ = """
+Check if a generic type annotation has (any) parameters specified.
 
-def _generic_base(T):
-	"""Get the base (non-generic) type of a generic type annotation.
+Parameters
+----------
+T
+	Generic type annotation
 
-	This should return e.g. :class:`tuple` for ``typing.Tuple`` and
-	:class:`collections.abe.Sequence` for ``typing.Sequence``.
+Returns
+-------
+bool
+"""
 
-	Parameters
-	----------
-	T
-		Generic type annotation
-	"""
-	if sys.version_info[1] >= 7:
+
+if sys.version_info.minor >= 9:
+	def _generic_base(T):
+		return typing.get_origin(T)
+elif sys.version_info.minor >= 7:
+	def _generic_base(T):
 		return T.__origin__
-	else:
+else:
+	def _generic_base(T):
 		return T.__extra__
+
+_generic_base.__doc__ = """
+Get the base (non-generic) type of a generic type annotation.
+
+This should return e.g. :class:`tuple` for ``typing.Tuple`` and
+:class:`collections.abe.Sequence` for ``typing.Sequence``.
+
+Parameters
+----------
+T
+	Generic type annotation
+"""
 
 
 def _type_check_generic(value, T, ignore_params=False):
