@@ -139,6 +139,15 @@ class ReferenceGenomeSet(Base, KeyMixin):
 			self.name,
 		)
 
+	def root_taxa(self):
+		"""Query for root taxa belonging to the set.
+
+		Returns
+		-------
+		sqlalchemy.orm.query.Query
+		"""
+		return self.taxa.filter_by(parent=None)
+
 
 # Association table between AnnotatedGenome and Taxon
 annotations_additional_tax_assoc = sa.Table(

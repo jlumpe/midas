@@ -35,6 +35,17 @@ class TestReferenceGenomeSet:
 		assert ReferenceGenomeSet.by_key(session, gset.key, '1.0') == gset
 		assert ReferenceGenomeSet.by_key(session, gset.key, '1.1') is None
 
+	def test_root_taxa(self, session):
+		gset = session.query(ReferenceGenomeSet).one()
+
+		root = gset.taxa.filter_by(name='root').one()
+		assert gset.root_taxa().all() == [root]
+
+		# This is a read-only session specific to this test, we are free to make modifications.
+		new_roots = set(root.children)
+		session.delete(root)
+		assert set(gset.root_taxa()) == new_roots
+
 
 class TestAnnotatedGenome:
 
