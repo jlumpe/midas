@@ -1,7 +1,7 @@
 """Custom types and other utilities for SQLAlchemy."""
 
 import json
-import collections
+from collections.abc import Sequence, Mapping, MutableSequence, MutableMapping
 import weakref
 
 import sqlalchemy as sa
@@ -71,10 +71,10 @@ class MutableJsonCollection(Mutable):
 		elif isinstance(elem, JSONABLE_SCALARS):
 			return elem
 
-		elif isinstance(elem, collections.Mapping):
+		elif isinstance(elem, Mapping):
 			return MutableJsonDict(elem, parent=self)
 
-		elif isinstance(elem, collections.Sequence):
+		elif isinstance(elem, Sequence):
 			return MutableJsonList(elem, parent=self)
 
 		else:
@@ -90,7 +90,7 @@ class MutableJsonCollection(Mutable):
 			return elem
 
 
-class MutableJsonList(MutableJsonCollection, collections.MutableSequence):
+class MutableJsonList(MutableJsonCollection, MutableSequence):
 	"""List-like object corresponding to JSON array in SQLAlchemy.
 
 	Mutations will be tracked in this object and all nested collections.
@@ -136,7 +136,7 @@ class MutableJsonList(MutableJsonCollection, collections.MutableSequence):
 	@classmethod
 	def coerce(cls, key, value):
 		if not isinstance(value, MutableJsonList):
-			if isinstance(value, collections.Sequence):
+			if isinstance(value, Sequence):
 				return MutableJsonList(value)
 			else:
 				return Mutable.coerce(key, value)
@@ -144,7 +144,7 @@ class MutableJsonList(MutableJsonCollection, collections.MutableSequence):
 			return value
 
 
-class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
+class MutableJsonDict(MutableJsonCollection, MutableMapping):
 	"""Dict-like object corresponding to JSON object in SQLAlchemy.
 
 	Mutations will be tracked in this object and all nested collections.
@@ -195,7 +195,7 @@ class MutableJsonDict(MutableJsonCollection, collections.MutableMapping):
 	@classmethod
 	def coerce(cls, key, value):
 		if not isinstance(value, MutableJsonDict):
-			if isinstance(value, collections.Mapping):
+			if isinstance(value, Mapping):
 				return MutableJsonDict(value)
 			else:
 				return Mutable.coerce(key, value)
@@ -240,7 +240,7 @@ class JsonType(TypeDecorator):
 			return None
 
 
-class KeyValueTable(collections.MutableMapping):
+class KeyValueTable(MutableMapping):
 	"""Mutable key-value store in a database table.
 
 	Fully implements :class:`collections.MutableMapping`, with all methods
