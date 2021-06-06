@@ -344,21 +344,32 @@ class Taxon(Base):
 	)
 	parent = relationship('Taxon', remote_side=[id], backref=backref('children', lazy=True))
 
+	def ancestors(self, incself=False):
+		"""Iterate through the taxon's ancestors from bottom to top.
+
+		Parameters
+		----------
+		incself : bool
+			If True start with self, otherwise start with parent.
+
+		Returns
+		-------
+		Iterable[.Taxon]
+		"""
+		taxon = self if incself else self.parent
+		while taxon is not None:
+			yield taxon
+			taxon = taxon.parent
+
 	def lineage(self):
-		"""Get sorted list of the Taxon's ancestors, including itself.
+		"""Get a sorted list of the taxon's ancestors from top to bottom, including itself.
 
 		Returns
 		-------
 		list[.Taxon]
-			List of taxa ordered from parent to child.
 		"""
-		l = list()
-		taxon = self
-
-		while taxon:
-			l.insert(0, taxon)
-			taxon = taxon.parent
-
+		l = list(self.ancestors(incself=True))
+		l.reverse()
 		return l
 
 	def root(self):
@@ -377,6 +388,47 @@ class Taxon(Base):
 			return self
 		else:
 			return self.parent.root()
+
+	def isleaf(self):
+		"""Check if the taxon is a leaf (has no children).
+
+		Returns
+		-------
+		bool
+		"""
+		return not self.children
+
+	def descendants(self, incself=False):
+		"""Iterate through taxa all of the taxon's descendants (pre-order depth-first).
+
+		Parameters
+		----------
+		incself : bool
+			Yield self first.
+
+		Returns
+		-------
+		Iterable[.Taxon]
+		"""
+		if incself:
+			yield self
+		for child in self.children:
+			yield from child.descendants(incself=True)
+
+	def leaves(self):
+		"""Iterate through all leaves in the taxon's subtree.
+
+		For leaf taxa this will just yield the taxon itself.
+
+		Returns
+		-------
+		Iterable[.Taxon]
+		"""
+		if self.isleaf():
+			yield self
+		else:
+			for child in self.children:
+				yield from child.leaves()
 
 	def print_tree(self, indent='  ', *, _depth=0):
 		"""Print the taxon's subtree for debugging.

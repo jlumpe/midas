@@ -61,17 +61,29 @@ class TestTaxon:
 	def test_tree(self, session):
 		"""Test tree structure."""
 
-		root = session.query(Taxon).filter_by(name='root').one()
+		taxa = session.query(Taxon)
+		root = taxa.filter_by(name='root').one()
 
-		for taxon in session.query(Taxon):
+		for taxon in taxa:
 			assert taxon.root() == root
+			assert taxon.isleaf() == (len(taxon.children) == 0)
 
-			# Test parent/child relationships
+			# Test parent/child relationships match
 			for child in taxon.children:
 				assert child.parent == taxon
 
-			# Test lineage() method
-			lineage = taxon.lineage()
-			assert lineage[0] == root
-			for i in range(len(lineage) - 1):
-				assert lineage[i] == lineage[i + 1].parent
+			# Test ancestors() and lineage() methods
+			ancestors = list(taxon.ancestors(incself=True))
+			assert ancestors[0] is taxon
+			assert ancestors[-1] is root
+			assert list(taxon.ancestors()) == ancestors[1:]
+			assert list(reversed(taxon.lineage())) == ancestors
+
+			for i in range(len(ancestors) - 1):
+				assert ancestors[i].parent is ancestors[i + 1]
+
+			# Test descendants() and leaves() methods
+			descendants = {t for t in taxa if taxon in t.ancestors(incself=True)}
+			assert set(taxon.descendants()) == descendants - {taxon}
+			assert set(taxon.descendants(incself=True)) == descendants
+			assert set(taxon.leaves()) == {d for d in descendants if d.isleaf()}
