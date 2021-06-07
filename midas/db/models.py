@@ -72,15 +72,10 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	# TODO - really should be immutable
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
-	annotations = relationship('AnnotatedGenome', lazy=True,
-	                           cascade='all, delete-orphan')
+	annotations = relationship('AnnotatedGenome', lazy=True, cascade='all, delete-orphan')
 
 	def __repr__(self):
-		return '<{}:{} "{}">'.format(
-			type(self).__name__,
-			self.id,
-			self.description,
-		)
+		return '<{}:{} "{}">'.format(type(self).__name__, self.id, self.description)
 
 
 class ReferenceGenomeSet(Base, KeyMixin):
@@ -127,17 +122,11 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 	extra = Column(MutableJsonDict.as_mutable(JsonType))
 
-	genomes = relationship('AnnotatedGenome', lazy='dynamic',
-	                       cascade='all, delete-orphan')
-	base_genomes = relationship('Genome', secondary='genome_annotations',
-	                            lazy='dynamic', viewonly=True)
+	genomes = relationship('AnnotatedGenome', lazy='dynamic', cascade='all, delete-orphan')
+	base_genomes = relationship('Genome', secondary='genome_annotations', lazy='dynamic', viewonly=True)
 
 	def __repr__(self):
-		return '<{}:{} {!r}>'.format(
-			type(self).__name__,
-			self.id,
-			self.name,
-		)
+		return '<{}:{} {!r}>'.format(type(self).__name__, self.id, self.name)
 
 	def root_taxa(self):
 		"""Query for root taxa belonging to the set.
@@ -452,8 +441,4 @@ class Taxon(Base):
 			child.print_tree(indent=indent, _depth=_depth + 1)
 
 	def __repr__(self):
-		return '<{}:{} {!r}>'.format(
-			type(self).__name__,
-			self.id,
-			self.name,
-		)
+		return '<{}:{} {!r}>'.format(type(self).__name__, self.id, self.name)
