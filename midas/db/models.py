@@ -3,7 +3,7 @@
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -70,7 +70,7 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	description = Column(String(), nullable=False)
 
 	# TODO - really should be immutable
-	extra = Column(MutableJsonDict.as_mutable(JsonType))
+	extra = deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	annotations = relationship('AnnotatedGenome', lazy=True, cascade='all, delete-orphan')
 
@@ -334,7 +334,7 @@ class Taxon(Base):
 	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 
 	ncbi_id = Column(Integer(), index=True)
-	extra = Column(MutableJsonDict.as_mutable(JsonType))
+	extra = deferred(Column(MutableJsonDict.as_mutable(JsonType)))
 
 	reference_set = relationship(
 		'ReferenceGenomeSet',
