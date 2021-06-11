@@ -3,10 +3,12 @@
 Uses the included testdb_210126 database.
 """
 
-import pytest
+import random
 
+import pytest
 from sqlalchemy.orm import sessionmaker
 
+from midas.db import models
 from midas.db.models import Genome, ReferenceGenomeSet, AnnotatedGenome, Taxon
 
 
@@ -143,3 +145,60 @@ class TestTaxon:
 			assert set(taxon.descendants()) == descendants - {taxon}
 			assert set(taxon.descendants(incself=True)) == descendants
 			assert set(taxon.leaves()) == {d for d in descendants if d.isleaf()}
+
+
+class TestGenomeIDMapping:
+	"""Test mapping genomes to ID values."""
+
+	def test__genome_id_attr(self):
+		"""Test _check_genome_id_attr() function."""
+
+		for key, attr in models.GENOME_ID_ATTRS.items():
+			assert models._check_genome_id_attr(key) is attr
+			assert models._check_genome_id_attr(attr) is attr
+
+		for arg in ['description', Genome.description, AnnotatedGenome.key]:
+			with pytest.raises(ValueError):
+				models._check_genome_id_attr(arg)
+
+	def test__get_genome_id(self, id_lookup_session):
+		"""Test _get_genome_id() function."""
+		session = id_lookup_session
+
+		for genome in session.query(Genome):
+			for key, attr in models.GENOME_ID_ATTRS.items():
+				assert models._get_genome_id(genome, attr) == getattr(genome, key)
+
+	def test_genomes_by_id(self, id_lookup_session):
+		"""Test genomes_by_id() and genomes_by_id_subset() functions."""
+		session = id_lookup_session
+		random.seed(0)
+
+		gset = session.query(ReferenceGenomeSet).one()
+		genomes = list(gset.genomes)
+		random.shuffle(genomes)
+
+		genomes_missing = list(genomes)
+		genomes_missing.insert(3, None)
+		genomes_missing.insert(8, None)
+
+		for key, attr in models.GENOME_ID_ATTRS.items():
+			# Check with all valid IDs
+			ids = [models._get_genome_id(g, attr) for g in genomes]
+			assert models.genomes_by_id(gset, attr, ids) == genomes
+			assert models.genomes_by_id(gset, key, ids) == genomes
+
+			# with missing values
+			ids_missing = [
+				models._get_genome_id(g, attr) if g is not None else '!INVALID!'
+				for g in genomes_missing
+			]
+
+			with pytest.raises(KeyError):
+				models.genomes_by_id(gset, attr, ids_missing)
+
+			assert models.genomes_by_id(gset, attr, ids_missing, strict=False) == genomes_missing
+
+			genomes_sub, idxs_sub = models.genomes_by_id_subset(gset, attr, ids_missing)
+			assert genomes_sub == genomes
+			assert [genomes_missing[i] for i in idxs_sub] == genomes

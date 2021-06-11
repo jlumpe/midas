@@ -6,6 +6,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 from midas.ncbi import SeqRecordBase
 from .mixins import KeyMixin, SeqRecordMixin
@@ -442,3 +443,128 @@ class Taxon(Base):
 
 	def __repr__(self):
 		return '<{}:{} {!r}>'.format(type(self).__name__, self.id, self.name)
+
+
+#: Attributes of :class:`midas.db.models.Genome` which serve as unique IDs.
+GENOME_ID_ATTRS = {
+	'key': Genome.key,
+	'genbank_acc': Genome.genbank_acc,
+	'refseq_acc': Genome.refseq_acc,
+	'entrez_id': Genome.entrez_id,
+}
+
+
+def _check_genome_id_attr(attr):
+	"""Check that Genome ID attribute is valid, and convert from string argument.
+	"""
+	if isinstance(attr, str):
+		try:
+			return GENOME_ID_ATTRS[attr]
+		except KeyError:
+			pass
+
+	elif isinstance(attr, InstrumentedAttribute):
+		for allowed in GENOME_ID_ATTRS.values():
+			if attr is allowed:
+				return attr
+
+	raise ValueError('Genome ID attribute must be one of the following: ' + ', '.join(GENOME_ID_ATTRS))
+
+
+def _get_genome_id(genome, attr):
+	"""Get ID value of genome
+
+	"""
+	if isinstance(genome, AnnotatedGenome):
+		genome = genome.genome
+	return attr.__get__(genome, Genome)
+
+
+def _check_genomes_have_ids(genomeset, id_attr):
+	"""Check all genomes in ReferenceGenomeSet have values for the given ID attribute or raise a ``RuntimeError``."""
+	c = genomeset.genomes \
+		.join(AnnotatedGenome.genome) \
+		.filter(id_attr == None) \
+		.count()
+
+	if c > 0:
+		raise RuntimeError(f'{c} genomes missing value for ID attribute {id_attr.key}')
+
+
+def _map_ids_to_genomes(genomeset, id_attr):
+	"""Get dict mapping ID values to AnnotatedGenome."""
+	q = genomeset.genomes.join(AnnotatedGenome.genome).add_columns(id_attr)
+	return {id_: g for g, id_ in q}
+
+
+def genomes_by_id(genomeset, id_attr, ids, strict=True):
+	"""Match a :class:`ReferenceGenomeSet`'s genomes to a set of ID values.
+
+	This is primarily used to match genomes to signatures based on the ID values stored in a
+	signature file. It is expected that the signature file may contain signatures for more genomes
+	than are present in the genome set, see also :func:`.genomes_by_id_subset` for that condition.
+
+	Parameters
+	----------
+	genomeset : midas.db.models.ReferenceGenomeSet
+	id_attr : Union[str, sqlalchemy.orm.attributes.InstrumentedAttribute]
+		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
+		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
+		See :data:`.GENOME_IDS` for the set of allowed values.
+	ids : Sequence
+		Sequence of ID values (strings or integers, matching type of attribute).
+	strict : bool
+		Raise an exception if a matching genome cannot be found for any ID value.
+
+	Returns
+	-------
+	List[Optional[AnnotatedGenome]]
+		List of genomes of same length as ``ids``. If ``strict=False`` and a genome cannot be found
+		for a given ID the list will contain ``None`` at the corresponding position.
+
+	Raises
+	------
+	KeyError
+		If ``strict=True`` and any ID value cannot be found.
+	"""
+	id_attr = _check_genome_id_attr(id_attr)
+	_check_genomes_have_ids(genomeset, id_attr)
+	d = _map_ids_to_genomes(genomeset, id_attr)
+	if strict:
+		return [d[id_] for id_ in ids]
+	else:
+		return [d.get(id_) for id_ in ids]
+
+
+def genomes_by_id_subset(genomeset, id_attr, ids):
+	"""Match a :class:`ReferenceGenomeSet`'s genomes to a set of ID values, allowing missing genomes.
+
+	This calls :func:`.genomes_by_id` with ``strict=False`` and filters any ``None`` values from the
+	output. The filtered list is returned along with the indices of all values in ``ids`` which were
+	not filtered out. The indices can be used to load only those signatures which have a matched
+	genome from a signature file.
+
+	Parameters
+	----------
+	genomeset : midas.db.models.ReferenceGenomeSet
+	id_attr : Union[str, sqlalchemy.orm.attributes.InstrumentedAttribute]
+		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
+		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
+		See :data:`.GENOME_IDS` for the set of allowed values.
+	ids : Sequence
+		Sequence of ID values (strings or integers, matching type of attribute).
+
+	Returns
+	-------
+	Tuple[List[AnnotatedGenome], List[int]]
+	"""
+	genomes = genomes_by_id(genomeset, id_attr, ids, strict=False)
+	genomes_out = []
+	idxs_out = []
+
+	for i, g in enumerate(genomes):
+		if g is not None:
+			genomes_out.append(g)
+			idxs_out.append(i)
+
+	return genomes_out, idxs_out
