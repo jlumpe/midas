@@ -3,7 +3,19 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from midas.db.models import Base as models_base
 from midas.db.sqla import ReadOnlySession
+
+
+@pytest.fixture(scope='session')
+def make_empty_db():
+	"""Function which creates an empty in-memory-database with initialized schema."""
+	def empty_db_factory():
+		engine = create_engine('sqlite:///:memory:')
+		models_base.metadata.create_all(engine)
+		return engine
+
+	return empty_db_factory
 
 
 @pytest.fixture(scope='session')
