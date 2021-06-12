@@ -2,24 +2,7 @@
 
 cimport numpy as np
 
-
-# Fused type for storing k-mer coordinates
-ctypedef fused COORDS_T:
-	np.int16_t
-	np.uint16_t
-	np.int32_t
-	np.uint32_t
-	np.int64_t
-	np.uint64_t
-
-# Copy of COORDS_T, used when two arguments are of this type but not the same
-ctypedef fused COORDS_T_2:
-	np.int16_t
-	np.uint16_t
-	np.int32_t
-	np.uint32_t
-	np.int64_t
-	np.uint64_t
+from .types cimport COORDS_T
 
 
 cdef np.uint32_t c_kmer_to_index32(const char*, int) except? 0
