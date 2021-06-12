@@ -183,7 +183,7 @@ class SignatureFile:
 				raise TypeError('Cannot specify both chunksize and indices')
 
 			# Use this dtype as it is what the Cython metric functions expect
-			from midas.cython.metrics import BOUNDS_DTYPE
+			from midas._cython.metric import BOUNDS_DTYPE
 
 			# Calculate file sub-array bounds from lengths
 			bounds = np.zeros(self.count + 1, dtype=BOUNDS_DTYPE)

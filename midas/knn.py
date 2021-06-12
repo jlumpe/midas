@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from midas.cython import metrics
+from midas._cython.metric import BOUNDS_DTYPE, SCORE_DTYPE, jaccard_coords, jaccard_coords_col
 
 
 def sigarray_scores(signature, sigarray, distance=False):
@@ -22,9 +22,9 @@ def sigarray_scores(signature, sigarray, distance=False):
 	"""
 
 	values = sigarray.values
-	bounds = sigarray.bounds.astype(metrics.BOUNDS_DTYPE)
+	bounds = sigarray.bounds.astype(BOUNDS_DTYPE)
 
-	scores = metrics.jaccard_coords_col(signature, values, bounds)
+	scores = jaccard_coords_col(signature, values, bounds)
 
 	return 1 - scores if distance else scores
 
@@ -112,7 +112,7 @@ def nn_search_multi(query_sigs, refarray, k=None, distance=False,
 	# Create output arrays
 	out_shape = (query_size,) if k is None else (query_size, k)
 	indices = np.zeros(out_shape, dtype=int)
-	scores = np.zeros(out_shape, dtype=metrics.SCORE_DTYPE)
+	scores = np.zeros(out_shape, dtype=SCORE_DTYPE)
 
 	p = 0
 

@@ -4,7 +4,7 @@ import pytest
 import numpy as np
 
 from midas import kmers
-from midas.cython.seqs import reverse_complement
+from midas._cython.kmers import reverse_complement
 import midas.io.json as mjson
 from midas.test import fill_bytearray, make_kmer_seq
 
@@ -168,7 +168,7 @@ def check_reverse_complement(seq, rc):
 
 
 def test_revcomp():
-	"""Test midas.cython.seqs.reverse_complement."""
+	"""Test midas._cython.kmers.reverse_complement."""
 
 	# Check empty
 	assert reverse_complement(b'') == b''

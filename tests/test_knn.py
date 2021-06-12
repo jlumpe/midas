@@ -12,7 +12,7 @@ import numpy as np
 from midas.test import make_signatures
 from midas import knn
 from midas.kmers import SignatureArray
-from midas.cython import metrics
+from midas._cython.metric import BOUNDS_DTYPE, jaccard_coords
 
 
 def todist(value, convert):
@@ -45,10 +45,10 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 	# Try with this type and a different type
 	if alt_bounds_dtype:
 		ref_sigs = SignatureArray(ref_sigs.values, ref_sigs.bounds.astype('i4'))
-		assert ref_sigs.bounds.dtype != metrics.BOUNDS_DTYPE
+		assert ref_sigs.bounds.dtype != BOUNDS_DTYPE
 
 	else:
-		assert ref_sigs.bounds.dtype == metrics.BOUNDS_DTYPE
+		assert ref_sigs.bounds.dtype == BOUNDS_DTYPE
 
 	# Use first signature as query
 	querysig = query_sigs[0]
@@ -62,7 +62,7 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 	# Check scores one at a time
 	for refsig, score in zip(ref_sigs, scores):
 
-		expected = metrics.jaccard_coords(querysig, refsig)
+		expected = jaccard_coords(querysig, refsig)
 		assert score == todist(expected, distance)
 
 

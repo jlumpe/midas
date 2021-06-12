@@ -15,7 +15,7 @@ from collections.abc import Sequence
 
 import numpy as np
 
-from .cython.seqs import kmer_to_index, index_to_kmer, reverse_complement
+from midas._cython.kmers import kmer_to_index, index_to_kmer, reverse_complement
 from midas.util.attr import attrs, attrib
 from midas.io.json import Jsonable
 
@@ -360,7 +360,7 @@ class SignatureArray(Sequence):
 		-------
 		.SignatureArray
 		"""
-		from midas.cython.metrics import BOUNDS_DTYPE
+		from midas._cython.metric import BOUNDS_DTYPE
 
 		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)
 		bounds[1:] = np.cumsum(lengths)

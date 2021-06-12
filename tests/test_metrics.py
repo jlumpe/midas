@@ -5,7 +5,7 @@ import pickle
 import pytest
 import numpy as np
 
-from midas.cython.metrics import jaccard_coords, jaccard_coords_col
+from midas._cython.metric import jaccard_coords, jaccard_coords_col
 from midas.kmers import SignatureArray, coords_to_vec
 from midas.test import make_signatures
 

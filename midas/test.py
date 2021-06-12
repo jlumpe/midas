@@ -129,7 +129,7 @@ def make_kmer_seq(seqlen, k, prefix_len, kmer_interval, n_interval=None, seed=0)
 	import itertools
 	import numpy as np
 	from midas import kmers
-	from midas.cython.seqs import reverse_complement
+	from midas.kmers import reverse_complement
 
 	if kmer_interval < k + prefix_len:
 		raise ValueError()
