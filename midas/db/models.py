@@ -2,14 +2,14 @@
 
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 from midas.ncbi import SeqRecordBase
-from .mixins import KeyMixin, SeqRecordMixin
+from .mixins import SeqRecordMixin
 from .sqla import JsonType, MutableJsonDict
 
 
@@ -23,6 +23,43 @@ __all__ = [
 
 # SqlAlchemy declarative base
 Base = declarative_base()
+
+
+class KeyMixin:
+	"""Mixin that defines key/version columns.
+
+	Attributes
+	----------
+	key : str
+		Intended to be a universally unique key that can be used to identify objects across
+		databases on different systems. This is primarily intended to be used for distributing
+		database updates. It can be any arbitrary string but the recommended format is a
+		filepath-like structure separated by forward slashes. This results in a hierarchical
+		format that supports using namespaces to avoid key conflicts. Example:
+		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific genome stored in the
+		NCBI assembly database.
+	version : str
+		Version of the keyed object according to whatever source defined the key. Used to
+		determine when the metadata needs to be updated. Should be in the format defined by `PEP
+		440 <https://www.python.org/dev/peps/pep-0440/>`_.
+	"""
+	key = Column(String(), index=True)
+	version = Column(String())
+
+	@declared_attr
+	def __table_args__(cls):
+		return (
+			UniqueConstraint('key', 'version'),
+		)
+
+	@classmethod
+	def by_key(cls, session, key, version=None):
+		query = session.query(cls).filter_by(key=key)
+
+		if version is None:
+			return query.order_by(cls.version.desc()).first()
+		else:
+			return query.filter_by(version=version).scalar()
 
 
 class Genome(Base, SeqRecordMixin, KeyMixin):
