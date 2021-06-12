@@ -9,7 +9,6 @@ from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 from midas.ncbi import SeqRecordBase
-from .mixins import SeqRecordMixin
 from .sqla import JsonType, MutableJsonDict
 
 
@@ -62,7 +61,7 @@ class KeyMixin:
 			return query.filter_by(version=version).scalar()
 
 
-class Genome(Base, SeqRecordMixin, KeyMixin):
+class Genome(Base, KeyMixin):
 	"""Base model for a reference genome queries can be run against.
 
 	Corresponds to a single assembly (one or more contigs, but at least
@@ -86,16 +85,16 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 	version : str
 		String column. See :class:`midas.db.mixins.KeyMixin`.
 	description : Optional[str]
-		String column. Short description. Recommended to be unique but this is
-		not enforced.
+		String column. Short one-line description. Recommended to be unique but this is not enforced.
 	entrez_db : Optional[str]
-		String column. See :class:`midas.ncbi.SeqRecordBase`.
+		String column. If the genome corresponds to a record downloaded from an Entrez database
+		this column should be the database name and ``entrez_id`` should be the entry's UID.
 	entrez_id : Optional[int]
-		String column. See :class:`midas.ncbi.SeqRecordBase`.
+		Integer column. See previous.
 	genbank_acc : Optional[str]
-		String column. See :class:`midas.ncbi.SeqRecordBase`.
+		String column. GenBank accession number for this genome, if any.
 	refseq_acc : Optional[str]
-		String column. See :class:`midas.ncbi.SeqRecordBase`.
+		String column. RefSeq accession number for this genome, if any.
 	extra : Optional[dict]
 		JSON column. Additional arbitrary metadata.
 	annotations : Collection[.AnnotatedGenome]
@@ -104,8 +103,18 @@ class Genome(Base, SeqRecordMixin, KeyMixin):
 
 	__tablename__ = 'genomes'
 
+	@declared_attr
+	def __table_args__(cls):
+		return (
+			UniqueConstraint('entrez_db', 'entrez_id'),
+		)
+
 	id = Column(Integer(), primary_key=True)
 	description = Column(String(), nullable=False)
+	entrez_db = Column(String())
+	entrez_id = Column(Integer())
+	genbank_acc = Column(String(), unique=True)
+	refseq_acc = Column(String(), unique=True)
 
 	# TODO - really should be immutable
 	extra = deferred(Column(MutableJsonDict.as_mutable(JsonType)))
