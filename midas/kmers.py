@@ -11,7 +11,7 @@ bytes containing ascii-encoded nucleotide codes.
 	sequences.
 """
 
-import collections
+from collections.abc import Sequence
 
 import numpy as np
 
@@ -267,7 +267,7 @@ def coords_to_vec(coords, idx_len):
 	return vec
 
 
-class SignatureArray(collections.Sequence):
+class SignatureArray(Sequence):
 	"""
 	Stores a collection of k-mer signatures (k-mer sets in sparse coordinate format) in
 	a single Numpy array.
