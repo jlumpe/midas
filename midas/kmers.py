@@ -262,7 +262,7 @@ def coords_to_vec(coords, idx_len):
 	numpy.ndarray
 		Boolean k-mer vector.
 	"""
-	vec = np.zeros(idx_len, dtype=np.bool)
+	vec = np.zeros(idx_len, dtype=np.bool_)
 	vec[coords] = 1
 	return vec
 
