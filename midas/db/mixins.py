@@ -13,20 +13,18 @@ class KeyMixin:
 
 	Attributes
 	----------
-	key
-		Intended to be a universally unique key that can be used to identify
-		objects across databases on different systems. This is primarily
-		intended to be used for distributing database updates. It can be any
-		arbitrary string but the recommended format is a filepath-like
-		structure separated by forward slashes. This results in a hierarchical
+	key : str
+		Intended to be a universally unique key that can be used to identify objects across
+		databases on different systems. This is primarily intended to be used for distributing
+		database updates. It can be any arbitrary string but the recommended format is a
+		filepath-like structure separated by forward slashes. This results in a hierarchical
 		format that supports using namespaces to avoid key conflicts. Example:
-		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific
-		genome stored in the Genbank assembly database.
-	version
-		Version of the keyed object according to whatever source defined the key.
-		Used to determine when the	metadata needs to be updated. Should be in
-		the format defined by
-		`PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_.
+		``'ncbi/assembly/GCF_00000000.0'``, which corresponds to a specific genome stored in the
+		NCBI assembly database.
+	version : str
+		Version of the keyed object according to whatever source defined the key. Used to
+		determine when the metadata needs to be updated. Should be in the format defined by `PEP
+		440 <https://www.python.org/dev/peps/pep-0440/>`_.
 	"""
 	key = Column(String(), index=True)
 	version = Column(String())

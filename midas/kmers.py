@@ -146,7 +146,7 @@ class KmerSpec(Jsonable):
 
 
 def find_kmers(kspec, seq, out=None):
-	"""Find k-mers in a sequence and output a coordinate array.
+	"""Find k-mers in a sequence and output a dense array.
 
 	Searches sequence both backwards and forwards (reverse complement). The
 	sequence may contain invalid characters (not one of the four nucleotide

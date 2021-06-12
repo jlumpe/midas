@@ -115,7 +115,7 @@ def test_metadata(sigarray, sigfile, metadata):
 def test_read_all(sigarray, sigfile, chunksize, progress):
 	"""Test reading all signatures into an array."""
 
-	# Progresss callback
+	# Progress callback
 	if progress:
 		callback = ProgressChecker(
 			len(sigarray),
