@@ -8,7 +8,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
-from midas.ncbi import SeqRecordBase
 from .sqla import JsonType, MutableJsonDict
 
 
@@ -204,7 +203,7 @@ annotations_additional_tax_assoc = sa.Table(
 )
 
 
-class AnnotatedGenome(Base, SeqRecordBase):
+class AnnotatedGenome(Base):
 	"""A genome with additional annotations as part of a genome set.
 
 	Technically is an association object connecting Genomes with
