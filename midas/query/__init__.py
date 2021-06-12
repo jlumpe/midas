@@ -1,0 +1,1 @@
+"""Run queries against a full reference database to predict taxonomy of input sequences."""
