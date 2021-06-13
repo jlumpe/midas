@@ -12,7 +12,7 @@ extensions = [Extension(
 	'midas._cython.*',
 	['midas/_cython/*.pyx'],
 	include_dirs=[np_include],
-	extra_compile_args=['-fopenmp'],
+	extra_compile_args=['-fopenmp', '-Wno-sign-compare'],
 	extra_link_args=['-fopenmp'],
 )]
 
