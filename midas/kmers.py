@@ -127,9 +127,6 @@ class KmerSpec(Jsonable):
 			self.k == other.k and\
 			self.prefix == other.prefix
 
-	def coords_to_vec(self, coords):
-		return coords_to_vec(coords, self.idx_len)
-
 	def __repr__(self):
 		return '{}({}, {!r})'.format(
 			self.__class__.__name__,
