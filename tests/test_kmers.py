@@ -214,7 +214,8 @@ def test_revcomp():
 class TestFindKmers:
 	"""Test k-mer finding."""
 
-	def test_basic(self):
+	@pytest.mark.parametrize('sparse', [True, False])
+	def test_basic(self, sparse):
 		"""Test general k-mer finding."""
 
 		seq, kspec, vec = make_kmer_seq(
@@ -224,24 +225,22 @@ class TestFindKmers:
 			kmer_interval=50,
 			n_interval=10
 		)
+		expected = kmers.vec_to_coords(vec) if sparse else vec
 
 		# Test normal
-		assert np.array_equal(kmers.find_kmers(kspec, seq), vec)
+		assert np.array_equal(kmers.find_kmers(kspec, seq, sparse=sparse), expected)
 
 		# Test reverse complement
-		assert np.array_equal(kmers.find_kmers(kspec, reverse_complement(seq)), vec)
+		assert np.array_equal(kmers.find_kmers(kspec, reverse_complement(seq), sparse=sparse), expected)
 
 		# Test lower case
-		assert np.array_equal(kmers.find_kmers(kspec, seq.lower()), vec)
+		assert np.array_equal(kmers.find_kmers(kspec, seq.lower(), sparse=sparse), expected)
 
 		# Test string argument
-		assert np.array_equal(kmers.find_kmers(kspec, seq.decode('ascii')), vec)
+		assert np.array_equal(kmers.find_kmers(kspec, seq.decode('ascii'), sparse=sparse), expected)
 
 	def test_bounds(self):
-		"""
-		Test k-mer finding at beginning and end of sequence to catch errors with
-		search bounds.
-		"""
+		"""Test k-mer finding at beginning and end of sequence to catch errors with search bounds."""
 
 		# Sequence of all ATN's
 		seqlen = 100000
@@ -259,9 +258,9 @@ class TestFindKmers:
 		seq_array[-kspec.k:] = kmers.index_to_kmer(1, kspec.k)
 
 		seq = bytes(seq_array)
-		found_coords = kmers.vec_to_coords(kmers.find_kmers(kspec, seq))
+		found = kmers.find_kmers(kspec, seq)
 
-		assert np.array_equal(found_coords, [0, 1])
+		assert np.array_equal(found, [0, 1])
 
 	def test_overlapping(self):
 		"""Test k-mer finding when k-mers overlap with each other.
@@ -289,12 +288,8 @@ class TestFindKmers:
 		}
 
 		for s in [seq, reverse_complement(seq)]:
-			vec = kmers.find_kmers(kspec, s)
-
-			found = [
-				kmers.index_to_kmer(i, kspec.k)
-				for i in kmers.vec_to_coords(vec)
-			]
+			sig = kmers.find_kmers(kspec, s)
+			found = [kmers.index_to_kmer(idx, kspec.k) for idx in sig]
 
 			assert len(found) == len(expected)
 			assert all(kmer in expected for kmer in found)

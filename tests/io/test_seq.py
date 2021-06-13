@@ -71,8 +71,8 @@ def create_sequence_records(nseqs, k, prefix_len, seq_len=10000):
 	return kspec, records, vec
 
 
-@pytest.mark.parametrize('as_coords', [False, True])
-def test_find_kmers_parse(as_coords):
+@pytest.mark.parametrize('sparse', [False, True])
+def test_find_kmers_parse(sparse):
 	"""Test the find_kmers_parse function."""
 
 	kspec, records, vec = create_sequence_records(10, k=11, prefix_len=5)
@@ -83,12 +83,12 @@ def test_find_kmers_parse(as_coords):
 	buf.seek(0)
 
 	# Parse from buffer
-	kmers = find_kmers_parse(kspec, buf, 'fasta', coords=as_coords)
+	kmers = find_kmers_parse(kspec, buf, 'fasta', sparse=sparse)
 
-	if as_coords:
-		assert np.array_equal(vec_to_coords(vec), kmers)
+	if sparse:
+		assert np.array_equal(kmers, vec_to_coords(vec))
 	else:
-		assert np.array_equal(vec, kmers)
+		assert np.array_equal(kmers, vec)
 
 
 class TestSeqFileInfo:

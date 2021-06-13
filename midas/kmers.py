@@ -145,37 +145,40 @@ class KmerSpec(Jsonable):
 		return cls(data['k'], data['prefix'])
 
 
-def find_kmers(kspec, seq, out=None):
-	"""Find k-mers in a sequence and output a dense array.
+def find_kmers(kspec, seq, *, sparse=True, dense_out=None):
+	"""Find all k-mers in a DNA sequence.
 
-	Searches sequence both backwards and forwards (reverse complement). The
-	sequence may contain invalid characters (not one of the four nucleotide
-	codes) which will simply not be matched.
+	Searches sequence both backwards and forwards (reverse complement). The sequence may contain
+	invalid characters (not one of the four nucleotide codes) which will simply not be matched.
 
 	Parameters
 	----------
 	kspec : .KmerSpec
 		K-mer spec to use for search.
 	seq
-		Sequence to search within as ``bytes`` or ``str``. If ``str``
-		will be encoded as ASCII. Lower-case characters are OK and will be
-		matched as upper-case.
-	out : numpy.ndarray
-		Existing numpy array to write output to. Should be of length
-		``kspec.idx_len``. If given the same array will be returned.
+		Sequence to search within as ``bytes`` or ``str``. If ``str`` will be encoded as ASCII.
+		Lower-case characters are OK and will be matched as upper-case.
+	dense_out : numpy.ndarray
+		Pre-allocated numpy array to write dense output to. Should be of length ``kspec.idx_len``.
+		Note that this is still used as working space even if ``sparse=True``. Should be zeroed
+		prior to use (although if not the result will effectively be the bitwise AND between its
+		previous value and k-mers found in ``data``.
+	sparse : bool
+		If True return k-mers in sparse coordinate format rather than dense (bit vector) format.
 
 	Returns
 	-------
 	numpy.ndarray
-		Array of length ``kspec.idx_len`` containing ones in the
-		index of each k-mer found and zeros elsewhere. If ``out`` is not
-		given the array will be of type ``bool``.
-	"""
-	if out is None:
-		out = np.zeros(kspec.idx_len, dtype=bool)
+		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
+		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
+		:func:`midas.kmers.vec_to_coords`).
 
-	# Reverse complement of prefix
-	rcprefix = reverse_complement(kspec.prefix)
+	See Also
+	--------
+	midas.io.seq.find_kmers_parse
+	"""
+	if dense_out is None:
+		dense_out = np.zeros(kspec.idx_len, dtype=bool)
 
 	# Convert sequence to bytes
 	if not isinstance(seq, bytes):
@@ -190,6 +193,29 @@ def find_kmers(kspec, seq, out=None):
 		if char in nucs_lower:
 			seq = seq.upper()
 			break
+
+	_find_kmers(kspec, seq, dense_out)
+
+	if sparse:
+		return vec_to_coords(dense_out)
+	else:
+		return dense_out
+
+
+def _find_kmers(kspec, seq, out):
+	"""Actual implementation of find_kmers.
+
+	Parameters
+	----------
+	kspec : KmerSpec
+	seq : bytes
+		Upper-case ASCII nucleotide codes.
+	out : np.ndarray
+		Write dense output to this array.
+	"""
+
+	# Reverse complement of prefix
+	rcprefix = reverse_complement(kspec.prefix)
 
 	# Search forward
 	start = 0
@@ -227,8 +253,6 @@ def find_kmers(kspec, seq, out=None):
 			pass
 
 		start = loc + 1
-
-	return out
 
 
 def vec_to_coords(vec):

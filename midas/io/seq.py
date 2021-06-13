@@ -129,8 +129,8 @@ class SeqFileInfo:
 		return [cls(path, fmt, compression) for path in paths]
 
 
-def find_kmers_parse(kspec, data, format, out=None, coords=False):
-	"""Parse sequence data with Bio.Seq.parse() and find k-mers.
+def find_kmers_parse(kspec, data, format, *, sparse=True, dense_out=None):
+	"""Parse sequence data with ``Bio.Seq.parse()`` and find k-mers.
 
 	Parameters
 	----------
@@ -140,30 +140,35 @@ def find_kmers_parse(kspec, data, format, out=None, coords=False):
 		Stream with sequence data. Readable file-like object in text mode.
 	format : str
 		Sequence file format, as interpreted by :func:`Bio.SeqIO.parse`.
-	out : numpy.ndarray
-		Existing numpy array to write output to. Should be of length ``kspec.idx_len``. If given the
-		same array will be returned.
-	coords : bool
-		If True return k-mers in coordinate rather than vector format.
+	sparse : bool
+		If True return k-mers in sparse coordinate format rather than dense (bit vector) format.
+	dense_out : numpy.ndarray
+		Pre-allocated numpy array to write dense output to. Should be of length ``kspec.idx_len``.
+		Note that this is still used as working space even if ``sparse=True``. Should be zeroed
+		prior to use (although if not the result will effectively be the bitwise AND between its
+		previous value and k-mers found in ``data``.
 
 	Returns
 	-------
 	numpy.ndarray
-		If ``coords`` is False, returns boolean K-mer vector (same array as ``out`` if it was given).
-		If coords is True returns k-mers in coordinate format (dtype will match
+		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
+		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
 		:func:`midas.kmers.vec_to_coords`).
-	"""
 
-	if out is None:
-		out = np.zeros(kspec.idx_len, dtype=bool)
+	See Also
+	--------
+	midas.kmers.find_kmers
+	"""
+	if dense_out is None:
+		dense_out = np.zeros(kspec.idx_len, dtype=bool)
 
 	for record in SeqIO.parse(data, format):
-		find_kmers(kspec, record.seq, out=out)
+		find_kmers(kspec, record.seq, dense_out=dense_out)
 
-	if coords:
-		return vec_to_coords(out)
+	if sparse:
+		return vec_to_coords(dense_out)
 	else:
-		return out
+		return dense_out
 
 
 class FileSignatureCalculator:
@@ -197,8 +202,7 @@ class FileSignatureCalculator:
 
 		self.pool = Pool(processes)
 
-	def calc_signatures(self, kmerspec, files, fmt=None, compression=None, *,
-	                    ordered=False):
+	def calc_signatures(self, kmerspec, files, fmt=None, compression=None, *, ordered=False):
 		"""
 		Parse a set of sequence files and calculate their signatures in parallel.
 
@@ -272,5 +276,5 @@ class FileSignatureCalculator:
 		i, file, kmerspec = args
 
 		with file.open() as fobj:
-			vec = find_kmers_parse(kmerspec, fobj, file.fmt)
-			return i, vec_to_coords(vec)
+			sig = find_kmers_parse(kmerspec, fobj, file.fmt)
+			return i, sig
