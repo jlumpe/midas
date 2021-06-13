@@ -130,19 +130,19 @@ class TestKmerSpec:
 		assert mjson.from_json(data, kmers.KmerSpec) == kspec
 
 
-def test_vec_coords_conversion():
-	"""Test conversion between k-mer vector and coordinates."""
+def test_dense_sparse_conversion():
+	"""Test conversion between dense and sparse representations of k-mer coordinates."""
 
 	for k in range(1, 10):
 
-		spec = make_kmerspec(k)
+		kspec = make_kmerspec(k)
 
 		# Create vector with every 3rd k-mer
-		vec = np.zeros(spec.idx_len, dtype=bool)
+		vec = np.zeros(kspec.idx_len, dtype=bool)
 		vec[np.arange(vec.size) % 3 == 0] = True
 
 		# Convert to coords
-		coords = kmers.vec_to_coords(vec)
+		coords = kmers.dense_to_sparse(vec)
 
 		# Check coords
 		assert len(coords) == vec.sum()
@@ -153,7 +153,7 @@ def test_vec_coords_conversion():
 		assert np.all(np.diff(coords) > 0)
 
 		# Check converting back
-		assert np.array_equal(vec, spec.coords_to_vec(coords))
+		assert np.array_equal(vec, kmers.sparse_to_dense(kspec, coords))
 
 
 def check_reverse_complement(seq, rc):
@@ -225,7 +225,7 @@ class TestFindKmers:
 			kmer_interval=50,
 			n_interval=10
 		)
-		expected = kmers.vec_to_coords(vec) if sparse else vec
+		expected = kmers.dense_to_sparse(vec) if sparse else vec
 
 		# Test normal
 		assert np.array_equal(kmers.find_kmers(kspec, seq, sparse=sparse), expected)

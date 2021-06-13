@@ -7,7 +7,7 @@ import numpy as np
 from Bio import SeqIO
 
 from midas.util.attr import attrs, attrib
-from midas.kmers import find_kmers, vec_to_coords
+from midas.kmers import find_kmers, dense_to_sparse
 from .util import open_compressed, ClosingIterator
 
 
@@ -166,7 +166,7 @@ def find_kmers_parse(kspec, data, format, *, sparse=True, dense_out=None):
 		find_kmers(kspec, record.seq, dense_out=dense_out)
 
 	if sparse:
-		return vec_to_coords(dense_out)
+		return dense_to_sparse(dense_out)
 	else:
 		return dense_out
 

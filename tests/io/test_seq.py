@@ -9,7 +9,7 @@ from Bio import Seq, SeqIO
 
 from midas.io.seq import SeqFileInfo, find_kmers_parse, FileSignatureCalculator
 import midas.io.util as ioutil
-from midas.kmers import vec_to_coords
+from midas.kmers import dense_to_sparse
 from midas.test import make_kmer_seq, random_seq
 
 
@@ -86,7 +86,7 @@ def test_find_kmers_parse(sparse):
 	kmers = find_kmers_parse(kspec, buf, 'fasta', sparse=sparse)
 
 	if sparse:
-		assert np.array_equal(kmers, vec_to_coords(vec))
+		assert np.array_equal(kmers, dense_to_sparse(vec))
 	else:
 		assert np.array_equal(kmers, vec)
 
@@ -299,7 +299,7 @@ def test_FileSignatureCalculator(tmpdir, fmt, compression, use_threads,
 			SeqIO.write(records, fobj, fmt)
 
 		files.append(file)
-		signatures.append(vec_to_coords(sig_vec))
+		signatures.append(dense_to_sparse(sig_vec))
 
 	# Create the calculator
 	calculator = FileSignatureCalculator(use_threads=use_threads)

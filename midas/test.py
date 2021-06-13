@@ -10,7 +10,7 @@ def make_signatures(k, nsets, dtype):
 	"""
 
 	import numpy as np
-	from midas.kmers import vec_to_coords, SignatureArray
+	from midas.kmers import dense_to_sparse, SignatureArray
 
 	random = np.random.RandomState(seed=0)
 
@@ -33,7 +33,7 @@ def make_signatures(k, nsets, dtype):
 		new_vec = random.rand(idx_len) < random.uniform(core_prob * .1, core_prob)
 
 		vec = (keep_core & core_vec) | new_vec
-		signatures_list.append(vec_to_coords(vec))
+		signatures_list.append(dense_to_sparse(vec))
 
 	return SignatureArray.from_signatures(signatures_list, dtype=dtype)
 

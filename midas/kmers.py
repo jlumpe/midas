@@ -194,7 +194,7 @@ def find_kmers(kspec, seq, *, sparse=True, dense_out=None):
 	_find_kmers(kspec, seq, dense_out)
 
 	if sparse:
-		return vec_to_coords(dense_out)
+		return dense_to_sparse(dense_out)
 	else:
 		return dense_out
 
@@ -252,8 +252,8 @@ def _find_kmers(kspec, seq, out):
 		start = loc + 1
 
 
-def vec_to_coords(vec):
-	"""Convert boolean k-mer vector to sparse coordinate representation.
+def dense_to_sparse(vec):
+	"""Convert k-mer set from dense bit vector to sparse coordinate representation.
 
 	Parameters
 	----------
@@ -263,26 +263,35 @@ def vec_to_coords(vec):
 	Returns
 	-------
 	numpy.ndarray
-		Sorted array of coordinates of k-mers present in vector. Data type will be ``intp``.
+		Sorted array  of coordinates of k-mers present in vector. Data type will be ``numpy.intp``.
+
+	See Also
+	--------
+	.sparse_to_dense
 	"""
 	return np.flatnonzero(vec)
 
 
-def coords_to_vec(coords, idx_len):
-	"""Convert from sparse coordinate representation back to boolean k-mer vector.
+def sparse_to_dense(k_or_kspec, coords):
+	"""Convert k-mer set from sparse coordinate representation back to dense bit vector.
 
 	Parameters
 	----------
+	k_or_kspec : Union[int, KmerSpec]
+		Value of k or a :class:`.KmerSpec` instance.
 	coords : numpy.ndarray
-		Coordinate array.
-	idx_len : int
-		Value of ``idx_len`` property of corresponding :class:`.KmerSpec`.
+		Sparse coordinate array.
 
 	Returns
 	-------
 	numpy.ndarray
-		Boolean k-mer vector.
+		Dense k-mer bit vector.
+
+	See Also
+	--------
+	.dense_to_sparse
 	"""
+	idx_len = k_or_kspec.idx_len if isinstance(k_or_kspec, KmerSpec) else 4 ** k_or_kspec
 	vec = np.zeros(idx_len, dtype=np.bool_)
 	vec[coords] = 1
 	return vec
