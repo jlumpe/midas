@@ -1,29 +1,14 @@
-"""Test distance metric calcuations."""
+"""Test distance metric calculations."""
 
 import pickle
 
 import pytest
 import numpy as np
 
-from midas._cython.metric import jaccard_coords, jaccard_coords_col
+from midas.metric import jaccard_sparse, jaccarddist_sparse, jaccard_bits, \
+	jaccard_generic, jaccard_sparse_array
 from midas.kmers import SignatureArray, coords_to_vec
 from midas.test import make_signatures
-
-
-def slow_jaccard_coords(coords1, coords2, idx_len):
-	"""Get jaccard score of two k-mer coordinate arrays the slow but correct way."""
-
-	vec1 = coords_to_vec(coords1, idx_len)
-	vec2 = coords_to_vec(coords2, idx_len)
-
-	intersection = (vec1 & vec2).sum()
-	union = (vec1 | vec2).sum()
-
-	# Defined score between empty sets to be zero
-	if union == 0:
-		return 0
-
-	return intersection / union
 
 
 @pytest.fixture(scope='module')
@@ -72,7 +57,6 @@ def test_jaccard_single(coords_params):
 	"""Test calculating single scores at a time."""
 
 	k, sigs = coords_params
-	idx_len = 4 ** k
 
 	# Iterate over all pairs
 	for i, coords1 in enumerate(sigs):
@@ -82,16 +66,16 @@ def test_jaccard_single(coords_params):
 			coords2 = sigs[j]
 
 			# Calc score
-			score = jaccard_coords(coords1, coords2)
+			score = jaccard_sparse(coords1, coords2)
 
 			# Check range
 			assert 0 <= score <= 1
 
 			# Check vs slow version
-			assert np.isclose(score, slow_jaccard_coords(coords1, coords2, idx_len))
+			assert np.isclose(score, jaccard_generic(coords1, coords2))
 
 			# Check with arguments swapped
-			assert score == jaccard_coords(coords2, coords1)
+			assert score == jaccard_sparse(coords2, coords1)
 
 			# Check score vs. self is one (unless empty)
 			if i == j and len(coords1) > 0:
@@ -136,20 +120,20 @@ def test_different_dtypes():
 			for k in range(len(sigs)):
 				for l in range(k + 1, len(sigs)):
 
-					expected = jaccard_coords(sigs[k], sigs[l])
+					expected = jaccard_sparse(sigs[k], sigs[l])
 
-					assert jaccard_coords(sigs1[k], sigs2[l]) == expected
-					assert jaccard_coords(sigs2[k], sigs1[l]) == expected
+					assert jaccard_sparse(sigs1[k], sigs2[l]) == expected
+					assert jaccard_sparse(sigs2[k], sigs1[l]) == expected
 
 			# Test first of each against all of the other
-			expected_all = jaccard_coords_col(sigs[0], sigs.values, sigs.bounds)
+			expected_all = jaccard_sparse_array(sigs[0], sigs)
 
 			assert np.array_equal(
-				jaccard_coords_col(sigs1[0], sigs2.values, sigs2.bounds),
+				jaccard_sparse_array(sigs1[0], sigs2),
 				expected_all
 			)
 			assert np.array_equal(
-				jaccard_coords_col(sigs2[0], sigs1.values, sigs1.bounds),
+				jaccard_sparse_array(sigs2[0], sigs1),
 				expected_all
 			)
 
@@ -162,7 +146,7 @@ def test_jaccard_col(coords_params):
 	for i, coords1 in enumerate(sigs):
 
 		# Get scores against all others
-		scores = jaccard_coords_col(coords1, sigs.values, sigs.bounds)
+		scores = jaccard_sparse_array(coords1, sigs)
 
 		# Check against single coords
 		for j, coords2 in enumerate(sigs):
@@ -170,4 +154,4 @@ def test_jaccard_col(coords_params):
 			if len(coords1) == 0 and len(coords2) == 0:
 				continue
 
-			assert scores[j] == jaccard_coords(coords1, coords2)
+			assert scores[j] == jaccard_sparse(coords1, coords2)

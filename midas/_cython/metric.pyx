@@ -14,36 +14,68 @@ SCORE_DTYPE = np.dtype(np.float32)
 BOUNDS_DTYPE = np.dtype(np.intp)
 
 
-def jaccard_coords(COORDS_T[:] coords1, COORDS_T_2[:] coords2):
-	"""
-	Compute the jaccard index between two k-mer sets in ordered coordinate
-	format.
+def jaccard_sparse(COORDS_T[:] coords1, COORDS_T_2[:] coords2):
+	"""Compute the Jaccard index between two k-mer sets in sparse coordinate format.
 
-	Data types of array arguments may be 16, 32, or 64-bit signed or unsigned
-	integers, but must match.
+	Arguments are Numpy arrays containing k-mer indices in sorted order. Data types must be 16, 32,
+	or 64-bit signed or unsigned integers, but do not need to match.
+
+	This is by far the most efficient way to calculate the metric (this is a native function) and
+	should be used wherever possible.
 
 	Parameters
 	----------
 	coords1 : numpy.ndarray
-		k-mer set in ordered coordinate format.
+		K-mer set in sparse coordinate format.
 	coords2 : numpy.ndarray
-		k-mer set in ordered coordinate format.
+		K-mer set in sparse coordinate format.
 
 	Returns
 	-------
 	numpy.float32
-		Jaccard index for the two sets.
+		Jaccard index between the two sets, a real number between 0 and 1.
+
+	See Also
+	--------
+	.jaccarddist_sparse
 	"""
-	return c_jaccard_coords(coords1, coords2)
+	return c_jaccard_sparse(coords1, coords2)
+
+
+def jaccarddist_sparse(COORDS_T[:] coords1, COORDS_T_2[:] coords2):
+	"""Compute the Jaccard distance between two k-mer sets in sparse coordinate format.
+
+	The Jaccard distance is equal to one minus the Jaccard index.
+
+	Arguments are Numpy arrays containing k-mer indices in sorted order. Data types must be 16, 32,
+	or 64-bit signed or unsigned integers, but do not need to match.
+
+	This is by far the most efficient way to calculate the metric (this is a native function) and
+	should be used wherever possible.
+
+	Parameters
+	----------
+	coords1 : numpy.ndarray
+		K-mer set in sparse coordinate format.
+	coords2 : numpy.ndarray
+		K-mer set in sparse coordinate format.
+
+	Returns
+	-------
+	numpy.float32
+		Jaccard distance between the two sets, a real number between 0 and 1.
+
+	See Also
+	--------
+	.jaccard_sparse
+	"""
+	return 1 - c_jaccard_sparse(coords1, coords2)
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
-                              COORDS_T_2[:] coords2) nogil:
-	"""
-	Compute the Jaccard index between two k-mer sets in ordered coordinate
-	format.
+cdef SCORE_T c_jaccard_sparse(COORDS_T[:] coords1, COORDS_T_2[:] coords2) nogil:
+	"""Compute the Jaccard index between two k-mer sets in ordered coordinate format.
 
 	Declared with nogil so it can be run in parallel.
 	"""
@@ -88,59 +120,29 @@ cdef SCORE_T c_jaccard_coords(COORDS_T[:] coords1,
 	return <SCORE_T>(N + M - u) / u
 
 
-def jaccard_coords_col(COORDS_T[:] query,
-                       COORDS_T_2[:] ref_coords,
-                       BOUNDS_T[:] ref_bounds):
-	"""
-	Calculate Jaccard scores between a query k-mer set and a reference
-	collection.
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def _jaccard_sparse_parallel(COORDS_T[:] query, COORDS_T_2[:] ref_coords, BOUNDS_T[:] ref_bounds, SCORE_T[:] out):
+	"""Calculate Jaccard scores between a query k-mer set and a collection of reference sets.
 
 	Data types of k-mer coordinate arrays may be 16, 32, or 64-bit signed or
 	unsigned integers, but must match.
 
-	Internally, releases the GIL in the main loop and calculates scores
-	concurrently.
+	Internally, releases the GIL in the main loop and calculates scores in parallel.
 
 	Parameters
 	----------
-
 	query : numpy.ndarray
-		Query k-mer set in ordered coordinate format.
+		Query k-mer set in sparse coordinate format.
 	ref_coords : numpy.ndarray
-		Reference k-mer sets in ordered coordinate format, concatenated into a single array.
+		Reference k-mer sets in sparse coordinate format, concatenated into a single array.
 	ref_bounds : numpy.ndarray
 		Bounds of individual k-mer sets within the ``ref_coords`` array. The ``n``\ th k-mer set is
 		the slice of ``ref_coords`` between ``ref_bounds[n]`` and ``ref_bounds[n + 1]``. Length must
 		be one greater than that of``ref_coords``.
-
-	Returns
-	-------
-	numpy.ndarray
-		Numpy array of floats, the Jaccard score between the query and each reference k-mer set.
+	out : numpy.ndarray
+		Pre-allocated array to write scores to.
 	"""
-
-	cdef np.ndarray[SCORE_T, ndim=1] out_array
-	cdef SCORE_T[:] out
-	out = out_array = np.ndarray(len(ref_bounds) - 1, dtype=SCORE_DTYPE)
-
-	c_jaccard_coords_col(query, ref_coords, ref_bounds, out)
-
-	return out_array
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef void c_jaccard_coords_col(COORDS_T[:] query,
-                               COORDS_T_2[:] ref_coords,
-                               BOUNDS_T[:] ref_bounds,
-                               SCORE_T[:] out) nogil:
-	"""
-	Calculate Jaccard scores between a query k-mer set and a reference
-	collection.
-
-	Loop runs in parallel without GIL.
-	"""
-
 	cdef np.intp_t N = ref_bounds.shape[0] - 1
 	cdef BOUNDS_T begin, end
 	cdef int i
@@ -148,4 +150,4 @@ cdef void c_jaccard_coords_col(COORDS_T[:] query,
 	for i in prange(N, nogil=True, schedule='dynamic'):
 		begin = ref_bounds[i]
 		end = ref_bounds[i+1]
-		out[i] = c_jaccard_coords(query, ref_coords[begin:end])
+		out[i] = c_jaccard_sparse(query, ref_coords[begin:end])

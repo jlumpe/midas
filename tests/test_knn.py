@@ -12,7 +12,7 @@ import numpy as np
 from midas.test import make_signatures
 from midas import knn
 from midas.kmers import SignatureArray
-from midas._cython.metric import BOUNDS_DTYPE, jaccard_coords
+from midas.metric import BOUNDS_DTYPE, jaccard_sparse, jaccard_sparse_array
 
 
 def todist(value, convert):
@@ -54,7 +54,7 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 	querysig = query_sigs[0]
 
 	# Calculate scores
-	scores = knn.sigarray_scores(querysig, ref_sigs, distance=distance)
+	scores = jaccard_sparse_array(querysig, ref_sigs, distance=distance)
 
 	# Check shape
 	assert scores.shape == (len(ref_sigs),)
@@ -62,7 +62,7 @@ def test_sigarray_scores(query_sigs, ref_sigs, distance, alt_bounds_dtype):
 	# Check scores one at a time
 	for refsig, score in zip(ref_sigs, scores):
 
-		expected = jaccard_coords(querysig, refsig)
+		expected = jaccard_sparse(querysig, refsig)
 		assert score == todist(expected, distance)
 
 
@@ -83,7 +83,7 @@ def test_nn_search(query_sigs, ref_sigs, k, distance):
 		assert scores.shape == (k,)
 
 	# Check indices and scores match
-	full_scores = knn.sigarray_scores(query, ref_sigs)
+	full_scores = jaccard_sparse_array(query, ref_sigs)
 	assert np.array_equal(todist(full_scores[indices], distance), scores)
 
 	# Check they are ordered closest to furthest
@@ -134,7 +134,7 @@ def test_nn_search_multi(query_sigs, ref_sigs, k, distance):
 	for i, qsig in enumerate(query_sigs):
 
 		# All scores from query to ref array (not distances)
-		full_scores = knn.sigarray_scores(qsig, ref_sigs)
+		full_scores = jaccard_sparse_array(qsig, ref_sigs)
 
 		# Check indices and scores match
 		assert np.array_equal(

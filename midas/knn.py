@@ -2,31 +2,7 @@
 
 import numpy as np
 
-from midas._cython.metric import BOUNDS_DTYPE, SCORE_DTYPE, jaccard_coords, jaccard_coords_col
-
-
-def sigarray_scores(signature, sigarray, distance=False):
-	"""Calculate Jaccard scores between one signature and an array of signatures.
-
-	This internally uses Cython code that runs in parallel over all signatures
-	in ``sigarray``.
-
-	Parameters
-	----------
-	signature : numpy.ndarray
-		K-mer signature in sparse coordinate format, increasing sequence of integer values.
-	sigarray : midas.kmers.SignatureArray
-		Signature array to calculate scores against.
-	distance : bool
-		Return Jaccard distances instead of scores.
-	"""
-
-	values = sigarray.values
-	bounds = sigarray.bounds.astype(BOUNDS_DTYPE)
-
-	scores = jaccard_coords_col(signature, values, bounds)
-
-	return 1 - scores if distance else scores
+from midas.metric import SCORE_DTYPE, jaccard_sparse_array
 
 
 def nn_search(query_sig, refarray, k=None, distance=False):
@@ -59,7 +35,7 @@ def nn_search(query_sig, refarray, k=None, distance=False):
 			'k must be > 0 and <= the number of reference signatures'
 		)
 
-	scores = sigarray_scores(query_sig, refarray)
+	scores = jaccard_sparse_array(query_sig, refarray)
 
 	if k is None:
 		indices = np.argmax(scores)
