@@ -106,37 +106,3 @@ class SubPath:
 
 	def __truediv__(self, subpath):
 		return self.join(subpath)
-
-
-def path_str(path):
-	"""Get a path string from a path-like object.
-
-	On Python 3.6 this uses the path-like interface (``__fspath__`` method).
-	On 3.5 only recognizes :class:`pathlib.Path` objects. Strings are passed
-	through. If the object is :class:`bytes` or the ``__fspath`__`` method
-	returns bytes they are decoded as UTF-8.
-
-	Parameters
-	----------
-	path
-		String, bytes, or path-like object representing a filesystem path.
-
-	Returns
-	-------
-	str
-		Path string.
-	"""
-
-	if hasattr(path, '__fspath__'):
-		path = path.__fspath__()
-
-	elif isinstance(path, Path):
-		path = str(path)
-
-	elif not isinstance(path, (str, bytes)):
-		raise TypeError('{!r} is not path-like'.format(type(path).__name__))
-
-	if isinstance(path, bytes):
-		return path.decode()
-	else:
-		return path

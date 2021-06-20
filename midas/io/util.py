@@ -1,8 +1,8 @@
 """Utility code for reading/writing data files."""
 
-import numpy as np
+import os
 
-from midas.util import path_str
+import numpy as np
 
 
 COMPRESSED_OPENERS = {None: open}
@@ -59,7 +59,7 @@ def open_compressed(compression, path, mode=None, **kwargs):
 	except KeyError:
 		raise ValueError('Unknown compression type {!r}'.format(compression)) from None
 
-	return opener(path_str(path), mode=mode, **kwargs)
+	return opener(os.fsdecode(path), mode=mode, **kwargs)
 
 
 class ClosingIterator:
