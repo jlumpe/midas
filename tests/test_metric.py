@@ -6,7 +6,7 @@ import pytest
 import numpy as np
 
 from midas.metric import jaccard_sparse, jaccarddist_sparse, jaccard_bits, \
-	jaccard_generic, jaccard_sparse_array
+	jaccard_generic, jaccard_sparse_array, SCORE_DTYPE, BOUNDS_DTYPE
 from midas.kmers import SignatureArray, sparse_to_dense
 from midas.test import make_signatures
 
@@ -60,12 +60,10 @@ def test_jaccard_single(coords_params):
 
 	# Iterate over all pairs
 	for i, coords1 in enumerate(sigs):
+		vec1 = sparse_to_dense(k, coords1)
+		for j, coords2 in enumerate(sigs):
+			vec2 = sparse_to_dense(k, coords2)
 
-		for j in range(i, len(sigs)):
-
-			coords2 = sigs[j]
-
-			# Calc score
 			score = jaccard_sparse(coords1, coords2)
 
 			# Check range
@@ -74,18 +72,63 @@ def test_jaccard_single(coords_params):
 			# Check vs slow version
 			assert np.isclose(score, jaccard_generic(coords1, coords2))
 
-			# Check with arguments swapped
-			assert score == jaccard_sparse(coords2, coords1)
+			# Check distance
+			assert np.isclose(jaccarddist_sparse(coords1, coords2), 1 - score)
+
+			# Check dense bit vector version
+			assert np.isclose(jaccard_bits(vec1, vec2), score)
 
 			# Check score vs. self is one (unless empty)
-			if i == j and len(coords1) > 0:
-				assert score == 1
+			if i == j:
+				assert score == 0 if len(coords1) == 0 else 1
+
+
+@pytest.mark.parametrize('alt_bounds_dtype', [False, True])
+def test_jaccard_sparse_array(coords_params, alt_bounds_dtype):
+	"""Test jaccard_sparse_array() function."""
+
+	k, sigs = coords_params
+
+	# The inner Cython function takes a specific type for the bounds array.
+	# Try with this type and a different type, should be converted automatically by the outer Python func
+	if alt_bounds_dtype:
+		sigs = SignatureArray(sigs.values, sigs.bounds.astype('i4'))
+		assert sigs.bounds.dtype != BOUNDS_DTYPE
+	else:
+		assert sigs.bounds.dtype == BOUNDS_DTYPE
+
+	for i, coords1 in enumerate(sigs):
+		scores = jaccard_sparse_array(coords1, sigs)
+		assert scores.shape == (len(sigs),)
+
+		# Check against single coords
+		for j, coords2 in enumerate(sigs):
+			assert scores[j] == jaccard_sparse(coords1, coords2)
+
+		# Check distance
+		dists = jaccard_sparse_array(coords1, sigs, distance=True)
+		assert np.allclose(dists, 1 - scores)
+
+	# Check pre-allocated output
+	out = np.empty(len(sigs), dtype=SCORE_DTYPE)
+	jaccard_sparse_array(sigs[0], sigs, out=out)
+	assert np.array_equal(out, jaccard_sparse_array(sigs[0], sigs))
+
+	# Wrong size
+	out2 = np.empty(len(sigs) + 1, dtype=SCORE_DTYPE)
+	with pytest.raises(ValueError):
+		jaccard_sparse_array(sigs[0], sigs, out=out2)
+
+	# Wrong dtype
+	out3 = np.empty(len(sigs), dtype=int)
+	with pytest.raises(ValueError):
+		jaccard_sparse_array(sigs[0], sigs, out3)
 
 
 def test_different_dtypes():
+	"""Test metric on sparse arrays with different dtypes."""
 
 	dtypes = ['i2', 'u2', 'i4', 'u4', 'i8', 'u8']
-	sigs_by_k = {}
 
 	# Test all pairs of dtypes
 	for i, dt1 in enumerate(dtypes):
@@ -95,17 +138,13 @@ def test_different_dtypes():
 			# Bit length of largest positive integer both dtypes can store
 			nbits = min(np.iinfo(dt).max.bit_length() for dt in [dt1, dt2])
 
-			# Try for k == 8, but not larger than will fit in dtype
+			# Try for k == 8, but not larger than will fit in both dtypes
 			k = min(nbits // 4, 8)
 
-			# Get signatures for this value of k, or create them
-			try:
-				sigs = sigs_by_k[k]
-			except KeyError:
-				# Create using largest dtype
-				sigs = sigs_by_k[k] = make_signatures(k, 5, 'u8')
+			# Create test signatures as u8 dtype (will fit everything)
+			sigs = make_signatures(k, 5, 'u8')
 
-			# Convert to each dtype, making sure there is no overflow
+			# Convert signatures to each dtype, making sure there is no overflow
 			try:
 				# Tell numpy to raise error on overflow
 				old_err = np.seterr(over='raise')
@@ -116,42 +155,17 @@ def test_different_dtypes():
 			finally:
 				np.seterr(**old_err)
 
-			# Iterate over all pairs of signatures to test individually
+			assert sigs1.values.dtype == dt1
+			assert sigs2.values.dtype == dt2
+
 			for k in range(len(sigs)):
+				# Test individually
 				for l in range(k + 1, len(sigs)):
-
 					expected = jaccard_sparse(sigs[k], sigs[l])
-
 					assert jaccard_sparse(sigs1[k], sigs2[l]) == expected
 					assert jaccard_sparse(sigs2[k], sigs1[l]) == expected
 
-			# Test first of each against all of the other
-			expected_all = jaccard_sparse_array(sigs[0], sigs)
-
-			assert np.array_equal(
-				jaccard_sparse_array(sigs1[0], sigs2),
-				expected_all
-			)
-			assert np.array_equal(
-				jaccard_sparse_array(sigs2[0], sigs1),
-				expected_all
-			)
-
-
-def test_jaccard_col(coords_params):
-	"""Test calculating one set against a collection of sets."""
-
-	k, sigs = coords_params
-
-	for i, coords1 in enumerate(sigs):
-
-		# Get scores against all others
-		scores = jaccard_sparse_array(coords1, sigs)
-
-		# Check against single coords
-		for j, coords2 in enumerate(sigs):
-
-			if len(coords1) == 0 and len(coords2) == 0:
-				continue
-
-			assert scores[j] == jaccard_sparse(coords1, coords2)
+				# Test against all of the other using jaccard_sparse_array
+				expected_all = jaccard_sparse_array(sigs[k], sigs)
+				assert np.array_equal(jaccard_sparse_array(sigs1[k], sigs2), expected_all)
+				assert np.array_equal(jaccard_sparse_array(sigs2[k], sigs1), expected_all)
