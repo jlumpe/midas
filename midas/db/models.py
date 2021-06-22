@@ -121,7 +121,7 @@ class Genome(Base, KeyMixin):
 	annotations = relationship('AnnotatedGenome', lazy=True, cascade='all, delete-orphan')
 
 	def __repr__(self):
-		return '<{}:{} "{}">'.format(type(self).__name__, self.id, self.description)
+		return f'<{type(self).__name__}:{self.id} {self.description!r}>'
 
 
 class ReferenceGenomeSet(Base, KeyMixin):
@@ -172,7 +172,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	base_genomes = relationship('Genome', secondary='genome_annotations', lazy='dynamic', viewonly=True)
 
 	def __repr__(self):
-		return '<{}:{} {!r}>'.format(type(self).__name__, self.id, self.name)
+		return f'<{type(self).__name__}:{self.id} {self.name!r}>'
 
 	def root_taxa(self):
 		"""Query for root taxa belonging to the set.
@@ -487,7 +487,7 @@ class Taxon(Base):
 			child.print_tree(indent=indent, _depth=_depth + 1)
 
 	def __repr__(self):
-		return '<{}:{} {!r}>'.format(type(self).__name__, self.id, self.name)
+		return f'<{type(self).__name__}:{self.id} {self.name!r}>'
 
 
 #: Attributes of :class:`midas.db.models.Genome` which serve as unique IDs.

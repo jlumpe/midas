@@ -78,7 +78,7 @@ class MutableJsonCollection(Mutable):
 			return MutableJsonList(elem, parent=self)
 
 		else:
-			raise TypeError('{} is not a JSONable type'.format(type(elem)))
+			raise TypeError(f'{type(elem)} is not a JSONable type')
 
 	@classmethod
 	def _element_as_builtin(cls, elem):

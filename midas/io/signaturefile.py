@@ -383,10 +383,7 @@ class SignatureFile:
 			return json.loads(data.decode())
 
 		else:
-			raise ValueError(
-				'Unknown metadata format character {!r}'
-				.format(fmt.decode())
-			)
+			raise ValueError(f'Unknown metadata format character {fmt.decode()!r}')
 
 	def _read_ids(self):
 		"""Read the IDs from the file if it has any.
@@ -436,10 +433,7 @@ class SignatureFile:
 				raise ValueError('Error reading signature file IDs')
 
 		else:
-			raise ValueError(
-				'Unknown ID format character {!r}'
-				.format(fmt.decode())
-			)
+			raise ValueError(f'Unknown ID format character {fmt.decode()!r}')
 
 		# Make read-only to prevent accidental modification
 		ids.flags.writeable = False

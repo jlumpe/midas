@@ -88,7 +88,7 @@ def init_db(engine):
 		# Check there is no current revision stamped
 		current = ctx.get_current_revision()
 		if current is not None:
-			raise RuntimeError('Expected uninitialized database, but current alembic revision is %s' % current)
+			raise RuntimeError(f'Expected uninitialized database, but current alembic revision is {current}')
 
 		# Create tables
 		# Set checkfirst=false so that we get an SQL error if any tables already exist

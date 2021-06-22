@@ -128,11 +128,7 @@ class KmerSpec(Jsonable):
 			self.prefix == other.prefix
 
 	def __repr__(self):
-		return '{}({}, {!r})'.format(
-			self.__class__.__name__,
-			self.k,
-			self.prefix.decode('ascii')
-		)
+		return f'{type(self).__name__}({self.k}, {self.prefix.decode("ascii")!r})'
 
 	def __to_json__(self):
 		return dict(k=self.k, prefix=self.prefix.decode('ascii'))
@@ -323,7 +319,7 @@ class SignatureArray(Sequence):
 		if not isinstance(index, (int, np.integer)):
 			raise TypeError('Index must be single integer')
 		elif not 0 <= index < len(self):
-			raise IndexError('Index out of bounds: {}'.format(index))
+			raise IndexError(f'Index out of bounds: {index}')
 
 	def __getitem__(self, index):
 		self._check_index(index)

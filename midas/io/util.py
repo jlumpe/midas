@@ -57,7 +57,7 @@ def open_compressed(compression, path, mode=None, **kwargs):
 		opener = COMPRESSED_OPENERS[compression]
 
 	except KeyError:
-		raise ValueError('Unknown compression type {!r}'.format(compression)) from None
+		raise ValueError(f'Unknown compression type {compression!r}') from None
 
 	return opener(os.fsdecode(path), mode=mode, **kwargs)
 
@@ -260,7 +260,7 @@ class NamedStruct:
 			try:
 				field_dtype, _ = self._dtype.fields[index]
 			except KeyError:
-				raise KeyError('No field with name {!r}'.format(index)) from None
+				raise KeyError(f'No field with name {index!r}') from None
 
 			field_array = self._data[index]
 
@@ -279,7 +279,7 @@ class NamedStruct:
 			name = index
 
 			if name not in self._dtype.fields:
-				raise KeyError('No field with name {!r}'.format(index))
+				raise KeyError(f'No field with name {index!r}')
 
 		else:
 			name = self._names[index]
@@ -403,5 +403,5 @@ class NamedStruct:
 	def __repr__(self):
 		return '<{} {}>'.format(
 			type(self).__name__,
-			' '.join('{}={!r}'.format(name, self[name]) for name in self._names)
+			' '.join(f'{name}={self[name]!r}' for name in self._names)
 		)

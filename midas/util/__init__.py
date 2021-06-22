@@ -24,10 +24,7 @@ def kwargs_done(kwargs):
 		keyword argument.
 	"""
 	if kwargs:
-		raise KeyError(
-			'Unknown keyword argument {!r}'
-			.format(next(iter(kwargs)))
-		)
+		raise KeyError(f'Unknown keyword argument {next(iter(kwargs))!r}')
 
 
 def sanitize_filename(name, replace='_'):
