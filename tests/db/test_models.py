@@ -12,6 +12,32 @@ from midas.db import models
 from midas.db.models import Genome, ReferenceGenomeSet, AnnotatedGenome, Taxon
 
 
+# Some arbitrary JSON data
+JSON_DATA = {
+	'int': 1,
+	'float': 3.14,
+	'string': 'foo',
+	'bool': True,
+	'null': None,
+	'array': [1, 3.14, 'foo', True, None, [1, 2, 3, 4], {'foo': 'bar', 'baz': 1}],
+	'object': {
+		'foo': 'bar',
+		'baz': 1,
+		'sub_list': [1, 2, 3],
+		'sub_object': {'blah': 123}
+	},
+}
+
+JSON_DATA2 = JSON_DATA['object']
+
+
+@pytest.fixture()
+def empty_db_session(make_empty_db):
+	"""Session factory for empty in-memory database."""
+	engine = make_empty_db()
+	return sessionmaker(engine)
+
+
 @pytest.fixture()
 def id_lookup_session(make_empty_db):
 	"""
@@ -69,6 +95,43 @@ class TestGenome:
 	def test_ncbi_id_lookup(self, id_lookup_session):
 		pass  # TODO
 
+	def test_extra_json(self, empty_db_session):
+		"""Test storing JSON data in the 'extra' column."""
+		session = empty_db_session()
+
+		# Save genome with JSON data
+		genome = Genome(
+			key='foo',
+			version='1.0',
+			description='test genome',
+			extra=JSON_DATA,
+		)
+		session.add(genome)
+		session.commit()
+
+		# Reload in fresh session and check value
+		session = empty_db_session()
+		genome = session.query(Genome).one()
+		assert genome.extra.as_builtin() == JSON_DATA
+
+		# Assign different data, save
+		genome.extra = JSON_DATA2
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		genome = session.query(Genome).one()
+		assert genome.extra.as_builtin() == JSON_DATA2
+
+		# Assign NULL, save
+		genome.extra = None
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		genome = session.query(Genome).one()
+		assert genome.extra is None
+
 
 class TestReferenceGenomeSet:
 
@@ -91,6 +154,43 @@ class TestReferenceGenomeSet:
 		new_roots = set(root.children)
 		session.delete(root)
 		assert set(gset.root_taxa()) == new_roots
+
+	def test_extra_json(self, empty_db_session):
+		"""Test storing JSON data in the 'extra' column."""
+		session = empty_db_session()
+
+		# Save genome set with JSON data
+		gset = ReferenceGenomeSet(
+			key='foo',
+			version='1.0',
+			name='test',
+			extra=JSON_DATA,
+		)
+		session.add(gset)
+		session.commit()
+
+		# Reload in fresh session and check value
+		session = empty_db_session()
+		gset = session.query(ReferenceGenomeSet).one()
+		assert gset.extra.as_builtin() == JSON_DATA
+
+		# Assign different data, save
+		gset.extra = JSON_DATA2
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		gset = session.query(ReferenceGenomeSet).one()
+		assert gset.extra.as_builtin() == JSON_DATA2
+
+		# Assign NULL, save
+		gset.extra = None
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		gset = session.query(ReferenceGenomeSet).one()
+		assert gset.extra is None
 
 
 class TestAnnotatedGenome:
@@ -145,6 +245,48 @@ class TestTaxon:
 			assert set(taxon.descendants()) == descendants - {taxon}
 			assert set(taxon.descendants(incself=True)) == descendants
 			assert set(taxon.leaves()) == {d for d in descendants if d.isleaf()}
+
+	def test_extra_json(self, empty_db_session):
+		"""Test storing JSON data in the 'extra' column."""
+		session = empty_db_session()
+
+		# Save taxon with JSON data
+		gset = ReferenceGenomeSet(
+			key='test',
+			version='1.0',
+			name='test genome set',
+		)
+		taxon = Taxon(
+			reference_set=gset,
+			name='test taxon',
+			extra=JSON_DATA,
+		)
+		session.add(gset)
+		session.add(taxon)
+		session.commit()
+
+		# Reload in fresh session and check value
+		session = empty_db_session()
+		taxon = session.query(Taxon).one()
+		assert taxon.extra.as_builtin() == JSON_DATA
+
+		# Assign different data, save
+		taxon.extra = JSON_DATA2
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		taxon = session.query(Taxon).one()
+		assert taxon.extra.as_builtin() == JSON_DATA2
+
+		# Assign NULL, save
+		taxon.extra = None
+		session.commit()
+
+		# Check new value
+		session = empty_db_session()
+		taxon = session.query(Taxon).one()
+		assert taxon.extra is None
 
 
 class TestGenomeIDMapping:
