@@ -32,6 +32,34 @@ def validate_field_type(instance, attribute, value):
 		raise TypeError(f'{attribute.name} must be of type {attribute.type}, got {repr(value)}')
 
 
+def _transform_field(cls, field):
+	"""Transform field of class defined with :func:`.attrs` after definition."""
+	midas_opts = field.metadata.get('midas_attrs', dict())
+	changes = dict()
+
+	if midas_opts.get('validate_type', False):
+		if field.validator is not None:
+			changes['validator'] = attr.validators.and_(field.validator, validate_field_type)
+		else:
+			changes['validator'] = validate_field_type
+
+	if midas_opts.get('optional', False):
+		if field.default is attr.NOTHING:
+			changes['default'] = None
+
+		validator = changes.get('validator', field.validator)
+		if validator is not None:
+			changes['validator'] = attr.validators.optional(validator)
+
+		if field.converter is not None:
+			changes['converter'] = attr.converters.optional(field.converter)
+
+	return field.evolve(**changes)
+
+def _transform_fields(cls, fields):
+	"""Transform fields of class defined with :func:`.attrs` after definition."""
+	return [_transform_field(cls, f) for f in fields]
+
 def attrs(**kw):
 	"""
 	Class decorator which works like :func:`attr.s` with some minor changes.
@@ -50,7 +78,7 @@ def attrs(**kw):
 	# Have order default to False
 	if kw.get('order', None) is not True:
 		kw['order'] = False
-	return attr.s(**kw)
+	return attr.s(**kw, field_transformer=_transform_fields)
 
 
 def attrib(optional=False, validate_type=False, **kw):
@@ -75,19 +103,11 @@ def attrib(optional=False, validate_type=False, **kw):
 		The intermediate object returned by :func:`attr.attrib`. This will be turned into a proper
 		:class:`attr.Attribute` after the class is initialized.
 	"""
-	if validate_type:
-		if kw.get('validator', None) is not None:
-			kw['validator'] = attr.validators.and_(kw['validator'], validate_field_type)
-		else:
-			kw['validator'] = validate_field_type
+	metadata = kw.setdefault('metadata', dict())
 
-	if optional:
-		kw.setdefault('default', None)
-
-		if kw.get('validator', None) is not None:
-			kw['validator'] = attr.validators.optional(kw['validator'])
-
-		if kw.get('converter', None) is not None:
-			kw['converter'] = attr.converters.optional(kw['converter'])
+	metadata['midas_attrs'] = dict(
+		validate_type=validate_type,
+		optional=optional,
+	)
 
 	return attr.ib(**kw)
