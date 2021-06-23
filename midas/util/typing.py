@@ -1,6 +1,4 @@
-"""
-
-"""
+"""Basic run time type checking with ``typing`` module."""
 
 import sys
 import typing
