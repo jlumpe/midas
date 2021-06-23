@@ -1,6 +1,7 @@
 """Test the midas.util.attr_ext submodule."""
 
 import pytest
+from attr import Factory, NOTHING
 from midas.util.attr import attrs, attrib
 
 
@@ -32,54 +33,88 @@ def test_attrs_order_default(order):
 			TestCls(1, 2) < TestCls(3, 4)
 
 
-def test_attrib_optional():
-	"""Test `optional` argument to `attrib`."""
+@pytest.mark.parametrize('optional', [False, True])
+@pytest.mark.parametrize('validator', [False, True])
+@pytest.mark.parametrize('converter', [False, True])
+@pytest.mark.parametrize('default', [False, True])
+@pytest.mark.parametrize('validate_type', [False, True])
+@pytest.mark.parametrize('use_decorators', [False, True])
+def test_attrib_opts(optional, validator, converter, validate_type, default, use_decorators):
+	"""Test custom arguments to attrib() and other arguments they may interact with."""
 
-	@attrs()
-	class TestCls:
-		x: str = attrib()
-		y: int = attrib(optional=True)
+	default_value = 10
 
-	assert TestCls('foo').y is None
-	assert TestCls('foo', 1).y == 1
-
-	# Test with validator and converter
-	def _validate_y(self, attribute, value):
+	def _validate_x(self, attribute, value):
 		if value < 3:
-			raise ValueError('y must be at least 3')
+			raise ValueError('x must be at least 3')
 
-	@attrs()
-	class TestCls:
-		x: str = attrib()
-		y: int = attrib(optional=True, converter=int, validator=_validate_y)
+	if use_decorators:
+		@attrs()
+		class TestCls:
+			x: int = attrib(
+				optional=optional,
+				validator=_validate_x if validator else None,
+				converter=int if converter else None,
+				default=default_value if default else NOTHING,
+				validate_type=validate_type,
+			)
 
-	assert TestCls('foo').y is None
-	assert TestCls('foo', 3).y == 3
-	assert TestCls('foo', '3').y == 3
+	else:
+		@attrs()
+		class TestCls:
+			x: int = attrib(
+				optional=True,
+				converter=int if converter else None,
+				validate_type=validate_type,
+			)
 
-	with pytest.raises(ValueError):
-		TestCls('foo', 1)
+			if validator:
+				x.validator(_validate_x)
 
+			if default:
+				@x.default
+				def _default_x(self):
+					return default_value
 
-def test_attrib_validate_type():
-	"""Test `validate_type` argument to `attrib`."""
+	# Explicit value that passes all checks
+	assert TestCls(3).x == 3
 
-	@attrs()
-	class TestCls:
-		x: int = attrib(validate_type=False)
-		y: int = attrib(validate_type=True)
+	# Check default value, if any
+	if default:
+		assert TestCls().x == default_value
+	elif optional:
+		assert TestCls().x is None
 
-	TestCls(1, 2)
-	TestCls('1', 2)
+	# Check explicit None value if optional, should bypass validators and converters
+	if optional:
+		assert TestCls(None).x is None
 
-	with pytest.raises(TypeError):
-		TestCls(1, '2')
+	# Check conversion
+	if converter:
+		for arg in ['3', 3.0]:
+			x = TestCls(arg).x
+			assert isinstance(x, int) and x == 3
 
-	# Test with attribute that has no type
-	@attrs()
-	class TestCls2:
-		x = attrib(validate_type=True)
+	# Check validator
+	if validator:
+		with pytest.raises(ValueError):
+			TestCls(1)
 
-	TestCls2(1)
-	TestCls2('foo')
-	TestCls2(None)
+		# Validate converted value
+		if converter:
+			with pytest.raises(ValueError):
+				TestCls('1')
+
+	else:
+		assert TestCls(1).x == 1
+
+	# Check type validation (only makes sense if not using converter)
+	if not converter:
+		# Value not of correct type but passing validator
+		if validate_type:
+			with pytest.raises(TypeError):
+				TestCls(3.0)
+
+		else:
+			x = TestCls(3.0).x
+			assert isinstance(x, float) and x == 3
