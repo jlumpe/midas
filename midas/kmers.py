@@ -12,6 +12,7 @@ bytes containing ascii-encoded nucleotide codes.
 """
 
 from collections.abc import Sequence
+from typing import Optional, Union, NewType
 
 import numpy as np
 
@@ -25,7 +26,11 @@ from midas.io.json import Jsonable
 NUCLEOTIDES = b'ACGT'
 
 
-def validate_dna_seq_bytes(seq):
+#: Type for k-mer signatures (k-mer sets in sparse coordinate format)
+KmerSignature = NewType('KmerSignature', Sequence[int])
+
+
+def validate_dna_seq_bytes(seq : bytes):
 	"""Check that a sequence contains only valid nucleotide codes.
 
 	Parameters
@@ -43,7 +48,7 @@ def validate_dna_seq_bytes(seq):
 			raise ValueError(f'Invalid byte at position {i}: {nuc}')
 
 
-def coords_dtype(k):
+def coords_dtype(k : int) -> np.dtype:
 	"""Get the smallest unsigned integer dtype that can store k-mer indices for the given ``k``.
 
 	Parameters
@@ -138,7 +143,9 @@ class KmerSpec(Jsonable):
 		return cls(data['k'], data['prefix'])
 
 
-def find_kmers(kspec, seq, *, sparse=True, dense_out=None):
+def find_kmers(
+		kspec : KmerSpec, seq : Union[bytes, str], *, sparse : bool = True, dense_out : bool = None,
+		) -> KmerSignature:
 	"""Find all k-mers in a DNA sequence.
 
 	Searches sequence both backwards and forwards (reverse complement). The sequence may contain
@@ -248,7 +255,7 @@ def _find_kmers(kspec, seq, out):
 		start = loc + 1
 
 
-def dense_to_sparse(vec):
+def dense_to_sparse(vec : Sequence[bool]) -> KmerSignature:
 	"""Convert k-mer set from dense bit vector to sparse coordinate representation.
 
 	Parameters
@@ -268,7 +275,7 @@ def dense_to_sparse(vec):
 	return np.flatnonzero(vec)
 
 
-def sparse_to_dense(k_or_kspec, coords):
+def sparse_to_dense(k_or_kspec : Union[int, KmerSpec],  coords : KmerSignature) -> np.ndarray:
 	"""Convert k-mer set from sparse coordinate representation back to dense bit vector.
 
 	Parameters
