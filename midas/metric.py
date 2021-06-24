@@ -104,7 +104,7 @@ def jaccard_sparse_array(query, refs, out=None, distance=False):
 		raise ValueError(f'Output array dtype must be {SCORE_DTYPE}, got {out.dtype}')
 
 	values = refs.values
-	bounds = refs.bounds.astype(BOUNDS_DTYPE)
+	bounds = refs.bounds.astype(BOUNDS_DTYPE, copy=False)
 
 	_jaccard_sparse_parallel(query, values, bounds, out)
 
