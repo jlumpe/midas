@@ -46,8 +46,8 @@ def coords_params(request, load_test_coords_col):
 	else:
 		# Create coords
 		k, dtype = request.param
-		dtype = np.dtype(dtype)
 
+		np.random.seed(0)
 		sigs = make_signatures(k, 25, dtype)
 
 	return k, sigs
@@ -128,6 +128,7 @@ def test_jaccard_sparse_array(coords_params, alt_bounds_dtype):
 def test_different_dtypes():
 	"""Test metric on sparse arrays with different dtypes."""
 
+	np.random.seed(0)
 	dtypes = ['i2', 'u2', 'i4', 'u4', 'i8', 'u8']
 
 	# Test all pairs of dtypes

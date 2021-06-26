@@ -9,53 +9,34 @@ from Bio import Seq, SeqIO
 
 from midas.io.seq import SeqFileInfo, find_kmers_parse, FileSignatureCalculator
 import midas.io.util as ioutil
-from midas.kmers import dense_to_sparse
+from midas.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
 from midas.test import make_kmer_seq, random_seq
 
 
-def create_sequence_records(nseqs, k, prefix_len, seq_len=10000):
+def create_sequence_records(kspec, n, seq_len=10000):
 	"""Create a set of random DNA sequences with known combined k-mer signature.
 
 	Parameters
 	----------
-	nseqs : int
+	kspec : KmerSpec
+	n : int
 		Number of sequences to create.
-	k : int
-		Length of k-mers (without prefix)
-	prefix_len : Int
-		Length of prefix.
 	seq_len : int
 		Length of sequences to create.
 
 	Returns
 	-------
 	tuple
-		(kmerspec, records, kmer_vec) tuple.
+		(records, kmer_vec) tuple.
 	"""
-	vec = np.zeros(4 ** k, dtype=bool)
-	kspec = None
-
 	records = []
+	vec = np.zeros(4 ** kspec.k, dtype=bool)
 
-	for i in range(nseqs):
-
-		seq, _kspec, rec_vec = make_kmer_seq(
-			seq_len,
-			k=k,
-			prefix_len=prefix_len,
-			kmer_interval=50,
-			n_interval=10,
-			seed=i,
-		)
+	for i in range(n):
+		seq, sig = make_kmer_seq(kspec, seq_len, kmer_interval=50, n_interval=10)
 
 		# Combine vectors of all sequences
-		vec |= rec_vec
-
-		# Just check that our specs are all the same...
-		if kspec is None:
-			kspec = _kspec
-		else:
-			assert kspec == _kspec
+		vec |= sparse_to_dense(kspec, sig)
 
 		# Convert every other sequence to lower case, just to switch things up...
 		if i % 2:
@@ -68,14 +49,16 @@ def create_sequence_records(nseqs, k, prefix_len, seq_len=10000):
 			description='sequence {}'.format(i + 1),
 		))
 
-	return kspec, records, vec
+	return records, vec
 
 
 @pytest.mark.parametrize('sparse', [False, True])
 def test_find_kmers_parse(sparse):
 	"""Test the find_kmers_parse function."""
+	np.random.seed(0)
 
-	kspec, records, vec = create_sequence_records(10, k=11, prefix_len=5)
+	kspec = KmerSpec(11, 'AGTAC')
+	records, vec = create_sequence_records(kspec, 10)
 
 	# Write records to string buffer in FASTA format
 	buf = StringIO()
@@ -116,10 +99,11 @@ class TestSeqFileInfo:
 	@pytest.fixture(scope='class')
 	def seqrecords(self):
 		"""A collection of random Bio.SeqIO.SeqRecord's."""
+		np.random.seed(0)
 		records = []
 
 		for i in range(20):
-			seq = Seq.Seq(random_seq(1000))
+			seq = Seq.Seq(random_seq(1000).decode('ascii'))
 			id_ = 'seq{}'.format(i + 1)
 			descr = 'Test sequence {}'.format(i + 1)
 			records.append(SeqIO.SeqRecord(seq, id=id_, description=descr))
@@ -263,32 +247,16 @@ class TestSeqFileInfo:
 def test_FileSignatureCalculator(tmpdir, fmt, compression, use_threads,
                                  pass_paths, ordered):
 	"""Test the FileSignatureCalculator class."""
+	np.random.seed(0)
 
-	k = 11
-	prefix_len = 5
-
+	kspec = KmerSpec(11, 'ATGAC')
 	files = []
 	signatures = []
-
-	kspec = None
 
 	# Create some random sequence records with their signatures and write them
 	# to files
 	for i in range(15):
-
-		_kspec, records, sig_vec = create_sequence_records(
-			nseqs=20,
-			k=k,
-			prefix_len=prefix_len,
-			seq_len=1000,
-		)
-
-		# create_sequence_records() creates its own KmerSpec, make sure that
-		# they're all the same
-		if kspec is None:
-			kspec = _kspec
-		else:
-			assert _kspec == kspec
+		records, sig_vec = create_sequence_records(kspec, 20, 1000)
 
 		# SeqFileInfo for file to eventually read
 		path = tmpdir.join('seq{}.{}'.format(i, fmt)).strpath

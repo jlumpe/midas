@@ -6,7 +6,7 @@ import numpy as np
 from midas import kmers
 from midas._cython.kmers import reverse_complement
 import midas.io.json as mjson
-from midas.test import fill_bytearray, make_kmer_seq
+from midas.test import fill_bytearray, make_kmer_seq, make_signatures
 
 
 # Complements to nucleotide ASCII codes
@@ -218,26 +218,27 @@ class TestFindKmers:
 	def test_basic(self, sparse):
 		"""Test general k-mer finding."""
 
-		seq, kspec, vec = make_kmer_seq(
-			100000,
-			k=11,
-			prefix_len=5,
-			kmer_interval=50,
-			n_interval=10
-		)
-		expected = kmers.dense_to_sparse(vec) if sparse else vec
+		kspec = kmers.KmerSpec(11, 'ATGAC')
+
+		np.random.seed(0)
+		seq, signature = make_kmer_seq(kspec, 100000, kmer_interval=50, n_interval=10)
+		expected = signature if sparse else kmers.sparse_to_dense(kspec, signature)
 
 		# Test normal
-		assert np.array_equal(kmers.find_kmers(kspec, seq, sparse=sparse), expected)
+		result = kmers.find_kmers(kspec, seq, sparse=sparse)
+		assert np.array_equal(result, expected)
 
 		# Test reverse complement
-		assert np.array_equal(kmers.find_kmers(kspec, reverse_complement(seq), sparse=sparse), expected)
+		result = kmers.find_kmers(kspec, reverse_complement(seq), sparse=sparse)
+		assert np.array_equal(result, expected)
 
 		# Test lower case
-		assert np.array_equal(kmers.find_kmers(kspec, seq.lower(), sparse=sparse), expected)
+		result = kmers.find_kmers(kspec, seq.lower(), sparse=sparse)
+		assert np.array_equal(result, expected)
 
 		# Test string argument
-		assert np.array_equal(kmers.find_kmers(kspec, seq.decode('ascii'), sparse=sparse), expected)
+		result = kmers.find_kmers(kspec, seq.decode('ascii'), sparse=sparse)
+		assert np.array_equal(result, expected)
 
 	def test_bounds(self):
 		"""Test k-mer finding at beginning and end of sequence to catch errors with search bounds."""
