@@ -6,7 +6,7 @@ import json
 import numpy as np
 
 from midas.signatures import SignatureArray
-from .util import read_npy, write_npy, NamedStruct
+from midas.io.util import read_npy, write_npy, NamedStruct
 
 
 class SignatureFile:

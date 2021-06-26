@@ -1,11 +1,11 @@
-"""Test midas.io.signaturefile"""
+"""Test midas.signatures.signaturefile."""
 
 import io
 
 import pytest
 import numpy as np
 
-from midas.io.signaturefile import SignatureFile
+from midas.signatures.signaturefile import SignatureFile
 from midas.signatures import SignatureArray
 
 
