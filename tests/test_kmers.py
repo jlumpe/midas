@@ -299,99 +299,109 @@ class TestFindKmers:
 class TestSignatureArray:
 	"""Test midas.kmers.SignatureArray."""
 
+	@pytest.fixture(params=[None, 'i8', 'u4'])
+	def sigarray(self, request):
+		"""Numpy array of k-mer signatures."""
+		np.random.seed(0)
+		return make_signatures(8, 100, request.param)
+
 	@pytest.fixture()
-	def sigs_list(self):
-		"""List of k-mer signatures as coordinate arrays."""
+	def sigs(self, sigarray):
+		"""Numpy array equivalent to `sigarray`."""
+		return np.asarray(sigarray, dtype=object)
 
-		random = np.random.RandomState(seed=0)
+	@staticmethod
+	def sigarray_eq(a1, a2):
+		"""Check two SignatureArrays or other sequences of signatures are equal."""
+		return len(a1) == len(a2) and all(map(np.array_equal, a1, a2))
 
-		nsigs = 100
-		nkmers_range = (5000, 15000)
+	def test_basic(self, sigarray, sigs):
+		"""Test basic functionality outside of __getitem__()."""
 
-		cl = [
-			np.arange(random.randint(*nkmers_range)) * nsigs + i
-			for i in range(nsigs)
+		# Check len
+		assert len(sigarray) == len(sigs)
+
+		# Check sizeof() method
+		for i, sig in enumerate(sigs):
+			assert sigarray.sizeof(i) == len(sig)
+			assert sigarray.sizeof(np.int64(i)) == len(sig)
+
+		with pytest.raises(IndexError):
+			sigarray.sizeof(len(sigarray))
+
+		# Assignment not supported
+		with pytest.raises(TypeError):
+			sigarray[0] = 0
+
+	def test_getitem_single(self, sigarray, sigs):
+		n = len(sigarray)
+
+		for i in range(n):
+			sig = sigarray[i]
+			assert np.array_equal(sig, sigs[i])
+			assert sig.base is sigarray.values  # Check is view
+
+	def check_subseq(self, sigarray, sigs, index):
+		"""Check result of indexing which results in a subsequence."""
+		result = sigarray[index]
+		assert isinstance(result, kmers.SignatureArray)
+		assert result.values.dtype == sigarray.values.dtype
+		assert self.sigarray_eq(result, sigs[index])
+		return result
+
+	def test_getitem_slice(self, sigarray, sigs):
+		slices = [
+			slice(10, 30),
+			slice(None),
+			slice(None, None, 1),
+			slice(None, None, 2),
 		]
 
-		# Add a zero-length set in there just to throw everything off
-		cl.append(np.empty(0, dtype=cl[0].dtype))
+		for s in slices:
+			result = self.check_subseq(sigarray, sigs, s)
 
-		return cl
+			# Check values array is view for contiguous slices
+			if s.step is None or s.step == 1:
+				assert result.values.base is sigarray.values
 
-	@pytest.fixture()
-	def kcol(self, sigs_list):
-		"""Create from sigs_list using from_signatures()."""
-		return kmers.SignatureArray.from_signatures(sigs_list)
+	def test_getitem_int_array(self, sigarray, sigs):
+		indices = [
+			[0, 10, 20, 30, 20, -10],
+			[],
+		]
+		for index in indices:
+			self.check_subseq(sigarray, sigs, index)
 
-	def test_basic(self, kcol, sigs_list):
-		"""Test item access and calling methods without side effects."""
+	def test_getitem_bool_array(self, sigarray, sigs):
+		index = np.arange(len(sigarray)) % 3 == 0
+		self.check_subseq(sigarray, sigs, index)
 
-		# Check correct length
-		assert len(kcol) == len(sigs_list)
+	def test_uninitialized(self, sigs):
+		"""Test creating with uninitialized() class method."""
 
-		# Check each coordinate set matches
-		for i, sig in enumerate(sigs_list):
+		lengths = list(map(len, sigs))
+		sigarray = kmers.SignatureArray.uninitialized(lengths)
+		assert len(sigarray) == len(sigs)
 
-			# Test using Python and numpy integer types as index
-			for index in [i, np.int64(i)]:
+		for i in range(len(sigarray)):
+			assert sigarray.sizeof(i) == len(sigs[i])
 
-				assert np.array_equal(kcol[index], sig)
-				assert kcol.sizeof(index) == len(sig)
+	def test_construct_from_signaturearray(self, sigarray):
+		"""Test construction from another SignatureArray."""
+		sa2 = kmers.SignatureArray(sigarray)
+		assert sa2.values.dtype == sigarray.values.dtype
+		assert self.sigarray_eq(sa2, sigarray)
 
-	def test_invalid_index(self, kcol):
-		"""Test passing invalid indices."""
-
-		# Check negative integer index
-		with pytest.raises(IndexError):
-			kcol[-1]
-		with pytest.raises(IndexError):
-			kcol[-1] = 0
-
-		# Test integer index too large
-		with pytest.raises(IndexError):
-			kcol[len(kcol)]
-		with pytest.raises(IndexError):
-			kcol[len(kcol)] = 0
-
-		# Test slice
-		with pytest.raises(TypeError):
-			kcol[:]
-		with pytest.raises(TypeError):
-			kcol[:] = 0
-
-	def test_from_empty(self, sigs_list):
-		"""Test creating from empty array."""
-
-		lengths = list(map(len, sigs_list))
-
-		kcol = kmers.SignatureArray.empty(lengths)
-
-		assert len(kcol) == len(sigs_list)
-
-		for i in range(len(kcol)):
-			assert kcol.sizeof(i) == len(sigs_list[i])
-
-	def test_assignment(self, kcol):
-		"""Test item assignment."""
-
-		for i in range(len(kcol)):
-
-			# Assign to single number
-			n = i * 11 % 23
-			kcol[i] = n
-			assert np.all(kcol[i] == n)
-
-			# Assign to array
-			a = (np.arange(kcol.sizeof(i)) * 11 + i) % 23
-			kcol[i] = a
-			assert np.array_equal(kcol[i], a)
+		for dtype in ['i8', 'u4']:
+			sa2 = kmers.SignatureArray(sigarray, dtype=dtype)
+			assert sa2.values.dtype == np.dtype(dtype)
+			assert self.sigarray_eq(sa2, sigarray)
 
 	def test_empty(self):
 		"""Really an edge case, but test it anyways."""
 
-		kcol = kmers.SignatureArray.from_signatures([])
-
-		assert len(kcol) == 0
+		sigarray = kmers.SignatureArray([])
+		assert len(sigarray) == 0
 
 		with pytest.raises(IndexError):
-			kcol[0]
+			sigarray[0]

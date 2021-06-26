@@ -157,7 +157,7 @@ class SignatureFile:
 				chunksize = self.count
 
 			# Array to read into
-			array = SignatureArray.empty(self.lengths, dtype=self.dtype)
+			array = SignatureArray.uninitialized(self.lengths, dtype=self.dtype)
 
 			# Read in chunks
 			self.fobj.seek(data_start)
@@ -190,7 +190,7 @@ class SignatureFile:
 			bounds[1:] = np.cumsum(self.lengths)
 
 			# Calculate bounds for indices only
-			array = SignatureArray.empty(self.lengths[indices], dtype=self.dtype)
+			array = SignatureArray.uninitialized(self.lengths[indices], dtype=self.dtype)
 
 			# Read one at a time, in order of position in file
 			index_pairs_sorted = sorted((j, i) for i, j in enumerate(indices))
@@ -200,7 +200,7 @@ class SignatureFile:
 				self.fobj.seek(data_start + bounds[file_idx] * self.dtype.itemsize)
 				signature = read_npy(self.fobj, self.dtype, self.lengths[file_idx])
 
-				array[out_idx] = signature
+				np.copyto(array[out_idx], signature)
 
 				# Progress callback
 				if progress is not None:

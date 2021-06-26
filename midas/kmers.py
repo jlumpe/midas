@@ -11,14 +11,15 @@ bytes containing ascii-encoded nucleotide codes.
 	sequences.
 """
 
-from collections.abc import Sequence
-from typing import Optional, Union, NewType
+from typing import Sequence, Optional, Union, NewType
 
 import numpy as np
 
 from midas._cython.kmers import kmer_to_index, index_to_kmer, reverse_complement
+from midas._cython.metric import BOUNDS_DTYPE
 from midas.util.attr import attrs, attrib
 from midas.io.json import Jsonable
+from midas.util.indexing import AdvancedIndexingMixin
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -300,48 +301,123 @@ def sparse_to_dense(k_or_kspec : Union[int, KmerSpec],  coords : KmerSignature) 
 	return vec
 
 
-class SignatureArray(Sequence):
+class SignatureArray(AdvancedIndexingMixin, Sequence[np.ndarray]):
 	"""
 	Stores a collection of k-mer signatures (k-mer sets in sparse coordinate format) in
-	a single Numpy array.
+	a single contiguous Numpy array.
 
-	Acts as a non-mutable sequence of :class:`numpy.ndarray` objects (however
-	the ndarray's themselves may be writable), with the exception that you may
-	assign a value to an index which has the same effect as ``array[:] = value``.
-	Only integer indices are supported, not slices.
+	This format enables the calculation of many Jaccard scores in parallel, see
+	:func:`midas.metric.jaccard_sparse_array`.
 
-	Shouldn't create from constructor directly, use :meth:`from_signatures` or
-	:meth:`empty` instead.
+	Acts as a non-mutable sequence of :class:`numpy.ndarray` objects. Numpy-style indexing with an
+	array of integers or bools is supported and will return another
+	``SignatureArray``. If indexed with a contiguous slice the :attr:`values` of the returned array
+	will be a view of the original instead of a copy.
+
+	Attributes
+	----------
+	values
+		K-mer signatures concatenated into single Numpy array.
+	bounds
+		Array storing indices bounding each individual k-mer signature in :attr:`values`.
+		The ``i``th signature is at ``values[bounds[i]:bounds[i + 1]]``.
 	"""
+	values : np.ndarray
+	bounds : np.ndarray
 
-	def __init__(self, values, bounds):
+	@classmethod
+	def _unint_arrays(cls, lengths, dtype):
+		"""Get unintialized values array and bounds array from signature lengths."""
+		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)
+		np.cumsum(lengths, dtype=BOUNDS_DTYPE, out=bounds[1:])
+		values = np.empty(bounds[-1], dtype=dtype)
+		return values, bounds
+
+	def _init_from_arrays(self, values, bounds):
 		self.values = values
 		self.bounds = bounds
+		self._len = len(bounds) - 1
+
+	def __init__(self, signatures : Sequence[KmerSignature], dtype: Optional[np.dtype] = None):
+		"""
+		Parameters
+		----------
+		signatures
+			Sequence of k-mer signatures.
+		dtype
+			Numpy dtype of :attr:`values` array.
+		"""
+		if isinstance(signatures, SignatureArray):
+			# Can just copy arrays directly
+			if dtype is None:
+				values = signatures.values.copy()
+			else:
+				values = signatures.values.astype(dtype)
+			bounds = signatures.bounds.copy()
+
+			self._init_from_arrays(values, bounds)
+
+		else:
+			# Prepare with uninitialized values array
+			lengths = list(map(len, signatures))
+			values, bounds = self._unint_arrays(lengths, np.dtype('u8') if dtype is None else dtype)
+			self._init_from_arrays(values, bounds)
+
+			# Copy signatures to values array
+			for i, sig in enumerate(signatures):
+				np.copyto(self[i], sig, casting='unsafe')
+
+	@classmethod
+	def from_arrays(cls, values : np.ndarray, bounds : np.ndarray) -> 'SignatureArray':
+		"""Create directly from values and bounds arrays."""
+		sa = cls.__new__(cls)
+		sa._init_from_arrays(values, bounds)
+		return sa
+
+	@classmethod
+	def uninitialized(cls, lengths : Sequence[int], dtype: np.dtype = np.dtype('u8')) -> 'SignatureArray':
+		"""Create with an uninitialized values array.
+
+		Parameters
+		----------
+		lengths
+			Sequence of lengths for each sub-array/signature.
+		dtype
+			Numpy dtype of shared coordinates array.
+		"""
+		return cls.from_arrays(*cls._unint_arrays(lengths, dtype))
 
 	def __len__(self):
-		return len(self.bounds) - 1
+		return self._len
 
-	def _check_index(self, index):
-		"""Check an index passed as an argument is valid."""
-		if not isinstance(index, (int, np.integer)):
-			raise TypeError('Index must be single integer')
-		elif not 0 <= index < len(self):
-			raise IndexError(f'Index out of bounds: {index}')
+	def _getitem_int(self, i):
+		return self.values[self.bounds[i]:self.bounds[i + 1]]
 
-	def __getitem__(self, index):
-		self._check_index(index)
-		return self.values[self.bounds[index]:self.bounds[index + 1]]
+	def _getitem_slice(self, s):
+		start, stop, step = s.indices(self._len)
+		if step != 1 or stop <= start:
+			return super()._getitem_slice(s)
+
+		values = self.values[self.bounds[start]:self.bounds[stop]]
+		bounds = self.bounds[start:(stop + 1)] - self.bounds[start]
+		return self.from_arrays(values, bounds)
+
+	def _getitem_int_array(self, indices):
+		out = self.uninitialized([self.sizeof(i) for i in indices], dtype=self.values.dtype)
+		for i, idx in enumerate(indices):
+			np.copyto(out[i], self._getitem_int(idx), casting='unsafe')
+
+		return out
 
 	def __setitem__(self, index, value):
-		self._check_index(index)
-		self.values[self.bounds[index]:self.bounds[index + 1]] = value
+		raise TypeError('Assignment not supported')
 
-	def sizeof(self, index):
+	def sizeof(self, index: int) -> int:
 		"""Get the size of the signature array at the given index.
 
 		Should be the case that
 
-		    kcol.size_of(i) == len(kcol[i])
+		    sigarray.size_of(i) == len(sigarray[i])
 
 		Parameters
 		----------
@@ -352,53 +428,8 @@ class SignatureArray(Sequence):
 		-------
 		int
 		"""
-		return self.bounds[index + 1] - self.bounds[index]
+		i = self._check_index(index)
+		return self.bounds[i + 1] - self.bounds[i]
 
-	@classmethod
-	def from_signatures(cls, signatures, dtype=np.uint32):
-		"""Create from sequence of individual signature (k-mer coordinate) arrays.
-
-		Parameters
-		----------
-		signatures
-			Sequence of coordinate arrays.
-		dtype : numpy.dtype
-			Numpy dtype of shared coordinates array.
-
-		Returns
-		-------
-		.SignatureArray
-		"""
-		array = cls.empty(list(map(len, signatures)), dtype=dtype)
-
-		for i, sig in enumerate(signatures):
-			array[i] = sig
-
-		return array
-
-	@classmethod
-	def empty(cls, lengths, values=None, dtype=np.uint32):
-		"""Create with an empty array.
-
-		Parameters
-		----------
-		lengths
-			Sequence of lengths for each sub-array/signature.
-		values : numpy.ndarray
-			Shared data array to use (optional).
-		dtype : numpy.dtype
-			Numpy dtype of shared coordinates array.
-
-		Returns
-		-------
-		.SignatureArray
-		"""
-		from midas._cython.metric import BOUNDS_DTYPE
-
-		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)
-		bounds[1:] = np.cumsum(lengths)
-
-		if values is None:
-			values = np.empty(bounds[-1], dtype=dtype)
-
-		return cls(values, bounds)
+	def __repr__(self):
+		return f'<{type(self).__name__} length={len(self)} values.dtype={self.values.dtype}>'

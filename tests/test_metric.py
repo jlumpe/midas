@@ -19,7 +19,7 @@ def load_test_coords_col(test_data):
 		with open(test_data / 'kmer_coords/coords.pickle', 'rb') as fobj:
 			signatures_list = pickle.load(fobj)
 
-		return SignatureArray.from_signatures(signatures_list)
+		return SignatureArray(signatures_list)
 
 	return load_test_coords_col_func
 
@@ -92,7 +92,7 @@ def test_jaccard_sparse_array(coords_params, alt_bounds_dtype):
 	# The inner Cython function takes a specific type for the bounds array.
 	# Try with this type and a different type, should be converted automatically by the outer Python func
 	if alt_bounds_dtype:
-		sigs = SignatureArray(sigs.values, sigs.bounds.astype('i4'))
+		sigs = SignatureArray.from_arrays(sigs.values, sigs.bounds.astype('i4'))
 		assert sigs.bounds.dtype != BOUNDS_DTYPE
 	else:
 		assert sigs.bounds.dtype == BOUNDS_DTYPE
@@ -150,8 +150,8 @@ def test_different_dtypes():
 				# Tell numpy to raise error on overflow
 				old_err = np.seterr(over='raise')
 
-				sigs1 = SignatureArray.from_signatures(sigs, dtype=dt1)
-				sigs2 = SignatureArray.from_signatures(sigs, dtype=dt2)
+				sigs1 = SignatureArray(sigs, dtype=dt1)
+				sigs2 = SignatureArray(sigs, dtype=dt2)
 
 			finally:
 				np.seterr(**old_err)
