@@ -5,7 +5,7 @@ import json
 
 import numpy as np
 
-from midas.kmers import SignatureArray
+from midas.signatures import SignatureArray
 from .util import read_npy, write_npy, NamedStruct
 
 
@@ -144,7 +144,7 @@ class SignatureFile:
 
 		Returns
 		-------
-		midas.kmers.SignatureArray
+		midas.signatures.SignatureArray
 		"""
 
 		# File position at start of data

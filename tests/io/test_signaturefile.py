@@ -6,7 +6,7 @@ import pytest
 import numpy as np
 
 from midas.io.signaturefile import SignatureFile
-from midas.kmers import SignatureArray
+from midas.signatures import SignatureArray
 
 
 class ProgressChecker:

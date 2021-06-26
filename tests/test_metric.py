@@ -7,7 +7,8 @@ import numpy as np
 
 from midas.metric import jaccard_sparse, jaccarddist_sparse, jaccard_bits, \
 	jaccard_generic, jaccard_sparse_array, SCORE_DTYPE, BOUNDS_DTYPE
-from midas.kmers import SignatureArray, sparse_to_dense
+from midas.kmers import sparse_to_dense
+from midas.signatures import SignatureArray
 from midas.test import make_signatures
 
 

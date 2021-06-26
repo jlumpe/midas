@@ -78,7 +78,7 @@ def jaccard_sparse_array(query, refs, out=None, distance=False):
 	----------
 	query : numpy.ndarray
 		Query k-mer signature in sparse coordinate format (sorted array of k-mer indices).
-	refs : midas.kmers.SignatureArray
+	refs : midas.signatures.SignatureArray
 		Array of reference signatures.
 	out : Optional[numpy.ndarray]
 		Optional pre-allocated array to write results to. Should be the same length as ``sigarray``
