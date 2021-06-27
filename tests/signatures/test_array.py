@@ -5,6 +5,7 @@ import numpy as np
 
 from midas.signatures import SignatureArray
 from midas.test import make_signatures
+from midas.signatures.test import AbstractSignatureArrayTests, sigarray_eq
 
 
 @pytest.fixture(params=[None, 'i8', 'u4'])
@@ -14,98 +15,37 @@ def sigarray(request):
 
 
 @pytest.fixture()
-def sigs(sigarray):
+def refarray(sigarray):
 	"""Numpy array equivalent to `sigarray`."""
 	return np.asarray(sigarray, dtype=object)
 
 
-def sigarray_eq(a1, a2):
-	"""Check two SignatureArrays or other sequences of signatures are equal."""
-	return len(a1) == len(a2) and all(map(np.array_equal, a1, a2))
+class TestAbstractSignatureArrayImplementation(AbstractSignatureArrayTests):
+	"""Test implementation of AbstractSignatureArray interface."""
+
+	def check_getindex_scalar(self, sigarray, refarray, index, result, refresult):
+		super().check_getindex_scalar(sigarray, refarray, index, result, refresult)
+		assert isinstance(result, np.ndarray)
+		assert result.dtype == sigarray.dtype
+
+	def check_getindex_subseq(self, sigarray, refarray, index, result, refresult):
+		super().check_getindex_subseq(sigarray, refarray, index, result, refresult)
+		assert isinstance(result, SignatureArray)
+
+	def check_getindex_slice(self, sigarray, refarray, index, result, refresult):
+		super().check_getindex_slice(sigarray, refarray, index, result, refresult)
 
 
-def test_basic(sigarray, sigs):
-	"""Test basic functionality outside of __getitem__()."""
-	n = len(sigs)
 
-	# Check len
-	assert len(sigarray) == n
-
-	# Check dtype attribute
-	assert sigarray.dtype == sigarray.values.dtype
-
-	# Check sizeof() and sizes() methods
-	for i, sig in enumerate(sigs):
-		assert sigarray.sizeof(i) == len(sig)
-		assert sigarray.sizeof(np.int64(i)) == len(sig)
-
-	with pytest.raises(IndexError):
-		sigarray.sizeof(len(sigarray))
-
-	assert np.array_equal(sigarray.sizes(), [sigarray.sizeof(i) for i in range(len(sigarray))])
-
-	# Assignment not supported
-	with pytest.raises(TypeError):
-		sigarray[0] = 0
-
-
-def test_getitem_single(sigarray, sigs):
-	n = len(sigarray)
-
-	for i in range(n):
-		sig = sigarray[i]
-		assert np.array_equal(sig, sigs[i])
-		assert sig.base is sigarray.values  # Check is view
-
-
-def check_subseq(sigarray, sigs, index):
-	"""Check result of indexing which results in a subsequence."""
-	result = sigarray[index]
-	assert isinstance(result, SignatureArray)
-	assert result.dtype == sigarray.dtype
-	assert sigarray_eq(result, sigs[index])
-	return result
-
-
-def test_getitem_slice(sigarray, sigs):
-	slices = [
-		slice(10, 30),
-		slice(None),
-		slice(None, None, 1),
-		slice(None, None, 2),
-	]
-
-	for s in slices:
-		result = check_subseq(sigarray, sigs, s)
-
-		# Check values array is view for contiguous slices
-		if s.step is None or s.step == 1:
-			assert result.values.base is sigarray.values
-
-
-def test_getitem_int_array(sigarray, sigs):
-	indices = [
-		[0, 10, 20, 30, 20, -10],
-		[],
-	]
-	for index in indices:
-		check_subseq(sigarray, sigs, index)
-
-
-def test_getitem_bool_array(sigarray, sigs):
-	index = np.arange(len(sigarray)) % 3 == 0
-	check_subseq(sigarray, sigs, index)
-
-
-def test_uninitialized(sigs):
+def test_uninitialized(refarray):
 	"""Test creating with uninitialized() class method."""
 
-	lengths = list(map(len, sigs))
+	lengths = list(map(len, refarray))
 	sigarray = SignatureArray.uninitialized(lengths)
-	assert len(sigarray) == len(sigs)
+	assert len(sigarray) == len(refarray)
 
 	for i in range(len(sigarray)):
-		assert sigarray.sizeof(i) == len(sigs[i])
+		assert sigarray.sizeof(i) == len(refarray[i])
 
 
 def test_construct_from_signaturearray(sigarray):
