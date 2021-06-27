@@ -77,7 +77,7 @@ class SignatureArray(ConcatenatedSignatureArray):
 
 	@classmethod
 	def _unint_arrays(cls, lengths, dtype):
-		"""Get unintialized values array and bounds array from signature lengths."""
+		"""Get uninitialized values array and bounds array from signature lengths."""
 		bounds = np.zeros(len(lengths) + 1, dtype=BOUNDS_DTYPE)
 		np.cumsum(lengths, dtype=BOUNDS_DTYPE, out=bounds[1:])
 		values = np.empty(bounds[-1], dtype=dtype)
