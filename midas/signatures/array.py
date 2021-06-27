@@ -4,21 +4,19 @@ import numpy as np
 
 from midas._cython.metric import BOUNDS_DTYPE
 from midas.kmers import KmerSignature
+from .base import AbstractSignatureArray
 from midas.util.indexing import AdvancedIndexingMixin
 
 
-class SignatureArray(AdvancedIndexingMixin, Sequence[np.ndarray]):
-	"""
-	Stores a collection of k-mer signatures (k-mer sets in sparse coordinate format) in
-	a single contiguous Numpy array.
+class SignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
+	"""Stores a collection of k-mer signatures in a single contiguous Numpy array.
 
 	This format enables the calculation of many Jaccard scores in parallel, see
 	:func:`midas.metric.jaccard_sparse_array`.
 
-	Acts as a non-mutable sequence of :class:`numpy.ndarray` objects. Numpy-style indexing with an
-	array of integers or bools is supported and will return another
-	``SignatureArray``. If indexed with a contiguous slice the :attr:`values` of the returned array
-	will be a view of the original instead of a copy.
+	Numpy-style indexing with an array of integers or bools is supported and will return another
+	``SignatureArray``. If indexed with a contiguous slice the :attr:`values` of the returned
+	array will be a view of the original instead of a copy.
 
 	Attributes
 	----------
@@ -118,24 +116,16 @@ class SignatureArray(AdvancedIndexingMixin, Sequence[np.ndarray]):
 	def __setitem__(self, index, value):
 		raise TypeError('Assignment not supported')
 
-	def sizeof(self, index: int) -> int:
-		"""Get the size of the signature array at the given index.
+	@property
+	def dtype(self):
+		return self.values.dtype
 
-		Should be the case that
-
-		    sigarray.size_of(i) == len(sigarray[i])
-
-		Parameters
-		----------
-		index : int
-			Index of k-mer set in collection.
-
-		Returns
-		-------
-		int
-		"""
+	def sizeof(self, index):
 		i = self._check_index(index)
 		return self.bounds[i + 1] - self.bounds[i]
+
+	def sizes(self):
+		return np.diff(self.bounds)
 
 	def __repr__(self):
 		return f'<{type(self).__name__} length={len(self)} values.dtype={self.values.dtype}>'

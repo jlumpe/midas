@@ -26,17 +26,23 @@ def sigarray_eq(a1, a2):
 
 def test_basic(sigarray, sigs):
 	"""Test basic functionality outside of __getitem__()."""
+	n = len(sigs)
 
 	# Check len
-	assert len(sigarray) == len(sigs)
+	assert len(sigarray) == n
 
-	# Check sizeof() method
+	# Check dtype attribute
+	assert sigarray.dtype == sigarray.values.dtype
+
+	# Check sizeof() and sizes() methods
 	for i, sig in enumerate(sigs):
 		assert sigarray.sizeof(i) == len(sig)
 		assert sigarray.sizeof(np.int64(i)) == len(sig)
 
 	with pytest.raises(IndexError):
 		sigarray.sizeof(len(sigarray))
+
+	assert np.array_equal(sigarray.sizes(), [sigarray.sizeof(i) for i in range(len(sigarray))])
 
 	# Assignment not supported
 	with pytest.raises(TypeError):
@@ -56,7 +62,7 @@ def check_subseq(sigarray, sigs, index):
 	"""Check result of indexing which results in a subsequence."""
 	result = sigarray[index]
 	assert isinstance(result, SignatureArray)
-	assert result.values.dtype == sigarray.values.dtype
+	assert result.dtype == sigarray.dtype
 	assert sigarray_eq(result, sigs[index])
 	return result
 
@@ -105,12 +111,12 @@ def test_uninitialized(sigs):
 def test_construct_from_signaturearray(sigarray):
 	"""Test construction from another SignatureArray."""
 	sa2 = SignatureArray(sigarray)
-	assert sa2.values.dtype == sigarray.values.dtype
+	assert sa2.dtype == sigarray.dtype
 	assert sigarray_eq(sa2, sigarray)
 
-	for dtype in ['i8', 'u4']:
+	for dtype in map(np.dtype, ['i8', 'u4']):
 		sa2 = SignatureArray(sigarray, dtype=dtype)
-		assert sa2.values.dtype == np.dtype(dtype)
+		assert sa2.dtype == dtype
 		assert sigarray_eq(sa2, sigarray)
 
 
