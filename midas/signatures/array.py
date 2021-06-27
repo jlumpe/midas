@@ -8,7 +8,53 @@ from .base import AbstractSignatureArray
 from midas.util.indexing import AdvancedIndexingMixin
 
 
-class SignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
+class ConcatenatedSignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
+	"""Base class for signature arrays which store signatures in a single data array.
+
+	Attributes
+	----------
+	values
+		K-mer signatures concatenated into single numpy-like array.
+	bounds
+		Numpy-like array storing indices bounding each individual k-mer signature in ``values``.
+		The ``i``th signature is at ``values[bounds[i]:bounds[i + 1]]``.
+	"""
+
+	def __len__(self):
+		return len(self.bounds) - 1
+
+	def _getitem_int(self, i):
+		return self.values[self.bounds[i]:self.bounds[i + 1]]
+
+	def _getitem_slice(self, s):
+		start, stop, step = s.indices(len(self))
+		if step != 1 or stop <= start:
+			return super()._getitem_slice(s)
+
+		values = self.values[self.bounds[start]:self.bounds[stop]]
+		bounds = self.bounds[start:(stop + 1)] - self.bounds[start]
+		return SignatureArray.from_arrays(values, bounds)
+
+	def _getitem_int_array(self, indices):
+		out = SignatureArray.uninitialized([self.sizeof(i) for i in indices], dtype=self.values.dtype)
+		for i, idx in enumerate(indices):
+			np.copyto(out[i], self._getitem_int(idx), casting='unsafe')
+
+		return out
+
+	@property
+	def dtype(self):
+		return self.values.dtype
+
+	def sizeof(self, index):
+		i = self._check_index(index)
+		return self.bounds[i + 1] - self.bounds[i]
+
+	def sizes(self):
+		return np.diff(self.bounds)
+
+
+class SignatureArray(ConcatenatedSignatureArray):
 	"""Stores a collection of k-mer signatures in a single contiguous Numpy array.
 
 	This format enables the calculation of many Jaccard scores in parallel, see
@@ -40,7 +86,6 @@ class SignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
 	def _init_from_arrays(self, values, bounds):
 		self.values = values
 		self.bounds = bounds
-		self._len = len(bounds) - 1
 
 	def __init__(self, signatures : Sequence[KmerSignature], dtype: Optional[np.dtype] = None):
 		"""
@@ -90,42 +135,6 @@ class SignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
 			Numpy dtype of shared coordinates array.
 		"""
 		return cls.from_arrays(*cls._unint_arrays(lengths, dtype))
-
-	def __len__(self):
-		return self._len
-
-	def _getitem_int(self, i):
-		return self.values[self.bounds[i]:self.bounds[i + 1]]
-
-	def _getitem_slice(self, s):
-		start, stop, step = s.indices(self._len)
-		if step != 1 or stop <= start:
-			return super()._getitem_slice(s)
-
-		values = self.values[self.bounds[start]:self.bounds[stop]]
-		bounds = self.bounds[start:(stop + 1)] - self.bounds[start]
-		return self.from_arrays(values, bounds)
-
-	def _getitem_int_array(self, indices):
-		out = self.uninitialized([self.sizeof(i) for i in indices], dtype=self.values.dtype)
-		for i, idx in enumerate(indices):
-			np.copyto(out[i], self._getitem_int(idx), casting='unsafe')
-
-		return out
-
-	def __setitem__(self, index, value):
-		raise TypeError('Assignment not supported')
-
-	@property
-	def dtype(self):
-		return self.values.dtype
-
-	def sizeof(self, index):
-		i = self._check_index(index)
-		return self.bounds[i + 1] - self.bounds[i]
-
-	def sizes(self):
-		return np.diff(self.bounds)
 
 	def __repr__(self):
 		return f'<{type(self).__name__} length={len(self)} values.dtype={self.values.dtype}>'
