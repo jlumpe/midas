@@ -1,30 +1,45 @@
-# midas v2
-[![Build Status](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml/badge.svg)](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml)
+# GAMBIT
+[![Build Status](https://github.com/hesslab-gambit/gambit/actions/workflows/ci.yml/badge.svg)](https://github.com/hesslab-gambit/gambit/actions/workflows/ci.yml)
 
-Version 2 of the core MIDAS library.
+GAMBIT (Genomic Approximation Method for Bacterial Identification and Tracking) is a tool for rapid taxonomic identification of microbial pathogens.
+It uses an extremely efficient genomic distance metric along with a curated database of over 50,000 reference genomes (derived from NCBI [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/))
+to identify query genomes within seconds.
 
-For version 1, see the [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch.
+Developed by Jared Lumpe in collaboration with the David Hess lab at Santa Clara University.
+
 
 ## Installation
 
-Prerequisites:
+### Building from source
 
-    pip install Cython
+Install build dependencies:
 
-Clone:
+    pip install setuptools numpy cython
 
-    git clone https://github.com/jlumpe/midas
+Clone the repository:
+
+    git clone https://github.com/hesslab-gambit/gambit
 
 Build and install:
 
-    cd midas
-    python setup.py build_ext --inplace
-    python setup.py install
+    cd gambit
+    pip install .
 
 
-## Other MIDAS v2 repos
+### Database files
 
-* [midas-app](http://github.com/jlumpe/midas-app)
-* [midas-gui](http://github.com/jlumpe/midas-gui)
-  
-See [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch for repos which use the v1 version of the library.
+TODO
+
+
+## Usage
+
+    gambit [OPTIONS] query [--csv | --json] [-o OUTPUT] GENOMES*
+
+Query genomes must be assembled but may consist of multiple contigs. Currently only FASTA format is supported.
+Support for unassembled raw reads (FASTQ format) is in development.
+
+
+## Contact
+
+For questions regarding usage of the software itself, please contact Jared Lumpe at [mjlumpe@gmail.com](mailto:mjlumpe@gmail.com).
+All other questions should be directed to David Hess at [dchess@scu.edu](mailto:dchess@scu.edu).
