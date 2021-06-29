@@ -6,7 +6,7 @@ from typing import Sequence, Union, Optional
 import numpy as np
 import h5py as h5
 
-from .base import SignaturesMeta
+from .meta import SignaturesMeta
 from .array import SignatureArray, ConcatenatedSignatureArray
 from midas.kmers import KmerSpec
 

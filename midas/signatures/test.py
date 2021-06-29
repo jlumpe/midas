@@ -3,7 +3,7 @@
 import pytest
 import numpy as np
 
-from .base import AbstractSignatureArray
+from .array import AbstractSignatureArray
 
 
 def signature_eq(sig1, sig2):
