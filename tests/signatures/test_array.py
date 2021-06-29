@@ -5,7 +5,7 @@ import numpy as np
 
 from midas.signatures import SignatureArray
 from midas.test import make_signatures
-from midas.signatures.test import AbstractSignatureArrayTests, sigarray_eq
+from midas.signatures.test import AbstractSignatureArrayTests
 
 
 @pytest.fixture(params=[None, 'i8', 'u4'])
@@ -52,12 +52,12 @@ def test_construct_from_signaturearray(sigarray):
 	"""Test construction from another SignatureArray."""
 	sa2 = SignatureArray(sigarray)
 	assert sa2.dtype == sigarray.dtype
-	assert sigarray_eq(sa2, sigarray)
+	assert sa2 == sigarray
 
 	for dtype in map(np.dtype, ['i8', 'u4']):
 		sa2 = SignatureArray(sigarray, dtype=dtype)
 		assert sa2.dtype == dtype
-		assert sigarray_eq(sa2, sigarray)
+		assert sa2 == sigarray
 
 
 def test_empty():

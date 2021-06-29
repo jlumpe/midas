@@ -311,9 +311,7 @@ class TestSignatureFile:
 
 		# Read signatures
 		sigarray2 = sigfile.get_array(chunksize=chunksize, progress=callback)
-
-		assert np.array_equal(sigarray.values, sigarray2.values)
-		assert np.array_equal(sigarray.bounds, sigarray2.bounds)
+		assert sigarray2 == sigarray
 
 		# Check progress callback was called the correct number of times
 		if progress:
@@ -333,11 +331,7 @@ class TestSignatureFile:
 
 		# Read subset of signatures
 		subarray = sigfile.get_array(indices, progress=callback)
-
-		assert len(subarray) == len(indices)
-
-		for idx, sig in zip(indices, subarray):
-			assert np.array_equal(sig, sigarray[idx])
+		assert subarray == sigarray[indices]
 
 		# Check progress callback was called the correct number of times
 		if progress:

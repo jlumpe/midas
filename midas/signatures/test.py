@@ -3,16 +3,7 @@
 import pytest
 import numpy as np
 
-from .array import AbstractSignatureArray
-
-
-def signature_eq(sig1, sig2):
-	"""Check signature arrays for equality."""
-	return np.array_equal(sig1, sig2)
-
-def sigarray_eq(a1, a2):
-	"""Check two arrays/sequences of signatures for equality."""
-	return len(a1) == len(a2) and all(map(signature_eq, a1, a2))
+from .array import AbstractSignatureArray, sigarray_eq
 
 
 class AbstractSignatureArrayTests:
@@ -46,7 +37,7 @@ class AbstractSignatureArrayTests:
 
 		By default just compares results based on :meth:`signature_eq`.
 		"""
-		assert signature_eq(result, refresult)
+		assert np.array_equal(result, refresult)
 
 	def check_getindex_subseq(self, sigarray, refarray, index, result, refresult):
 		"""Check  any indexing behavior which results in a subsequence.
