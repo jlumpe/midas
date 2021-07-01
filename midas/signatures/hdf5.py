@@ -132,6 +132,19 @@ class HDF5Signatures(ConcatenatedSignatureArray, ReferenceSignatures):
 		group.create_dataset('ids', data=ids, dtype=ids_dtype)
 
 	@classmethod
+	def open(cls, path: FilePath, **kw) -> 'HDF5Signatures':
+		"""Open from file.
+
+		Parameters
+		----------
+		path
+			File to open.
+		\\**kw
+			Additional keyword arguments to :func:`h5py.File`.
+		"""
+		return cls(h5.File(path, **kw))
+
+	@classmethod
 	def create(cls,
 	           group: h5.Group,
 	           kmerspec: KmerSpec,
