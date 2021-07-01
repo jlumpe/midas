@@ -9,48 +9,26 @@ class TypeCheckError(Exception):
 	"""Raised when attempting to check a value against an unsupported type annotation."""
 
 
-if sys.version_info.minor >= 7:
-	def _is_union(T):
-		return isinstance(T, typing._GenericAlias) and T.__origin__ is typing.Union
-else:
-	def _is_union(T):
-		return isinstance(T, type(Union)) and T is not Union
-
-_is_union.__doc__ = """
-Check if a type annotation is a *parameterized* :class:`typing.Union`.
-
-Parameters
-----------
-T
-	Type annotation
-
-Returns
--------
-bool
-"""
+def _is_union(T) -> bool:
+	"""Check if a type annotation is a *parameterized* :class:`typing.Union`."""
+	return isinstance(T, typing._GenericAlias) and T.__origin__ is typing.Union
 
 
-def _union_types(T):
+def _union_types(T) -> tuple:
 	"""Get the types from a parameterized :class:`typing.Union`.
 
 	Parameters
 	----------
 	T
 		Result of ``Union[A, B, ...]``.
-
-	Returns
-	-------
-	tuple
 	"""
 	return T.__args__
 
 
 if sys.version_info.minor >= 9:
 	_GENERIC_BASE = typing._BaseGenericAlias
-elif sys.version_info.minor >= 7:
-	_GENERIC_BASE = typing._GenericAlias
 else:
-	_GENERIC_BASE = typing.GenericMeta
+	_GENERIC_BASE = typing._GenericAlias
 
 def _is_generic_type(T):
 	"""Check if a type annotation value corresponds to a generic type.
@@ -70,12 +48,9 @@ def _is_generic_type(T):
 if sys.version_info.minor >= 9:
 	def _is_generic_parameterized(T):
 		return typing.get_args(T) != ()
-elif sys.version_info.minor >= 7:
-	def _is_generic_parameterized(T):
-		return any(not isinstance(arg, typing.TypeVar) for arg in T.__args__)
 else:
 	def _is_generic_parameterized(T):
-		return T.__args__ is not None
+		return any(not isinstance(arg, typing.TypeVar) for arg in T.__args__)
 
 _is_generic_parameterized.__doc__ = """
 Check if a generic type annotation has (any) parameters specified.
@@ -94,12 +69,9 @@ bool
 if sys.version_info.minor >= 9:
 	def _generic_base(T):
 		return typing.get_origin(T)
-elif sys.version_info.minor >= 7:
-	def _generic_base(T):
-		return T.__origin__
 else:
 	def _generic_base(T):
-		return T.__extra__
+		return T.__origin__
 
 _generic_base.__doc__ = """
 Get the base (non-generic) type of a generic type annotation.
