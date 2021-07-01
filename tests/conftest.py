@@ -44,7 +44,7 @@ def testdb_dir(test_data):
 @pytest.fixture(scope='session')
 def testdb_engine(testdb_dir):
 	"""SQLAlchemy engine connected to test database."""
-	return create_engine('sqlite:///' + str(testdb_dir / 'testdb_210126.db'))
+	return create_engine('sqlite:///' + str(testdb_dir / 'testdb_210126-genomes.db'))
 
 @pytest.fixture(scope='session')
 def testdb_session(testdb_engine):

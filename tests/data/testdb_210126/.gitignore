@@ -1,3 +1,2 @@
-query_seqs/
-*.midas-signatures
-*.midas-signatures.gz
+query-seqs/
+*.h5
