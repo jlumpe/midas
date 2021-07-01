@@ -6,7 +6,7 @@ from typing import Sequence, Union, Optional
 import numpy as np
 import h5py as h5
 
-from .base import SignaturesMeta
+from .base import SignaturesMeta, ReferenceSignatures
 from .array import SignatureArray, ConcatenatedSignatureArray
 from midas.kmers import KmerSpec
 
@@ -60,7 +60,7 @@ def read_metadata(group: h5.Group) -> SignaturesMeta:
 	)
 
 
-class HDF5Signatures(ConcatenatedSignatureArray):
+class HDF5Signatures(ConcatenatedSignatureArray, ReferenceSignatures):
 	"""Stores a set of k-mer signatures and associated metadata in an HDF5 group.
 
 	Inherits from :class:`midas.signatures.base.AbstractSignatureArray`, so behaves as a sequence of
@@ -70,13 +70,6 @@ class HDF5Signatures(ConcatenatedSignatureArray):
 	----------
 	group
 		HDF5 group object data is read from.
-	kmerspec
-		K-mer spec used to calculate signatures.
-	ids
-		Array of unique string or integer IDs for each signature. Length should be equal to length of
-		``HDF5Signatures`` object.
-	meta
-		Other metadata describing signatures.
 
 	Parameters
 	----------
@@ -84,9 +77,7 @@ class HDF5Signatures(ConcatenatedSignatureArray):
 		Open, readable :class:`h5py.Group` or :class:`h5py.File` object.
 	"""
 	group: h5.Group
-	kmerspec: KmerSpec
 	ids: h5.Dataset
-	meta: SignaturesMeta
 
 	def __init__(self, group: h5.Group):
 		self.group = group

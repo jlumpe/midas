@@ -4,6 +4,8 @@ from abc import abstractmethod
 import numpy as np
 from attr import attrs, attrib
 
+from midas.kmers import KmerSpec
+
 
 @attrs()
 class SignaturesMeta:
@@ -80,3 +82,23 @@ class AbstractSignatureArray(Sequence[np.ndarray]):
 			return sigarray_eq(self, other)
 		else:
 			return NotImplemented
+
+
+class ReferenceSignatures(AbstractSignatureArray):
+	"""Base class for an array of reference genome signatures plus metadata.
+
+	This contains the extra data needed for the signatures to be used for running queries.
+
+	Attributes
+	----------
+	kmerspec
+		K-mer spec used to calculate signatures.
+	ids
+		Array of unique string or integer IDs for each signature. Length should be equal to length of
+		``ReferenceSignatures`` object.
+	meta
+		Other metadata describing signatures.
+	"""
+	kmerspec: KmerSpec
+	ids: Sequence
+	meta: SignaturesMeta
