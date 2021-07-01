@@ -6,6 +6,7 @@ classes.
 """
 
 import json
+from typing import Any
 
 import cattr
 import numpy as np
@@ -25,7 +26,7 @@ def to_json(obj):
 	return converter.unstructure(obj)
 
 
-def from_json(data, cls):
+def from_json(data, cls=Any):
 	"""Load object from parsed JSON data.
 
 	Parameters
@@ -56,7 +57,7 @@ def dump(obj, f):
 	json.dump(data, f)
 
 
-def load(f, cls):
+def load(f, cls=Any):
 	"""Load an object from a JSON file.
 
 	Parameters
@@ -89,7 +90,7 @@ def dumps(obj):
 	return json.dumps(to_json(obj))
 
 
-def loads(s, cls):
+def loads(s, cls=Any):
 	"""Load an object from a JSON string.
 
 	Parameters
