@@ -7,7 +7,7 @@ import numpy as np
 from Bio import SeqIO
 from attr import attrs, attrib
 
-from midas.kmers import find_kmers, dense_to_sparse
+from midas.kmers import KmerSpec, find_kmers, dense_to_sparse
 from .util import open_compressed, ClosingIterator
 
 
@@ -129,7 +129,7 @@ class SeqFileInfo:
 		return [cls(path, fmt, compression) for path in paths]
 
 
-def find_kmers_parse(kspec, data, format, *, sparse=True, dense_out=None):
+def find_kmers_parse(kspec: KmerSpec, data, format: str, *, sparse: bool = True, dense_out: Optional[np.ndarray] = None) -> np.ndarray:
 	"""Parse sequence data with ``Bio.Seq.parse()`` and find k-mers.
 
 	Parameters
@@ -158,6 +158,7 @@ def find_kmers_parse(kspec, data, format, *, sparse=True, dense_out=None):
 	See Also
 	--------
 	midas.kmers.find_kmers
+	.find_kmers_in_file
 	"""
 	if dense_out is None:
 		dense_out = np.zeros(kspec.idx_len, dtype=bool)
@@ -169,6 +170,39 @@ def find_kmers_parse(kspec, data, format, *, sparse=True, dense_out=None):
 		return dense_to_sparse(dense_out)
 	else:
 		return dense_out
+
+
+def find_kmers_in_file(kspec: KmerSpec, seqfile: SeqFileInfo, *, sparse: bool = True, dense_out: Optional[np.ndarray] = None) -> np.ndarray:
+	"""Open a sequence file on disk and find k-mers.
+
+	This works identically to :func:`.find_kmers_parse` but takes a :class:`.SeqFileInfo` as input
+	instead of a data stream.
+
+	Parameters
+	----------
+	kspec
+		Spec for k-mer search.
+	seqfile
+		File to read.
+	sparse
+		See :func:`.find_kmers_parse`.
+	dense_out
+		See :func:`.find_kmers_parse`.
+
+	Returns
+	-------
+	numpy.ndarray
+		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
+		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
+		:func:`midas.kmers.vec_to_coords`).
+
+	See Also
+	--------
+	midas.kmers.find_kmers
+	.find_kmers_parse
+	"""
+	with seqfile.open() as f:
+		return find_kmers_parse(kspec, f, seqfile.fmt, sparse=sparse, dense_out=dense_out)
 
 
 class FileSignatureCalculator:
