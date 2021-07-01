@@ -9,6 +9,8 @@ import h5py as h5
 from .base import SignaturesMeta, ReferenceSignatures
 from .array import SignatureArray, ConcatenatedSignatureArray
 from midas.kmers import KmerSpec
+from midas.io.util import FilePath
+
 
 #: Name of HDF5 group attribute which both stores the format version and also identifies the group
 #: as containing signature data.

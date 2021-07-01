@@ -1,6 +1,10 @@
 """Utility code for reading/writing data files."""
 
 import os
+from typing import Union
+
+#: Alias for types which can represent a file system path
+FilePath = Union[str, os.PathLike]
 
 
 COMPRESSED_OPENERS = {None: open}
