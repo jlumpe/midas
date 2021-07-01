@@ -24,8 +24,8 @@ genomes = table(
     sa.Column('id', sa.Integer(), primary_key=True),
     sa.Column('is_assembled', sa.Boolean()),
     sa.Column('ncbi_taxid', sa.Integer(), index=True),
-    sa.Column('entrez_summary', sqla.JsonType),
-    sa.Column('extra', sqla.JsonType),
+    sa.Column('entrez_summary', sqla.JsonString),
+    sa.Column('extra', sqla.JsonString),
 )
 
 reference_genome_sets = table(
@@ -33,14 +33,14 @@ reference_genome_sets = table(
     sa.Column('id', sa.Integer(), primary_key=True),
     sa.Column('signatureset_key', sa.String()),
     sa.Column('signatureset_version', sa.String()),
-    sa.Column('extra', sqla.JsonType),
+    sa.Column('extra', sqla.JsonString),
 )
 
 taxa = table(
     'taxa',
     sa.Column('id', sa.Integer(), primary_key=True),
-    sa.Column('entrez_data', sqla.JsonType),
-    sa.Column('extra', sqla.JsonType),
+    sa.Column('entrez_data', sqla.JsonString),
+    sa.Column('extra', sqla.JsonString),
 )
 
 
