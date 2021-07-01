@@ -3,7 +3,8 @@
 import pytest
 import numpy as np
 
-from .array import AbstractSignatureArray, sigarray_eq
+from .array import AbstractSignatureArray
+from .base import sigarray_eq
 
 
 class AbstractSignatureArrayTests:

@@ -5,7 +5,7 @@ import h5py as h5
 import numpy as np
 
 from midas.signatures.hdf5 import HDF5Signatures, read_metadata, write_metadata
-from midas.signatures.meta import SignaturesMeta
+from midas.signatures import SignaturesMeta
 from midas.signatures.test import AbstractSignatureArrayTests
 from midas.kmers import KmerSpec
 from midas.test import make_signatures
