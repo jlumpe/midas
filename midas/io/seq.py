@@ -19,11 +19,11 @@ class SeqFileInfo:
 
 	Parameters
 	----------
-	path : pathlib.Path or str
+	path : Union[pathlib.Path, str]
 		Value of :attr:`path` attribute. May be string or path-like object.
 	fmt : str
 		Value of :attr:`fmt` attribute.
-	compression : str or None
+	compression : Optional[str]
 		Value of :attr:`compression` attribute.
 
 	Attributes
@@ -42,7 +42,7 @@ class SeqFileInfo:
 	fmt: str = attrib(validate_type=True)
 	compression: Optional[str] = attrib(optional=True, validate_type=True)
 
-	def open(self, mode='r', **kwargs):
+	def open(self, mode: str = 'r', **kwargs):
 		"""
 		Open a stream to the file, with compression/decompression applied
 		transparently.
@@ -108,7 +108,7 @@ class SeqFileInfo:
 			return SeqFileInfo(self.path.absolute(), self.fmt, self.compression)
 
 	@classmethod
-	def from_paths(cls, paths, fmt, compression=None):
+	def from_paths(cls, paths, fmt: str, compression: Optional[str] = None):
 		"""
 		Create many instances at once from a collection of paths and a single
 		format and compression type.

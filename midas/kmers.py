@@ -11,7 +11,7 @@ bytes containing ascii-encoded nucleotide codes.
 	sequences.
 """
 
-from typing import Sequence, Union, NewType
+from typing import Sequence, Optional, Union, NewType
 
 import numpy as np
 
@@ -143,8 +143,12 @@ class KmerSpec(Jsonable):
 
 
 def find_kmers(
-		kspec : KmerSpec, seq : Union[bytes, str], *, sparse : bool = True, dense_out : bool = None,
-		) -> KmerSignature:
+               kspec: KmerSpec,
+               seq: Union[bytes, str],
+               *,
+               sparse: bool = True,
+               dense_out: Optional[np.ndarray] = None,
+               ) -> KmerSignature:
 	"""Find all k-mers in a DNA sequence.
 
 	Searches sequence both backwards and forwards (reverse complement). The sequence may contain
@@ -254,7 +258,7 @@ def _find_kmers(kspec, seq, out):
 		start = loc + 1
 
 
-def dense_to_sparse(vec : Sequence[bool]) -> KmerSignature:
+def dense_to_sparse(vec: Sequence[bool]) -> KmerSignature:
 	"""Convert k-mer set from dense bit vector to sparse coordinate representation.
 
 	Parameters
@@ -274,7 +278,7 @@ def dense_to_sparse(vec : Sequence[bool]) -> KmerSignature:
 	return np.flatnonzero(vec)
 
 
-def sparse_to_dense(k_or_kspec : Union[int, KmerSpec],  coords : KmerSignature) -> np.ndarray:
+def sparse_to_dense(k_or_kspec: Union[int, KmerSpec],  coords: KmerSignature) -> np.ndarray:
 	"""Convert k-mer set from sparse coordinate representation back to dense bit vector.
 
 	Parameters
