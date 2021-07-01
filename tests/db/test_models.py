@@ -112,7 +112,7 @@ class TestGenome:
 		# Reload in fresh session and check value
 		session = empty_db_session()
 		genome = session.query(Genome).one()
-		assert genome.extra.as_builtin() == JSON_DATA
+		assert genome.extra == JSON_DATA
 
 		# Assign different data, save
 		genome.extra = JSON_DATA2
@@ -121,7 +121,7 @@ class TestGenome:
 		# Check new value
 		session = empty_db_session()
 		genome = session.query(Genome).one()
-		assert genome.extra.as_builtin() == JSON_DATA2
+		assert genome.extra == JSON_DATA2
 
 		# Assign NULL, save
 		genome.extra = None
@@ -172,7 +172,7 @@ class TestReferenceGenomeSet:
 		# Reload in fresh session and check value
 		session = empty_db_session()
 		gset = session.query(ReferenceGenomeSet).one()
-		assert gset.extra.as_builtin() == JSON_DATA
+		assert gset.extra == JSON_DATA
 
 		# Assign different data, save
 		gset.extra = JSON_DATA2
@@ -181,7 +181,7 @@ class TestReferenceGenomeSet:
 		# Check new value
 		session = empty_db_session()
 		gset = session.query(ReferenceGenomeSet).one()
-		assert gset.extra.as_builtin() == JSON_DATA2
+		assert gset.extra == JSON_DATA2
 
 		# Assign NULL, save
 		gset.extra = None
@@ -268,7 +268,7 @@ class TestTaxon:
 		# Reload in fresh session and check value
 		session = empty_db_session()
 		taxon = session.query(Taxon).one()
-		assert taxon.extra.as_builtin() == JSON_DATA
+		assert taxon.extra == JSON_DATA
 
 		# Assign different data, save
 		taxon.extra = JSON_DATA2
@@ -277,7 +277,7 @@ class TestTaxon:
 		# Check new value
 		session = empty_db_session()
 		taxon = session.query(Taxon).one()
-		assert taxon.extra.as_builtin() == JSON_DATA2
+		assert taxon.extra == JSON_DATA2
 
 		# Assign NULL, save
 		taxon.extra = None

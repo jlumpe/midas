@@ -8,7 +8,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
-from .sqla import JsonType, MutableJsonDict
+from .sqla import JsonString
 
 
 __all__ = [
@@ -114,9 +114,7 @@ class Genome(Base, KeyMixin):
 	entrez_id = Column(Integer())
 	genbank_acc = Column(String(), unique=True)
 	refseq_acc = Column(String(), unique=True)
-
-	# TODO - really should be immutable
-	extra = deferred(Column(MutableJsonDict.as_mutable(JsonType)))
+	extra = deferred(Column(JsonString()))
 
 	annotations = relationship('AnnotatedGenome', lazy=True, cascade='all, delete-orphan')
 
@@ -165,8 +163,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	id = Column(Integer(), primary_key=True)
 	name = Column(String(), unique=True, nullable=False)
 	description = Column(String())
-
-	extra = Column(MutableJsonDict.as_mutable(JsonType))
+	extra = Column(JsonString())
 
 	genomes = relationship('AnnotatedGenome', lazy='dynamic', cascade='all, delete-orphan')
 	base_genomes = relationship('Genome', secondary='genome_annotations', lazy='dynamic', viewonly=True)
@@ -380,7 +377,7 @@ class Taxon(Base):
 	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 
 	ncbi_id = Column(Integer(), index=True)
-	extra = deferred(Column(MutableJsonDict.as_mutable(JsonType)))
+	extra = deferred(Column(JsonString()))
 
 	reference_set = relationship(
 		'ReferenceGenomeSet',
