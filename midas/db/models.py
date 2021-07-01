@@ -1,4 +1,6 @@
-"""SQLAlchemy models for MIDAS database."""
+"""SQLAlchemy models for storing reference genomes and taxonomy information."""
+
+from typing import Sequence, Union, Dict, List, Any, Optional, Tuple
 
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean, Float
@@ -496,7 +498,11 @@ GENOME_ID_ATTRS = {
 }
 
 
-def _check_genome_id_attr(attr):
+# Type alias for argument specifying genome id attribute
+GenomeAttr = Union[str, InstrumentedAttribute]
+
+
+def _check_genome_id_attr(attr: GenomeAttr) -> InstrumentedAttribute:
 	"""Check that Genome ID attribute is valid, and convert from string argument.
 	"""
 	if isinstance(attr, str):
@@ -513,16 +519,14 @@ def _check_genome_id_attr(attr):
 	raise ValueError('Genome ID attribute must be one of the following: ' + ', '.join(GENOME_ID_ATTRS))
 
 
-def _get_genome_id(genome, attr):
-	"""Get ID value of genome
-
-	"""
+def _get_genome_id(genome: Union[Genome, AnnotatedGenome], attr: InstrumentedAttribute):
+	"""Get value of ID attribute for genome."""
 	if isinstance(genome, AnnotatedGenome):
 		genome = genome.genome
 	return attr.__get__(genome, Genome)
 
 
-def _check_genomes_have_ids(genomeset, id_attr):
+def _check_genomes_have_ids(genomeset: ReferenceGenomeSet, id_attr: InstrumentedAttribute):
 	"""Check all genomes in ReferenceGenomeSet have values for the given ID attribute or raise a ``RuntimeError``."""
 	c = genomeset.genomes \
 		.join(AnnotatedGenome.genome) \
@@ -533,13 +537,13 @@ def _check_genomes_have_ids(genomeset, id_attr):
 		raise RuntimeError(f'{c} genomes missing value for ID attribute {id_attr.key}')
 
 
-def _map_ids_to_genomes(genomeset, id_attr):
+def _map_ids_to_genomes(genomeset: ReferenceGenomeSet, id_attr: Union[str, InstrumentedAttribute]) -> Dict[AnnotatedGenome, Any]:
 	"""Get dict mapping ID values to AnnotatedGenome."""
 	q = genomeset.genomes.join(AnnotatedGenome.genome).add_columns(id_attr)
 	return {id_: g for g, id_ in q}
 
 
-def genomes_by_id(genomeset, id_attr, ids, strict=True):
+def genomes_by_id(genomeset: ReferenceGenomeSet, id_attr: GenomeAttr, ids: Sequence, strict: bool = True) -> List[Optional[AnnotatedGenome]]:
 	"""Match a :class:`ReferenceGenomeSet`'s genomes to a set of ID values.
 
 	This is primarily used to match genomes to signatures based on the ID values stored in a
@@ -548,14 +552,14 @@ def genomes_by_id(genomeset, id_attr, ids, strict=True):
 
 	Parameters
 	----------
-	genomeset : midas.db.models.ReferenceGenomeSet
-	id_attr : Union[str, sqlalchemy.orm.attributes.InstrumentedAttribute]
+	genomeset
+	id_attr
 		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
 		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
 		See :data:`.GENOME_IDS` for the set of allowed values.
-	ids : Sequence
+	ids
 		Sequence of ID values (strings or integers, matching type of attribute).
-	strict : bool
+	strict
 		Raise an exception if a matching genome cannot be found for any ID value.
 
 	Returns
@@ -578,7 +582,10 @@ def genomes_by_id(genomeset, id_attr, ids, strict=True):
 		return [d.get(id_) for id_ in ids]
 
 
-def genomes_by_id_subset(genomeset, id_attr, ids):
+def genomes_by_id_subset(genomeset: ReferenceGenomeSet,
+                         id_attr: GenomeAttr,
+                         ids: Sequence,
+                         ) -> Tuple[List[AnnotatedGenome], List[int]]:
 	"""Match a :class:`ReferenceGenomeSet`'s genomes to a set of ID values, allowing missing genomes.
 
 	This calls :func:`.genomes_by_id` with ``strict=False`` and filters any ``None`` values from the
@@ -588,12 +595,12 @@ def genomes_by_id_subset(genomeset, id_attr, ids):
 
 	Parameters
 	----------
-	genomeset : midas.db.models.ReferenceGenomeSet
-	id_attr : Union[str, sqlalchemy.orm.attributes.InstrumentedAttribute]
+	genomeset
+	id_attr
 		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
 		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
 		See :data:`.GENOME_IDS` for the set of allowed values.
-	ids : Sequence
+	ids
 		Sequence of ID values (strings or integers, matching type of attribute).
 
 	Returns
