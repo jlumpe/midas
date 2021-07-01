@@ -131,14 +131,6 @@ class TestSeqFileInfo:
 		assert info == SeqFileInfo('foo.fasta', 'fasta', None)
 		assert info.path == Path('foo.fasta')
 
-		# Argument fails validation
-		with pytest.raises(TypeError):
-			SeqFileInfo(b'foo.fasta', 'fasta')
-		with pytest.raises(TypeError):
-			SeqFileInfo('foo.fasta', b'fasta')
-		with pytest.raises(TypeError):
-			SeqFileInfo('foo.fasta', 'fasta', b'gzip')
-
 	def test_eq(self):
 		"""Test equality checking of instances."""
 		infos = [

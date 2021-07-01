@@ -1,8 +1,6 @@
 from typing import Optional, Mapping, Any
 
-from attr import Factory
-
-from midas.util.attr import attrs, attrib
+from attr import attrs, attrib
 
 
 @attrs()
@@ -28,9 +26,9 @@ class SignaturesMeta:
 		Extra arbitrary metadata. Should be a ``dict`` or other mapping which can be converted to JSON.
 	"""
 
-	id : Optional[str] = attrib(optional=True, kw_only=True)
-	name : Optional[str] = attrib(optional=True, kw_only=True)
-	version : Optional[str] = attrib(optional=True, kw_only=True)
-	id_attr : Optional[str] = attrib(optional=True, kw_only=True)
-	description : Optional[str] = attrib(optional=True, kw_only=True, repr=False)
-	extra : Mapping[str, Any] = attrib(default=Factory(dict), kw_only=True, repr=False)
+	id : Optional[str] = attrib(default=None, kw_only=True)
+	name : Optional[str] = attrib(default=None, kw_only=True)
+	version : Optional[str] = attrib(default=None, kw_only=True)
+	id_attr : Optional[str] = attrib(default=None, kw_only=True)
+	description : Optional[str] = attrib(default=None, kw_only=True, repr=False)
+	extra : Mapping[str, Any] = attrib(factory=dict, kw_only=True, repr=False)

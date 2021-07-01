@@ -5,8 +5,8 @@ from typing import Optional
 
 import numpy as np
 from Bio import SeqIO
+from attr import attrs, attrib
 
-from midas.util.attr import attrs, attrib
 from midas.kmers import find_kmers, dense_to_sparse
 from .util import open_compressed, ClosingIterator
 
@@ -38,9 +38,9 @@ class SeqFileInfo:
 		means no compression. See :func:`midas.io.util.open_compressed`.
 	"""
 
-	path: Path = attrib(converter=Path, validate_type=True)
-	fmt: str = attrib(validate_type=True)
-	compression: Optional[str] = attrib(optional=True, validate_type=True)
+	path: Path = attrib(converter=Path)
+	fmt: str = attrib()
+	compression: Optional[str] = attrib(default=None)
 
 	def open(self, mode: str = 'r', **kwargs):
 		"""

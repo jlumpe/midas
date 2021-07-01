@@ -2,10 +2,9 @@
 
 import pytest
 import numpy as np
+from attr import attrs, attrib
 
 import midas.io.json as mjson
-from midas.util.attr import attrs, attrib
-
 
 
 class TestNumpy:

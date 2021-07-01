@@ -14,9 +14,9 @@ bytes containing ascii-encoded nucleotide codes.
 from typing import Sequence, Optional, Union, NewType
 
 import numpy as np
+from attr import attrs, attrib
 
 from midas._cython.kmers import kmer_to_index, index_to_kmer, reverse_complement
-from midas.util.attr import attrs, attrib
 from midas.io.json import Jsonable
 
 
@@ -70,7 +70,7 @@ def coords_dtype(k : int) -> np.dtype:
 		return None
 
 
-@attrs(frozen=True, repr=False)
+@attrs(frozen=True, repr=False, cmp=False)
 class KmerSpec(Jsonable):
 	"""Specifications for a k-mer search operation.
 
