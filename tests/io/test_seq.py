@@ -7,7 +7,7 @@ import pytest
 import numpy as np
 from Bio import Seq, SeqIO
 
-from midas.io.seq import SeqFileInfo, find_kmers_parse, find_kmers_in_file
+from midas.io.seq import SequenceFile, find_kmers_parse, find_kmers_in_file
 import midas.io.util as ioutil
 from midas.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
 from midas.test import make_kmer_seq, random_seq
@@ -81,7 +81,7 @@ def test_find_kmers_in_file(format, compression, sparse, tmp_path):
 	"""Test the find_kmers_in_file function."""
 
 	kspec = KmerSpec(11, 'AGTAC')
-	seqfile = SeqFileInfo(tmp_path / 'test.fasta', format, compression)
+	seqfile = SequenceFile(tmp_path / 'test.fasta', format, compression)
 
 	# Write records
 	np.random.seed(0)
@@ -98,27 +98,27 @@ def test_find_kmers_in_file(format, compression, sparse, tmp_path):
 		assert np.array_equal(result, vec)
 
 
-class TestSeqFileInfo:
-	"""Test the SeqFileInfo class."""
+class TestSequenceFile:
+	"""Test the SequenceFile class."""
 
 	@pytest.fixture(params=['fasta'], scope='class')
 	def fmt(self, request):
-		"""SeqFileInfo.fmt attribute."""
+		"""SequenceFile.fmt attribute."""
 		return request.param
 
 	@pytest.fixture(params=list(ioutil.COMPRESSED_OPENERS), scope='class')
 	def compression(self, request):
-		"""SeqFileInfo.compression attribute."""
+		"""SequenceFile.compression attribute."""
 		return request.param
 
 	@pytest.fixture()
 	def info(self, tmpdir, fmt, compression):
-		"""A SeqFileInfo instance pointing to a file in a test temporary directory.
+		"""A SequenceFile instance pointing to a file in a test temporary directory.
 
 		File does not yet exist.
 		"""
 		path = tmpdir.join('test.' + fmt).strpath
-		return SeqFileInfo(path, fmt, compression)
+		return SequenceFile(path, fmt, compression)
 
 	@pytest.fixture(scope='class')
 	def seqrecords(self):
@@ -151,14 +151,14 @@ class TestSeqFileInfo:
 	def test_constructor(self):
 		"""Test constructor."""
 
-		info = SeqFileInfo('foo.fasta', 'fasta')
-		assert info == SeqFileInfo('foo.fasta', 'fasta', None)
+		info = SequenceFile('foo.fasta', 'fasta')
+		assert info == SequenceFile('foo.fasta', 'fasta', None)
 		assert info.path == Path('foo.fasta')
 
 	def test_eq(self):
 		"""Test equality checking of instances."""
 		infos = [
-			SeqFileInfo(p, fmt, comp)
+			SequenceFile(p, fmt, comp)
 			for p in ['foo', 'bar']
 			for fmt in ['fasta', 'genbank']
 			for comp in [None, 'gzip']
@@ -168,8 +168,7 @@ class TestSeqFileInfo:
 			for j, info2 in enumerate(infos):
 				if i == j:
 					# Try with different instance
-					assert info1 == SeqFileInfo(info1.path, info1.fmt,
-												info1.compression)
+					assert info1 == SequenceFile(info1.path, info1.fmt, info1.compression)
 				else:
 					assert info1 != info2
 
@@ -219,16 +218,16 @@ class TestSeqFileInfo:
 
 		path = Path('foo/bar.fasta')
 
-		info1 = SeqFileInfo(path, 'fasta')
-		assert isinstance(info1, SeqFileInfo) and info1.path == path
+		info1 = SequenceFile(path, 'fasta')
+		assert isinstance(info1, SequenceFile) and info1.path == path
 
-		info2 = SeqFileInfo(str(path), 'fasta')
-		assert isinstance(info2, SeqFileInfo) and info2.path == path
+		info2 = SequenceFile(str(path), 'fasta')
+		assert isinstance(info2, SequenceFile) and info2.path == path
 
 	def test_absolute(self):
 		"""Test the absolute() method."""
 
-		relinfo = SeqFileInfo('foo/bar.fasta', 'fasta')
+		relinfo = SequenceFile('foo/bar.fasta', 'fasta')
 		assert not relinfo.path.is_absolute()
 
 		absinfo = relinfo.absolute()
@@ -244,12 +243,12 @@ class TestSeqFileInfo:
 		# List of unique path strings
 		paths = ['foo/bar{}.{}'.format(i, fmt) for i in range(20)]
 
-		infos = SeqFileInfo.from_paths(paths, fmt, compression)
+		infos = SequenceFile.from_paths(paths, fmt, compression)
 
 		assert len(paths) == len(infos)
 
 		for path, info in zip(paths, infos):
-			assert isinstance(info, SeqFileInfo)
+			assert isinstance(info, SequenceFile)
 			assert str(info.path) == path
 			assert info.fmt == fmt
 			assert info.compression == compression

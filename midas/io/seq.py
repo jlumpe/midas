@@ -1,7 +1,7 @@
 """Read and parse sequence files and calculate their k-mer signatures."""
 
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List
 
 import numpy as np
 from Bio import SeqIO
@@ -12,7 +12,7 @@ from .util import open_compressed, ClosingIterator
 
 
 @attrs(frozen=True, slots=True)
-class SeqFileInfo:
+class SequenceFile:
 	"""A reference to a DNA sequence file stored in the file system.
 
 	Contains all the information needed to read and parse the file.
@@ -95,20 +95,15 @@ class SeqFileInfo:
 			fobj.close()
 			raise
 
-	def absolute(self):
-		"""Make a copy of the instance with an absolute path.
-
-		Returns
-		-------
-		.SeqFileInfo
-		"""
+	def absolute(self) -> 'SequenceFile':
+		"""Make a copy of the instance with an absolute path."""
 		if self.path.is_absolute():
 			return self
 		else:
-			return SeqFileInfo(self.path.absolute(), self.fmt, self.compression)
+			return SequenceFile(self.path.absolute(), self.fmt, self.compression)
 
 	@classmethod
-	def from_paths(cls, paths, fmt: str, compression: Optional[str] = None):
+	def from_paths(cls, paths, fmt: str, compression: Optional[str] = None) -> List['SequenceFile']:
 		"""
 		Create many instances at once from a collection of paths and a single
 		format and compression type.
@@ -121,10 +116,6 @@ class SeqFileInfo:
 			Sequence file format of files.
 		compression : str
 			Compression method of files.
-
-		Returns
-		-------
-		list[.SeqFileInfo]
 		"""
 		return [cls(path, fmt, compression) for path in paths]
 
@@ -172,10 +163,10 @@ def find_kmers_parse(kspec: KmerSpec, data, format: str, *, sparse: bool = True,
 		return dense_out
 
 
-def find_kmers_in_file(kspec: KmerSpec, seqfile: SeqFileInfo, *, sparse: bool = True, dense_out: Optional[np.ndarray] = None) -> np.ndarray:
+def find_kmers_in_file(kspec: KmerSpec, seqfile: SequenceFile, *, sparse: bool = True, dense_out: Optional[np.ndarray] = None) -> np.ndarray:
 	"""Open a sequence file on disk and find k-mers.
 
-	This works identically to :func:`.find_kmers_parse` but takes a :class:`.SeqFileInfo` as input
+	This works identically to :func:`.find_kmers_parse` but takes a :class:`.SequenceFile` as input
 	instead of a data stream.
 
 	Parameters
