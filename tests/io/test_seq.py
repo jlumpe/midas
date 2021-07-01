@@ -7,7 +7,7 @@ import pytest
 import numpy as np
 from Bio import Seq, SeqIO
 
-from midas.io.seq import SeqFileInfo, find_kmers_parse, find_kmers_in_file, FileSignatureCalculator
+from midas.io.seq import SeqFileInfo, find_kmers_parse, find_kmers_in_file
 import midas.io.util as ioutil
 from midas.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
 from midas.test import make_kmer_seq, random_seq
@@ -253,72 +253,3 @@ class TestSeqFileInfo:
 			assert str(info.path) == path
 			assert info.fmt == fmt
 			assert info.compression == compression
-
-
-@pytest.mark.parametrize('fmt', ['fasta'])
-@pytest.mark.parametrize('compression', list(ioutil.COMPRESSED_OPENERS))
-@pytest.mark.parametrize('use_threads', [False, True])
-@pytest.mark.parametrize('pass_paths', [False, True])
-@pytest.mark.parametrize('ordered', [False, True])
-def test_FileSignatureCalculator(tmpdir, fmt, compression, use_threads,
-                                 pass_paths, ordered):
-	"""Test the FileSignatureCalculator class."""
-	np.random.seed(0)
-
-	kspec = KmerSpec(11, 'ATGAC')
-	files = []
-	signatures = []
-
-	# Create some random sequence records with their signatures and write them
-	# to files
-	for i in range(15):
-		records, sig_vec = create_sequence_records(kspec, 20, 1000)
-
-		# SeqFileInfo for file to eventually read
-		path = tmpdir.join('seq{}.{}'.format(i, fmt)).strpath
-		file = SeqFileInfo(path, fmt, compression)
-
-		# Write sequences to file
-		with file.open('wt') as fobj:
-			SeqIO.write(records, fobj, fmt)
-
-		files.append(file)
-		signatures.append(dense_to_sparse(sig_vec))
-
-	# Create the calculator
-	calculator = FileSignatureCalculator(use_threads=use_threads)
-
-	# Run jobs in context
-	with calculator as enterval:
-
-		# Check __enter__ returns self
-		assert enterval is calculator
-
-		# Start calculating
-		if pass_paths:
-			results = calculator.calc_signatures(
-				kspec,
-				[f.path for f in files],
-				fmt=fmt,
-				compression=compression,
-				ordered=ordered,
-			)
-		else:
-			results = calculator.calc_signatures(
-				kspec,
-				files,
-				ordered=ordered,
-			)
-
-		last_i = -1
-
-		# Iterate over results
-		for i, sig in results:
-
-			# Check in order
-			if ordered:
-				assert i == last_i + 1
-				last_i = i
-
-			# Check signature matches
-			assert np.array_equal(sig, signatures[i])
