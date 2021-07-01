@@ -21,8 +21,8 @@ class SequenceFile:
 	----------
 	path : Union[pathlib.Path, str]
 		Value of :attr:`path` attribute. May be string or path-like object.
-	fmt : str
-		Value of :attr:`fmt` attribute.
+	format : str
+		Value of :attr:`format` attribute.
 	compression : Optional[str]
 		Value of :attr:`compression` attribute.
 
@@ -30,16 +30,15 @@ class SequenceFile:
 	----------
 	path : pathlib.Path
 		Path to the file.
-	fmt : str
+	format : str
 		String describing the file format as interpreted by
 		:func:`Bio.SeqIO.parse`, e.g. ``'fasta'``.
 	compression : str or None
 		String describing compression method of the file, e.g. ``'gzip'``. None
 		means no compression. See :func:`midas.io.util.open_compressed`.
 	"""
-
 	path: Path = attrib(converter=Path)
-	fmt: str = attrib()
+	format: str = attrib()
 	compression: Optional[str] = attrib(default=None)
 
 	def open(self, mode: str = 'r', **kwargs):
@@ -88,7 +87,7 @@ class SequenceFile:
 		fobj = self.open('rt', **kwargs)
 
 		try:
-			records = SeqIO.parse(fobj, self.fmt)
+			records = SeqIO.parse(fobj, self.format)
 			return ClosingIterator(records, fobj)
 
 		except:
@@ -100,10 +99,10 @@ class SequenceFile:
 		if self.path.is_absolute():
 			return self
 		else:
-			return SequenceFile(self.path.absolute(), self.fmt, self.compression)
+			return SequenceFile(self.path.absolute(), self.format, self.compression)
 
 	@classmethod
-	def from_paths(cls, paths, fmt: str, compression: Optional[str] = None) -> List['SequenceFile']:
+	def from_paths(cls, paths, format: str, compression: Optional[str] = None) -> List['SequenceFile']:
 		"""
 		Create many instances at once from a collection of paths and a single
 		format and compression type.
@@ -117,7 +116,7 @@ class SequenceFile:
 		compression : str
 			Compression method of files.
 		"""
-		return [cls(path, fmt, compression) for path in paths]
+		return [cls(path, format, compression) for path in paths]
 
 
 def find_kmers_parse(kspec: KmerSpec, data, format: str, *, sparse: bool = True, dense_out: Optional[np.ndarray] = None) -> np.ndarray:
@@ -193,4 +192,4 @@ def find_kmers_in_file(kspec: KmerSpec, seqfile: SequenceFile, *, sparse: bool =
 	.find_kmers_parse
 	"""
 	with seqfile.open() as f:
-		return find_kmers_parse(kspec, f, seqfile.fmt, sparse=sparse, dense_out=dense_out)
+		return find_kmers_parse(kspec, f, seqfile.format, sparse=sparse, dense_out=dense_out)

@@ -102,8 +102,8 @@ class TestSequenceFile:
 	"""Test the SequenceFile class."""
 
 	@pytest.fixture(params=['fasta'], scope='class')
-	def fmt(self, request):
-		"""SequenceFile.fmt attribute."""
+	def format(self, request):
+		"""SequenceFile.format attribute."""
 		return request.param
 
 	@pytest.fixture(params=list(ioutil.COMPRESSED_OPENERS), scope='class')
@@ -112,13 +112,13 @@ class TestSequenceFile:
 		return request.param
 
 	@pytest.fixture()
-	def info(self, tmpdir, fmt, compression):
+	def info(self, tmpdir, format, compression):
 		"""A SequenceFile instance pointing to a file in a test temporary directory.
 
 		File does not yet exist.
 		"""
-		path = tmpdir.join('test.' + fmt).strpath
-		return SequenceFile(path, fmt, compression)
+		path = tmpdir.join('test.' + format).strpath
+		return SequenceFile(path, format, compression)
 
 	@pytest.fixture(scope='class')
 	def seqrecords(self):
@@ -135,10 +135,10 @@ class TestSequenceFile:
 		return tuple(records)
 
 	@pytest.fixture
-	def file_contents(self, fmt, seqrecords):
+	def file_contents(self, format, seqrecords):
 		"""String contents of a file containing the sequence records."""
 		buf = StringIO()
-		SeqIO.write(seqrecords, buf, fmt)
+		SeqIO.write(seqrecords, buf, format)
 		return buf.getvalue()
 
 	@pytest.fixture
@@ -146,7 +146,7 @@ class TestSequenceFile:
 		"""Copy of "info" fixture, but with "seqrecords" written to the file."""
 
 		with info.open('rt') as fobj:
-			SeqIO.write(seqrecords, fobj, info.fmt)
+			SeqIO.write(seqrecords, fobj, info.format)
 
 	def test_constructor(self):
 		"""Test constructor."""
@@ -158,9 +158,9 @@ class TestSequenceFile:
 	def test_eq(self):
 		"""Test equality checking of instances."""
 		infos = [
-			SequenceFile(p, fmt, comp)
+			SequenceFile(p, format, comp)
 			for p in ['foo', 'bar']
-			for fmt in ['fasta', 'genbank']
+			for format in ['fasta', 'genbank']
 			for comp in [None, 'gzip']
 		]
 
@@ -168,7 +168,7 @@ class TestSequenceFile:
 			for j, info2 in enumerate(infos):
 				if i == j:
 					# Try with different instance
-					assert info1 == SequenceFile(info1.path, info1.fmt, info1.compression)
+					assert info1 == SequenceFile(info1.path, info1.format, info1.compression)
 				else:
 					assert info1 != info2
 
@@ -237,18 +237,18 @@ class TestSequenceFile:
 		absinfo2 = absinfo.absolute()
 		assert absinfo2 == absinfo
 
-	def test_from_paths(self, fmt, compression):
+	def test_from_paths(self, format, compression):
 		"""Test the from_paths() class method."""
 
 		# List of unique path strings
-		paths = ['foo/bar{}.{}'.format(i, fmt) for i in range(20)]
+		paths = ['foo/bar{}.{}'.format(i, format) for i in range(20)]
 
-		infos = SequenceFile.from_paths(paths, fmt, compression)
+		infos = SequenceFile.from_paths(paths, format, compression)
 
 		assert len(paths) == len(infos)
 
 		for path, info in zip(paths, infos):
 			assert isinstance(info, SequenceFile)
 			assert str(info.path) == path
-			assert info.fmt == fmt
+			assert info.format == format
 			assert info.compression == compression
