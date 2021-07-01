@@ -1,8 +1,8 @@
 """SQLAlchemy models for MIDAS database."""
 
 import sqlalchemy as sa
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy import ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Boolean, Float
+from sqlalchemy import Table, ForeignKey, UniqueConstraint, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
@@ -182,7 +182,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 
 
 # Association table between AnnotatedGenome and Taxon
-annotations_additional_tax_assoc = sa.Table(
+annotations_additional_tax_assoc = Table(
 	'annotations_additional_tax_assoc',
 	Base.metadata,
 	Column('genome_id', primary_key=True),
@@ -192,7 +192,7 @@ annotations_additional_tax_assoc = sa.Table(
 		ForeignKey('taxa.id', ondelete='CASCADE'),
 		primary_key=True,
 	),
-	sa.ForeignKeyConstraint(
+	ForeignKeyConstraint(
 		['genome_id', 'reference_set_id'],
 		['genome_annotations.genome_id', 'genome_annotations.reference_set_id'],
 		ondelete='CASCADE',
@@ -366,7 +366,7 @@ class Taxon(Base):
 	name = Column(String(), nullable=False, index=True)
 	rank = Column(String(), index=True)
 	description = Column(String())
-	distance_threshold = Column(sa.Float())
+	distance_threshold = Column(Float())
 	report = Column(Boolean(), nullable=False, default=True, server_default=sa.true())
 
 	reference_set_id = Column(
