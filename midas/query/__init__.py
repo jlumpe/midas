@@ -1,1 +1,3 @@
-"""Run queries against a full reference database to predict taxonomy of input sequences."""
+"""Run queries against a MIDAS database to predict taxonomy of genome sequences."""
+
+from .run import runquery
