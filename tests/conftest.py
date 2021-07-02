@@ -8,6 +8,16 @@ from sqlalchemy.orm import sessionmaker
 from midas.db.models import Base as models_base
 
 
+# Add option to opt-in to the tests in test_full_db.py
+def pytest_addoption(parser):
+	parser.addoption(
+		'--midas-test-full-db',
+		action='store_true',
+		dest='midas_test_full_db',
+		help='Run full set of queries on test database (see test_full_db.py).',
+	)
+
+
 @pytest.fixture(scope='session')
 def test_data():
 	"""The directory containing test data."""
