@@ -7,9 +7,10 @@ import pytest
 import numpy as np
 from Bio import Seq, SeqIO
 
-from midas.io.seq import SequenceFile, find_kmers_parse, find_kmers_in_file
+from midas.io.seq import SequenceFile, find_kmers_parse, find_kmers_in_file, find_kmers_in_files
 import midas.io.util as ioutil
 from midas.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
+from midas.signatures import sigarray_eq
 from midas.test import make_kmer_seq, random_seq
 
 
@@ -96,6 +97,33 @@ def test_find_kmers_in_file(format, compression, sparse, tmp_path):
 		assert np.array_equal(result, dense_to_sparse(vec))
 	else:
 		assert np.array_equal(result, vec)
+
+
+@pytest.mark.parametrize('format', ['fasta'])
+@pytest.mark.parametrize('compression', list(ioutil.COMPRESSED_OPENERS))
+def test_find_kmers_in_files(format, compression, tmp_path):
+	"""Test the find_kmers_in_files function."""
+
+	n = 5
+	kspec = KmerSpec(11, 'AGTAC')
+
+	files = []
+	sigs = []
+
+	# Create files
+	np.random.seed(0)
+	for i in range(n):
+		file = SequenceFile(tmp_path / f'{i}.fasta', format, compression)
+		records, vec = create_sequence_records(kspec, 10)
+
+		with file.open('w') as f:
+			SeqIO.write(records, f, format)
+
+		files.append(file)
+		sigs.append(dense_to_sparse(vec))
+
+	sigs2 = find_kmers_in_files(kspec, files)
+	assert sigarray_eq(sigs, sigs2)
 
 
 class TestSequenceFile:

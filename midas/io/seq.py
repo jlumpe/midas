@@ -1,13 +1,13 @@
 """Read and parse sequence files and calculate their k-mer signatures."""
 
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Sequence
 
 import numpy as np
 from Bio import SeqIO
 from attr import attrs, attrib
 
-from midas.kmers import KmerSpec, find_kmers, dense_to_sparse
+from midas.kmers import KmerSpec, find_kmers, dense_to_sparse, KmerSignature
 from .util import open_compressed, ClosingIterator
 
 
@@ -189,7 +189,32 @@ def find_kmers_in_file(kspec: KmerSpec, seqfile: SequenceFile, *, sparse: bool =
 	See Also
 	--------
 	midas.kmers.find_kmers
+	.find_kmers_in_files
 	.find_kmers_parse
 	"""
 	with seqfile.open() as f:
 		return find_kmers_parse(kspec, f, seqfile.format, sparse=sparse, dense_out=dense_out)
+
+
+def find_kmers_in_files(kspec: KmerSpec, files: Sequence[SequenceFile]) -> List[KmerSignature]:
+	"""Parse and calculate k-mer signatures for multiple sequence files.
+
+	Currently calculates signature for each file in series, future implementation should run in
+	parallel.
+
+	Parameters
+	----------
+	kspec
+		Spec for k-mer search.
+	seqfile
+		Files to read.
+
+	Returns
+	-------
+		List of signatures in sparse coordinate format.
+
+	See Also
+	--------
+	.find_kmers_in_files
+	"""
+	return [find_kmers_in_file(kspec, file) for file in files]
