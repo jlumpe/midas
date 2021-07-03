@@ -19,3 +19,8 @@ from .context import CLIContext
 def cli(ctx: click.Context, db_path):
 	"""Tool for rapid taxonomic identification of microbial pathogens from genomic data."""
 	ctx.obj = CLIContext(db_path)
+
+
+# Add sub-commands
+from .query import query
+cli.add_command(query)

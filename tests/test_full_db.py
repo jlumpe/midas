@@ -9,6 +9,7 @@ database file is included in version control. Other files need to be obtained se
 Readme.md file in that directory for more information.
 """
 
+import json
 from csv import DictReader
 
 import pytest
@@ -18,6 +19,7 @@ from midas.signatures.hdf5 import HDF5Signatures
 from midas.db.midasdb import MIDASDatabase
 from midas.db.models import ReferenceGenomeSet
 from midas.query import runquery
+from midas.cli import cli
 
 
 @pytest.fixture(autouse=True, scope='module')
@@ -109,6 +111,47 @@ def test_query_python(testdb, query_data):
 		assert item.error is None
 
 
-def test_query_cli(testdb_files, query_data):
+@pytest.mark.parametrize('out_fmt', ['json'])
+def test_query_cli(testdb_files, query_data, out_fmt, tmp_path):
 	"""Run a full query using the command line interface."""
-	# TODO
+	results_file = tmp_path / 'results.json'
+	query_files, expected_taxa = query_data
+
+	args = [
+		f'--db={testdb_files["root"]}',
+		'query',
+		f'--output={results_file}',
+		f'--outfmt={out_fmt}',
+		*(str(f.path) for f in query_files),
+	]
+
+	cli.main(args, standalone_mode=False)
+
+	if out_fmt == 'json':
+		_check_results_json(results_file, query_files, expected_taxa)
+	else:
+		assert False
+
+def _check_results_json(results_file, query_files, expected_taxa):
+	with results_file.open() as f:
+		results = json.load(f)
+
+	items = results['items']
+	assert isinstance(items, list)
+	assert len(items) == len(query_files)
+
+	for item, file, expected in zip(items, query_files, expected_taxa):
+		assert item['input']['label'] == file.path.name
+		assert item['success'] is True
+
+		if expected == '':
+			assert item['predicted_taxon'] is None
+			assert item['report_taxon'] is None
+		else:
+			predicted = item['predicted_taxon']
+			assert predicted is not None
+			assert predicted['name'] == expected
+			assert item['report_taxon'] == predicted
+
+		assert item['warnings'] == []
+		assert item['error'] is None
