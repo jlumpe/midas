@@ -1,7 +1,7 @@
 """Utility code for reading/writing data files."""
 
 import os
-from typing import Union
+from typing import Union, Optional
 
 #: Alias for types which can represent a file system path
 FilePath = Union[str, os.PathLike]
@@ -33,7 +33,7 @@ def _open_gzip(path, mode, **kwargs):
 	return gzip.open(path, mode=mode, **kwargs)
 
 
-def open_compressed(compression, path, mode=None, **kwargs):
+def open_compressed(compression: Optional[str], path: FilePath, mode: Optional[str] = None, **kwargs):
 	"""Open a file with compression method specified by a string.
 
 	Parameters

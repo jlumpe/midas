@@ -1,21 +1,24 @@
-"""Perform database migrations with Alembic.
+"""Perform genome database migrations with Alembic.
 
 This package also contains all Alembic data files.
 """
+
+from typing import Optional
 
 from alembic.config import Config
 from alembic import command
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from pkg_resources import resource_filename
+from sqlalchemy.engine import Engine
 
 
-def get_alembic_config(engine=None, **kwargs):
+def get_alembic_config(engine: Optional[Engine] = None, **kwargs) -> Config:
 	"""Get an alembic config object to perform migrations.
 
 	Parameters
 	----------
-	engine : sqlalchemy.engine.base.Engine
+	engine
 		SQLAlchemy engine specifying database connection info (optional). Assigned to ``'engine'``
 		key of :attr:`alembic.config.Config.attributes`.
 	\\**kwargs
@@ -23,7 +26,6 @@ def get_alembic_config(engine=None, **kwargs):
 
 	Returns
 	-------
-	alembic.config.Config
 		Alembic config object.
 	"""
 	ini_path = resource_filename(__name__, 'alembic.ini')
@@ -39,17 +41,17 @@ def get_alembic_config(engine=None, **kwargs):
 	return config
 
 
-def upgrade(engine, revision='head', tag=None, **kwargs):
+def upgrade(engine: Engine, revision: str = 'head', tag=None, **kwargs):
 	"""Run the alembic upgrade command.
 
-	See :func:`alembic.command.upgrade` for more inforamation on how this works.
+	See :func:`alembic.command.upgrade` for more information on how this works.
 
 	Parameters
 	----------
-	engine : sqlalchemy.engine.base.Engine
-		SQLAlchemy engine specifying database connection info.
-	revision : str
-		Revision to uptrade to. Passed to :func:`alembic.command.upgrade`.
+	engine
+		SQLAlchemy engine specifying genome database connection info.
+	revision
+		Revision to upgrade to. Passed to :func:`alembic.command.upgrade`.
 	tag
 		Passed to :func:`alembic.command.upgrade`.
 	\\**kwargs
@@ -59,8 +61,10 @@ def upgrade(engine, revision='head', tag=None, **kwargs):
 	command.upgrade(config, revision, tag=tag)
 
 
-def init_db(engine):
-	"""Initialize the database schema by creating all tables and stamping with the latest Alembic revision.
+def init_db(engine: Engine):
+	"""
+	Initialize the genome database schema by creating all tables and stamping with the latest
+	Alembic revision.
 
 	Expects a fresh database that does not already contain any tables for the :mod:`midas.db.models`
 	models and has not had any migrations run on it yet.
