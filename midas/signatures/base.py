@@ -4,7 +4,7 @@ from abc import abstractmethod
 import numpy as np
 from attr import attrs, attrib
 
-from midas.kmers import KmerSpec
+from midas.kmers import KmerSpec, KmerSignature
 
 
 @attrs()
@@ -43,7 +43,7 @@ def sigarray_eq(a1: Sequence, a2: Sequence) -> bool:
 	return len(a1) == len(a2) and all(map(np.array_equal, a1, a2))
 
 
-class AbstractSignatureArray(Sequence[np.ndarray]):
+class AbstractSignatureArray(Sequence[KmerSignature]):
 	"""
 	Abstract base class for types which behave as a (non-mutable) sequence of k-mer signatures
 	(k-mer sets in sparse coordinate format).
