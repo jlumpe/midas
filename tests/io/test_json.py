@@ -1,10 +1,43 @@
 """Test midas.io.json."""
 
+from pathlib import Path
+from datetime import date, datetime
+
 import pytest
 import numpy as np
 from attr import attrs, attrib
 
 import midas.io.json as mjson
+
+
+def roundtrip(obj, cls=None, checktype=True):
+	"""Convert to JSON string and back again."""
+	if cls is None:
+		cls = type(obj)
+
+	encoded = mjson.dumps(obj)
+	obj2 = mjson.loads(encoded, cls)
+
+	if checktype:
+		assert isinstance(obj2, cls)
+
+	return obj2
+
+
+class TestBuiltins:
+	"""Test conversion of builtin types."""
+
+	def test_path(self):
+		p = Path('foo/bar/baz')
+		assert roundtrip(p) == p
+
+	def test_date(self):
+		d = date.today()
+		assert roundtrip(d) == d
+
+	def test_datetime(self):
+		dt = datetime.now()
+		assert roundtrip(dt) == dt
 
 
 class TestNumpy:

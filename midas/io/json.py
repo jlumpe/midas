@@ -7,6 +7,8 @@ classes.
 
 import json
 from typing import Any
+from datetime import date, datetime
+from pathlib import Path
 
 import cattr
 import numpy as np
@@ -107,6 +109,25 @@ def loads(s, cls=Any):
 	data = json.loads(s)
 	return from_json(data, cls)
 
+
+def register_structure_hook_notype(cls, f):
+	"""Register converter structure hook taking no 2nd type argument."""
+	converter.register_structure_hook(cls, lambda value, type_: f(value))
+
+
+def register_hooks(cls, unstructure, structure, withtype=False):
+	"""Register converter unstructure and structure hooks in the same call."""
+	converter.register_unstructure_hook(cls, unstructure)
+	if withtype:
+		converter.register_structure_hook(cls, structure)
+	else:
+		register_structure_hook_notype(cls, structure)
+
+
+# Python builtins
+register_hooks(datetime, datetime.isoformat, datetime.fromisoformat)
+register_hooks(date, date.isoformat, date.fromisoformat)
+register_hooks(Path, str, Path)
 
 # Numpy scalars
 converter.register_unstructure_hook(np.integer, int)
