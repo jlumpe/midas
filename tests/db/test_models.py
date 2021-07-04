@@ -74,7 +74,7 @@ def id_lookup_session(make_empty_db):
 		ag = AnnotatedGenome(
 			reference_set=gset,
 			genome=g,
-			primary_taxon=roottaxon,
+			taxon=roottaxon,
 		)
 		session.add(ag)
 

@@ -42,7 +42,7 @@ def find_matches(itr: Iterable[Tuple[AnnotatedGenome, float]]) -> Dict[Taxon, Li
 	matches = dict()
 
 	for i, (g, d) in enumerate(itr):
-		match = matching_taxon(g.primary_taxon, d)
+		match = matching_taxon(g.taxon, d)
 		if match is not None:
 			matches.setdefault(match, []).append(i)
 

@@ -4,7 +4,7 @@ from typing import Sequence, Union, Dict, List, Any, Optional, Tuple
 
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean, Float
-from sqlalchemy import Table, ForeignKey, UniqueConstraint, ForeignKeyConstraint
+from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship, backref, deferred
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
@@ -195,25 +195,6 @@ class ReferenceGenomeSet(Base, KeyMixin):
 		return self.taxa.filter_by(parent=None)
 
 
-# Association table between AnnotatedGenome and Taxon
-annotations_additional_tax_assoc = Table(
-	'annotations_additional_tax_assoc',
-	Base.metadata,
-	Column('genome_id', primary_key=True),
-	Column('reference_set_id', primary_key=True),
-	Column(
-		'taxon_id',
-		ForeignKey('taxa.id', ondelete='CASCADE'),
-		primary_key=True,
-	),
-	ForeignKeyConstraint(
-		['genome_id', 'reference_set_id'],
-		['genome_annotations.genome_id', 'genome_annotations.reference_set_id'],
-		ondelete='CASCADE',
-	)
-)
-
-
 class AnnotatedGenome(Base):
 	"""A genome with additional annotations as part of a genome set.
 
@@ -240,26 +221,16 @@ class AnnotatedGenome(Base):
 		species[, strain]" but could contain more specific information. Intended
 		to be human- readable and shouldn't have any semantic meaning for the
 		application (in contrast to the :attr:`taxa` relationship).
-	primary_taxon_id : int
-		Integer column. ID of primary :class:`Taxon` this genome is classified
-		as.
+	taxon_id : int
+		Integer column. ID of the :class:`Taxon` this genome is classified as.
 	genome : .Genome
 		Many-to-one relationship to :class:`.Genome`.
 	reference_set : .ReferenceGenomeSet
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
-	primary_taxon : .Taxon
-		Many-to-one relationship to :class:`.Taxon`. The primary taxon this
-		genome is classified as under the associated ReferenceGenomeSet. Should
-		be the most specific and "regular" (ideally defined on NCBI) taxon this
-		genome belongs to. There may be alternates, which go in the
-		:attr:`alternate_taxa` attribute.
-	alternate_taxa
-		Many-to-many relationship to :class:`.Taxon`. The additional taxa this
-		Genome has been assigned to under the associated ReferenceGenomeSet.
-		Should only link to the most specific taxa, as membership to all
-		additional taxa in each taxon's linage is implied. Will typically be
-		empty, but may contain non-proper (i.e. custom, not defined on GenBank,
-		or paraphyletic) taxa.
+	taxon : .Taxon
+		Many-to-one relationship to :class:`.Taxon`. The primary taxon this genome is classified as
+		under the associated ``ReferenceGenomeSet``. Should be the most specific and "regular"
+		(ideally defined on NCBI) taxon this genome belongs to.
 	key : str
 		Hybrid property connected to attribute on :attr:`genome`.
 	version : str
@@ -285,24 +256,12 @@ class AnnotatedGenome(Base):
 		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
 		primary_key=True
 	)
-
-	primary_taxon_id = Column(
-		ForeignKey('taxa.id', ondelete='SET NULL'),
-		index=True
-	)
+	taxon_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 	organism = Column(String())
 
 	genome = relationship('Genome', back_populates='annotations')
 	reference_set = relationship('ReferenceGenomeSet', back_populates='genomes')
-	primary_taxon = relationship(
-		'Taxon',
-		backref=backref('genomes_primary', lazy='dynamic')
-	)
-	additional_taxa = relationship(
-		'Taxon',
-		secondary=annotations_additional_tax_assoc,
-		backref=backref('genomes_additional', lazy='dynamic'),
-	)
+	taxon = relationship('Taxon', backref=backref('genomes', lazy='dynamic'))
 
 	key = hybrid_property(lambda self: self.genome.key)
 	version = hybrid_property(lambda self: self.genome.version)
@@ -365,12 +324,9 @@ class Taxon(Base):
 		taxon.
 	reference_set : .ReferenceGenomeSet
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
-	genomes_primary : Collection[.AnnotatedGenome]
-		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which
-		have this taxon as their primary taxon.
-	genomes_additional : Collection[.AnnotatedGenome]
-		Many-to-many relationship with :class:`.AnnotatedGenome`, genomes which
-		have this taxon in their "additional" taxa.
+	genomes : Collection[.AnnotatedGenome]
+		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which are assigned to this
+		taxon.
 	"""
 
 	__tablename__ = 'taxa'
