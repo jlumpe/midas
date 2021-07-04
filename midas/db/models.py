@@ -74,30 +74,29 @@ class KeyMixin:
 
 
 class Genome(Base, KeyMixin):
-	"""Base model for a reference genome queries can be run against.
+	"""Base model for a reference genome that can be compared to query.
 
-	Corresponds to a single assembly (one or more contigs, but at least
-	partially assembled) from what should be a single sequencing run. The
-	same organism or strain may have several genome entries for it. Typically
-	this will correspond directly to a record in Genbank (assembly database).
+	Corresponds to a single assembly (one or more contigs, but at least partially assembled) from
+	what should be a single sequencing run. The same organism or strain may have several genome
+	entries for it. Typically this will correspond directly to a record in Genbank (assembly
+	database).
 
-	The data on this model should primarily pertain to the sample and
-	sequencing run itself. It would be updated if for example a better
-	assembly was produced from the original raw data, however more advanced
-	interpretation such as taxonomy assignments belong on an attached
+	The data on this model should primarily pertain to the sample and sequencing run itself. It
+	would be updated if for example a better assembly was produced from the original raw data,
+	however more advanced interpretation such as taxonomy assignments belong on an attached
 	:class:`AnnotatedGenome` object.
-
 
 	Attributes
 	----------
 	id : int
-		Integer primary key.
+		Integer column (primary key).
 	key : str
 		String column. See :class:`midas.db.mixins.KeyMixin`.
 	version : str
 		String column. See :class:`midas.db.mixins.KeyMixin`.
 	description : Optional[str]
-		String column. Short one-line description. Recommended to be unique but this is not enforced.
+		String column (optional). Short one-line description. Recommended to be unique but this is
+		not enforced.
 	ncbi_db : Optional[str]
 		String column (optional). If the genome corresponds to a record downloaded from an NCBI
 		database this column should be the database name (e.g. ``'assembly'``) and ``ncbi_id``
@@ -105,11 +104,11 @@ class Genome(Base, KeyMixin):
 	ncbi_id : Optional[int]
 		Integer column (optional). See previous.
 	genbank_acc : Optional[str]
-		String column. GenBank accession number for this genome, if any.
+		String column (optional, unique). GenBank accession number for this genome, if any.
 	refseq_acc : Optional[str]
-		String column. RefSeq accession number for this genome, if any.
+		String column (optional, unique). RefSeq accession number for this genome, if any.
 	extra : Optional[dict]
-		JSON column. Additional arbitrary metadata.
+		JSON column (optional). Additional arbitrary metadata.
 	annotations : Collection[.AnnotatedGenome]
 		One-to-many relationship to :class:`.AnnotatedGenome`.
 	"""
@@ -138,15 +137,18 @@ class Genome(Base, KeyMixin):
 
 class ReferenceGenomeSet(Base, KeyMixin):
 	"""
-	A collection of genomes along with additional annotations that enable
-	queries to be run against them.
+	A collection of reference genomes along with additional annotations and data. A full MIDAS
+	database which can be used for queries consists of a genome set plus a set of k-mer signatures
+	for those genomes (stored separately).
 
-	Additional annotations include taxonomy (individual :class:`.Taxon`
-	entries as well as assignments to genomes) and thresholds for determining
-	membership of queries within those taxa.
+	Membership of :class:`.Genome`s in the set is determined by the presence of an associated
+	:class:`.AnnotatedGenomes` object, which also holds additional annotation data for the genome.
+	The genome set also includes a set of associated :class:`.Taxon` entries, which form a taxonomy
+	tree under which all its genomes are categorized.
 
-	Like Genomes they can be distributed via updates, in which case they should
-	have a unique key and version number to identify them.
+	This schema technically allows for multiple genome sets within the same database (which can
+	share :class:`.Genome`s but with different annotations), but the MIDAS application generally
+	expects that genome sets are stored in their own SQLite files.
 
 	Attributes
 	----------
@@ -163,14 +165,14 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	extra : Optional[dict]
 		JSON column. Additional arbitrary data.
 	genomes : Collection[.AnnotatedGenome]
-		Many-to-many relationship with :class:`.AnnotatedGenome`, annotated
-		versions of genomes in this set.
+		Many-to-many relationship with :class:`.AnnotatedGenome`, annotated versions of genomes in
+		this set.
 	base_genomes : Collection[.Genome]
-		Unannotated :class:`Genome`\\ s in this set. Association proxy to the
-		``genome`` relationship of members of :attr:`genome`.
+		Unannotated :class:`Genome`\\ s in this set. Association proxy to the ``genome``
+		relationship of members of :attr:`genome`.
 	taxa : Collection[.Taxon]
-		One-to-many relationship to :class:`.Taxon`. The taxa that form the
-		classification system for this reference set.
+		One-to-many relationship to :class:`.Taxon`. The taxa that form the classification system
+		for this genome set.
 	"""
 	__tablename__ = 'genome_sets'
 
@@ -198,29 +200,22 @@ class ReferenceGenomeSet(Base, KeyMixin):
 class AnnotatedGenome(Base):
 	"""A genome with additional annotations as part of a genome set.
 
-	Technically is an association object connecting Genomes with
-	ReferenceGenomeSets, but contains hybrid properties connecting to the
-	Genome's attributes which effectively make it function and an extended
-	Genome object.
-
-	Additional annotations are optional, and the presence of this record in the
-	database can simply be used to indicate that a Genome is contained in a
-	ReferenceGenomeSet. Mostly holds taxonomy information as that is frequently
-	a result of additional analysis on the sequence.
+	This object serves to attach a genome to a :class:`.ReferenceGenomeSet`, and to assign a
+	taxonomy classification to that genome. Hybrid attributes mirroring the attributes of the
+	connected genome effectively make this behave as an extended ``Genome`` object.
 
 	Attributes
 	----------
 	genome_id : int
-		Integer column, part of composite primary key. ID of :class:`.Genome`
-		the annotations are or.
+		Integer column, part of composite primary key. ID of :class:`.Genome` the annotations are
+		for.
 	genome_set_id : int
 		Integer column, part of composite primary key. ID of the :class:`.ReferenceGenomeSet` the
 		annotations are under.
 	organism : str
-		String column. Single string describing the organism. May be "Genus,
-		species[, strain]" but could contain more specific information. Intended
-		to be human- readable and shouldn't have any semantic meaning for the
-		application (in contrast to the :attr:`taxa` relationship).
+		String column. Single string describing the organism. May be "Genus species [strain]" but
+		could contain more specific information. Intended to be human-readable and shouldn't have
+		any semantic meaning for the application (in contrast to the :attr:`taxa` relationship).
 	taxon_id : int
 		Integer column. ID of the :class:`Taxon` this genome is classified as.
 	genome : .Genome
@@ -248,10 +243,7 @@ class AnnotatedGenome(Base):
 	"""
 	__tablename__ = 'genome_annotations'
 
-	genome_id = Column(
-		ForeignKey('genomes.id', ondelete='CASCADE'),
-		primary_key=True
-	)
+	genome_id = Column(ForeignKey('genomes.id', ondelete='CASCADE'), primary_key=True)
 	genome_set_id = Column(ForeignKey('genome_sets.id', ondelete='CASCADE'), primary_key=True)
 	taxon_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 	organism = Column(String())
@@ -279,46 +271,43 @@ class AnnotatedGenome(Base):
 
 
 class Taxon(Base):
-	"""A taxon used for classifying AnnotatedGenomes.
+	"""A taxon used for classifying genomes.
 
-	Taxa are specific to a :class:`.ReferenceGenomeSet` and form a hierarchy,
-	with each having a parent and zero or more children.
+	Taxa are specific to a :class:`.ReferenceGenomeSet` and form a tree/forest structure through the
+	:attr:`parent` and :attr`children` relationships.
 
 	Attributes
 	----------
 	id : int
-		Integer primary key.
+		Integer column (primary key).
 	name : str
-		String column, required. The Taxon's scientific name (if any), e.g.
-		"Escherichia coli", or otherwise any other unique descriptive name.
+		String column. Human-readable name for the taxon, typically the standard scientific name.
 	rank : Optional[str]
-		String column. Taxonomic rank, if any. Species, genus, family, etc.
+		String column (optional). Taxonomic rank, if any. Species, genus, family, etc.
 	description : Optional[str]
-		String column. Optional description of taxon. Probably blank unless it
-		is a custom taxon not present in GenBank.
+		String column (optional). Optional description of taxon.
 	distance_threshold : Optional[float]
-		Float column. Maximum distance from a query genome to a reference genome
-		in this taxon for the query to be classified within the taxon.
+		Float column (optional). Query genomes within this distance of one of the taxon's reference
+		genomes will be classified as that taxon. If NULL the taxon is just used establish the tree
+		structure and is not used directly in classification.
 	report : Bool
-		Boolean column. Whether to report this taxon directly as a match when
-		producing a human-readable query result. Some custom taxa might need to
-		be "hidden" from the user, in which case the value should be false. The
-		application should then ascend the taxon's lineage and choose the first
-		ancestor where this field is true. Defaults to true.
+		Boolean column. Whether to report this taxon directly as a match when producing a
+		human-readable query result. Some custom taxa might need to be "hidden" from the user,
+		in which case the value should be false. The application should then ascend the taxon's
+		lineage and choose the first ancestor where this field is true. Defaults to true.
 	extra : Optional[dict]
-		JSON column. Additional arbitrary data.
+		JSON column (optional). Additional arbitrary data.
 	genome_set_id : int
 		Integer column. ID of :class:`.ReferenceGenomeSet` the taxon belongs to.
-	parent_id : int
+	parent_id : Optional[int]
 		Integer column. ID of Taxon that is the direct parent of this one.
 	ncbi_id : Optional[int]
-		Integer column. Genbank taxonomy ID, if any.
+		Integer column (optional). ID of the entry in the NCBI taxonomy database this taxon
+		corresponds to, if any.
 	parent : Optional[.Taxon]
-		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon
-		(if any).
+		Many-to-one relationship with :class:`.Taxon`, the parent of this taxon (if any).
 	children : Collection[.Taxon]
-		One-to-many relationship with :class:`.Taxon`, the children of this
-		taxon.
+		One-to-many relationship with :class:`.Taxon`, the children of this taxon.
 	genome_set : .ReferenceGenomeSet
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
 	genomes : Collection[.AnnotatedGenome]
