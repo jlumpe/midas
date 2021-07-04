@@ -66,8 +66,8 @@ def id_lookup_session(make_empty_db):
 			key=f'test/genome_{i}',
 			version='1.0',
 			description=f'Test genome {i}',
-			entrez_db='assembly',
-			entrez_id=i,
+			ncbi_db='assembly',
+			ncbi_id=i,
 			genbank_acc=f'GCA_{i:09d}.1',
 			refseq_acc=f'GCF_{i:09d}.1',
 		)
@@ -202,8 +202,8 @@ class TestAnnotatedGenome:
 			'key',
 			'version',
 			'description',
-			'entrez_db',
-			'entrez_id',
+			'ncbi_db',
+			'ncbi_id',
 			'genbank_acc',
 			'refseq_acc',
 		]

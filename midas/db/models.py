@@ -98,11 +98,12 @@ class Genome(Base, KeyMixin):
 		String column. See :class:`midas.db.mixins.KeyMixin`.
 	description : Optional[str]
 		String column. Short one-line description. Recommended to be unique but this is not enforced.
-	entrez_db : Optional[str]
-		String column. If the genome corresponds to a record downloaded from an Entrez database
-		this column should be the database name and ``entrez_id`` should be the entry's UID.
-	entrez_id : Optional[int]
-		Integer column. See previous.
+	ncbi_db : Optional[str]
+		String column (optional). If the genome corresponds to a record downloaded from an NCBI
+		database this column should be the database name (e.g. ``'assembly'``) and ``ncbi_id``
+		should be the entry's UID. Unique along with ``ncbi_id``.
+	ncbi_id : Optional[int]
+		Integer column (optional). See previous.
 	genbank_acc : Optional[str]
 		String column. GenBank accession number for this genome, if any.
 	refseq_acc : Optional[str]
@@ -118,13 +119,13 @@ class Genome(Base, KeyMixin):
 	@declared_attr
 	def __table_args__(cls):
 		return (
-			UniqueConstraint('entrez_db', 'entrez_id'),
+			UniqueConstraint('ncbi_db', 'ncbi_id'),
 		)
 
 	id = Column(Integer(), primary_key=True)
 	description = Column(String(), nullable=False)
-	entrez_db = Column(String())
-	entrez_id = Column(Integer())
+	ncbi_db = Column(String())
+	ncbi_id = Column(Integer())
 	genbank_acc = Column(String(), unique=True)
 	refseq_acc = Column(String(), unique=True)
 	extra = deferred(Column(JsonString()))
@@ -265,9 +266,9 @@ class AnnotatedGenome(Base):
 		Hybrid property connected to attribute on :attr:`genome`.
 	description : Optional[str]
 		Hybrid property connected to attribute on :attr:`genome`.
-	entrez_db : Optional[str]
+	ncbi_db : Optional[str]
 		Hybrid property connected to attribute on :attr:`genome`.
-	entrez_id : Optional[int]
+	ncbi_id : Optional[int]
 		Hybrid property connected to attribute on :attr:`genome`.
 	genbank_acc : Optional[str]
 		Hybrid property connected to attribute on :attr:`genome`.
@@ -306,8 +307,8 @@ class AnnotatedGenome(Base):
 	key = hybrid_property(lambda self: self.genome.key)
 	version = hybrid_property(lambda self: self.genome.version)
 	description = hybrid_property(lambda self: self.genome.description)
-	entrez_db = hybrid_property(lambda self: self.genome.entrez_db)
-	entrez_id = hybrid_property(lambda self: self.genome.entrez_id)
+	ncbi_db = hybrid_property(lambda self: self.genome.ncbi_db)
+	ncbi_id = hybrid_property(lambda self: self.genome.ncbi_id)
 	genbank_acc = hybrid_property(lambda self: self.genome.genbank_acc)
 	refseq_acc = hybrid_property(lambda self: self.genome.refseq_acc)
 
@@ -505,7 +506,7 @@ GENOME_ID_ATTRS = {
 	'key': Genome.key,
 	'genbank_acc': Genome.genbank_acc,
 	'refseq_acc': Genome.refseq_acc,
-	'entrez_id': Genome.entrez_id,
+	'ncbi_id': Genome.ncbi_id,
 }
 
 
