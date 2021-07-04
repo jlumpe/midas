@@ -57,7 +57,7 @@ def id_lookup_session(make_empty_db):
 
 	roottaxon = Taxon(
 		name='root',
-		reference_set=gset,
+		genome_set=gset,
 	)
 	session.add(roottaxon)
 
@@ -72,7 +72,7 @@ def id_lookup_session(make_empty_db):
 			refseq_acc=f'GCF_{i:09d}.1',
 		)
 		ag = AnnotatedGenome(
-			reference_set=gset,
+			genome_set=gset,
 			genome=g,
 			taxon=roottaxon,
 		)
@@ -257,7 +257,7 @@ class TestTaxon:
 			name='test genome set',
 		)
 		taxon = Taxon(
-			reference_set=gset,
+			genome_set=gset,
 			name='test taxon',
 			extra=JSON_DATA,
 		)

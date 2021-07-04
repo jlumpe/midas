@@ -172,7 +172,7 @@ class ReferenceGenomeSet(Base, KeyMixin):
 		One-to-many relationship to :class:`.Taxon`. The taxa that form the
 		classification system for this reference set.
 	"""
-	__tablename__ = 'reference_genome_sets'
+	__tablename__ = 'genome_sets'
 
 	id = Column(Integer(), primary_key=True)
 	name = Column(String(), unique=True, nullable=False)
@@ -213,9 +213,9 @@ class AnnotatedGenome(Base):
 	genome_id : int
 		Integer column, part of composite primary key. ID of :class:`.Genome`
 		the annotations are or.
-	reference_set_id : int
-		Integer column, part of composite primary key. ID of
-		:class:`.ReferenceGenomeSet` the annotations are under.
+	genome_set_id : int
+		Integer column, part of composite primary key. ID of the :class:`.ReferenceGenomeSet` the
+		annotations are under.
 	organism : str
 		String column. Single string describing the organism. May be "Genus,
 		species[, strain]" but could contain more specific information. Intended
@@ -225,7 +225,7 @@ class AnnotatedGenome(Base):
 		Integer column. ID of the :class:`Taxon` this genome is classified as.
 	genome : .Genome
 		Many-to-one relationship to :class:`.Genome`.
-	reference_set : .ReferenceGenomeSet
+	genome_set : .ReferenceGenomeSet
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
 	taxon : .Taxon
 		Many-to-one relationship to :class:`.Taxon`. The primary taxon this genome is classified as
@@ -252,15 +252,12 @@ class AnnotatedGenome(Base):
 		ForeignKey('genomes.id', ondelete='CASCADE'),
 		primary_key=True
 	)
-	reference_set_id = Column(
-		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
-		primary_key=True
-	)
+	genome_set_id = Column(ForeignKey('genome_sets.id', ondelete='CASCADE'), primary_key=True)
 	taxon_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 	organism = Column(String())
 
 	genome = relationship('Genome', back_populates='annotations')
-	reference_set = relationship('ReferenceGenomeSet', back_populates='genomes')
+	genome_set = relationship('ReferenceGenomeSet', back_populates='genomes')
 	taxon = relationship('Taxon', backref=backref('genomes', lazy='dynamic'))
 
 	key = hybrid_property(lambda self: self.genome.key)
@@ -274,9 +271,9 @@ class AnnotatedGenome(Base):
 	def __repr__(self):
 		return '<{}:{}:{} {!r}/{!r}>'.format(
 			type(self).__name__,
-			self.reference_set_id,
+			self.genome_set_id,
 			self.genome_id,
-			self.reference_set.key,
+			self.genome_set.key,
 			self.organism,
 		)
 
@@ -310,7 +307,7 @@ class Taxon(Base):
 		ancestor where this field is true. Defaults to true.
 	extra : Optional[dict]
 		JSON column. Additional arbitrary data.
-	reference_set_id : int
+	genome_set_id : int
 		Integer column. ID of :class:`.ReferenceGenomeSet` the taxon belongs to.
 	parent_id : int
 		Integer column. ID of Taxon that is the direct parent of this one.
@@ -322,7 +319,7 @@ class Taxon(Base):
 	children : Collection[.Taxon]
 		One-to-many relationship with :class:`.Taxon`, the children of this
 		taxon.
-	reference_set : .ReferenceGenomeSet
+	genome_set : .ReferenceGenomeSet
 		Many-to-one relationship to :class:`.ReferenceGenomeSet`.
 	genomes : Collection[.AnnotatedGenome]
 		One-to-many relationship with :class:`.AnnotatedGenome`, genomes which are assigned to this
@@ -339,17 +336,13 @@ class Taxon(Base):
 	distance_threshold = Column(Float())
 	report = Column(Boolean(), nullable=False, default=True, server_default=sa.true())
 
-	reference_set_id = Column(
-		ForeignKey('reference_genome_sets.id', ondelete='CASCADE'),
-		nullable=False,
-		index=True,
-	)
+	genome_set_id = Column(ForeignKey('genome_sets.id', ondelete='CASCADE'), nullable=False, index=True)
 	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
 
 	ncbi_id = Column(Integer(), index=True)
 	extra = deferred(Column(JsonString()))
 
-	reference_set = relationship(
+	genome_set = relationship(
 		'ReferenceGenomeSet',
 		backref=backref('taxa', lazy='dynamic', cascade='all, delete-orphan')
 	)
