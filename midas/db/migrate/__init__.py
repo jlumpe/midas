@@ -13,6 +13,10 @@ from pkg_resources import resource_filename
 from sqlalchemy.engine import Engine
 
 
+INI_PATH = resource_filename(__name__, 'alembic.ini')
+SCRIPTS_DIR = resource_filename(__name__, 'alembic')
+
+
 def get_alembic_config(engine: Optional[Engine] = None, **kwargs) -> Config:
 	"""Get an alembic config object to perform migrations.
 
@@ -28,17 +32,35 @@ def get_alembic_config(engine: Optional[Engine] = None, **kwargs) -> Config:
 	-------
 		Alembic config object.
 	"""
-	ini_path = resource_filename(__name__, 'alembic.ini')
-	script_path = resource_filename(__name__, 'alembic')
 
-	config = Config(ini_path, **kwargs)
-
-	config.set_main_option('script_location', script_path)
+	config = Config(INI_PATH, **kwargs)
+	config.set_main_option('script_location', SCRIPTS_DIR)
 
 	if engine is not None:
 		config.attributes['engine'] = engine
 
 	return config
+
+
+def current_head() -> str:
+	"""Get the current head revision number."""
+	conf = get_alembic_config()
+	scriptdir = ScriptDirectory.from_config(conf)
+	return scriptdir.get_current_head()
+
+
+def current_revision(engine: Engine) -> str:
+	"""Get the current revision number of a genome database."""
+	with engine.connect() as conn:
+		ctx = MigrationContext.configure(conn)
+		return ctx.get_current_revision()
+
+
+def is_current_revision(engine: Engine):
+	"""Check if the current revision of a genome database is the most recent (head) revision."""
+	head = current_head()
+	current = current_revision(engine)
+	return current == head
 
 
 def upgrade(engine: Engine, revision: str = 'head', tag=None, **kwargs):
