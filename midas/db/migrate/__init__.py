@@ -10,21 +10,21 @@ from alembic import command
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from pkg_resources import resource_filename
-from sqlalchemy.engine import Engine
+from sqlalchemy.engine import Connectable
 
 
 INI_PATH = resource_filename(__name__, 'alembic.ini')
 SCRIPTS_DIR = resource_filename(__name__, 'alembic')
 
 
-def get_alembic_config(engine: Optional[Engine] = None, **kwargs) -> Config:
+def get_alembic_config(connectable: Optional[Connectable] = None, **kwargs) -> Config:
 	"""Get an alembic config object to perform migrations.
 
 	Parameters
 	----------
-	engine
-		SQLAlchemy engine specifying database connection info (optional). Assigned to ``'engine'``
-		key of :attr:`alembic.config.Config.attributes`.
+	connectable
+		SQLAlchemy connectable specifying database connection info (optional). Assigned to
+		``'connectable'`` key of :attr:`alembic.config.Config.attributes`.
 	\\**kwargs
 		Keyword arguments to pass to :meth:`alembic.config.Config.__init__`.
 
@@ -36,8 +36,7 @@ def get_alembic_config(engine: Optional[Engine] = None, **kwargs) -> Config:
 	config = Config(INI_PATH, **kwargs)
 	config.set_main_option('script_location', SCRIPTS_DIR)
 
-	if engine is not None:
-		config.attributes['engine'] = engine
+	config.attributes['connectable'] = connectable
 
 	return config
 
@@ -49,29 +48,29 @@ def current_head() -> str:
 	return scriptdir.get_current_head()
 
 
-def current_revision(engine: Engine) -> str:
+def current_revision(connectable: Connectable) -> str:
 	"""Get the current revision number of a genome database."""
-	with engine.connect() as conn:
+	with connectable.connect() as conn:
 		ctx = MigrationContext.configure(conn)
 		return ctx.get_current_revision()
 
 
-def is_current_revision(engine: Engine):
+def is_current_revision(connectable: Connectable):
 	"""Check if the current revision of a genome database is the most recent (head) revision."""
 	head = current_head()
-	current = current_revision(engine)
+	current = current_revision(connectable)
 	return current == head
 
 
-def upgrade(engine: Engine, revision: str = 'head', tag=None, **kwargs):
+def upgrade(connectable: Connectable, revision: str = 'head', tag=None, **kwargs):
 	"""Run the alembic upgrade command.
 
 	See :func:`alembic.command.upgrade` for more information on how this works.
 
 	Parameters
 	----------
-	engine
-		SQLAlchemy engine specifying genome database connection info.
+	connectable
+		SQLAlchemy connectable specifying genome database connection info.
 	revision
 		Revision to upgrade to. Passed to :func:`alembic.command.upgrade`.
 	tag
@@ -79,11 +78,11 @@ def upgrade(engine: Engine, revision: str = 'head', tag=None, **kwargs):
 	\\**kwargs
 		Passed to :func:`.get_alembic_config`.
 	"""
-	config = get_alembic_config(engine, **kwargs)
+	config = get_alembic_config(connectable, **kwargs)
 	command.upgrade(config, revision, tag=tag)
 
 
-def init_db(engine: Engine):
+def init_db(connectable: Connectable):
 	"""
 	Initialize the genome database schema by creating all tables and stamping with the latest
 	Alembic revision.
@@ -93,8 +92,8 @@ def init_db(engine: Engine):
 
 	Parameters
 	----------
-	engine : sqlalchemy.engine.base.Engine
-		SQLAlchemy engine specifying database connection info.
+	connectable
+		SQLAlchemy connectable specifying database connection info.
 
 	Raises
 	------
@@ -108,7 +107,7 @@ def init_db(engine: Engine):
 	conf = get_alembic_config()
 	script = ScriptDirectory.from_config(conf)
 
-	with engine.connect() as conn:
+	with connectable.connect() as conn:
 		ctx = MigrationContext.configure(conn)
 
 		# Check there is no current revision stamped
