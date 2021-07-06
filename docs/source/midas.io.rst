@@ -9,7 +9,6 @@ Submodules
 
    midas.io.json
    midas.io.seq
-   midas.io.signaturefile
    midas.io.util
 
 Module contents

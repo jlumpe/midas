@@ -7,9 +7,6 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   midas.util.attr
-   midas.util.typing
-
 Module contents
 ---------------
 
