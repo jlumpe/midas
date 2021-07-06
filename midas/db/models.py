@@ -73,7 +73,7 @@ class KeyMixin:
 			return query.filter_by(version=version).scalar()
 
 
-class Genome(Base, KeyMixin):
+class Genome(Base):
 	"""Base model for a reference genome that can be compared to query.
 
 	Corresponds to a single assembly (one or more contigs, but at least partially assembled) from
@@ -91,9 +91,8 @@ class Genome(Base, KeyMixin):
 	id : int
 		Integer column (primary key).
 	key : str
-		String column. See :class:`midas.db.mixins.KeyMixin`.
-	version : str
-		String column. See :class:`midas.db.mixins.KeyMixin`.
+		String column (unique). Unique "external id" used to reference the genome from outside the
+		SQL database, e.g. from a file containing K-mer signatures.
 	description : Optional[str]
 		String column (optional). Short one-line description. Recommended to be unique but this is
 		not enforced.
@@ -122,6 +121,7 @@ class Genome(Base, KeyMixin):
 		)
 
 	id = Column(Integer(), primary_key=True)
+	key = Column(String(), unique=True, nullable=False)
 	description = Column(String(), nullable=False)
 	ncbi_db = Column(String())
 	ncbi_id = Column(Integer())
@@ -135,7 +135,7 @@ class Genome(Base, KeyMixin):
 		return f'<{type(self).__name__}:{self.id} {self.description!r}>'
 
 
-class ReferenceGenomeSet(Base, KeyMixin):
+class ReferenceGenomeSet(Base):
 	"""
 	A collection of reference genomes along with additional annotations and data. A full MIDAS
 	database which can be used for queries consists of a genome set plus a set of k-mer signatures
@@ -155,9 +155,12 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	id : int
 		Integer primary key.
 	key : str
-		String column. See :class:`midas.db.mixins.KeyMixin`.
+		String column. An "external id"  used to uniquely identify this genome set. Unique along
+		with ``version``.
 	version : str
-		String column, required. See :class:`midas.db.mixins.KeyMixin`.
+		Optional version string, an updated version of a previous genome set should have the same key
+		with a later version number.
+		Should be in the format defined by `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_.
 	name : str
 		String column. Unique name.
 	description : Optional[str]
@@ -176,8 +179,16 @@ class ReferenceGenomeSet(Base, KeyMixin):
 	"""
 	__tablename__ = 'genome_sets'
 
+	@declared_attr
+	def __table_args__(cls):
+		return (
+			UniqueConstraint('key', 'version'),
+		)
+
 	id = Column(Integer(), primary_key=True)
-	name = Column(String(), unique=True, nullable=False)
+	key = Column(String(), index=True, nullable=False)
+	version = Column(String())
+	name = Column(String(), nullable=False)
 	description = Column(String())
 	extra = Column(JsonString())
 
@@ -228,8 +239,6 @@ class AnnotatedGenome(Base):
 		(ideally defined on NCBI) taxon this genome belongs to.
 	key : str
 		Hybrid property connected to attribute on :attr:`genome`.
-	version : str
-		Hybrid property connected to attribute on :attr:`genome`.
 	description : Optional[str]
 		Hybrid property connected to attribute on :attr:`genome`.
 	ncbi_db : Optional[str]
@@ -253,7 +262,6 @@ class AnnotatedGenome(Base):
 	taxon = relationship('Taxon', backref=backref('genomes', lazy='dynamic'))
 
 	key = hybrid_property(lambda self: self.genome.key)
-	version = hybrid_property(lambda self: self.genome.version)
 	description = hybrid_property(lambda self: self.genome.description)
 	ncbi_db = hybrid_property(lambda self: self.genome.ncbi_db)
 	ncbi_id = hybrid_property(lambda self: self.genome.ncbi_id)

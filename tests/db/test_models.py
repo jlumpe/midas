@@ -64,7 +64,6 @@ def id_lookup_session(make_empty_db):
 	for i in range(20):
 		g = Genome(
 			key=f'test/genome_{i}',
-			version='1.0',
 			description=f'Test genome {i}',
 			ncbi_db='assembly',
 			ncbi_id=i,
@@ -84,17 +83,6 @@ def id_lookup_session(make_empty_db):
 
 class TestGenome:
 
-	def test_key_lookup(self, id_lookup_session):
-		session = id_lookup_session
-		key = 'test/genome_0'
-		genome = session.query(Genome).filter_by(key=key).one()
-		assert Genome.by_key(session, genome.key) == genome
-		assert Genome.by_key(session, genome.key, '1.0') == genome
-		assert Genome.by_key(session, genome.key, '1.1') is None
-
-	def test_ncbi_id_lookup(self, id_lookup_session):
-		pass  # TODO
-
 	def test_extra_json(self, empty_db_session):
 		"""Test storing JSON data in the 'extra' column."""
 		session = empty_db_session()
@@ -102,7 +90,6 @@ class TestGenome:
 		# Save genome with JSON data
 		genome = Genome(
 			key='foo',
-			version='1.0',
 			description='test genome',
 			extra=JSON_DATA,
 		)
@@ -134,14 +121,6 @@ class TestGenome:
 
 
 class TestReferenceGenomeSet:
-
-	def test_key_lookup(self, testdb_session):
-		session = testdb_session()
-		key = 'midas/test/testdb_210126'
-		gset = session.query(ReferenceGenomeSet).filter_by(key=key).one()
-		assert ReferenceGenomeSet.by_key(session, gset.key) == gset
-		assert ReferenceGenomeSet.by_key(session, gset.key, '1.0') == gset
-		assert ReferenceGenomeSet.by_key(session, gset.key, '1.1') is None
 
 	def test_root_taxa(self, testdb_session):
 		session = testdb_session()
@@ -200,7 +179,6 @@ class TestAnnotatedGenome:
 
 		hybrid_attrs = [
 			'key',
-			'version',
 			'description',
 			'ncbi_db',
 			'ncbi_id',
