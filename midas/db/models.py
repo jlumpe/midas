@@ -132,7 +132,7 @@ class Genome(Base):
 	annotations = relationship('AnnotatedGenome', lazy=True, cascade='all, delete-orphan')
 
 	def __repr__(self):
-		return f'<{type(self).__name__}:{self.id} {self.description!r}>'
+		return f'<{type(self).__name__}:{self.id} {self.key!r}>'
 
 
 class ReferenceGenomeSet(Base):
@@ -196,7 +196,7 @@ class ReferenceGenomeSet(Base):
 	base_genomes = relationship('Genome', secondary='genome_annotations', lazy='dynamic', viewonly=True)
 
 	def __repr__(self):
-		return f'<{type(self).__name__}:{self.id} {self.name!r}>'
+		return f'<{type(self).__name__}:{self.id} {self.key!r}:{self.version!r}>'
 
 	def root_taxa(self):
 		"""Query for root taxa belonging to the set.
@@ -274,7 +274,7 @@ class AnnotatedGenome(Base):
 			self.genome_set_id,
 			self.genome_id,
 			self.genome_set.key,
-			self.organism,
+			self.genome.key,
 		)
 
 
