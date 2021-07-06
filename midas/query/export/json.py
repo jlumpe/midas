@@ -65,7 +65,7 @@ class JSONResultsExporter(AbstractResultsExporter):
 
 	@_to_json.register(Taxon)
 	def _taxon_to_json(self, taxon: Taxon):
-		return self._todict(taxon, ['id', 'name', 'ncbi_id', 'distance_threshold'])
+		return self._todict(taxon, ['id', 'key', 'name', 'ncbi_id', 'distance_threshold'])
 
 	def export(self, f, results: QueryResults):
 		json.dump(results, f, default=self._to_json)

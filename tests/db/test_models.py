@@ -56,6 +56,7 @@ def id_lookup_session(make_empty_db):
 	session.add(gset)
 
 	roottaxon = Taxon(
+		key='root',
 		name='root',
 		genome_set=gset,
 	)
@@ -236,6 +237,7 @@ class TestTaxon:
 		)
 		taxon = Taxon(
 			genome_set=gset,
+			key='test',
 			name='test taxon',
 			extra=JSON_DATA,
 		)

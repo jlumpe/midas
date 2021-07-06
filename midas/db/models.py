@@ -288,6 +288,8 @@ class Taxon(Base):
 	----------
 	id : int
 		Integer column (primary key).
+	key : str
+		String column (unique). An "external id"  used to uniquely identify this taxon.
 	name : str
 		String column. Human-readable name for the taxon, typically the standard scientific name.
 	rank : Optional[str]
@@ -326,8 +328,8 @@ class Taxon(Base):
 	__tablename__ = 'taxa'
 
 	id = Column(Integer(), primary_key=True)
-
-	name = Column(String(), nullable=False, index=True)
+	key = Column(String(), unique=True, nullable=False)
+	name = Column(String(), index=True, nullable=False)
 	rank = Column(String(), index=True)
 	description = Column(String())
 	distance_threshold = Column(Float())
@@ -335,7 +337,6 @@ class Taxon(Base):
 
 	genome_set_id = Column(ForeignKey('genome_sets.id', ondelete='CASCADE'), nullable=False, index=True)
 	parent_id = Column(ForeignKey('taxa.id', ondelete='SET NULL'), index=True)
-
 	ncbi_id = Column(Integer(), index=True)
 	extra = deferred(Column(JsonString()))
 
