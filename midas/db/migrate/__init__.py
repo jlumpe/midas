@@ -14,7 +14,6 @@ from sqlalchemy.engine import Connectable
 
 
 INI_PATH = resource_filename(__name__, 'alembic.ini')
-SCRIPTS_DIR = resource_filename(__name__, 'alembic')
 
 
 def get_alembic_config(connectable: Optional[Connectable] = None, **kwargs) -> Config:
@@ -32,10 +31,7 @@ def get_alembic_config(connectable: Optional[Connectable] = None, **kwargs) -> C
 	-------
 		Alembic config object.
 	"""
-
 	config = Config(INI_PATH, **kwargs)
-	config.set_main_option('script_location', SCRIPTS_DIR)
-
 	config.attributes['connectable'] = connectable
 
 	return config
