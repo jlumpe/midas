@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Mapping, Any
+from typing import Optional, Sequence, Mapping, Any, Union
 from abc import abstractmethod
 
 import numpy as np
@@ -76,6 +76,10 @@ class AbstractSignatureArray(Sequence[KmerSignature]):
 	def sizes(self) -> Sequence[int]:
 		"""Get the sizes of all signatures in the array."""
 		return np.fromiter(map(self.sizeof, range(len(self))))
+
+	@abstractmethod
+	def __getitem__(self, index: Union[int, slice, Sequence[int], Sequence[bool]]) -> Union[KmerSignature, 'AbstractSignatureArray']:
+		pass
 
 	def __eq__(self, other):
 		if isinstance(other, Sequence):
