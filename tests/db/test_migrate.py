@@ -12,7 +12,7 @@ from midas.db import models
 
 # Expected current head revision
 # Need to update this value every time a new revision is introduced
-CURRENT_HEAD = 'd961d0698083'
+CURRENT_HEAD = 'c43540b80d50'
 
 # Old revision number to test. Must actually exist in the scripts directory.
 OLD_REVISION = '955d795123c3'
