@@ -27,15 +27,16 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.TESTDB_DIR }}
-        key: testdb-data
+        # Increment the number on the end every time the test data changes
+        key: testdb-data-2
 
     - name: Download test database
       if: steps.cache-test-database.outputs.cache-hit != 'true'
       env:
-        BASE_URL: https://storage.googleapis.com/helical-song-136517/databases/testdb_210126
+        BASE_URL: https://storage.googleapis.com/hesslab-gambit-public/databases/testdb_210126
       run: |
         mkdir $TESTDB_DIR/query-seqs
-        wget -O $TESTDB_DIR/testdb_210126-signatures.h5 $BASE_URL/testdb_210126-signatures-draft.h5
+        wget -O $TESTDB_DIR/testdb_210126-signatures.h5 $BASE_URL/testdb_210126-signatures-210707.h5
         wget -O - $BASE_URL/testdb_210126_query_seqs.tar.gz | tar -xz -C $TESTDB_DIR/query-seqs
 
     - name: Install dependencies
