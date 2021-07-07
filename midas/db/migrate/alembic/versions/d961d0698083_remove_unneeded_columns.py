@@ -49,9 +49,9 @@ def upgrade_data(conn):
 
     genome_rows = list(conn.execute(genomes.select()))
     for row in genome_rows:
-        extra = {} if row.extra is None else row.extra.as_builtin()
+        extra = {} if row.extra is None else dict(row.extra)
         if row.entrez_summary is not None:
-            extra['entrez_summary'] = row.entrez_summary.as_builtin()
+            extra['entrez_summary'] = row.entrez_summary
         extra['ncbi_taxid'] = row.ncbi_taxid
         extra['is_assembled'] = row.is_assembled
 
@@ -60,7 +60,7 @@ def upgrade_data(conn):
     refset_rows = list(conn.execute(reference_genome_sets.select()))
     for row in refset_rows:
         if (row.signatureset_key is not None or row.signatureset_version is not None):
-            extra = {} if row.extra is None else row.extra.as_builtin()
+            extra = {} if row.extra is None else dict(row.extra)
             extra['signatureset'] = dict(key=row.signatureset_key, version=row.signatureset_version)
 
             op.execute(reference_genome_sets.update().where(reference_genome_sets.c.id==row.id).values(extra=extra))
@@ -70,8 +70,8 @@ def upgrade_data(conn):
         if row.entrez_data is None:
             continue
 
-        extra = {} if row.extra is None else row.extra.as_builtin()
-        extra['entrez_data'] = row.entrez_data.as_builtin()
+        extra = {} if row.extra is None else dict(row.extra)
+        extra['entrez_data'] = row.entrez_data
 
         op.execute(taxa.update().where(taxa.c.id==row.id).values(extra=extra))
 
@@ -101,7 +101,7 @@ def downgrade_data(conn):
 
     genome_rows = list(conn.execute(genomes.select()))
     for row in genome_rows:
-        extra = row.extra.as_builtin()
+        extra = dict(row.extra)
         entrez_summary = extra.pop('enztrez_summary', None)
         ncbi_taxid = extra.pop('ncbi_taxid', None)
         is_assembled = extra.pop('is_assembled', None)
@@ -115,7 +115,7 @@ def downgrade_data(conn):
 
     refset_rows = list(conn.execute(reference_genome_sets.select()))
     for row in refset_rows:
-        extra = row.extra.as_builtin()
+        extra = dict(row.extra)
 
         if 'signatureset' in extra:
             signatureset = extra.pop('signatureset')
@@ -128,7 +128,7 @@ def downgrade_data(conn):
 
     taxon_rows = list(conn.execute(taxa.select()))
     for row in taxon_rows:
-        extra = row.extra.as_builtin()
+        extra = dict(row.extra)
         entrez_data = extra.pop('entrez_data', None)
 
         op.execute(taxa.update().where(taxa.c.id == row.id).values(
