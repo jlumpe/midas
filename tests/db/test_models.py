@@ -38,49 +38,6 @@ def empty_db_session(make_empty_db):
 	return sessionmaker(engine)
 
 
-@pytest.fixture()
-def id_lookup_session(make_empty_db):
-	"""
-	Session for an in-memory database containing a set of genomes which have values for all ID
-	values, to test lookup/matching funcs.
-	"""
-	engine = make_empty_db()
-	Session = sessionmaker(engine)
-	session = Session()
-
-	gset = ReferenceGenomeSet(
-		key='test_gset',
-		version='1.0',
-		name='Test genome set',
-	)
-	session.add(gset)
-
-	roottaxon = Taxon(
-		key='root',
-		name='root',
-		genome_set=gset,
-	)
-	session.add(roottaxon)
-
-	for i in range(20):
-		g = Genome(
-			key=f'test/genome_{i}',
-			description=f'Test genome {i}',
-			ncbi_db='assembly',
-			ncbi_id=i,
-			genbank_acc=f'GCA_{i:09d}.1',
-			refseq_acc=f'GCF_{i:09d}.1',
-		)
-		ag = AnnotatedGenome(
-			genome_set=gset,
-			genome=g,
-			taxon=roottaxon,
-		)
-		session.add(ag)
-
-	session.commit()
-	return session
-
 
 class TestGenome:
 
@@ -175,8 +132,8 @@ class TestReferenceGenomeSet:
 
 class TestAnnotatedGenome:
 
-	def test_hybrid_props(self, id_lookup_session):
-		session = id_lookup_session
+	def test_hybrid_props(self, testdb_session):
+		session = testdb_session()
 
 		hybrid_attrs = [
 			'key',
@@ -272,6 +229,46 @@ class TestTaxon:
 class TestGenomeIDMapping:
 	"""Test mapping genomes to ID values."""
 
+	@pytest.fixture()
+	def session(self, make_empty_db):
+		"""In-memory database containing genomes which have values for all ID attributes."""
+		engine = make_empty_db()
+		Session = sessionmaker(engine)
+		session = Session()
+
+		gset = ReferenceGenomeSet(
+			key='test_gset',
+			version='1.0',
+			name='Test genome set',
+		)
+		session.add(gset)
+
+		roottaxon = Taxon(
+			key='root',
+			name='root',
+			genome_set=gset,
+		)
+		session.add(roottaxon)
+
+		for i in range(20):
+			g = Genome(
+				key=f'test/genome_{i}',
+				description=f'Test genome {i}',
+				ncbi_db='assembly',
+				ncbi_id=i,
+				genbank_acc=f'GCA_{i:09d}.1',
+				refseq_acc=f'GCF_{i:09d}.1',
+			)
+			ag = AnnotatedGenome(
+				genome_set=gset,
+				genome=g,
+				taxon=roottaxon,
+			)
+			session.add(ag)
+
+		session.commit()
+		return session
+
 	def test__genome_id_attr(self):
 		"""Test _check_genome_id_attr() function."""
 
@@ -283,17 +280,15 @@ class TestGenomeIDMapping:
 			with pytest.raises(ValueError):
 				models._check_genome_id_attr(arg)
 
-	def test__get_genome_id(self, id_lookup_session):
+	def test__get_genome_id(self, session):
 		"""Test _get_genome_id() function."""
-		session = id_lookup_session
 
 		for genome in session.query(Genome):
 			for key, attr in models.GENOME_ID_ATTRS.items():
 				assert models._get_genome_id(genome, attr) == getattr(genome, key)
 
-	def test_genomes_by_id(self, id_lookup_session):
+	def test_genomes_by_id(self, session):
 		"""Test genomes_by_id() and genomes_by_id_subset() functions."""
-		session = id_lookup_session
 		random.seed(0)
 
 		gset = session.query(ReferenceGenomeSet).one()
