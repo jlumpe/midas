@@ -104,7 +104,7 @@ def test_query_python(testdb, query_data):
 			assert item.report_taxon is None
 		else:
 			assert item.predicted_taxon is not None
-			assert item.predicted_taxon.name == expected
+			assert item.predicted_taxon.key == expected
 			assert item.report_taxon == item.predicted_taxon
 
 		assert not item.warnings
@@ -150,7 +150,7 @@ def _check_results_json(results_file, query_files, expected_taxa):
 		else:
 			predicted = item['predicted_taxon']
 			assert predicted is not None
-			assert predicted['name'] == expected
+			assert predicted['key'] == expected
 			assert item['report_taxon'] == predicted
 
 		assert item['warnings'] == []
