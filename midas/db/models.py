@@ -552,6 +552,9 @@ def genomes_by_id_subset(genomeset: ReferenceGenomeSet,
 	not filtered out. The indices can be used to load only those signatures which have a matched
 	genome from a signature file.
 
+	Note that it is not checked that every genome in ``genomeset`` is matched by an ID. Check the
+	size of the returned lists for this.
+
 	Parameters
 	----------
 	genomeset

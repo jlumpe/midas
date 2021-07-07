@@ -46,3 +46,8 @@ class MIDASDatabase:
 
 		self.genomes, sig_indices = genomes_by_id_subset(genomeset, id_attr, signatures.ids)
 		self.genome_signatures = signatures[sig_indices]
+
+		n = genomeset.genomes.count()
+		if len(self.genomes) != n:
+			missing = n - len(self.genomes)
+			raise ValueError(f'{missing} of {n} genomes not matched to signature IDs. Is the id_attr attribute of the signatures metadata correct?')
