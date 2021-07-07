@@ -14,7 +14,7 @@ from midas.io.util import FilePath
 
 #: Name of HDF5 group attribute which both stores the format version and also identifies the group
 #: as containing signature data.
-FMT_VERSION_ATTR = 'midas_signatures_version'
+FMT_VERSION_ATTR = 'gambit_signatures_version'
 
 #: Current version of the data format. Integer which should be incremented each time the format
 #: changes.
