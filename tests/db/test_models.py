@@ -292,9 +292,12 @@ class TestGenomeIDMapping:
 		random.seed(0)
 
 		gset = session.query(ReferenceGenomeSet).one()
+
+		# Desired result with only valid IDs
 		genomes = list(gset.genomes)
 		random.shuffle(genomes)
 
+		# Desired result with some invalid IDs mixed in
 		genomes_missing = list(genomes)
 		genomes_missing.insert(3, None)
 		genomes_missing.insert(8, None)
@@ -305,17 +308,23 @@ class TestGenomeIDMapping:
 			assert models.genomes_by_id(gset, attr, ids) == genomes
 			assert models.genomes_by_id(gset, key, ids) == genomes
 
-			# with missing values
+			# Add IDs which cannot be mapped to genomes
 			ids_missing = [
 				models._get_genome_id(g, attr) if g is not None else '!INVALID!'
 				for g in genomes_missing
 			]
 
+			# Raises KeyError with strict=True (default)
 			with pytest.raises(KeyError):
 				models.genomes_by_id(gset, attr, ids_missing)
 
+			# strict=False returns list with None values
 			assert models.genomes_by_id(gset, attr, ids_missing, strict=False) == genomes_missing
 
+			# Test genomes_by_id_subset
 			genomes_sub, idxs_sub = models.genomes_by_id_subset(gset, attr, ids_missing)
 			assert genomes_sub == genomes
 			assert [genomes_missing[i] for i in idxs_sub] == genomes
+
+			# Incomplete set of IDs which does not encompass all genomes
+			ids_incomplete = ids[:-1]
