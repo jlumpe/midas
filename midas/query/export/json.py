@@ -30,6 +30,10 @@ else:
 		return wrapper
 
 
+def _todict(obj, attrs):
+	return {a: getattr(obj, a) for a in attrs}
+
+
 @attrs()
 class JSONResultsExporter(AbstractResultsExporter):
 	"""Exports query results in JSON format.
@@ -41,10 +45,6 @@ class JSONResultsExporter(AbstractResultsExporter):
 		output. Defaults to True.
 	"""
 	dense: bool = attrib(default=True)
-
-	@staticmethod
-	def _todict(obj, attrs):
-		return {a: getattr(obj, a) for a in attrs}
 
 	@singledispatchmethod
 	def _to_json(self, obj):
@@ -61,11 +61,11 @@ class JSONResultsExporter(AbstractResultsExporter):
 
 	@_to_json.register(ReferenceGenomeSet)
 	def _genomeset_to_json(self, gset: ReferenceGenomeSet):
-		return self._todict(gset, ['id', 'key', 'version', 'name', 'description'])
+		return _todict(gset, ['id', 'key', 'version', 'name', 'description'])
 
 	@_to_json.register(Taxon)
 	def _taxon_to_json(self, taxon: Taxon):
-		return self._todict(taxon, ['id', 'key', 'name', 'ncbi_id', 'distance_threshold'])
+		return _todict(taxon, ['id', 'key', 'name', 'ncbi_id', 'distance_threshold'])
 
 	def export(self, f, results: QueryResults):
 		json.dump(results, f, default=self._to_json)
