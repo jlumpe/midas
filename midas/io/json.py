@@ -146,7 +146,8 @@ class Jsonable:
 		Convert the instance to JSON-writable data (anything that can be passed to :func:`json.dump`).
 
 
-	.. py:classmethod:: __from_json__(data)
+	.. py:method:: __from_json__(data)
+		:classmethod:
 		:abstractmethod:
 
 		Create an instance from parsed JSON data.

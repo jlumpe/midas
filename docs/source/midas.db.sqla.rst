@@ -2,6 +2,11 @@ midas.db.sqla module
 ====================
 
 .. automodule:: midas.db.sqla
-   :members:
-   :undoc-members:
+   :no-members:
    :show-inheritance:
+
+   .. autoclass:: JsonString
+      :no-inherited-members:
+
+   .. autoclass:: ReadOnlySession
+      :no-inherited-members:

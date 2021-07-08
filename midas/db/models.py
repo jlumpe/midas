@@ -147,7 +147,7 @@ class ReferenceGenomeSet(Base):
 	tree under which all its genomes are categorized.
 
 	This schema technically allows for multiple genome sets within the same database (which can
-	share :class:`.Genome`s but with different annotations), but the MIDAS application generally
+	share :class:`.Genome`\\ s but with different annotations), but the MIDAS application generally
 	expects that genome sets are stored in their own SQLite files.
 
 	Attributes
