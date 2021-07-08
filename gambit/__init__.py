@@ -1,8 +1,8 @@
 """
-Microbial IDentification And Surveillance through whole genome sequencing data
+Genomic Approximation Method for Bacterial Identification and Tracking.
 
 Author: Jared Lumpe
 Author email: mjlumpe@gmail.com
 """
 
-__version__ = "2.4.0"
+__version__ = "0.1.0"
