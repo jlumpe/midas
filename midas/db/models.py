@@ -1,6 +1,6 @@
 """SQLAlchemy models for storing reference genomes and taxonomy information."""
 
-from typing import Sequence, Union, Dict, List, Any, Optional, Tuple
+from typing import Sequence, Union, Dict, List, Any, Optional, Tuple, Iterable, Collection
 
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, Boolean, Float
@@ -198,7 +198,7 @@ class ReferenceGenomeSet(Base):
 	def __repr__(self):
 		return f'<{type(self).__name__}:{self.id} {self.key!r}:{self.version!r}>'
 
-	def root_taxa(self):
+	def root_taxa(self) -> Collection['Taxon']:
 		"""Query for root taxa belonging to the set.
 
 		Returns
@@ -346,85 +346,59 @@ class Taxon(Base):
 	)
 	parent = relationship('Taxon', remote_side=[id], backref=backref('children', lazy=True))
 
-	def ancestors(self, incself=False):
+	def ancestors(self, incself=False) -> Iterable['Taxon']:
 		"""Iterate through the taxon's ancestors from bottom to top.
 
 		Parameters
 		----------
 		incself : bool
 			If True start with self, otherwise start with parent.
-
-		Returns
-		-------
-		Iterable[.Taxon]
 		"""
 		taxon = self if incself else self.parent
 		while taxon is not None:
 			yield taxon
 			taxon = taxon.parent
 
-	def lineage(self):
-		"""Get a sorted list of the taxon's ancestors from top to bottom, including itself.
-
-		Returns
-		-------
-		list[.Taxon]
-		"""
+	def lineage(self) -> List['Taxon']:
+		"""Get a sorted list of the taxon's ancestors from top to bottom, including itself."""
 		l = list(self.ancestors(incself=True))
 		l.reverse()
 		return l
 
-	def root(self):
+	def root(self) -> 'Taxon':
 		"""Get the root taxon of this taxon's tree.
 
 		The set of taxa in a :class:`.ReferenceGenomeSet` will generally form
 		a forest instead of a single tree, so there can be multiple root taxa.
 
 		Returns self if the taxon has no parent.
-
-		Returns
-		-------
-		.Taxon
 		"""
 		if self.parent is None:
 			return self
 		else:
 			return self.parent.root()
 
-	def isleaf(self):
-		"""Check if the taxon is a leaf (has no children).
-
-		Returns
-		-------
-		bool
-		"""
+	def isleaf(self) -> bool:
+		"""Check if the taxon is a leaf (has no children)."""
 		return not self.children
 
-	def descendants(self, incself=False):
+	def descendants(self, incself=False) -> Iterable['Taxon']:
 		"""Iterate through taxa all of the taxon's descendants (pre-order depth-first).
 
 		Parameters
 		----------
 		incself : bool
 			Yield self first.
-
-		Returns
-		-------
-		Iterable[.Taxon]
 		"""
 		if incself:
 			yield self
 		for child in self.children:
 			yield from child.descendants(incself=True)
 
-	def leaves(self):
+	def leaves(self) -> Iterable['Taxon']:
 		"""Iterate through all leaves in the taxon's subtree.
 
 		For leaf taxa this will just yield the taxon itself.
-
-		Returns
-		-------
-		Iterable[.Taxon]
 		"""
 		if self.isleaf():
 			yield self
