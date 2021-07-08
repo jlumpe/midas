@@ -52,4 +52,4 @@ jobs:
       env:
         PY_IGNORE_IMPORTMISMATCH: 1
       run: |
-        pytest --midas-test-full-db
+        pytest --gambit-test-full-db

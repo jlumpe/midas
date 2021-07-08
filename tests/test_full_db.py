@@ -1,7 +1,7 @@
 """
 Run a full set of queries using the testdb_210126 database.
 
-Tests in this file will only be run when the --midas-test-full-db option is passed to the pycharm
+Tests in this file will only be run when the --gambit-test-full-db option is passed to the pycharm
 command.
 
 Database files and query sequences are located in tests/data/testdb_210126, but only the genome
@@ -26,13 +26,13 @@ from gambit.cli import cli
 def testdb_files(request, testdb_dir):
 	"""Paths to testdb_210126 files.
 
-	Skips all dependent tests if the --midas-test-full-db command line option is not passed.
+	Skips all dependent tests if the --gambit-test-full-db command line option is not passed.
 
 	Checks that the directory and required files/subdirectories exist and fails tests immediately
 	if they do not.
 	"""
-	if not request.config.getoption('midas_test_full_db'):
-		pytest.skip('--midas-test-full-db option not given')
+	if not request.config.getoption('gambit_test_full_db'):
+		pytest.skip('--gambit-test-full-db option not given')
 
 	files = dict(
 		root=testdb_dir,
