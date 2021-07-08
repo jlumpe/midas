@@ -1,5 +1,5 @@
-midas.io package
-================
+gambit.io package
+=================
 
 Submodules
 ----------
@@ -7,14 +7,14 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   midas.io.json
-   midas.io.seq
-   midas.io.util
+   gambit.io.json
+   gambit.io.seq
+   gambit.io.util
 
 Module contents
 ---------------
 
-.. automodule:: midas.io
+.. automodule:: gambit.io
    :members:
    :undoc-members:
    :show-inheritance:

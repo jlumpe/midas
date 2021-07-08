@@ -1,7 +1,7 @@
-midas.io.util module
+gambit.io.seq module
 ====================
 
-.. automodule:: midas.io.util
+.. automodule:: gambit.io.seq
    :members:
    :undoc-members:
    :show-inheritance:

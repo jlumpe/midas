@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'MIDAS'
+project = 'GAMBIT'
 copyright = '2021, Jared Lumpe'
 author = 'Jared Lumpe'
 
 # The full version, including alpha/beta/rc tags
-release = '2.4'
+release = '0.1.0'
 
 
 # -- General configuration ---------------------------------------------------

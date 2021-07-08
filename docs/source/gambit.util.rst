@@ -1,5 +1,5 @@
-midas.util package
-==================
+gambit.util package
+===================
 
 Submodules
 ----------
@@ -10,7 +10,7 @@ Submodules
 Module contents
 ---------------
 
-.. automodule:: midas.util
+.. automodule:: gambit.util
    :members:
    :undoc-members:
    :show-inheritance:

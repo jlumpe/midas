@@ -1,5 +1,5 @@
-midas package
-=============
+gambit package
+==============
 
 Subpackages
 -----------
@@ -7,9 +7,9 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   midas.db
-   midas.io
-   midas.util
+   gambit.db
+   gambit.io
+   gambit.util
 
 Submodules
 ----------
@@ -17,14 +17,14 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   midas.kmers
-   midas.metric
-   midas.test
+   gambit.kmers
+   gambit.metric
+   gambit.test
 
 Module contents
 ---------------
 
-.. automodule:: midas
+.. automodule:: gambit
    :members:
    :undoc-members:
    :show-inheritance:

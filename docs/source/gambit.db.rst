@@ -1,5 +1,5 @@
-midas.db package
-================
+gambit.db package
+=================
 
 Subpackages
 -----------
@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   midas.db.migrate
+   gambit.db.migrate
 
 Submodules
 ----------
@@ -15,13 +15,13 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   midas.db.models
-   midas.db.sqla
+   gambit.db.models
+   gambit.db.sqla
 
 Module contents
 ---------------
 
-.. automodule:: midas.db
+.. automodule:: gambit.db
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,7 +1,7 @@
-midas.db.sqla module
-====================
+gambit.db.sqla module
+=====================
 
-.. automodule:: midas.db.sqla
+.. automodule:: gambit.db.sqla
    :no-members:
    :show-inheritance:
 

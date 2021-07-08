@@ -1,10 +1,10 @@
-midas.db.migrate package
-========================
+gambit.db.migrate package
+=========================
 
 Module contents
 ---------------
 
-.. automodule:: midas.db.migrate
+.. automodule:: gambit.db.migrate
    :members:
    :undoc-members:
    :show-inheritance:
