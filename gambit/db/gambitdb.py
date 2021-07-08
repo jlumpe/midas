@@ -6,7 +6,7 @@ from gambit.signatures import SignatureArray, SignaturesMeta
 from gambit.signatures.base import ReferenceSignatures
 
 
-class MIDASDatabase:
+class GAMBITDatabase:
 	"""Object containing reference genomes, their k-mer signatures, and associated data.
 
 	This is all that is needed at runtime to run queries.

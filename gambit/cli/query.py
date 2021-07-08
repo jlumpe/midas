@@ -3,7 +3,7 @@ import sys
 import click
 
 from .context import CLIContext
-from gambit.db import MIDASDatabase
+from gambit.db import GAMBITDatabase
 from gambit.io.seq import SequenceFile, find_kmers_in_files
 from gambit.query import runquery
 
@@ -38,7 +38,7 @@ def query(ctxobj: CLIContext, files, output, seqfmt: str, outfmt: str):
 	"""Query database."""
 	gset = ctxobj.genomeset()
 	sigs = ctxobj.signatures()
-	db = MIDASDatabase(gset, sigs)
+	db = GAMBITDatabase(gset, sigs)
 
 	# Parse files
 	files = SequenceFile.from_paths(files, seqfmt)

@@ -4,7 +4,7 @@ from typing import Sequence, Optional, Union
 
 import numpy as np
 
-from gambit.db.midasdb import MIDASDatabase
+from gambit.db.gambitdb import GAMBITDatabase
 from gambit.kmers import KmerSignature
 from gambit.io.seq import SequenceFile
 from gambit.metric import jaccard_sparse_array
@@ -17,7 +17,7 @@ def _taxon_repr(taxon):
 	return f'{taxon.id}:{taxon.name}'
 
 
-def runquery(db: MIDASDatabase,
+def runquery(db: GAMBITDatabase,
              queries: Sequence[KmerSignature],
              inputs: Optional[Sequence[Union[QueryInput, SequenceFile, str]]],
              ) -> QueryResults:
@@ -50,7 +50,7 @@ def runquery(db: MIDASDatabase,
 	return QueryResults(items=items, genomeset=db.genomeset, signaturesmeta=db.signatures_meta)
 
 
-def _query_single(db: MIDASDatabase, sig: np.ndarray, input: QueryInput):
+def _query_single(db: GAMBITDatabase, sig: np.ndarray, input: QueryInput):
 	dists = jaccard_sparse_array(sig, db.genome_signatures, distance=True)
 	matches = find_matches(zip(db.genomes, dists))
 	consensus, others = consensus_taxon(matches.keys())

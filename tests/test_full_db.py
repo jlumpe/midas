@@ -16,7 +16,7 @@ import pytest
 
 from gambit.io.seq import SequenceFile, find_kmers_in_files
 from gambit.signatures.hdf5 import HDF5Signatures
-from gambit.db.gambitdb import MIDASDatabase
+from gambit.db.gambitdb import GAMBITDatabase
 from gambit.db.models import ReferenceGenomeSet
 from gambit.query import runquery
 from gambit.cli import cli
@@ -56,12 +56,12 @@ def signatures(testdb_files):
 
 @pytest.fixture(scope='module')
 def testdb(testdb_session, signatures):
-	"""Full MIDASDatabase object for test db."""
+	"""Full GAMBITDatabase object for test db."""
 
 	session = testdb_session()
 	gset = session.query(ReferenceGenomeSet).one()
 
-	return MIDASDatabase(gset, signatures)
+	return GAMBITDatabase(gset, signatures)
 
 
 @pytest.fixture(scope='module')
