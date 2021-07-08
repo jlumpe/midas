@@ -9,7 +9,7 @@ from midas._cython.metric import BOUNDS_DTYPE, SCORE_DTYPE, jaccard_sparse, jacc
 
 
 def jaccard_generic(set1, set2):
-	"""Get the jaccard index of of two arbitrary sets.
+	"""Get the Jaccard index of of two arbitrary sets.
 
 	This is primarily used as a slow, pure-Python alternative to :func:`.jaccard_sparse` to be used
 	for testing, but can also be used as a generic way to calculate the Jaccard index which works
