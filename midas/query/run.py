@@ -1,6 +1,6 @@
 """Query a MIDAS database."""
 
-from typing import Collection, Sequence, Optional, Union
+from typing import Sequence, Optional, Union
 
 import numpy as np
 
@@ -8,8 +8,8 @@ from midas.db.midasdb import MIDASDatabase
 from midas.kmers import KmerSignature
 from midas.io.seq import SequenceFile
 from midas.metric import jaccard_sparse_array
-from .classify import find_matches, consensus_taxon, reportable_taxon
-from .results import QueryInput, QueryResultItem, QueryResults
+from .classify import find_matches, consensus_taxon, reportable_taxon, matching_taxon
+from .results import QueryInput, GenomeMatch, QueryResultItem, QueryResults
 
 
 def _taxon_repr(taxon):
@@ -55,18 +55,56 @@ def _query_single(db: MIDASDatabase, sig: np.ndarray, input: QueryInput):
 	matches = find_matches(zip(db.genomes, dists))
 	consensus, others = consensus_taxon(matches.keys())
 
+	# Find closest match
+	closest = np.argmin(dists)
+	closest_match = GenomeMatch(
+		genome=db.genomes[closest],
+		distance=dists[closest],
+		matching_taxon=matching_taxon(db.genomes[closest].taxon, dists[closest]),
+	)
+
 	# No matches found
 	if not matches:
 		return QueryResultItem(
 			input=input,
 			success=True,
+			primary_match=None,
+			closest_match=closest_match,
 			predicted_taxon=None,
 			report_taxon=None,
+		)
+
+	# Find primary match
+	if consensus is None:
+		primary_match = None
+
+	else:
+		best_i = None
+		best_d = float('inf')
+		best_taxon = None
+
+		for taxon, idxs in matches.items():
+			if consensus not in taxon.ancestors(incself=True):
+				continue
+
+			for i in idxs:
+				if dists[i] < best_d:
+					best_i = i
+					best_d = dists[i]
+					best_taxon = taxon
+
+		assert best_i is not None
+		primary_match = GenomeMatch(
+			genome=db.genomes[best_i],
+			distance=best_d,
+			matching_taxon=best_taxon,
 		)
 
 	item = QueryResultItem(
 		input=input,
 		success=True,
+		primary_match=primary_match,
+		closest_match=closest_match,
 		predicted_taxon=consensus,
 		report_taxon=None if consensus is None else reportable_taxon(consensus),
 	)

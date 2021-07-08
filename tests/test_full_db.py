@@ -95,17 +95,24 @@ def test_query_python(testdb, query_data):
 
 	assert len(results.items) == len(query_files)
 
-	for item, file, expected in zip(results.items, query_files, expected_taxa):
+	for item, file, expected_key in zip(results.items, query_files, expected_taxa):
+		expected_taxon = testdb.genomeset.taxa.filter_by(key=expected_key).one() if expected_key else None
+
 		assert item.input.file == file
 		assert item.success
 
-		if expected == '':
+		if expected_taxon is None:
 			assert item.predicted_taxon is None
 			assert item.report_taxon is None
+			assert item.primary_match is None
 		else:
-			assert item.predicted_taxon is not None
-			assert item.predicted_taxon.key == expected
-			assert item.report_taxon == item.predicted_taxon
+			assert item.predicted_taxon == expected_taxon
+			assert item.report_taxon == expected_taxon
+			assert item.primary_match is not None
+			assert item.primary_match.matching_taxon == expected_taxon
+
+			# In this database, closest match should be primary match
+			assert item.closest_match == item.primary_match
 
 		assert not item.warnings
 		assert item.error is None
@@ -147,11 +154,17 @@ def _check_results_json(results_file, query_files, expected_taxa):
 		if expected == '':
 			assert item['predicted_taxon'] is None
 			assert item['report_taxon'] is None
+			assert item['primary_match'] is None
 		else:
 			predicted = item['predicted_taxon']
 			assert predicted is not None
 			assert predicted['key'] == expected
 			assert item['report_taxon'] == predicted
+			assert item['primary_match'] is not None
+			assert item['primary_match']['matching_taxon']['key'] == expected
+
+			# In this database, closest match should be primary match
+			assert item['closest_match'] == item['primary_match']
 
 		assert item['warnings'] == []
 		assert item['error'] is None
