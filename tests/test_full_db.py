@@ -14,12 +14,12 @@ from csv import DictReader
 
 import pytest
 
-from midas.io.seq import SequenceFile, find_kmers_in_files
-from midas.signatures.hdf5 import HDF5Signatures
-from midas.db.midasdb import MIDASDatabase
-from midas.db.models import ReferenceGenomeSet
-from midas.query import runquery
-from midas.cli import cli
+from gambit.io.seq import SequenceFile, find_kmers_in_files
+from gambit.signatures.hdf5 import HDF5Signatures
+from gambit.db.gambitdb import MIDASDatabase
+from gambit.db.models import ReferenceGenomeSet
+from gambit.query import runquery
+from gambit.cli import cli
 
 
 @pytest.fixture(autouse=True, scope='module')

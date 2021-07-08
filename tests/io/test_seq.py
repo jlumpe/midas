@@ -1,4 +1,4 @@
-"""Test midas.io.seq."""
+"""Test gambit.io.seq."""
 
 from io import StringIO
 from pathlib import Path
@@ -7,11 +7,11 @@ import pytest
 import numpy as np
 from Bio import Seq, SeqIO
 
-from midas.io.seq import SequenceFile, find_kmers_parse, find_kmers_in_file, find_kmers_in_files
-import midas.io.util as ioutil
-from midas.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
-from midas.signatures import sigarray_eq
-from midas.test import make_kmer_seq, random_seq
+from gambit.io.seq import SequenceFile, find_kmers_parse, find_kmers_in_file, find_kmers_in_files
+import gambit.io.util as ioutil
+from gambit.kmers import KmerSpec, dense_to_sparse, sparse_to_dense
+from gambit.signatures import sigarray_eq
+from gambit.test import make_kmer_seq, random_seq
 
 
 def create_sequence_records(kspec, n, seq_len=10000):

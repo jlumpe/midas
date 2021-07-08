@@ -1,14 +1,14 @@
-"""Test midas.signatures.hdf5."""
+"""Test gambit.signatures.hdf5."""
 
 import pytest
 import h5py as h5
 import numpy as np
 
-from midas.signatures.hdf5 import HDF5Signatures, read_metadata, write_metadata
-from midas.signatures import SignaturesMeta
-from midas.signatures.test import AbstractSignatureArrayTests
-from midas.kmers import KmerSpec
-from midas.test import make_signatures
+from gambit.signatures.hdf5 import HDF5Signatures, read_metadata, write_metadata
+from gambit.signatures import SignaturesMeta
+from gambit.signatures.test import AbstractSignatureArrayTests
+from gambit.kmers import KmerSpec
+from gambit.test import make_signatures
 
 
 # JSON data to use for metadata extra field

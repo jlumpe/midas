@@ -2,7 +2,7 @@
 
 import click
 
-from midas import __version__ as MIDAS_VERSION
+from gambit import __version__ as MIDAS_VERSION
 from .context import CLIContext
 
 

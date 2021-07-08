@@ -1,12 +1,12 @@
-"""Tests for midas.kmers module."""
+"""Tests for gambit.kmers module."""
 
 import pytest
 import numpy as np
 
-from midas import kmers
-from midas._cython.kmers import reverse_complement
-import midas.io.json as mjson
-from midas.test import fill_bytearray, make_kmer_seq
+from gambit import kmers
+from gambit._cython.kmers import reverse_complement
+import gambit.io.json as mjson
+from gambit.test import fill_bytearray, make_kmer_seq
 
 
 # Complements to nucleotide ASCII codes
@@ -71,7 +71,7 @@ def test_index_conversion():
 
 
 class TestKmerSpec:
-	"""Test midas.kmers.KmerSpec."""
+	"""Test gambit.kmers.KmerSpec."""
 
 	def test_constructor(self):
 		# Prefix conversion
@@ -168,7 +168,7 @@ def check_reverse_complement(seq, rc):
 
 
 def test_revcomp():
-	"""Test midas._cython.kmers.reverse_complement."""
+	"""Test gambit._cython.kmers.reverse_complement."""
 
 	# Check empty
 	assert reverse_complement(b'') == b''

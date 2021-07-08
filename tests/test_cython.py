@@ -4,7 +4,7 @@ from multiprocessing import cpu_count
 
 import pytest
 
-from midas._cython.test import get_thread_ids
+from gambit._cython.test import get_thread_ids
 
 
 def test_parallel():

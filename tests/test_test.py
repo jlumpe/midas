@@ -1,10 +1,10 @@
-"""Test midas.test module."""
+"""Test gambit.test module."""
 
 import pytest
 import numpy as np
 
-from midas.test import make_signatures, random_seq, fill_bytearray, make_kmer_seq
-from midas.kmers import KmerSpec, reverse_complement, kmer_to_index, dense_to_sparse
+from gambit.test import make_signatures, random_seq, fill_bytearray, make_kmer_seq
+from gambit.kmers import KmerSpec, reverse_complement, kmer_to_index, dense_to_sparse
 
 
 @pytest.mark.parametrize('k', [4, 6, 8])

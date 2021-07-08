@@ -5,9 +5,9 @@ from datetime import datetime
 
 from attr import attrs, attrib
 
-from midas.io.seq import SequenceFile
-from midas.db.models import ReferenceGenomeSet, Taxon, AnnotatedGenome
-from midas.signatures import SignaturesMeta
+from gambit.io.seq import SequenceFile
+from gambit.db.models import ReferenceGenomeSet, Taxon, AnnotatedGenome
+from gambit.signatures import SignaturesMeta
 
 
 @attrs()

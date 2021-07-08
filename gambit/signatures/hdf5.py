@@ -8,8 +8,8 @@ import h5py as h5
 
 from .base import SignaturesMeta, ReferenceSignatures
 from .array import SignatureArray, ConcatenatedSignatureArray
-from midas.kmers import KmerSpec
-from midas.io.util import FilePath
+from gambit.kmers import KmerSpec
+from gambit.io.util import FilePath
 
 
 #: Name of HDF5 group attribute which both stores the format version and also identifies the group
@@ -65,7 +65,7 @@ def read_metadata(group: h5.Group) -> SignaturesMeta:
 class HDF5Signatures(ConcatenatedSignatureArray, ReferenceSignatures):
 	"""Stores a set of k-mer signatures and associated metadata in an HDF5 group.
 
-	Inherits from :class:`midas.signatures.base.AbstractSignatureArray`, so behaves as a sequence of
+	Inherits from :class:`gambit.signatures.base.AbstractSignatureArray`, so behaves as a sequence of
 	k-mer signatures supporting Numpy-style advanced indexing.
 
 	Attributes

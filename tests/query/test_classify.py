@@ -1,9 +1,9 @@
-"""Test the midas.query.classify module."""
+"""Test the gambit.query.classify module."""
 
 import pytest
 
-from midas.query.classify import matching_taxon, find_matches, consensus_taxon, reportable_taxon
-from midas.db.models import Taxon
+from gambit.query.classify import matching_taxon, find_matches, consensus_taxon, reportable_taxon
+from gambit.db.models import Taxon
 
 
 def test_matching_taxon():

@@ -4,8 +4,8 @@ from typing import Optional, Tuple, Union
 
 import numpy as np
 
-from midas.kmers import KmerSpec, KmerSignature, dense_to_sparse, kmer_to_index, reverse_complement
-from midas.signatures import SignatureArray
+from gambit.kmers import KmerSpec, KmerSignature, dense_to_sparse, kmer_to_index, reverse_complement
+from gambit.signatures import SignatureArray
 
 
 def bernoulli(size: Union[int, tuple], p: float) -> np.ndarray:

@@ -385,7 +385,7 @@ class Taxon(Base):
 		return f'<{type(self).__name__}:{self.id} {self.name!r}>'
 
 
-#: Attributes of :class:`midas.db.models.Genome` which serve as unique IDs.
+#: Attributes of :class:`gambit.db.models.Genome` which serve as unique IDs.
 GENOME_ID_ATTRS = {
 	'key': Genome.key,
 	'genbank_acc': Genome.genbank_acc,
@@ -450,7 +450,7 @@ def genomes_by_id(genomeset: ReferenceGenomeSet, id_attr: GenomeAttr, ids: Seque
 	----------
 	genomeset
 	id_attr
-		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
+		ID attribute of :class:`gambit.db.models.Genome` to use for lookup. Can be used as the
 		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
 		See :data:`.GENOME_IDS` for the set of allowed values.
 	ids
@@ -496,7 +496,7 @@ def genomes_by_id_subset(genomeset: ReferenceGenomeSet,
 	----------
 	genomeset
 	id_attr
-		ID attribute of :class:`midas.db.models.Genome` to use for lookup. Can be used as the
+		ID attribute of :class:`gambit.db.models.Genome` to use for lookup. Can be used as the
 		attribute itself (e.g. ``Genome.refseq_acc``) or just the name (``'refsec_acc'``).
 		See :data:`.GENOME_IDS` for the set of allowed values.
 	ids

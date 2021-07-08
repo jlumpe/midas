@@ -2,7 +2,7 @@
 
 from typing import Optional, Tuple, Iterable, Dict, List, Set
 
-from midas.db.models import AnnotatedGenome, Taxon
+from gambit.db.models import AnnotatedGenome, Taxon
 
 
 def matching_taxon(taxon: Taxon, d: float) -> Optional[Taxon]:
@@ -130,7 +130,7 @@ def reportable_taxon(taxon: Taxon) -> Optional[Taxon]:
 
 	Returns
 	-------
-	Optional[midas.db.models.Taxon]
+	Optional[gambit.db.models.Taxon]
 		Most specific taxon in ancestry with ``report=True``, or ``None`` if none found.
 	"""
 	for t in taxon.ancestors(incself=True):

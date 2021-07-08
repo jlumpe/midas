@@ -6,9 +6,9 @@ import sys
 from attr import attrs, attrib, asdict
 
 from .base import AbstractResultsExporter
-from midas.query.results import QueryResults, QueryResultItem
-from midas.db.models import ReferenceGenomeSet, Taxon, AnnotatedGenome
-import midas.io.json as mjson
+from gambit.query.results import QueryResults, QueryResultItem
+from gambit.db.models import ReferenceGenomeSet, Taxon, AnnotatedGenome
+import gambit.io.json as gjson
 
 
 if sys.version_info[1] >= 8:
@@ -49,7 +49,7 @@ class JSONResultsExporter(AbstractResultsExporter):
 	@singledispatchmethod
 	def _to_json(self, obj):
 		# Base case
-		return mjson.to_json(obj)
+		return gjson.to_json(obj)
 
 	@_to_json.register(QueryResults)
 	def _results_to_json(self, results: QueryResults):

@@ -1,5 +1,5 @@
 """Script entry point to the MIDAS CLI."""
 
 # Run the CLI
-from midas.cli import cli
+from gambit.cli import cli
 cli()

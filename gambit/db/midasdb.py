@@ -1,9 +1,9 @@
 from typing import Sequence
 
-from midas.kmers import KmerSpec
+from gambit.kmers import KmerSpec
 from .models import ReferenceGenomeSet, AnnotatedGenome, genomes_by_id_subset
-from midas.signatures import SignatureArray, SignaturesMeta
-from midas.signatures.base import ReferenceSignatures
+from gambit.signatures import SignatureArray, SignaturesMeta
+from gambit.signatures.base import ReferenceSignatures
 
 
 class MIDASDatabase:

@@ -4,7 +4,7 @@ from collections.abc import Set
 
 import numpy as np
 
-from midas._cython.metric import BOUNDS_DTYPE, SCORE_DTYPE, jaccard_sparse, jaccarddist_sparse, \
+from gambit._cython.metric import BOUNDS_DTYPE, SCORE_DTYPE, jaccard_sparse, jaccarddist_sparse, \
 	_jaccard_sparse_parallel
 
 
@@ -78,7 +78,7 @@ def jaccard_sparse_array(query, refs, out=None, distance=False):
 	----------
 	query : numpy.ndarray
 		Query k-mer signature in sparse coordinate format (sorted array of k-mer indices).
-	refs : midas.signatures.SignatureArray
+	refs : gambit.signatures.SignatureArray
 		Array of reference signatures.
 	out : Optional[numpy.ndarray]
 		Optional pre-allocated array to write results to. Should be the same length as ``sigarray``

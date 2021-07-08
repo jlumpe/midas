@@ -9,7 +9,7 @@ Create Date: 2017-08-31 13:04:08.811277
 """
 from alembic import op
 import sqlalchemy as sa
-import midas.db.sqla
+import gambit.db.sqla
 
 
 # revision identifiers, used by Alembic.

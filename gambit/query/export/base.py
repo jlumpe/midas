@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from midas.query.results import QueryResults
+from gambit.query.results import QueryResults
 
 
 class AbstractResultsExporter(ABC):

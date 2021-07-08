@@ -6,10 +6,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker
 
-from midas.db.fromfile import locate_db_files
-from midas.db.models import ReferenceGenomeSet
-from midas.db.sqla import ReadOnlySession
-from midas.signatures.hdf5 import HDF5Signatures
+from gambit.db.fromfile import locate_db_files
+from gambit.db.models import ReferenceGenomeSet
+from gambit.db.sqla import ReadOnlySession
+from gambit.signatures.hdf5 import HDF5Signatures
 
 
 class CLIContext:

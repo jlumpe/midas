@@ -8,7 +8,7 @@ from .base import sigarray_eq
 
 
 class AbstractSignatureArrayTests:
-	"""Base for test classes which test :class:`midas.sigatures.base.AbstractSignatureArray` implementations.
+	"""Base for test classes which test :class:`gambit.sigatures.base.AbstractSignatureArray` implementations.
 
 	Must implement the following fixtures (unless they exist at the module level):
 	* `sigarray` - ``AbstractSignatureArray`` instance to be tested.

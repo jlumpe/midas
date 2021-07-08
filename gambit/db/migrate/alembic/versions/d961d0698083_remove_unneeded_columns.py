@@ -12,7 +12,7 @@ UPDATE 210707: Disabled data migration. If you want it, uncomment the proper lin
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.sql import table
-from midas.db import sqla
+from gambit.db import sqla
 
 
 # revision identifiers, used by Alembic.

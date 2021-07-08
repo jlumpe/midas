@@ -7,7 +7,7 @@ import numpy as np
 from Bio import SeqIO
 from attr import attrs, attrib
 
-from midas.kmers import KmerSpec, find_kmers, dense_to_sparse, KmerSignature
+from gambit.kmers import KmerSpec, find_kmers, dense_to_sparse, KmerSignature
 from .util import open_compressed, ClosingIterator
 
 
@@ -35,7 +35,7 @@ class SequenceFile:
 		:func:`Bio.SeqIO.parse`, e.g. ``'fasta'``.
 	compression : str or None
 		String describing compression method of the file, e.g. ``'gzip'``. None
-		means no compression. See :func:`midas.io.util.open_compressed`.
+		means no compression. See :func:`gambit.io.util.open_compressed`.
 	"""
 	path: Path = attrib(converter=Path)
 	format: str = attrib()
@@ -68,7 +68,7 @@ class SequenceFile:
 
 		Returns iterator over sequence data in file. File is parsed lazily,
 		and so must be kept open. The returned iterator is of type
-		:class:`midas.io.util.ClosingIterator` so it will close the file stream
+		:class:`gambit.io.util.ClosingIterator` so it will close the file stream
 		automatically when it finishes. It may also be used as a context manager
 		that closes the stream on exit. You may also close the stream explicitly
 		using the iterator's ``close`` method.
@@ -80,7 +80,7 @@ class SequenceFile:
 
 		Returns
 		-------
-		midas.io.util.ClosingIterator
+		gambit.io.util.ClosingIterator
 			Iterator yielding :class:`Bio.SeqIO.SeqRecord` instances for each sequence in the file.
 		"""
 
@@ -124,7 +124,7 @@ def find_kmers_parse(kspec: KmerSpec, data, format: str, *, sparse: bool = True,
 
 	Parameters
 	----------
-	kspec : midas.kmers.KmerSpec
+	kspec : gambit.kmers.KmerSpec
 		Spec for k-mer search.
 	data
 		Stream with sequence data. Readable file-like object in text mode.
@@ -143,11 +143,11 @@ def find_kmers_parse(kspec: KmerSpec, data, format: str, *, sparse: bool = True,
 	numpy.ndarray
 		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
 		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
-		:func:`midas.kmers.vec_to_coords`).
+		:func:`gambit.kmers.vec_to_coords`).
 
 	See Also
 	--------
-	midas.kmers.find_kmers
+	gambit.kmers.find_kmers
 	.find_kmers_in_file
 	"""
 	if dense_out is None:
@@ -184,11 +184,11 @@ def find_kmers_in_file(kspec: KmerSpec, seqfile: SequenceFile, *, sparse: bool =
 	numpy.ndarray
 		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
 		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
-		:func:`midas.kmers.vec_to_coords`).
+		:func:`gambit.kmers.vec_to_coords`).
 
 	See Also
 	--------
-	midas.kmers.find_kmers
+	gambit.kmers.find_kmers
 	.find_kmers_in_files
 	.find_kmers_parse
 	"""

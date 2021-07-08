@@ -1,9 +1,9 @@
-"""Test midas.query.results module."""
+"""Test gambit.query.results module."""
 
 import pytest
 
-from midas.query.results import QueryInput
-from midas.io.seq import SequenceFile
+from gambit.query.results import QueryInput
+from gambit.io.seq import SequenceFile
 
 
 class TestQueryInput:

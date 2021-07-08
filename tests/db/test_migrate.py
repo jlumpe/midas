@@ -1,13 +1,13 @@
-"""Test the midas.db.migrate module."""
+"""Test the gambit.db.migrate module."""
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
 
-from midas.db.migrate import (current_head, current_revision, is_current_revision, init_db,
+from gambit.db.migrate import (current_head, current_revision, is_current_revision, init_db,
                               get_alembic_config)
-from midas.db import models
+from gambit.db import models
 
 
 # Expected current head revision

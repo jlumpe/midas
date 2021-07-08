@@ -1,11 +1,11 @@
-"""Test midas.util.indexing module."""
+"""Test gambit.util.indexing module."""
 
 from collections.abc import Sequence
 
 import pytest
 import numpy as np
 
-from midas.util.indexing import AdvancedIndexingMixin
+from gambit.util.indexing import AdvancedIndexingMixin
 
 
 class AdvancedIndexingTestClass(AdvancedIndexingMixin, Sequence):

@@ -3,9 +3,9 @@ from typing import Sequence, Optional
 import numpy as np
 
 from .base import AbstractSignatureArray
-from midas._cython.metric import BOUNDS_DTYPE
-from midas.kmers import KmerSignature
-from midas.util.indexing import AdvancedIndexingMixin
+from gambit._cython.metric import BOUNDS_DTYPE
+from gambit.kmers import KmerSignature
+from gambit.util.indexing import AdvancedIndexingMixin
 
 
 class ConcatenatedSignatureArray(AdvancedIndexingMixin, AbstractSignatureArray):
@@ -58,7 +58,7 @@ class SignatureArray(ConcatenatedSignatureArray):
 	"""Stores a collection of k-mer signatures in a single contiguous Numpy array.
 
 	This format enables the calculation of many Jaccard scores in parallel, see
-	:func:`midas.metric.jaccard_sparse_array`.
+	:func:`gambit.metric.jaccard_sparse_array`.
 
 	Numpy-style indexing with an array of integers or bools is supported and will return another
 	``SignatureArray``. If indexed with a contiguous slice the :attr:`values` of the returned

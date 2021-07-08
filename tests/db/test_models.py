@@ -1,4 +1,4 @@
-"""Test midas.db.models.
+"""Test gambit.db.models.
 
 Uses the included testdb_210126 database.
 """
@@ -8,8 +8,8 @@ import random
 import pytest
 from sqlalchemy.orm import sessionmaker
 
-from midas.db import models
-from midas.db.models import Genome, ReferenceGenomeSet, AnnotatedGenome, Taxon
+from gambit.db import models
+from gambit.db.models import Genome, ReferenceGenomeSet, AnnotatedGenome, Taxon
 
 
 # Some arbitrary JSON data

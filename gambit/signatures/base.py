@@ -4,7 +4,7 @@ from abc import abstractmethod
 import numpy as np
 from attr import attrs, attrib
 
-from midas.kmers import KmerSpec, KmerSignature
+from gambit.kmers import KmerSpec, KmerSignature
 
 
 @attrs()
@@ -22,7 +22,7 @@ class SignaturesMeta:
 	name
 		Short human-readable name.
 	id_attr
-		Name of ``Genome`` attribute the IDs correspond to (see :data:`midas.db.models.GENOME_ID_ATTRS`).
+		Name of ``Genome`` attribute the IDs correspond to (see :data:`gambit.db.models.GENOME_ID_ATTRS`).
 		Optional, but signature set cannot be used as a reference for queries without it.
 	description
 		Human-readable description.
@@ -49,7 +49,7 @@ class AbstractSignatureArray(Sequence[KmerSignature]):
 	(k-mer sets in sparse coordinate format).
 
 	Elements should be Numpy arrays with integer data type. Should implement numpy-style advanced
-	indexing, see :class:`midas.util.indexing.AdvancedIndexingMixin`. Slicing and advanced indexing
+	indexing, see :class:`gambit.util.indexing.AdvancedIndexingMixin`. Slicing and advanced indexing
 	should return another instance of ``AbstractSignatureArray``.
 
 	Attributes

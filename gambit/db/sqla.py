@@ -5,7 +5,7 @@ import json
 from sqlalchemy.types import TypeDecorator, String
 from sqlalchemy.orm.session import Session
 
-import midas.io.json as mjson
+import gambit.io.json as gjson
 
 
 class ReadOnlySession(Session):
@@ -30,7 +30,7 @@ class JsonString(TypeDecorator):
 	impl = String
 
 	def process_bind_param(self, value, dialect):
-		return None if value is None else mjson.dumps(value)
+		return None if value is None else gjson.dumps(value)
 
 	def process_result_value(self, value, dialect):
-		return None if value is None else mjson.loads(value)
+		return None if value is None else gjson.loads(value)

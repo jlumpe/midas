@@ -12,7 +12,7 @@ fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from midas.db.models import Base
+from gambit.db.models import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -45,7 +45,7 @@ def run_migrations_online():
     """
     connectable = config.attributes.get('connectable')
     if connectable is None:
-        raise RuntimeError('Connectable object must be passed to midas.db.migrate.get_alembic_config()')
+        raise RuntimeError('Connectable object must be passed to gambit.db.migrate.get_alembic_config()')
 
     with connectable.connect() as connection:
         context.configure(

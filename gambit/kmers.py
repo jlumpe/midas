@@ -16,8 +16,8 @@ from typing import Sequence, Optional, Union, NewType
 import numpy as np
 from attr import attrs, attrib
 
-from midas._cython.kmers import kmer_to_index, index_to_kmer, reverse_complement
-from midas.io.json import Jsonable
+from gambit._cython.kmers import kmer_to_index, index_to_kmer, reverse_complement
+from gambit.io.json import Jsonable
 
 
 # Byte representations of the four nucleotide codes in the order used for
@@ -175,11 +175,11 @@ def find_kmers(
 	numpy.ndarray
 		If ``sparse`` is False, returns dense K-mer vector (same array as ``dense_out`` if it was
 		given). If ``sparse`` is True returns k-mers in sparse coordinate format (dtype will match
-		:func:`midas.kmers.vec_to_coords`).
+		:func:`gambit.kmers.vec_to_coords`).
 
 	See Also
 	--------
-	midas.io.seq.find_kmers_parse
+	gambit.io.seq.find_kmers_parse
 	"""
 	if dense_out is None:
 		dense_out = np.zeros(kspec.idx_len, dtype=bool)

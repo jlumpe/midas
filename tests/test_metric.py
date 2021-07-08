@@ -5,11 +5,11 @@ import pickle
 import pytest
 import numpy as np
 
-from midas.metric import jaccard_sparse, jaccarddist_sparse, jaccard_bits, \
+from gambit.metric import jaccard_sparse, jaccarddist_sparse, jaccard_bits, \
 	jaccard_generic, jaccard_sparse_array, SCORE_DTYPE, BOUNDS_DTYPE
-from midas.kmers import sparse_to_dense
-from midas.signatures import SignatureArray
-from midas.test import make_signatures
+from gambit.kmers import sparse_to_dense
+from gambit.signatures import SignatureArray
+from gambit.test import make_signatures
 
 
 @pytest.fixture(scope='module')

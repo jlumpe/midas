@@ -3,9 +3,9 @@ import sys
 import click
 
 from .context import CLIContext
-from midas.db import MIDASDatabase
-from midas.io.seq import SequenceFile, find_kmers_in_files
-from midas.query import runquery
+from gambit.db import MIDASDatabase
+from gambit.io.seq import SequenceFile, find_kmers_in_files
+from gambit.query import runquery
 
 
 @click.command()
@@ -49,10 +49,10 @@ def query(ctxobj: CLIContext, files, output, seqfmt: str, outfmt: str):
 
 	# Export results
 	if outfmt == 'json':
-		from midas.query.export.json import JSONResultsExporter
+		from gambit.query.export.json import JSONResultsExporter
 		exporter = JSONResultsExporter()
 	else:
-		from midas.query.export.csv import CSVResultsExporter
+		from gambit.query.export.csv import CSVResultsExporter
 		exporter = CSVResultsExporter()
 
 	exporter.export(output, results)

@@ -4,10 +4,10 @@ from typing import Sequence, Optional, Union
 
 import numpy as np
 
-from midas.db.midasdb import MIDASDatabase
-from midas.kmers import KmerSignature
-from midas.io.seq import SequenceFile
-from midas.metric import jaccard_sparse_array
+from gambit.db.midasdb import MIDASDatabase
+from gambit.kmers import KmerSignature
+from gambit.io.seq import SequenceFile
+from gambit.metric import jaccard_sparse_array
 from .classify import find_matches, consensus_taxon, reportable_taxon, matching_taxon
 from .results import QueryInput, GenomeMatch, QueryResultItem, QueryResults
 
@@ -30,7 +30,7 @@ def runquery(db: MIDASDatabase,
 	queries
 		Sequence of k-mer signatures.
 	inputs
-		Description for each input, converted to :class:`midas.query.result.QueryInput` in results
+		Description for each input, converted to :class:`gambit.query.result.QueryInput` in results
 		object. Only used for reporting, does not any other aspect of results. Items can be
 		``QueryInput``, ``SequenceFile`` or ``str``.
 	"""

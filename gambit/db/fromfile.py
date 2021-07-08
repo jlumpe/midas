@@ -11,7 +11,7 @@ from sqlalchemy.exc import MultipleResultsFound, NoResultFound
 from .models import ReferenceGenomeSet
 from .midasdb import MIDASDatabase
 from .sqla import ReadOnlySession
-from midas.io.util import FilePath
+from gambit.io.util import FilePath
 
 
 def open_genomeset(path: FilePath, session_cls=ReadOnlySession) -> ReferenceGenomeSet:
@@ -80,7 +80,7 @@ def locate_db_files(path: FilePath) -> Tuple[Path, Path]:
 
 def load_database(genomes_file: FilePath, signatures_file: FilePath) -> MIDASDatabase:
 	"""Load complete database given paths to SQLite genomes database file and HDF5 signatures file."""
-	from midas.signatures.hdf5 import HDF5Signatures
+	from gambit.signatures.hdf5 import HDF5Signatures
 	gset = open_genomeset(genomes_file)
 	sigs = HDF5Signatures.open(signatures_file)
 	return MIDASDatabase(gset, sigs)

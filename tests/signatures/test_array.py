@@ -1,11 +1,11 @@
-"""Test midas.signatures.SignatureArray."""
+"""Test gambit.signatures.SignatureArray."""
 
 import pytest
 import numpy as np
 
-from midas.signatures import SignatureArray
-from midas.test import make_signatures
-from midas.signatures.test import AbstractSignatureArrayTests
+from gambit.signatures import SignatureArray
+from gambit.test import make_signatures
+from gambit.signatures.test import AbstractSignatureArrayTests
 
 
 @pytest.fixture(params=[None, 'i8', 'u4'])

@@ -5,7 +5,7 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from midas.db.models import Base as models_base
+from gambit.db.models import Base as models_base
 
 
 # Add option to opt-in to the tests in test_full_db.py

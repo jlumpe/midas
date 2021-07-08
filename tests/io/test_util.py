@@ -1,15 +1,15 @@
-"""Test midas.io.util"""
+"""Test gambit.io.util"""
 
 import io
 
 import pytest
 import numpy as np
 
-from midas.io import util
+from gambit.io import util
 
 
 class TestOpenCompressed:
-	"""Test midas.io.util.open_compressed."""
+	"""Test gambit.io.util.open_compressed."""
 
 	@pytest.fixture(scope='class')
 	def text_data(self):

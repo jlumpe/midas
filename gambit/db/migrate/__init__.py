@@ -101,7 +101,7 @@ def init_db(connectable: Connectable):
 	Initialize the genome database schema by creating all tables and stamping with the latest
 	Alembic revision.
 
-	Expects a fresh database that does not already contain any tables for the :mod:`midas.db.models`
+	Expects a fresh database that does not already contain any tables for the :mod:`gambit.db.models`
 	models and has not had any migrations run on it yet.
 
 	Parameters
@@ -116,7 +116,7 @@ def init_db(connectable: Connectable):
 	sqlalchemy.exc.OperationalError
 		If any of the database tables to be created already exist.
 	"""
-	from midas.db.models import Base
+	from gambit.db.models import Base
 
 	conf = get_alembic_config()
 	script = ScriptDirectory.from_config(conf)
