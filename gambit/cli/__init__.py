@@ -1,3 +1,3 @@
-"""MIDAS command line interface."""
+"""GAMBIT command line interface."""
 
 from .root import cli

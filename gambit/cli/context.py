@@ -13,7 +13,7 @@ from gambit.signatures.hdf5 import HDF5Signatures
 
 
 class CLIContext:
-	"""Click context object for MIDAS CLI.
+	"""Click context object for GAMBIT CLI.
 
 	Attributes
 	----------

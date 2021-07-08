@@ -1,4 +1,4 @@
-"""Query a MIDAS database."""
+"""Query a GAMBIT database."""
 
 from typing import Sequence, Optional, Union
 
@@ -21,7 +21,7 @@ def runquery(db: GAMBITDatabase,
              queries: Sequence[KmerSignature],
              inputs: Optional[Sequence[Union[QueryInput, SequenceFile, str]]],
              ) -> QueryResults:
-	"""Predict the taxonomy of one or more query genomes using a given MIDAS reference database.
+	"""Predict the taxonomy of one or more query genomes using a given GAMBIT reference database.
 
 	Parameters
 	----------

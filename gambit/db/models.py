@@ -100,7 +100,7 @@ class Genome(Base):
 
 class ReferenceGenomeSet(Base):
 	"""
-	A collection of reference genomes along with additional annotations and data. A full MIDAS
+	A collection of reference genomes along with additional annotations and data. A full GAMBIT
 	database which can be used for queries consists of a genome set plus a set of k-mer signatures
 	for those genomes (stored separately).
 
@@ -110,7 +110,7 @@ class ReferenceGenomeSet(Base):
 	tree under which all its genomes are categorized.
 
 	This schema technically allows for multiple genome sets within the same database (which can
-	share :class:`.Genome`\\ s but with different annotations), but the MIDAS application generally
+	share :class:`.Genome`\\ s but with different annotations), but the GAMBIT application generally
 	expects that genome sets are stored in their own SQLite files.
 
 	Attributes

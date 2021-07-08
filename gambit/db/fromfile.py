@@ -15,7 +15,7 @@ from gambit.io.util import FilePath
 
 
 def open_genomeset(path: FilePath, session_cls=ReadOnlySession) -> ReferenceGenomeSet:
-	"""Open an SQLite file containing MIDAS reference genomes and get its :class:`ReferenceGenomeSet`.
+	"""Open an SQLite file containing GAMBIT reference genomes and get its :class:`ReferenceGenomeSet`.
 
 	Parameters
 	----------
