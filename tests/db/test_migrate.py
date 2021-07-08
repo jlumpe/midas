@@ -1,5 +1,6 @@
 """Test the gambit.db.migrate module."""
 
+import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from alembic.migration import MigrationContext
@@ -15,7 +16,8 @@ from gambit.db import models
 CURRENT_HEAD = 'c43540b80d50'
 
 # Old revision number to test. Must actually exist in the scripts directory.
-OLD_REVISION = '955d795123c3'
+# TODO - set this once we have more than one revision file
+OLD_REVISION = None
 
 
 def test_current_head():
@@ -38,6 +40,7 @@ class TestCurrentRevision:
 		assert current_revision(engine) == CURRENT_HEAD
 		assert is_current_revision(engine)
 
+	@pytest.mark.skipif(OLD_REVISION is None, reason='No older revisions to test.')
 	def test_old(self):
 		"""Test on uninitialized database stamped with an old revision no."""
 		engine = create_engine('sqlite:///:memory:')
