@@ -1,6 +1,0 @@
-[flake8]
-ignore =
-	# TABS ARE BETTER
-	W191,
-	# indentation contains mixed spaces and tabs - spaces for alignment
-	E101
