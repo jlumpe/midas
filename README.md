@@ -1,9 +1,9 @@
-# midas v2
-[![Build Status](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml/badge.svg)](https://github.com/hesslab-midas/midas/actions/workflows/ci.yml)
+# MIDAS (precursor to GAMBIT)
 
-Version 2 of the core MIDAS library.
+[![Build Status](https://github.com/jlumpe/midas/actions/workflows/ci.yml/badge.svg)](https://github.com/jlumpe/midas/actions/workflows/ci.yml)
 
-For version 1, see the [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch.
+MIDAS is an early version of [GAMBIT](github.com/jlumpe/gambit), a tool for taxonomic identifiction of bacterial genomes. The final v2.4.0 release was reclassified as GAMBIT v0.1.0 and moved to a new repo. This repository has been kept for reference purposes, the code is way out of date and there's no reason to use it instead of the most recent GAMBIT release.
+
 
 ## Installation
 
@@ -20,11 +20,3 @@ Build and install:
     cd midas
     python setup.py build_ext --inplace
     python setup.py install
-
-
-## Other MIDAS v2 repos
-
-* [midas-app](http://github.com/jlumpe/midas-app)
-* [midas-gui](http://github.com/jlumpe/midas-gui)
-  
-See [`v1-master`](https://github.com/jlumpe/midas/tree/v1-master) branch for repos which use the v1 version of the library.
